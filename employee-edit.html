@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>员工信息编辑 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .field-label { font-size: 12px; color: #64748b; margin-bottom: 4px; display: block; }
+    .field-input { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0 10px; font-size: 13px; color: #0f172a; }
+    .field-textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px 10px; font-size: 13px; color: #0f172a; resize: vertical; }
+    .section-head { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; padding: 8px 12px; font-size: 13px; font-weight: 600; color: #1e293b; margin: 16px 0 12px; }
+    .upload-tile { height: 72px; border: 1px dashed #cbd5e1; border-radius: 6px; background: #f8fafc; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #64748b; font-size: 11px; }
+    .upload-tile.primary { border-color: #93c5fd; background: #eff6ff; color: #2563eb; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">系统管理 / <span class="text-slate-700 font-medium">部门员工</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="text-sm text-slate-500 mb-2">系统管理 / 部门员工</div>
+        <div class="flex items-center gap-2 mb-4">
+          <a href="department-employees.html" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-angle-left"></i></a>
+          <span class="text-sm font-semibold text-slate-800">员工信息</span>
+        </div>
+
+        <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="section-head -mx-5 -mt-2"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>工作信息</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
+            <label><span class="field-label">姓名</span><input class="field-input" value="郑亮"></label>
+            <label><span class="field-label">性别</span><button type="button" class="field-input flex items-center justify-between text-left text-slate-600">男<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></label>
+            <label><span class="field-label">入职时间</span><input class="field-input" type="text" value="2024-01-10"></label>
+            <label><span class="field-label">转正时间</span><input class="field-input" type="text" value="2024-04-10"></label>
+            <label><span class="field-label">登录账号</span><input class="field-input" value="000020"></label>
+            <label><span class="field-label">登录密码</span><input class="field-input" type="password" placeholder="留空表示不修改"></label>
+            <label><span class="field-label">所属部门</span><button type="button" class="field-input flex items-center justify-between text-left text-slate-600">网销一组<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></label>
+            <label><span class="field-label">角色权限</span><button type="button" class="field-input flex items-center justify-between text-left text-slate-600">销售主管<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></label>
+            <label><span class="field-label">是否主管</span><button type="button" class="field-input flex items-center justify-between text-left text-slate-600">是<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></label>
+            <label><span class="field-label">工作手机号</span><input class="field-input" value="13812341234"></label>
+            <label class="md:col-span-2 lg:col-span-3"><span class="field-label">员工备注</span><textarea class="field-textarea" rows="2" placeholder="选填"></textarea></label>
+          </div>
+
+          <div class="section-head"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>教育经历</div>
+          <div class="rounded-lg border border-slate-200 overflow-hidden text-xs">
+            <div class="grid grid-cols-12 gap-2 bg-slate-50 px-3 py-2 text-slate-600 font-medium">
+              <span class="col-span-3">起止时间</span>
+              <span class="col-span-3">学校名称</span>
+              <span class="col-span-3">所学专业</span>
+              <span class="col-span-2">学历</span>
+              <span class="col-span-1 text-right">操作</span>
+            </div>
+            <div class="grid grid-cols-12 gap-2 items-center px-3 py-2 border-t border-slate-100">
+              <input class="col-span-3 h-8 rounded border border-slate-200 px-2 text-xs" value="2015-09 - 2019-06">
+              <input class="col-span-3 h-8 rounded border border-slate-200 px-2 text-xs" value="苏州大学">
+              <input class="col-span-3 h-8 rounded border border-slate-200 px-2 text-xs" value="市场营销">
+              <button type="button" class="col-span-2 h-8 rounded border border-slate-200 bg-white px-2 text-left text-slate-600 flex justify-between items-center">本科<i class="fa-solid fa-angle-down text-[10px]"></i></button>
+              <div class="col-span-1 text-right"><button type="button" class="text-blue-600"><i class="fa-solid fa-plus"></i></button></div>
+            </div>
+          </div>
+
+          <div class="section-head"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>工作经历</div>
+          <div class="rounded-lg border border-slate-200 overflow-hidden text-xs">
+            <div class="grid grid-cols-12 gap-2 bg-slate-50 px-3 py-2 text-slate-600 font-medium">
+              <span class="col-span-2">起止时间</span>
+              <span class="col-span-3">工作单位</span>
+              <span class="col-span-2">工作岗位</span>
+              <span class="col-span-2">证明人</span>
+              <span class="col-span-2">联系方式</span>
+              <span class="col-span-1 text-right">操作</span>
+            </div>
+            <div class="grid grid-cols-12 gap-2 items-center px-3 py-2 border-t border-slate-100">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="2019-07 - 2023-12">
+              <input class="col-span-3 h-8 rounded border border-slate-200 px-2 text-xs" value="某科技有限公司">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="销售代表">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="李某">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="139****0000">
+              <div class="col-span-1 text-right"><button type="button" class="text-blue-600"><i class="fa-solid fa-plus"></i></button></div>
+            </div>
+          </div>
+
+          <div class="section-head"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>家庭成员</div>
+          <div class="rounded-lg border border-slate-200 overflow-hidden text-xs">
+            <div class="grid grid-cols-12 gap-2 bg-slate-50 px-3 py-2 text-slate-600 font-medium">
+              <span class="col-span-2">与本人关系</span>
+              <span class="col-span-2">姓名</span>
+              <span class="col-span-3">工作单位</span>
+              <span class="col-span-2">岗位</span>
+              <span class="col-span-2">联系方式</span>
+              <span class="col-span-1 text-right">操作</span>
+            </div>
+            <div class="grid grid-cols-12 gap-2 items-center px-3 py-2 border-t border-slate-100">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="配偶">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="王某">
+              <input class="col-span-3 h-8 rounded border border-slate-200 px-2 text-xs" value="—">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="—">
+              <input class="col-span-2 h-8 rounded border border-slate-200 px-2 text-xs" value="137****0000">
+              <div class="col-span-1 text-right"><button type="button" class="text-blue-600"><i class="fa-solid fa-plus"></i></button></div>
+            </div>
+          </div>
+
+          <div class="section-head"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>附件材料</div>
+          <p class="text-xs text-slate-500 mb-3">支持 JPG、PNG、PDF，单文件不超过 50M</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 text-xs">
+            <div>
+              <p class="text-slate-600 mb-1">证件照</p>
+              <div class="upload-tile relative"><i class="fa-solid fa-image text-slate-400"></i><span>已上传</span><span class="absolute top-1 right-1 flex gap-1"><button type="button" class="text-blue-600 text-[10px]">展开</button><button type="button" class="text-red-500 text-[10px]">删除</button></span></div>
+            </div>
+            <div>
+              <p class="text-slate-600 mb-1">身份证人像面</p>
+              <div class="upload-tile"><i class="fa-solid fa-image text-slate-400"></i><span>已上传</span></div>
+            </div>
+            <div>
+              <p class="text-slate-600 mb-1">身份证国徽面</p>
+              <div class="upload-tile primary cursor-pointer"><i class="fa-solid fa-plus"></i><span>点击上传</span></div>
+            </div>
+            <div>
+              <p class="text-slate-600 mb-1">学历证书</p>
+              <div class="upload-tile primary cursor-pointer"><i class="fa-solid fa-plus"></i><span>点击上传</span></div>
+            </div>
+            <div>
+              <p class="text-slate-600 mb-1">体检报告</p>
+              <div class="upload-tile primary cursor-pointer"><i class="fa-solid fa-plus"></i><span>点击上传</span></div>
+            </div>
+            <div>
+              <p class="text-slate-600 mb-1">离职证明</p>
+              <div class="upload-tile primary cursor-pointer"><i class="fa-solid fa-plus"></i><span>点击上传</span></div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex justify-center gap-4">
+            <button type="button" class="h-10 min-w-[120px] rounded-md bg-blue-600 px-6 text-sm font-medium text-white hover:bg-blue-700">确认</button>
+            <a href="department-employees.html" class="h-10 min-w-[120px] rounded-md border border-slate-300 bg-white px-6 text-sm text-slate-600 hover:bg-slate-50 inline-flex items-center justify-center">取消</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>销售目标 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">销售管理 <span class="text-slate-700 font-medium">销售目标</span></div>
+        <div class="flex items-center gap-4">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="text-sm text-slate-500 mb-4">销售管理 销售目标</div>
+
+          <div class="border-b border-slate-200 mb-4 flex gap-8 text-sm">
+            <button type="button" id="tab-person-target" class="pb-2 -mb-px border-b-2 border-transparent text-slate-500 hover:text-slate-700">人员目标</button>
+            <button type="button" id="tab-dept-target" class="pb-2 -mb-px border-b-2 border-blue-600 text-blue-600 font-medium">部门目标</button>
+          </div>
+
+          <div class="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 mb-5 flex items-center text-sm font-medium text-slate-700">
+            <span class="w-1 h-4 rounded bg-blue-600 mr-2"></span><span id="target-setting-title">部门目标设置</span>
+          </div>
+
+          <div class="space-y-6" id="target-list">
+            <div class="target-item pb-5 border-b border-slate-100">
+              <div class="flex items-center gap-3 mb-4">
+                <label class="text-sm text-slate-600"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
+                <div class="relative w-80">
+                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
+                    <option selected>销售一</option>
+                    <option>销售二</option>
+                    <option>销售三</option>
+                  </select>
+                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm">
+                <span class="text-slate-600">设置方式 <span class="text-red-500">*</span></span>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-1" class="accent-blue-600" checked><span>按月设置</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-1" class="accent-blue-600"><span>按季度设</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-1" class="accent-blue-600"><span>按半年设</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-1" class="accent-blue-600"><span>按年设置</span></label>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-sm">
+                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月业绩金额</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月新增户数</span><input type="text" value="180000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每月续费户数</span><input type="text" value="186000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+              </div>
+            </div>
+
+            <div class="target-item pb-5 border-b border-slate-100">
+              <div class="flex items-center gap-3 mb-4">
+                <label class="text-sm text-slate-600"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
+                <div class="relative w-80">
+                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
+                    <option>销售一</option>
+                    <option selected>销售二</option>
+                    <option>销售三</option>
+                  </select>
+                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm">
+                <span class="text-slate-600">设置方式 <span class="text-red-500">*</span></span>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-2" class="accent-blue-600"><span>按月设置</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-2" class="accent-blue-600" checked><span>按季度设</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-2" class="accent-blue-600"><span>按半年设</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-2" class="accent-blue-600"><span>按年设置</span></label>
+              </div>
+
+              <div class="flex items-end gap-3">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-sm flex-1">
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每季度业绩金</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每季度新增户</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每季度续费户</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                </div>
+                <button type="button" class="h-8 w-8 rounded border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-200">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="target-item pb-5 border-b border-slate-100">
+              <div class="flex items-center gap-3 mb-4">
+                <label class="text-sm text-slate-600"><span class="target-select-label-text">选择部门</span> <span class="text-red-500">*</span></label>
+                <div class="relative w-80">
+                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 text-sm bg-white appearance-none">
+                    <option>销售一</option>
+                    <option>销售二</option>
+                    <option selected>销售三</option>
+                  </select>
+                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 text-sm">
+                <span class="text-slate-600">设置方式 <span class="text-red-500">*</span></span>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-3" class="accent-blue-600"><span>按月设置</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-3" class="accent-blue-600"><span>按季度设</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-3" class="accent-blue-600" checked><span>按半年设</span></label>
+                <label class="inline-flex items-center gap-1.5"><input type="radio" name="mode-3" class="accent-blue-600"><span>按年设置</span></label>
+              </div>
+
+              <div class="flex items-end gap-3">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-sm flex-1">
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">业绩目标 <span class="text-red-500">*</span></span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每半年业绩金</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每半年新增户</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                  <label class="flex items-center gap-2"><span class="text-slate-600 whitespace-nowrap">每半年续费户</span><input type="text" value="188000" class="w-full h-8 px-2 rounded border border-slate-200"></label>
+                </div>
+                <button type="button" class="h-8 w-8 rounded border border-slate-200 text-slate-400 hover:text-red-500 hover:border-red-200">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="text-sm text-blue-600 hover:underline mt-1"><i class="fa-solid fa-plus mr-1"></i>新增目标设置</button>
+
+          <div class="mt-6 pl-1">
+            <button type="button" id="btn-apply-target" class="h-10 px-12 rounded bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">应用</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-target-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">应用成功</div>
+
+  <script>
+    (function () {
+      var tabPerson = document.getElementById('tab-person-target');
+      var tabDept = document.getElementById('tab-dept-target');
+      var titleEl = document.getElementById('target-setting-title');
+      var selectLabelEls = document.querySelectorAll('.target-select-label-text');
+
+      function applyTargetTabCopy(isPerson) {
+        if (titleEl) {
+          titleEl.textContent = isPerson ? '人员目标设置' : '部门目标设置';
+        }
+        var labelText = isPerson ? '选择人员' : '选择部门';
+        selectLabelEls.forEach(function (el) {
+          el.textContent = labelText;
+        });
+      }
+
+      if (tabPerson && tabDept) {
+        tabPerson.addEventListener('click', function () {
+          tabPerson.classList.add('border-blue-600', 'text-blue-600', 'font-medium');
+          tabPerson.classList.remove('border-transparent', 'text-slate-500');
+          tabDept.classList.remove('border-blue-600', 'text-blue-600', 'font-medium');
+          tabDept.classList.add('border-transparent', 'text-slate-500');
+          applyTargetTabCopy(true);
+        });
+        tabDept.addEventListener('click', function () {
+          tabDept.classList.add('border-blue-600', 'text-blue-600', 'font-medium');
+          tabDept.classList.remove('border-transparent', 'text-slate-500');
+          tabPerson.classList.remove('border-blue-600', 'text-blue-600', 'font-medium');
+          tabPerson.classList.add('border-transparent', 'text-slate-500');
+          applyTargetTabCopy(false);
+        });
+      }
+
+      var btnApply = document.getElementById('btn-apply-target');
+      var toast = document.getElementById('toast-target-success');
+      var timer;
+      if (btnApply && toast) {
+        btnApply.addEventListener('click', function () {
+          toast.classList.remove('hidden');
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            toast.classList.add('hidden');
+          }, 2200);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>财务报表 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .fin-tab { border-bottom: 2px solid transparent; color: #64748b; padding-bottom: 0.5rem; margin-bottom: -1px; }
+    .fin-tab:hover { color: #334155; }
+    .fin-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
+    .fin-panel[hidden] { display: none !important; }
+    .fin-table { min-width: 920px; }
+    .fin-table th, .fin-table td { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">财务管理 / <span class="text-slate-700 font-medium">财务报表</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="text-sm text-slate-500 mb-4">财务管理 / 财务报表</div>
+
+          <div class="flex flex-wrap items-end gap-3 mb-4">
+            <div>
+              <label class="block text-xs text-slate-500 mb-1" for="year-filter">年份：</label>
+              <div class="relative">
+                <select id="year-filter" class="h-9 pl-3 pr-9 rounded border border-slate-200 bg-white text-sm text-slate-700 appearance-none min-w-[140px]">
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                  <option value="2026" selected>2026</option>
+                </select>
+                <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"><i class="fa-regular fa-calendar"></i></span>
+              </div>
+            </div>
+            <button type="button" class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" id="btn-fin-reset" class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+          </div>
+
+          <div class="flex gap-6 border-b border-slate-200 mb-4">
+            <button type="button" id="tab-profit" class="fin-tab fin-tab-active text-sm" data-tab="profit" aria-selected="true">收入与利润统计</button>
+            <button type="button" id="tab-monthly" class="fin-tab text-sm" data-tab="monthly" aria-selected="false">收入月度统计</button>
+          </div>
+
+          <div id="panel-profit" class="fin-panel overflow-x-auto rounded border border-slate-200" role="tabpanel">
+            <table class="fin-table w-full text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200 w-36">月份</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">1月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">2月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">3月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">4月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">5月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">6月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">7月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">8月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">9月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">10月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">11月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">12月</th>
+                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">总计（元）</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">收入</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">125,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">118,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">132,100</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">140,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">128,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">135,900</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">121,300</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">129,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">138,000</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">142,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">131,700</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">126,200</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">1,570,100</td>
+                </tr>
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">支出</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">26,900</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">27,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">30,100</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">25,700</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,300</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">30,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">27,600</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">347,100</td>
+                </tr>
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">利润</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">97,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">91,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">102,300</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">109,000</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">101,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">105,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">95,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">101,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">107,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">110,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">102,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">98,600</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium text-blue-700">1,223,000</td>
+                </tr>
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">利润率</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">77%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">77%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">77%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">79%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">79%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">78%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="panel-monthly" class="fin-panel overflow-x-auto rounded border border-slate-200" role="tabpanel" hidden>
+            <table class="fin-table w-full text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200 min-w-[10rem]">收入</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">1月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">2月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">3月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">4月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">5月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">6月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">7月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">8月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">9月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">10月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">11月</th>
+                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">12月</th>
+                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">总计（元）</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100">财税服务费</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">62,000</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">58,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">65,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">68,100</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">61,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">63,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">59,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">62,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">66,900</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">69,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">64,100</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">60,800</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">761,000</td>
+                </tr>
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100">增值服务费</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">26,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">30,100</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">32,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">27,300</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,900</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">33,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">34,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,600</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">363,800</td>
+                </tr>
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100">注册地址租赁费</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">21,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">23,900</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">25,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,400</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">24,100</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">21,000</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,300</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">24,700</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">25,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">23,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,200</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">279,700</td>
+                </tr>
+                <tr class="hover:bg-slate-50/80">
+                  <td class="px-3 py-3 border-b border-slate-100">其他费用</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">11,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,900</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">14,300</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">15,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">16,500</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">13,800</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">15,700</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">13,200</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,600</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">11,700</td>
+                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,600</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">165,600</td>
+                </tr>
+                <tr class="bg-slate-50 font-medium text-slate-800">
+                  <td class="px-3 py-3 border-b border-slate-200">总计</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">125,800</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">118,400</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">132,100</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">140,200</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">128,600</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">135,900</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">121,300</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">129,500</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">138,000</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">142,400</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">131,700</td>
+                  <td class="px-2 py-3 border-b border-slate-200 text-center">126,200</td>
+                  <td class="px-3 py-3 border-b border-slate-200 text-center text-blue-700">1,570,100</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll('[data-tab]');
+      const panelProfit = document.getElementById('panel-profit');
+      const panelMonthly = document.getElementById('panel-monthly');
+      const tabProfit = document.getElementById('tab-profit');
+      const tabMonthly = document.getElementById('tab-monthly');
+
+      function activate(name) {
+        const isProfit = name === 'profit';
+        panelProfit.hidden = !isProfit;
+        panelMonthly.hidden = isProfit;
+        tabProfit.classList.toggle('fin-tab-active', isProfit);
+        tabMonthly.classList.toggle('fin-tab-active', !isProfit);
+        tabProfit.setAttribute('aria-selected', isProfit);
+        tabMonthly.setAttribute('aria-selected', !isProfit);
+      }
+
+      tabs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activate(btn.getAttribute('data-tab'));
+        });
+      });
+
+      var yearFilter = document.getElementById('year-filter');
+      var resetBtn = document.getElementById('btn-fin-reset');
+      if (resetBtn && yearFilter) {
+        resetBtn.addEventListener('click', function () {
+          yearFilter.value = '2026';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

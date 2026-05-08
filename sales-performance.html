@@ -1,0 +1,222 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>销售业绩 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">销售管理 <span class="text-slate-700 font-medium">销售业绩</span></div>
+        <div class="flex items-center gap-4">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="text-sm text-slate-500 mb-4">销售管理 销售业绩</div>
+
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <label class="text-sm text-slate-600">起止时间:</label>
+            <input type="text" value="2023-03-21" class="h-9 w-36 px-3 rounded border border-slate-200 text-sm">
+            <span class="text-slate-400">-</span>
+            <input type="text" value="2024-03-21" class="h-9 w-36 px-3 rounded border border-slate-200 text-sm">
+            <button type="button" class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" class="h-9 px-4 rounded border border-slate-200 bg-white text-slate-600 text-sm hover:bg-slate-50">重置</button>
+          </div>
+
+          <div class="border-b border-slate-200 mb-3 flex gap-8 text-sm">
+            <button type="button" id="tab-person" class="pb-2 -mb-px border-b-2 border-blue-600 text-blue-600 font-medium">个人业绩</button>
+            <button type="button" id="tab-dept" class="pb-2 -mb-px border-b-2 border-transparent text-slate-500 hover:text-slate-700">部门业绩</button>
+          </div>
+
+          <div id="panel-person" class="overflow-x-auto">
+            <table class="w-full min-w-[1200px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">姓名</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">部门</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">合同总数（个）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">合同总金额（元）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">业绩总金额（元）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">代账总户数（家）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">续费进度（家）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">接收线索总数（条）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">达成转化率（%）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">业绩目标(万元)</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">户数目标</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">续费目标</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售一组</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售二</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">107314.00</td><td class="px-3 py-3 border-b border-slate-100">107314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售一组</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售一组</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售二</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">107314.00</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售一组</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">销售一组</td><td class="px-3 py-3 border-b border-slate-100">30</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">102314.00</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">85</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">50</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">40</td></tr>
+                <tr class="bg-slate-50 font-medium"><td class="px-3 py-3">总计</td><td class="px-3 py-3"></td><td class="px-3 py-3">120</td><td class="px-3 py-3">10002314.00</td><td class="px-3 py-3">10002314.00</td><td class="px-3 py-3">900</td><td class="px-3 py-3">500</td><td class="px-3 py-3">300</td><td class="px-3 py-3">65%</td><td class="px-3 py-3">50</td><td class="px-3 py-3">300</td><td class="px-3 py-3">200</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="panel-dept" class="hidden overflow-x-auto">
+            <table class="w-full min-w-[1200px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">部门</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">合同总数（个）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">合同总金额（元）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">业绩总金额（元）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">代账总户数（家）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">续费进度（家）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">接收线索总数（条）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">达成转化率（%）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">业绩目标(万元)</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">户数目标</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">续费目标</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr><td class="px-3 py-3 border-b border-slate-100">销售中</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">202314.00</td><td class="px-3 py-3 border-b border-slate-100">202314.00</td><td class="px-3 py-3 border-b border-slate-100">600</td><td class="px-3 py-3 border-b border-slate-100">86</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">66%</td><td class="px-3 py-3 border-b border-slate-100">100</td><td class="px-3 py-3 border-b border-slate-100">150</td><td class="px-3 py-3 border-b border-slate-100">100</td></tr>
+                <tr><td class="px-3 py-3 border-b border-slate-100">销售中</td><td class="px-3 py-3 border-b border-slate-100">60</td><td class="px-3 py-3 border-b border-slate-100">207314.00</td><td class="px-3 py-3 border-b border-slate-100">207314.00</td><td class="px-3 py-3 border-b border-slate-100">600</td><td class="px-3 py-3 border-b border-slate-100">84</td><td class="px-3 py-3 border-b border-slate-100">300</td><td class="px-3 py-3 border-b border-slate-100">65%</td><td class="px-3 py-3 border-b border-slate-100">100</td><td class="px-3 py-3 border-b border-slate-100">150</td><td class="px-3 py-3 border-b border-slate-100">100</td></tr>
+                <tr class="bg-slate-50 font-medium"><td class="px-3 py-3">总计</td><td class="px-3 py-3">120</td><td class="px-3 py-3">10002314.00</td><td class="px-3 py-3">10002314.00</td><td class="px-3 py-3">900</td><td class="px-3 py-3">500</td><td class="px-3 py-3">300</td><td class="px-3 py-3">65%</td><td class="px-3 py-3">50</td><td class="px-3 py-3">300</td><td class="px-3 py-3">200</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 flex items-center justify-end gap-2 text-sm">
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-500 hover:bg-slate-50"><i class="fa-solid fa-angle-left"></i></button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded bg-blue-600 text-white">1</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">2</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">3</button>
+            <span class="text-slate-400 px-1">...</span>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">10</button>
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-500 hover:bg-slate-50"><i class="fa-solid fa-angle-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var tabDept = document.getElementById('tab-dept');
+      var tabPerson = document.getElementById('tab-person');
+      var panelDept = document.getElementById('panel-dept');
+      var panelPerson = document.getElementById('panel-person');
+      if (!tabDept || !tabPerson || !panelDept || !panelPerson) return;
+
+      function activePerson() {
+        tabPerson.classList.add('border-blue-600', 'text-blue-600', 'font-medium');
+        tabPerson.classList.remove('border-transparent', 'text-slate-500');
+        tabDept.classList.remove('border-blue-600', 'text-blue-600', 'font-medium');
+        tabDept.classList.add('border-transparent', 'text-slate-500');
+        panelPerson.classList.remove('hidden');
+        panelDept.classList.add('hidden');
+      }
+
+      function activeDept() {
+        tabDept.classList.add('border-blue-600', 'text-blue-600', 'font-medium');
+        tabDept.classList.remove('border-transparent', 'text-slate-500');
+        tabPerson.classList.remove('border-blue-600', 'text-blue-600', 'font-medium');
+        tabPerson.classList.add('border-transparent', 'text-slate-500');
+        panelDept.classList.remove('hidden');
+        panelPerson.classList.add('hidden');
+      }
+
+      tabDept.addEventListener('click', activeDept);
+      tabPerson.addEventListener('click', activePerson);
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

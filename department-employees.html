@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>部门员工 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .emp-tab { border-bottom: 2px solid transparent; color: #64748b; padding-bottom: 0.5rem; margin-bottom: -1px; }
+    .emp-tab:hover { color: #334155; }
+    .emp-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
+    details.dept-tree > summary { list-style: none; }
+    details.dept-tree > summary::-webkit-details-marker { display: none; }
+    details.dept-tree:not([open]) > summary .tree-chevron { transform: rotate(-90deg); }
+    #modal-new-dept:not(.hidden), #modal-ban:not(.hidden) { display: flex; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">系统管理 / <span class="text-slate-700 font-medium">部门员工</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6 flex-1 min-h-0">
+        <div class="text-sm text-slate-500 mb-3">系统管理 / 部门员工</div>
+        <div class="flex gap-4 min-h-[calc(100vh-8.5rem)]">
+          <div class="w-72 shrink-0 flex flex-col rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="flex items-center justify-between gap-2 px-3 py-3 border-b border-slate-100">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="h-4 w-1 shrink-0 rounded-sm bg-blue-600"></span>
+                <h2 class="text-sm font-semibold text-slate-800 truncate">部门管理</h2>
+              </div>
+              <button type="button" id="btn-new-dept" class="h-8 shrink-0 rounded-md bg-blue-600 px-2.5 text-xs font-medium text-white hover:bg-blue-700 whitespace-nowrap">新建部门</button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-2 text-sm" id="dept-tree">
+              <details class="dept-tree group/l1" open>
+                <summary class="flex cursor-pointer items-center gap-1.5 rounded-md py-1.5 px-2 text-slate-800 hover:bg-slate-50 font-medium">
+                  <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 transition-transform shrink-0"></i>
+                  <span class="truncate">苏州企税康科技有限公司(17)</span>
+                </summary>
+                <div class="ml-2 mt-0.5 border-l border-slate-200 pl-2 space-y-0.5">
+                  <details class="dept-tree" open>
+                    <summary class="group flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                      <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 transition-transform shrink-0"></i>
+                      <span class="flex-1 truncate">网销顾问部</span>
+                      <span class="hidden shrink-0 items-center gap-1 group-hover:flex">
+                        <button type="button" class="p-0.5 text-blue-600 hover:text-blue-800" title="编辑" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-solid fa-pen text-[11px]"></i></button>
+                        <button type="button" class="p-0.5 text-slate-400 hover:text-red-600" title="删除" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+                      </span>
+                    </summary>
+                    <div class="ml-2 border-l border-slate-200 pl-2 space-y-0.5">
+                      <details class="dept-tree" open>
+                        <summary class="group flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                          <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 transition-transform shrink-0"></i>
+                          <span class="flex-1 truncate">网销一组</span>
+                          <span class="hidden shrink-0 items-center gap-1 group-hover:flex">
+                            <button type="button" class="p-0.5 text-blue-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-solid fa-pen text-[11px]"></i></button>
+                            <button type="button" class="p-0.5 text-slate-400 hover:text-red-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+                          </span>
+                        </summary>
+                        <div class="ml-3 space-y-0.5 py-0.5">
+                          <div class="flex flex-wrap items-center gap-1 rounded py-1 px-2 text-slate-600 hover:bg-slate-50">
+                            <span>郑亮</span>
+                            <span class="rounded bg-blue-50 px-1 py-0 text-[10px] font-medium text-blue-700 ring-1 ring-blue-100">主管</span>
+                          </div>
+                          <div class="rounded py-1 px-2 text-slate-600 hover:bg-slate-50">曹媛</div>
+                        </div>
+                      </details>
+                      <details class="dept-tree group" open>
+                        <summary class="group flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                          <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 shrink-0"></i>
+                          <span class="flex-1 truncate">网销二组</span>
+                          <span class="hidden shrink-0 items-center gap-1 group-hover:flex">
+                            <button type="button" class="p-0.5 text-blue-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-solid fa-pen text-[11px]"></i></button>
+                            <button type="button" class="p-0.5 text-slate-400 hover:text-red-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+                          </span>
+                        </summary>
+                        <div class="ml-3 space-y-0.5 py-0.5">
+                          <div class="rounded py-1 px-2 text-slate-600 hover:bg-slate-50">周芳</div>
+                          <div class="rounded py-1 px-2 text-slate-600 hover:bg-slate-50">陆琴</div>
+                        </div>
+                      </details>
+                    </div>
+                  </details>
+                  <details class="dept-tree">
+                    <summary class="group flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                      <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 shrink-0"></i>
+                      <span class="flex-1 truncate">政务服务部</span>
+                      <span class="hidden shrink-0 items-center gap-1 group-hover:flex">
+                        <button type="button" class="p-0.5 text-blue-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-solid fa-pen text-[11px]"></i></button>
+                        <button type="button" class="p-0.5 text-slate-400 hover:text-red-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+                      </span>
+                    </summary>
+                    <div class="ml-2 border-l border-slate-200 pl-2 space-y-0.5">
+                      <details class="dept-tree" open>
+                        <summary class="group flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                          <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 shrink-0"></i>
+                          <span class="flex-1 truncate">政务一组</span>
+                          <span class="hidden shrink-0 items-center gap-1 group-hover:flex">
+                            <button type="button" class="p-0.5 text-blue-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-solid fa-pen text-[11px]"></i></button>
+                            <button type="button" class="p-0.5 text-slate-400 hover:text-red-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+                          </span>
+                        </summary>
+                        <div class="ml-3 space-y-0.5 py-0.5">
+                          <div class="flex flex-wrap items-center gap-1 rounded py-1 px-2 text-slate-600 hover:bg-slate-50">
+                            <span>孙红</span>
+                            <span class="rounded bg-blue-50 px-1 py-0 text-[10px] font-medium text-blue-700 ring-1 ring-blue-100">主管</span>
+                          </div>
+                          <div class="rounded py-1 px-2 text-slate-600 hover:bg-slate-50">徐月</div>
+                        </div>
+                      </details>
+                    </div>
+                  </details>
+                  <details class="dept-tree">
+                    <summary class="group flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                      <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 shrink-0"></i>
+                      <span class="flex-1 truncate">会计顾问部</span>
+                      <span class="hidden shrink-0 items-center gap-1 group-hover:flex">
+                        <button type="button" class="p-0.5 text-blue-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-solid fa-pen text-[11px]"></i></button>
+                        <button type="button" class="p-0.5 text-slate-400 hover:text-red-600" onclick="event.preventDefault();event.stopPropagation()"><i class="fa-regular fa-trash-can text-[11px]"></i></button>
+                      </span>
+                    </summary>
+                    <div class="ml-2 border-l border-slate-200 pl-2 space-y-0.5">
+                      <details class="dept-tree" open>
+                        <summary class="flex cursor-pointer items-center gap-1 rounded-md py-1 px-2 text-slate-700 hover:bg-slate-50">
+                          <i class="fa-solid fa-chevron-down tree-chevron text-[10px] text-slate-400 shrink-0"></i>
+                          <span class="truncate">财务一组</span>
+                        </summary>
+                        <div class="ml-3 space-y-0.5 py-0.5">
+                          <div class="flex flex-wrap items-center gap-1 rounded py-1 px-2 text-slate-600 hover:bg-slate-50">
+                            <span>钱蕾</span>
+                            <span class="rounded bg-blue-50 px-1 py-0 text-[10px] font-medium text-blue-700 ring-1 ring-blue-100">主管</span>
+                          </div>
+                        </div>
+                      </details>
+                    </div>
+                  </details>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="flex-1 flex flex-col min-w-0 min-h-0 rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+            <div class="p-4 border-b border-slate-100 space-y-3">
+              <div class="flex flex-wrap items-end gap-3">
+                <div class="min-w-[200px] flex-1">
+                  <label class="block text-xs text-slate-500 mb-1">登录账号/姓名/工作手机号</label>
+                  <input type="text" placeholder="请输入" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm">
+                </div>
+                <div class="w-40">
+                  <label class="block text-xs text-slate-500 mb-1">所属部门</label>
+                  <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 flex items-center justify-between">全部<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+                </div>
+                <div class="w-40">
+                  <label class="block text-xs text-slate-500 mb-1">绑定角色</label>
+                  <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 flex items-center justify-between">全部<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+                </div>
+                <div>
+                  <label class="block text-xs text-slate-500 mb-1">入职时间</label>
+                  <div class="flex items-center gap-2">
+                    <input type="text" value="2023-03-21" class="h-9 w-32 rounded-md border border-slate-200 px-2 text-sm">
+                    <span class="text-slate-400">-</span>
+                    <input type="text" value="2024-03-21" class="h-9 w-32 rounded-md border border-slate-200 px-2 text-sm">
+                  </div>
+                </div>
+                <button type="button" class="h-9 rounded-md bg-blue-600 px-4 text-sm text-white hover:bg-blue-700">查询</button>
+                <button type="button" class="h-9 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50">重置</button>
+                <button type="button" class="h-9 rounded-md border border-slate-200 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50">新建员工</button>
+              </div>
+            </div>
+
+            <div class="shrink-0 flex gap-8 border-b border-slate-200 px-4 bg-white">
+              <button type="button" class="emp-tab emp-tab-active text-sm py-3" data-emp-tab="active">在职员工</button>
+              <button type="button" class="emp-tab text-sm py-3" data-emp-tab="probation">待转正员工</button>
+              <button type="button" class="emp-tab text-sm py-3" data-emp-tab="left">离职员工</button>
+            </div>
+
+            <div class="flex-1 min-h-0 overflow-x-auto overflow-y-auto p-4" id="panel-table-active">
+              <table class="w-full min-w-[1100px] text-sm">
+                <thead class="bg-slate-50 text-slate-600">
+                  <tr>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">登录账号</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">员工姓名</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">所属部门</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">绑定角色</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">入职时长</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">合同到期</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">工作手机号</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">是否转正</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">角色权限</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">操作</th>
+                  </tr>
+                </thead>
+                <tbody class="text-slate-700">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-3 py-3 border-b border-slate-100">000020</td>
+                    <td class="px-3 py-3 border-b border-slate-100">郑亮</td>
+                    <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
+                    <td class="px-3 py-3 border-b border-slate-100">销售主管</td>
+                    <td class="px-3 py-3 border-b border-slate-100">在职 824 天</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><span class="inline-flex rounded-full bg-rose-50 px-2 py-0.5 text-xs text-rose-700">逾期 332 天</span></td>
+                    <td class="px-3 py-3 border-b border-slate-100">138****1234</td>
+                    <td class="px-3 py-3 border-b border-slate-100">是</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><a href="role-permissions.html" class="text-blue-600 hover:underline">查看详情</a></td>
+                    <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                      <a href="employee-edit.html" class="text-blue-600 hover:underline">编辑</a>
+                      <span class="text-slate-300 mx-1">|</span>
+                      <button type="button" class="text-blue-600 hover:underline js-copy-link">补充信息</button>
+                      <span class="text-slate-300 mx-1">|</span>
+                      <button type="button" class="text-blue-600 hover:underline js-open-ban" data-name="郑亮">封禁</button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-3 py-3 border-b border-slate-100">000021</td>
+                    <td class="px-3 py-3 border-b border-slate-100">曹媛</td>
+                    <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
+                    <td class="px-3 py-3 border-b border-slate-100">销售专员</td>
+                    <td class="px-3 py-3 border-b border-slate-100">在职 412 天</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><span class="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">余 332 天</span></td>
+                    <td class="px-3 py-3 border-b border-slate-100">139****5678</td>
+                    <td class="px-3 py-3 border-b border-slate-100">是</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><a href="role-permissions.html" class="text-blue-600 hover:underline">查看详情</a></td>
+                    <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                      <a href="employee-edit.html" class="text-blue-600 hover:underline">编辑</a>
+                      <span class="text-slate-300 mx-1">|</span>
+                      <button type="button" class="text-blue-600 hover:underline js-copy-link">补充信息</button>
+                      <span class="text-slate-300 mx-1">|</span>
+                      <button type="button" class="text-blue-600 hover:underline js-open-ban" data-name="曹媛">封禁</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="flex-1 min-h-0 overflow-x-auto overflow-y-auto p-4 hidden" id="panel-table-probation">
+              <table class="w-full min-w-[1100px] text-sm">
+                <thead class="bg-slate-50 text-slate-600">
+                  <tr>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">登录账号</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">员工姓名</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">所属部门</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">绑定角色</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">入职时长</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">合同到期</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">工作手机号</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">是否转正</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">角色权限</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">操作</th>
+                  </tr>
+                </thead>
+                <tbody class="text-slate-700">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-3 py-3 border-b border-slate-100">000088</td>
+                    <td class="px-3 py-3 border-b border-slate-100">王浩</td>
+                    <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
+                    <td class="px-3 py-3 border-b border-slate-100">销售专员</td>
+                    <td class="px-3 py-3 border-b border-slate-100">在职 24 天</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><span class="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">余 332 天</span></td>
+                    <td class="px-3 py-3 border-b border-slate-100">136****9012</td>
+                    <td class="px-3 py-3 border-b border-slate-100">否</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><a href="role-permissions.html" class="text-blue-600 hover:underline">查看详情</a></td>
+                    <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                      <a href="employee-edit.html" class="text-blue-600 hover:underline">编辑</a>
+                      <span class="text-slate-300 mx-1">|</span>
+                      <button type="button" class="text-blue-600 hover:underline js-copy-link">补充信息</button>
+                      <span class="text-slate-300 mx-1">|</span>
+                      <button type="button" class="text-blue-600 hover:underline js-open-ban" data-name="王浩">封禁</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="flex-1 min-h-0 overflow-x-auto overflow-y-auto p-4 hidden" id="panel-table-left">
+              <table class="w-full min-w-[960px] text-sm">
+                <thead class="bg-slate-50 text-slate-600">
+                  <tr>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">登录账号</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">员工姓名</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">所属部门</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">绑定角色</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">入职时长</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">工作手机号</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">是否转正</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200">封禁时间</th>
+                    <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">操作</th>
+                  </tr>
+                </thead>
+                <tbody class="text-slate-700">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-3 py-3 border-b border-slate-100">000015</td>
+                    <td class="px-3 py-3 border-b border-slate-100">刘洋</td>
+                    <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
+                    <td class="px-3 py-3 border-b border-slate-100">销售专员</td>
+                    <td class="px-3 py-3 border-b border-slate-100">在职 120 天</td>
+                    <td class="px-3 py-3 border-b border-slate-100">137****3344</td>
+                    <td class="px-3 py-3 border-b border-slate-100">是</td>
+                    <td class="px-3 py-3 border-b border-slate-100">2026-03-15</td>
+                    <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline">解封</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-new-dept" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close-new-dept></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 class="text-center text-base font-semibold text-slate-800">新建部门</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-new-dept aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-5 py-5 space-y-4 text-sm">
+        <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600"><span class="text-red-500">*</span> 上级部门</label>
+          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-slate-700 flex items-center justify-between">销售部门<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+        </div>
+        <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600"><span class="text-red-500">*</span> 部门名称</label>
+          <input type="text" placeholder="输入部门名称" class="h-9 w-full rounded-md border border-slate-200 px-3">
+        </div>
+        <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+          <label class="text-right text-slate-600"><span class="text-red-500">*</span> 部门主管</label>
+          <button type="button" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-slate-700 flex items-center justify-between">钱磊<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 min-w-[100px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700" data-close-new-dept>确认</button>
+        <button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-new-dept>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-ban" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close-ban></div>
+    <div class="relative w-full max-w-sm rounded-xl border border-slate-200 bg-white shadow-xl p-6">
+      <p class="text-sm text-slate-700 text-center">确定要封禁员工「<span id="ban-target-name" class="font-medium text-slate-900"></span>」吗？封禁后该账号将无法登录系统。</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button type="button" id="btn-ban-confirm" class="h-9 min-w-[88px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700">确定</button>
+        <button type="button" class="h-9 min-w-[88px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-ban>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-copy" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg">链接已复制</div>
+
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('[data-emp-tab]');
+      var panels = {
+        active: document.getElementById('panel-table-active'),
+        probation: document.getElementById('panel-table-probation'),
+        left: document.getElementById('panel-table-left')
+      };
+      function switchTab(key) {
+        Object.keys(panels).forEach(function (k) {
+          panels[k].classList.toggle('hidden', k !== key);
+        });
+        tabs.forEach(function (t) {
+          var on = t.getAttribute('data-emp-tab') === key;
+          t.classList.toggle('emp-tab-active', on);
+        });
+      }
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          switchTab(t.getAttribute('data-emp-tab'));
+        });
+      });
+      switchTab('active');
+
+      var newDept = document.getElementById('modal-new-dept');
+      document.getElementById('btn-new-dept').addEventListener('click', function () {
+        newDept.classList.remove('hidden');
+        newDept.classList.add('flex');
+        newDept.setAttribute('aria-hidden', 'false');
+      });
+      function closeNewDept() {
+        newDept.classList.add('hidden');
+        newDept.classList.remove('flex');
+        newDept.setAttribute('aria-hidden', 'true');
+      }
+      newDept.querySelectorAll('[data-close-new-dept]').forEach(function (el) {
+        el.addEventListener('click', closeNewDept);
+      });
+
+      var banModal = document.getElementById('modal-ban');
+      var banNameEl = document.getElementById('ban-target-name');
+      function closeBan() {
+        banModal.classList.add('hidden');
+        banModal.classList.remove('flex');
+        banModal.setAttribute('aria-hidden', 'true');
+      }
+      banModal.querySelectorAll('[data-close-ban]').forEach(function (el) { el.addEventListener('click', closeBan); });
+      document.querySelectorAll('.js-open-ban').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          banNameEl.textContent = btn.getAttribute('data-name') || '';
+          banModal.classList.remove('hidden');
+          banModal.classList.add('flex');
+          banModal.setAttribute('aria-hidden', 'false');
+        });
+      });
+      document.getElementById('btn-ban-confirm').addEventListener('click', closeBan);
+
+      var toast = document.getElementById('toast-copy');
+      var toastTimer;
+      document.querySelectorAll('.js-copy-link').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#supplement').catch(function () {});
+          }
+          toast.classList.remove('hidden');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 2000);
+        });
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (!newDept.classList.contains('hidden')) closeNewDept();
+          if (!banModal.classList.contains('hidden')) closeBan();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

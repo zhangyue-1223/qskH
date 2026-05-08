@@ -1,0 +1,313 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跟进日志详情 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .timeline-line { position: absolute; left: 17px; top: 38px; bottom: -82px; width: 1px; background: #d6deea; }
+    .timeline-icon { width: 35px; height: 35px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">客户中心 / <span class="text-slate-700 font-medium">线索管理</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业管理员</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6 flex-1">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden h-full min-h-[560px] flex flex-col">
+          <div class="px-5 py-3 border-b border-slate-200">
+            <a href="lead-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>跟进日志</a>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 flex-1">
+            <div class="p-5 border-r border-slate-200">
+              <h3 class="text-base font-semibold text-slate-800 mb-1">跟进说明</h3>
+              <p class="text-xs text-slate-400 mb-4">按时间倒序展示关键节点与备注</p>
+              <div id="timeline" class="space-y-20"></div>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-semibold text-slate-800">线索信息</h3>
+                <span id="status-badge" class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium"></span>
+              </div>
+              <div id="lead-info" class="grid grid-cols-2 gap-y-3 gap-x-8 text-sm mb-4"></div>
+              <div>
+                <p class="text-sm font-medium text-slate-800 mb-1">备注说明</p>
+                <div id="lead-note" class="rounded border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600"></div>
+              </div>
+
+              <div id="follow-form" class="mt-6 hidden">
+                <h4 class="text-base font-semibold text-slate-800 mb-3">添加跟进</h4>
+                <div class="space-y-3 text-sm">
+                  <label class="flex items-center gap-3"><span class="w-24 text-slate-600">跟进步骤 <span class="text-red-500">*</span></span><select class="flex-1 h-9 px-3 rounded border border-slate-200"><option>跟进中</option><option>待跟进</option><option>已成单</option></select></label>
+                  <label class="flex items-center gap-3"><span class="w-24 text-slate-600">跟进时间 <span class="text-red-500">*</span></span><input class="flex-1 h-9 px-3 rounded border border-slate-200" value="2026-04-17 10:59"></label>
+                  <label class="block"><span class="text-slate-600">跟进内容 <span class="text-red-500">*</span></span><textarea class="mt-1 w-full h-24 rounded border border-slate-200 px-3 py-2" placeholder="请输入内容"></textarea><div class="text-right text-xs text-slate-400 mt-1">0/1000</div></label>
+                  <div class="text-center pt-1"><button id="btn-add-follow" class="h-9 px-10 rounded bg-blue-600 text-white hover:bg-blue-700">确认添加</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-200 py-3 flex justify-center gap-4">
+            <button id="btn-prev" class="h-9 px-8 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">查看上一个</button>
+            <button id="btn-next" class="h-9 px-8 rounded bg-blue-600 text-sm text-white hover:bg-blue-700">查看下一个</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="quote-preview-modal" class="fixed inset-0 z-[120] hidden">
+    <div class="absolute inset-0 bg-slate-900/55" data-close-quote></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-[420px] rounded-[10px] border border-slate-200 bg-white shadow-2xl overflow-hidden">
+        <div class="relative border-b border-slate-200 px-5 py-3">
+          <h3 class="text-center text-[18px] font-semibold text-slate-800">报价单预览</h3>
+          <button type="button" id="btn-close-quote" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-base"></i></button>
+        </div>
+        <div class="px-5 py-4">
+          <div class="flex items-center gap-2.5 mb-3">
+            <img src="./assets/qishuikang-logo.png" alt="logo" class="h-7 object-contain">
+            <span class="text-[20px] text-sky-500 font-semibold tracking-wide">报价单</span>
+          </div>
+          <table class="w-full text-[12px] text-slate-700 border border-slate-200 rounded overflow-hidden">
+            <thead>
+              <tr class="bg-sky-500 text-white">
+                <th class="py-2 px-1.5 text-left font-normal w-8">编号</th>
+                <th class="py-2 px-1.5 text-left font-normal">项目内容</th>
+                <th class="py-2 px-1.5 text-left font-normal">说明</th>
+                <th class="py-2 px-1.5 text-right font-normal w-16">价格(元)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">01</td><td class="py-2 px-1.5">小规模B:1500/年(125.00元/月)</td><td class="py-2 px-1.5">服务时长12个月</td><td class="py-2 px-1.5 text-right">1500.00</td></tr>
+              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">02</td><td class="py-2 px-1.5">提供企业注册地址</td><td class="py-2 px-1.5">租赁使用时长一年</td><td class="py-2 px-1.5 text-right">2400.00</td></tr>
+              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">03</td><td class="py-2 px-1.5">跨区迁移</td><td class="py-2 px-1.5">迁入迁出当月完成 否则影响社保</td><td class="py-2 px-1.5 text-right">600.00</td></tr>
+              <tr><td class="py-2 px-1.5">04</td><td class="py-2 px-1.5">其他事项</td><td class="py-2 px-1.5">增加营业范围</td><td class="py-2 px-1.5 text-right">500.00</td></tr>
+            </tbody>
+          </table>
+          <div class="text-right text-[13px] font-semibold text-slate-800 mt-2">合计：5000.00元</div>
+          <div class="mt-3 text-[12px] text-slate-600 space-y-1.5 leading-5">
+            <p class="font-semibold text-slate-700">报价说明</p>
+            <p>1. 此文档仅作为报价依据，报价有效期15天</p>
+            <p>2. 以上报价明细仅根据您的需求定制</p>
+            <p>报价人：陈莉 17751477479</p>
+            <p>感谢您对我们的信任与支持</p>
+          </div>
+        </div>
+        <div class="border-t border-slate-200 bg-slate-50/70 py-4 px-5 flex justify-center gap-3">
+          <button class="h-8 px-5 rounded-md border border-blue-600 text-[12px] font-medium text-blue-600 bg-white hover:bg-blue-50">修改报价单</button>
+          <button class="h-8 px-5 rounded-md bg-blue-600 text-[12px] font-medium text-white hover:bg-blue-700">下载报价单</button>
+          <button id="btn-cancel-quote" class="h-8 px-5 rounded-md border border-slate-300 text-[12px] font-medium text-slate-500 bg-white hover:bg-slate-50">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="follow-toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[130] hidden rounded bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">添加成功</div>
+
+    <script>
+    (function () {
+      var order = ['lead-1', 'lead-2', 'lead-3', 'lead-4', 'lead-5'];
+      var dataMap = {
+        'lead-1': {
+          status: '待分配', statusCls: 'bg-amber-50 text-amber-700',
+          info: {客户姓名: '王小明', 手机号码: '15900087998', 来源渠道: '抖音', 所属区域: '苏州园区', 行业类别: '贸易', 企业类型: '一般纳税人', 业务类型: '抖音'},
+          note: '客户预计7月注册，目前代理服务仍待决策，需定期触达保持关系，\n稳定客户预期，避免中断记账。',
+          timeline: [
+            {type: 'warn', title: '销售主管【待分配】', time: '2026-04-10 18:23'},
+            {type: 'ok', title: '凌霄创建线索', time: '2026-04-08 17:23'}
+          ]
+        },
+        'lead-2': {
+          status: '待跟进', statusCls: 'bg-orange-50 text-orange-700',
+          info: {客户姓名: '李先生', 手机号码: '13812345678', 来源渠道: '小红书', 所属区域: '无锡', 行业类别: '医疗器械', 企业类型: '小规模', 业务类型: '代理记账'},
+          note: '客户处于观望阶段，近期需重点跟进产品方案和价格区间。',
+          timeline: [
+            {type: 'warn', title: '待跟进', time: '2026-04-07 10:53'},
+            {type: 'ok', title: '销售主管分配【蔡李】', time: '2026-04-07 09:10'},
+            {type: 'ok', title: '凌霄创建线索', time: '2026-03-18 09:22'}
+          ]
+        },
+        'lead-3': {
+          status: '跟进中', statusCls: 'bg-blue-50 text-blue-700', showForm: true,
+          info: {客户姓名: '王敏', 手机号码: '18605118899', 来源渠道: '58同城', 所属区域: '苏州园区', 行业类别: '科技服务', 企业类型: '一般纳税人', 业务类型: '58同城'},
+          note: '已多轮沟通，客户关注报价细节与交付周期，预计本周内给出反馈。',
+          timeline: [
+            {type: 'doing', title: '跟进中', time: '2026-04-10 18:23'},
+            {type: 'ok', title: '发送报价单', time: '2026-04-09 16:40', link: '查看报价单'},
+            {type: 'ok', title: '已与客户确认需求点', time: '2026-04-08 11:20'},
+            {type: 'ok', title: '周方林确认跟进', time: '2026-04-08 15:00'},
+            {type: 'ok', title: '销售主管分配【周芳林】', time: '2026-04-07 14:23'},
+            {type: 'ok', title: '销售主管创建线索', time: '2026-04-07 14:23'}
+          ]
+        },
+        'lead-4': {
+          status: '已成单', statusCls: 'bg-emerald-50 text-emerald-700',
+          info: {客户姓名: '赵峰', 手机号码: '17705126600', 来源渠道: '抖音', 所属区域: '昆山', 行业类别: '贸易', 企业类型: '小规模', 业务类型: '抖音'},
+          note: '已签约，后续移交交付团队持续服务。',
+          timeline: [
+            {type: 'ok', title: '已成单', time: '2024-04-10 13:23'},
+            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2024-04-09 17:23'},
+            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2024-04-08 17:23'},
+            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2024-04-07 17:23'},
+            {type: 'ok', title: '周方林确认跟进', time: '2024-04-07 15:23'},
+            {type: 'ok', title: '销售主管分配【周方林】', time: '2024-04-07 14:23'},
+            {type: 'ok', title: '零星创建线索', time: '2024-04-07 13:23'}
+          ]
+        },
+        'lead-5': {
+          status: '已放弃', statusCls: 'bg-slate-100 text-slate-600',
+          info: {客户姓名: '陈涛', 手机号码: '13900011223', 来源渠道: '小红书', 所属区域: '无锡', 行业类别: '制造', 企业类型: '一般纳税人', 业务类型: '代理记账'},
+          note: '客户预算有限，暂无法推进；已标记放弃并保留历史记录。',
+          timeline: [
+            {type: 'reject', title: '放弃：这是放弃说明。经评估该客户与当前服务套餐匹配度低，且短期内无预算，团队一致同意终止跟进并释放销售精力。', time: '2020-05-10 13:23'},
+            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2020-05-09 17:23'},
+            {type: 'dot', title: '查看更多', time: ''},
+            {type: 'ok', title: '周方林确认跟进', time: '2020-05-08 10:00'},
+            {type: 'ok', title: '销售主管分配【周方林】', time: '2020-05-08 09:30'},
+            {type: 'ok', title: '凌霄创建线索', time: '2020-05-08 09:00'}
+          ]
+        }
+      };
+
+      var params = new URLSearchParams(location.search);
+      var id = params.get('id') || 'lead-1';
+      if (!dataMap[id]) id = 'lead-1';
+      var data = dataMap[id];
+
+      var badge = document.getElementById('status-badge');
+      badge.className = 'inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ' + data.statusCls;
+      badge.textContent = '当前：' + data.status;
+
+      var infoEl = document.getElementById('lead-info');
+      infoEl.innerHTML = Object.keys(data.info).map(function (k) {
+        return '<div class="py-0.5"><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + data.info[k] + '</p></div>';
+      }).join('');
+      document.getElementById('lead-note').innerHTML = data.note.replace(/\n/g, '<br>');
+      document.getElementById('follow-form').classList.toggle('hidden', !data.showForm);
+
+      function icon(item) {
+        if (item.type === 'warn') return '<span class="timeline-icon bg-amber-400 text-white"><i class="fa-regular fa-clock text-[16px]"></i></span>';
+        if (item.type === 'doing') return '<span class="timeline-icon bg-orange-500 text-white"><i class="fa-regular fa-clock text-[16px]"></i></span>';
+        if (item.type === 'reject') return '<span class="timeline-icon bg-red-500 text-white"><i class="fa-solid fa-xmark text-[16px]"></i></span>';
+        if (item.type === 'dot') return '<span class="timeline-icon bg-blue-50 border border-blue-300 text-blue-500"><i class="fa-solid fa-ellipsis text-[10px]"></i></span>';
+        return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
+      }
+
+      var timelineEl = document.getElementById('timeline');
+      timelineEl.innerHTML = data.timeline.map(function (item, i) {
+        var link = item.link ? '<div class="mt-1 text-xs"><a href="#" class="text-blue-600 hover:underline js-view-quote">' + item.link + '</a></div>' : '';
+        return '<div class="relative pl-12">' +
+          (i < data.timeline.length - 1 ? '<div class="timeline-line"></div>' : '') +
+          '<div class="absolute left-0 top-0">' + icon(item) + '</div>' +
+          '<div><p class="text-sm font-medium text-slate-800 leading-5">' + item.title + '</p><p class="text-[13px] text-slate-400 mt-0.5">' + item.time + '</p>' + link + '</div>' +
+          '</div>';
+      }).join('');
+
+      var idx = order.indexOf(id);
+      var prev = idx > 0 ? order[idx - 1] : null;
+      var next = idx < order.length - 1 ? order[idx + 1] : null;
+      var btnPrev = document.getElementById('btn-prev');
+      var btnNext = document.getElementById('btn-next');
+
+      btnPrev.disabled = !prev;
+      btnNext.disabled = !next;
+      if (!prev) btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+      if (!next) btnNext.classList.add('opacity-50', 'cursor-not-allowed');
+
+      btnPrev.addEventListener('click', function () { if (prev) location.href = 'lead-follow-detail.html?id=' + prev; });
+      btnNext.addEventListener('click', function () { if (next) location.href = 'lead-follow-detail.html?id=' + next; });
+
+      function showToast(msg) {
+        var toast = document.getElementById('follow-toast');
+        toast.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(window._followToastTimer);
+        window._followToastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 1800);
+      }
+
+      var quoteModal = document.getElementById('quote-preview-modal');
+      function openQuoteModal() { quoteModal.classList.remove('hidden'); }
+      function closeQuoteModal() { quoteModal.classList.add('hidden'); }
+
+      document.querySelectorAll('.js-view-quote').forEach(function (el) {
+        el.addEventListener('click', function (e) { e.preventDefault(); openQuoteModal(); });
+      });
+      document.getElementById('btn-close-quote').addEventListener('click', closeQuoteModal);
+      document.getElementById('btn-cancel-quote').addEventListener('click', closeQuoteModal);
+      quoteModal.querySelectorAll('[data-close-quote]').forEach(function (el) { el.addEventListener('click', closeQuoteModal); });
+
+      var addFollowBtn = document.getElementById('btn-add-follow');
+      if (addFollowBtn) addFollowBtn.addEventListener('click', function () { showToast('添加成功'); });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

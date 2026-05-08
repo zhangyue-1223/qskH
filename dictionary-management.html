@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字典管理 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .dict-tab { border-bottom: 2px solid transparent; color: #64748b; padding: 10px 2px 8px; margin-bottom: -1px; }
+    .dict-tab:hover { color: #334155; }
+    .dict-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
+    .dict-menu-active { background: #f1f5f9; color: #0f172a; font-weight: 600; }
+    #modal-dict-add:not(.hidden), #modal-dict-delete:not(.hidden) { display: flex; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">系统管理 / <span class="text-slate-700 font-medium">字典管理</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">祝哥</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="text-sm text-slate-500 mb-3">系统管理 / 字典管理</div>
+        <div class="rounded-xl border border-slate-200 bg-white shadow-sm min-h-[calc(100vh-8.5rem)] flex">
+          <div class="w-32 shrink-0 border-r border-slate-200 p-2 space-y-1 text-sm">
+            <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap dict-menu-active" data-menu="contract">合同设置</button>
+            <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="project">项目设置</button>
+            <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="customer">客户设置</button>
+            <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="approval">审批设置</button>
+          </div>
+
+          <div class="flex-1 p-4 min-w-0">
+            <div class="flex items-end justify-between border-b border-slate-200">
+              <div class="flex gap-10" id="dict-tabs"></div>
+              <button type="button" id="btn-dict-add" class="mb-2 h-8 rounded-md bg-blue-600 px-4 text-xs font-medium text-white hover:bg-blue-700">新增公司</button>
+            </div>
+
+            <div class="pt-3 overflow-x-auto" id="dict-table-wrap"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-dict-add" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close-add></div>
+    <div class="relative w-full max-w-2xl rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h3 id="dict-add-title" class="text-center text-[30px] font-semibold text-slate-800 text-base">新增</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-add><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form id="dict-add-form" class="px-6 py-5 text-sm">
+        <div id="dict-add-fields" class="space-y-4"></div>
+        <div class="mt-6 flex justify-center gap-3">
+          <button type="submit" class="h-9 min-w-[90px] rounded-md bg-blue-600 px-4 text-sm text-white hover:bg-blue-700">确认</button>
+          <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-add>取消</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-dict-delete" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close-delete></div>
+    <div class="relative w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
+      <p class="text-sm text-slate-700 text-center">确认删除该条记录吗？删除后无法恢复。</p>
+      <div class="mt-6 flex justify-center gap-3">
+        <button type="button" id="btn-confirm-delete" class="h-9 min-w-[90px] rounded-md bg-blue-600 px-4 text-sm text-white hover:bg-blue-700">确认</button>
+        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-delete>取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dict-toast" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg">提交成功</div>
+
+  <script>
+    (function () {
+      var state = { menu: 'contract', tab: 'company' };
+      var tabsWrap = document.getElementById('dict-tabs');
+      var tableWrap = document.getElementById('dict-table-wrap');
+      var addBtn = document.getElementById('btn-dict-add');
+      var addModal = document.getElementById('modal-dict-add');
+      var addTitle = document.getElementById('dict-add-title');
+      var addFields = document.getElementById('dict-add-fields');
+      var addForm = document.getElementById('dict-add-form');
+      var delModal = document.getElementById('modal-dict-delete');
+      var toast = document.getElementById('dict-toast');
+      var toastTimer = null;
+
+      var config = {
+        contract: {
+          tabs: [
+            { key: 'company', label: '签约公司', btn: '新增公司' },
+            { key: 'template', label: '合同模板', btn: '新增模板' }
+          ]
+        },
+        project: {
+          tabs: [
+            { key: 'agency', label: '代理记账', btn: '新增项目' },
+            { key: 'value', label: '增值服务', btn: '新增项目' }
+          ]
+        },
+        customer: {
+          tabs: [
+            { key: 'industry', label: '行业类别', btn: '新增类别' },
+            { key: 'form', label: '企业形式', btn: '新增类别' },
+            { key: 'nature', label: '企业性质', btn: '新增类别' },
+            { key: 'source', label: '来源渠道', btn: '新增类别' }
+          ]
+        },
+        approval: {
+          tabs: [{ key: 'process', label: '审批审批', btn: '新增审批' }]
+        }
+      };
+
+      function renderTabs() {
+        var tabs = config[state.menu].tabs;
+        if (!tabs.some(function (t) { return t.key === state.tab; })) state.tab = tabs[0].key;
+        tabsWrap.innerHTML = '';
+        tabs.forEach(function (t) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'dict-tab text-sm' + (t.key === state.tab ? ' dict-tab-active' : '');
+          b.textContent = t.label;
+          b.addEventListener('click', function () { state.tab = t.key; renderTabs(); renderTable(); });
+          tabsWrap.appendChild(b);
+        });
+        var active = tabs.find(function (t) { return t.key === state.tab; });
+        addBtn.textContent = active ? active.btn : '新增';
+      }
+
+      function renderTable() {
+        var html = '';
+        if (state.menu === 'contract' && state.tab === 'company') {
+          html = '<table class="w-full min-w-[900px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">公司名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">开户银行</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">银行账号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">苏州企税康科技有限公司 <span class="ml-2 inline-flex rounded bg-blue-600 px-1.5 py-0.5 text-xs text-white">默认</span></td><td class="px-3 py-3 border-b border-slate-100">中国农业银行苏州工业园区支行</td><td class="px-3 py-3 border-b border-slate-100">10551011040285537</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">苏州企税康商务咨询有限公司</td><td class="px-3 py-3 border-b border-slate-100">招商银行南施街支行</td><td class="px-3 py-3 border-b border-slate-100">10551011040285637</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">设为默认</a><a href="#" class="text-blue-600 hover:underline mr-3">编辑</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '</tbody></table>';
+        } else if (state.menu === 'contract' && state.tab === 'template') {
+          html = '<table class="w-full min-w-[860px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">合同名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">模板文件</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">最后修改时间</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">代理合同</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看模板</a></td><td class="px-3 py-3 border-b border-slate-100">2026-04-24 11:22</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">注册地址合同</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">查看模板</a></td><td class="px-3 py-3 border-b border-slate-100">2026-04-24 11:22</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '</tbody></table>';
+        } else if (state.menu === 'project' && state.tab === 'agency') {
+          html = '<table class="w-full min-w-[980px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">说明</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">类型</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">标准价</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">成本价</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">小规模A：800/年</td><td class="px-3 py-3 border-b border-slate-100">企业年开票：0申报</td><td class="px-3 py-3 border-b border-slate-100">小规模纳税人套餐</td><td class="px-3 py-3 border-b border-slate-100">66.60元/月</td><td class="px-3 py-3 border-b border-slate-100">0.80元/年</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">一般纳税人A：2400/年</td><td class="px-3 py-3 border-b border-slate-100">企业年开票：不超过100万</td><td class="px-3 py-3 border-b border-slate-100">一般纳税人套餐</td><td class="px-3 py-3 border-b border-slate-100">125.00元/月</td><td class="px-3 py-3 border-b border-slate-100">0.20元/年</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '</tbody></table>';
+        } else if (state.menu === 'project' && state.tab === 'value') {
+          html = '<table class="w-full min-w-[860px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">服务大类</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">产品名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">对外报价</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">内部提成</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">工商</td><td class="px-3 py-3 border-b border-slate-100">公司注册(小规模)</td><td class="px-3 py-3 border-b border-slate-100">500.00元/个</td><td class="px-3 py-3 border-b border-slate-100">200.00元/个</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">社保</td><td class="px-3 py-3 border-b border-slate-100">社保补缴</td><td class="px-3 py-3 border-b border-slate-100">2000.00元/个</td><td class="px-3 py-3 border-b border-slate-100">500.00元/个</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '</tbody></table>';
+        } else if (state.menu === 'customer') {
+          var tabTitle = { industry: '行业类别', form: '企业形式', nature: '企业性质', source: '来源渠道' }[state.tab];
+          html = '<table class="w-full min-w-[760px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">创建时间</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">' + tabTitle + '示例A</td><td class="px-3 py-3 border-b border-slate-100">2026-04-24 11:23:23</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">' + tabTitle + '示例B</td><td class="px-3 py-3 border-b border-slate-100">2026-04-24 11:23:23</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '</tbody></table>';
+        } else {
+          html = '<table class="w-full min-w-[760px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">初审批人</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">复审批人</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">抄送人</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">开票审批</td><td class="px-3 py-3 border-b border-slate-100">部门主管</td><td class="px-3 py-3 border-b border-slate-100">总经理</td><td class="px-3 py-3 border-b border-slate-100">老板</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">修改</a></td></tr>' +
+            '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">用款申请</td><td class="px-3 py-3 border-b border-slate-100">部门主管</td><td class="px-3 py-3 border-b border-slate-100">总经理</td><td class="px-3 py-3 border-b border-slate-100">老板</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline">修改</a></td></tr>' +
+            '</tbody></table>';
+        }
+        tableWrap.innerHTML = html;
+        bindDeleteEvents();
+      }
+
+      function setMenu(menuKey) {
+        state.menu = menuKey;
+        state.tab = config[menuKey].tabs[0].key;
+        document.querySelectorAll('[data-menu]').forEach(function (el) {
+          var on = el.getAttribute('data-menu') === menuKey;
+          el.classList.toggle('dict-menu-active', on);
+          if (!on) el.classList.remove('font-semibold', 'text-slate-900');
+        });
+        renderTabs();
+        renderTable();
+      }
+
+      function renderAddForm() {
+        var title = '新增';
+        var fields = '';
+        if (state.menu === 'contract' && state.tab === 'company') {
+          title = '签约公司';
+          fields =
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">公司名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入公司名称"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">开户银行 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入开户银行"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">银行账号 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入银行账号"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">设为默认 <span class="text-red-500">*</span></label><div class="flex gap-16"><label class="inline-flex items-center gap-2"><input type="radio" name="is-default" checked>是</label><label class="inline-flex items-center gap-2"><input type="radio" name="is-default">否</label></div></div>';
+        } else if (state.menu === 'contract' && state.tab === 'template') {
+          title = '新增模板';
+          fields =
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">合同名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入合同名称"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">模板文件 <span class="text-red-500">*</span></label><button type="button" class="h-10 rounded border border-dashed border-sky-300 bg-sky-50 text-blue-600 text-sm"><i class="fa-solid fa-circle-plus mr-2"></i>上传模板</button></div>';
+        } else if (state.menu === 'project') {
+          title = '新增项目';
+          fields =
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">项目名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入项目名称"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">项目类型 <span class="text-red-500">*</span></label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">' + (state.tab === 'agency' ? '代理记账' : '增值服务') + '<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">标准价</label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入价格"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-start gap-3"><label class="text-right text-slate-600 pt-2">说明</label><textarea rows="3" class="rounded border border-slate-200 px-3 py-2" placeholder="输入说明"></textarea></div>';
+        } else if (state.menu === 'customer') {
+          title = '新增类别';
+          fields = '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">类别名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入类别名称"></div>';
+        } else {
+          title = '新增审批';
+          fields =
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">审批名称</label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入审批名称"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">初审批人</label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">复审批人</label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">抄送人</label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>';
+        }
+        addTitle.textContent = title;
+        addFields.innerHTML = fields;
+      }
+
+      function openAddModal() {
+        renderAddForm();
+        addModal.classList.remove('hidden');
+        addModal.classList.add('flex');
+      }
+      function closeAddModal() {
+        addModal.classList.add('hidden');
+        addModal.classList.remove('flex');
+      }
+
+      function openDeleteModal() {
+        delModal.classList.remove('hidden');
+        delModal.classList.add('flex');
+      }
+      function closeDeleteModal() {
+        delModal.classList.add('hidden');
+        delModal.classList.remove('flex');
+      }
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 1800);
+      }
+
+      function bindDeleteEvents() {
+        tableWrap.querySelectorAll('.js-dict-delete').forEach(function (btn) {
+          btn.addEventListener('click', function () { openDeleteModal(); });
+        });
+      }
+
+      document.querySelectorAll('[data-menu]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setMenu(btn.getAttribute('data-menu'));
+        });
+      });
+
+      addBtn.addEventListener('click', openAddModal);
+      addModal.querySelectorAll('[data-close-add]').forEach(function (el) {
+        el.addEventListener('click', closeAddModal);
+      });
+      addForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        closeAddModal();
+        showToast('提交成功');
+      });
+
+      delModal.querySelectorAll('[data-close-delete]').forEach(function (el) {
+        el.addEventListener('click', closeDeleteModal);
+      });
+      document.getElementById('btn-confirm-delete').addEventListener('click', function () {
+        closeDeleteModal();
+        showToast('删除成功');
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          if (!addModal.classList.contains('hidden')) closeAddModal();
+          if (!delModal.classList.contains('hidden')) closeDeleteModal();
+        }
+      });
+
+      setMenu('contract');
+    })();
+  </script>
+</body>
+</html>

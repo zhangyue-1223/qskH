@@ -1,0 +1,419 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>订单管理 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">合同订单 / <span class="text-slate-700 font-medium">订单管理</span></div>
+        <div class="flex items-center gap-4">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="text-sm text-slate-500 mb-4">合同订单 / 订单管理</div>
+
+          <div class="grid grid-cols-5 gap-3 mb-3">
+            <div><label class="block text-xs text-slate-500 mb-1">合同/订单编号</label><input type="text" placeholder="请输入订单编号或合同编号" class="w-full h-9 px-3 rounded border border-slate-200 text-sm"></div>
+            <div><label class="block text-xs text-slate-500 mb-1">甲方名称</label><input type="text" placeholder="请输入" class="w-full h-9 px-3 rounded border border-slate-200 text-sm"></div>
+            <div><label class="block text-xs text-slate-500 mb-1">付款状态</label><button class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+            <div><label class="block text-xs text-slate-500 mb-1">付款时间</label><button class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+            <div><label class="block text-xs text-slate-500 mb-1">销售员</label><button class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+          </div>
+
+          <div class="flex flex-wrap items-end gap-3 mb-4">
+            <div><label class="block text-xs text-slate-500 mb-1">所属部门</label><button class="h-9 min-w-44 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>
+            <button class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
+            <button class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+          </div>
+
+          <div class="overflow-x-auto rounded border border-slate-200">
+            <table class="w-full min-w-[1350px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">订单编号</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">创建时间</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">关联合同</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">付款形式</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">付款金额</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">付款状态</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">支付渠道</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">付款时间</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">业务员</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">所属部门</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50 order-row" data-order-id="202604140001"><td class="px-3 py-3 border-b border-slate-100">202604140001</td><td class="px-3 py-3 border-b border-slate-100">2026-04-14 10:11:11</td><td class="px-3 py-3 border-b border-slate-100">HT202604140001</td><td class="px-3 py-3 border-b border-slate-100">年付</td><td class="px-3 py-3 border-b border-slate-100">24000</td><td class="px-3 py-3 border-b border-slate-100">已支付</td><td class="px-3 py-3 border-b border-slate-100">支付宝</td><td class="px-3 py-3 border-b border-slate-100">2026-04-14 10:11:11</td><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td></tr>
+                <tr class="hover:bg-slate-50 order-row" data-order-id="202604140002"><td class="px-3 py-3 border-b border-slate-100">202604140002</td><td class="px-3 py-3 border-b border-slate-100">2026-04-14 10:11:11</td><td class="px-3 py-3 border-b border-slate-100">HT202604140001</td><td class="px-3 py-3 border-b border-slate-100">年付</td><td class="px-3 py-3 border-b border-slate-100">24000</td><td class="px-3 py-3 border-b border-slate-100">未支付</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td></tr>
+                <tr class="hover:bg-slate-50 order-row" data-order-id="202604140003"><td class="px-3 py-3 border-b border-slate-100">202604140003</td><td class="px-3 py-3 border-b border-slate-100">2026-04-15 09:20:00</td><td class="px-3 py-3 border-b border-slate-100">HT202604150088</td><td class="px-3 py-3 border-b border-slate-100">半年付</td><td class="px-3 py-3 border-b border-slate-100">12000</td><td class="px-3 py-3 border-b border-slate-100">未支付</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td></tr>
+                <tr class="hover:bg-slate-50 order-row" data-order-id="202604140004"><td class="px-3 py-3 border-b border-slate-100">202604140004</td><td class="px-3 py-3 border-b border-slate-100">2026-04-16 14:00:00</td><td class="px-3 py-3 border-b border-slate-100">HT202604160022</td><td class="px-3 py-3 border-b border-slate-100">年付</td><td class="px-3 py-3 border-b border-slate-100">36000</td><td class="px-3 py-3 border-b border-slate-100">部分支付</td><td class="px-3 py-3 border-b border-slate-100">微信支付</td><td class="px-3 py-3 border-b border-slate-100">2026-04-16 14:05:00</td><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td></tr>
+                <tr class="hover:bg-slate-50 order-row" data-order-id="202604140005"><td class="px-3 py-3 border-b border-slate-100">202604140005</td><td class="px-3 py-3 border-b border-slate-100">2026-04-10 11:00:00</td><td class="px-3 py-3 border-b border-slate-100">HT202604100015</td><td class="px-3 py-3 border-b border-slate-100">年付</td><td class="px-3 py-3 border-b border-slate-100">8000</td><td class="px-3 py-3 border-b border-slate-100">已退款</td><td class="px-3 py-3 border-b border-slate-100">支付宝</td><td class="px-3 py-3 border-b border-slate-100">2026-04-10 11:30:00</td><td class="px-3 py-3 border-b border-slate-100">周芳</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-order-detail">查看详情</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 flex items-center justify-end gap-2 text-sm">
+            <button class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-400"><i class="fa-solid fa-angle-left"></i></button>
+            <button class="h-8 min-w-8 px-2 rounded bg-blue-600 text-white">1</button>
+            <button class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">2</button>
+            <button class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">3</button>
+            <button class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">4</button>
+            <span class="text-slate-400">...</span>
+            <button class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">20</button>
+            <button class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-500"><i class="fa-solid fa-angle-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 订单详情弹窗（随付款状态展示不同字段与操作-->
+  <div id="order-detail-modal" class="fixed inset-0 z-[100] hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-modal></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-2xl rounded-lg border border-slate-200 bg-white shadow-xl" role="dialog" aria-modal="true" aria-labelledby="order-detail-title">
+        <div class="relative border-b border-slate-200 px-6 py-4">
+          <h2 id="order-detail-title" class="text-center text-base font-medium text-slate-800">订单详情</h2>
+          <button type="button" id="order-detail-close" class="absolute right-4 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded text-slate-400 hover:bg-slate-100 hover:text-slate-600" aria-label="关闭">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <div class="px-6 py-5">
+          <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-10">
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">订单编号</span>
+              <span id="od-order-no" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">创建时间</span>
+              <span id="od-created" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">付款形式</span>
+              <span id="od-pay-method" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">付款金额</span>
+              <span id="od-amount" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">付款状态</span>
+              <span id="od-status" class="font-medium"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">付款时间</span>
+              <span id="od-pay-time" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">支付渠道</span>
+              <span id="od-channel" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">业务员</span>
+              <span id="od-sales" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">所属部门</span>
+              <span id="od-dept" class="text-slate-900"></span>
+            </div>
+            <div class="flex gap-3 text-sm">
+              <span class="w-24 shrink-0 text-slate-500">关联合同</span>
+              <a id="od-contract" href="#" class="text-blue-600 hover:underline"></a>
+            </div>
+          </div>
+
+          <div id="od-row-partial" class="mt-4 hidden border-t border-slate-100 pt-4">
+            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-10">
+              <div class="flex gap-3 text-sm">
+                <span class="w-24 shrink-0 text-slate-500">订单总额</span>
+                <span id="od-total-amount" class="text-slate-900"></span>
+              </div>
+              <div class="flex gap-3 text-sm">
+                <span class="w-24 shrink-0 text-slate-500">已付金额</span>
+                <span id="od-paid-part" class="text-emerald-600 font-medium"></span>
+              </div>
+              <div class="flex gap-3 text-sm sm:col-span-2">
+                <span class="w-24 shrink-0 text-slate-500">待付金额</span>
+                <span id="od-pending-part" class="text-amber-600 font-medium"></span>
+              </div>
+            </div>
+          </div>
+
+          <div id="od-row-refund" class="mt-4 hidden border-t border-slate-100 pt-4">
+            <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-10">
+              <div class="flex gap-3 text-sm">
+                <span class="w-24 shrink-0 text-slate-500">退款时间</span>
+                <span id="od-refund-time" class="text-slate-900"></span>
+              </div>
+              <div class="flex gap-3 text-sm">
+                <span class="w-24 shrink-0 text-slate-500">退款金额</span>
+                <span id="od-refund-amount" class="text-orange-600 font-medium"></span>
+              </div>
+            </div>
+          </div>
+
+          <div id="od-footer-actions" class="mt-6 flex justify-end gap-3 border-t border-slate-100 pt-4 hidden">
+            <button type="button" id="od-btn-pay" class="h-9 rounded-md bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700">立即支付</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var PLACEHOLDER = '--';
+      var orderDetails = {
+        '202604140001': {
+          status: 'paid',
+          orderNo: '202604140001',
+          createdAt: '2026-04-14 10:11:11',
+          payMethod: '年付',
+          amount: '24000',
+          payStatus: '已支付',
+          payTime: '2026-04-14 10:11:11',
+          channel: '支付宝',
+          salesperson: '周芳',
+          dept: '网销一组',
+          contractNo: 'HT202604140001'
+        },
+        '202604140002': {
+          status: 'unpaid',
+          orderNo: '202604140002',
+          createdAt: '2026-04-14 10:11:11',
+          payMethod: '年付',
+          amount: '24000',
+          payStatus: '未支付',
+          payTime: null,
+          channel: null,
+          salesperson: '周芳',
+          dept: '网销一组',
+          contractNo: 'HT202604140001'
+        },
+        '202604140003': {
+          status: 'unpaid',
+          orderNo: '202604140003',
+          createdAt: '2026-04-15 09:20:00',
+          payMethod: '半年付',
+          amount: '12000',
+          payStatus: '未支付',
+          payTime: null,
+          channel: null,
+          salesperson: '周芳',
+          dept: '网销一组',
+          contractNo: 'HT202604150088'
+        },
+        '202604140004': {
+          status: 'partial',
+          orderNo: '202604140004',
+          createdAt: '2026-04-16 14:00:00',
+          payMethod: '年付',
+          amount: '36000',
+          payStatus: '部分支付',
+          payTime: '2026-04-16 14:05:00',
+          channel: '微信支付',
+          salesperson: '周芳',
+          dept: '网销一组',
+          contractNo: 'HT202604160022',
+          totalAmount: '36000',
+          paidAmount: '18000',
+          pendingAmount: '18000'
+        },
+        '202604140005': {
+          status: 'refunded',
+          orderNo: '202604140005',
+          createdAt: '2026-04-10 11:00:00',
+          payMethod: '年付',
+          amount: '8000',
+          payStatus: '已退款',
+          payTime: '2026-04-10 11:30:00',
+          channel: '支付宝',
+          salesperson: '周芳',
+          dept: '网销一组',
+          contractNo: 'HT202604100015',
+          refundTime: '2026-04-12 09:00:00',
+          refundAmount: '8000'
+        }
+      };
+
+      var modal = document.getElementById('order-detail-modal');
+      var statusClassMap = {
+        paid: 'text-slate-900',
+        unpaid: 'text-slate-600',
+        partial: 'text-amber-600',
+        refunded: 'text-orange-600'
+      };
+
+      function setText(id, value) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = value == null || value === '' ? PLACEHOLDER : value;
+      }
+
+      function openModal(orderId) {
+        var d = orderDetails[orderId];
+        if (!d || !modal) return;
+
+        setText('od-order-no', d.orderNo);
+        setText('od-created', d.createdAt);
+        setText('od-pay-method', d.payMethod);
+        setText('od-amount', d.amount);
+        setText('od-pay-time', d.payTime);
+        setText('od-channel', d.channel);
+        setText('od-sales', d.salesperson);
+        setText('od-dept', d.dept);
+
+        var st = document.getElementById('od-status');
+        if (st) {
+          st.textContent = d.payStatus;
+          st.className = 'font-medium ' + (statusClassMap[d.status] || 'text-slate-900');
+        }
+
+        var link = document.getElementById('od-contract');
+        if (link) {
+          link.textContent = d.contractNo;
+          link.href = 'contract-management.html#' + encodeURIComponent(d.contractNo);
+        }
+
+        var rowPartial = document.getElementById('od-row-partial');
+        var rowRefund = document.getElementById('od-row-refund');
+        var footer = document.getElementById('od-footer-actions');
+
+        if (rowPartial) {
+          rowPartial.classList.toggle('hidden', d.status !== 'partial');
+          if (d.status === 'partial') {
+            setText('od-total-amount', d.totalAmount);
+            setText('od-paid-part', d.paidAmount);
+            setText('od-pending-part', d.pendingAmount);
+          }
+        }
+        if (rowRefund) {
+          rowRefund.classList.toggle('hidden', d.status !== 'refunded');
+          if (d.status === 'refunded') {
+            setText('od-refund-time', d.refundTime);
+            setText('od-refund-amount', d.refundAmount);
+          }
+        }
+        if (footer) {
+          footer.classList.toggle('hidden', d.status !== 'unpaid');
+        }
+
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      document.querySelectorAll('.js-order-detail').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var tr = btn.closest('tr.order-row');
+          var id = tr && tr.getAttribute('data-order-id');
+          if (id) openModal(id);
+        });
+      });
+
+      document.getElementById('order-detail-close').addEventListener('click', closeModal);
+      modal.querySelectorAll('[data-close-modal]').forEach(function (el) {
+        el.addEventListener('click', closeModal);
+      });
+
+      document.getElementById('od-btn-pay').addEventListener('click', function () {
+        closeModal();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

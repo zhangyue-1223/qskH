@@ -1,0 +1,584 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>开票管理 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">合同订单 / <span class="text-slate-700 font-medium">开票管理</span></div>
+        <div class="flex items-center gap-4">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="text-sm text-slate-500 mb-4">合同订单 / 开票管理</div>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-3">
+            <div>
+              <label class="block text-xs text-slate-500 mb-1">开票状态</label>
+              <button type="button" class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">全部<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+            </div>
+            <div>
+              <label class="block text-xs text-slate-500 mb-1">开票公司</label>
+              <input type="text" placeholder="请输入" class="w-full h-9 px-3 rounded border border-slate-200 text-sm">
+            </div>
+            <div>
+              <label class="block text-xs text-slate-500 mb-1">抬头类型</label>
+              <button type="button" class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">全部<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+            </div>
+            <div>
+              <label class="block text-xs text-slate-500 mb-1">开票类型</label>
+              <button type="button" class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">全部<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+            </div>
+            <div>
+              <label class="block text-xs text-slate-500 mb-1">申请人</label>
+              <button type="button" class="w-full h-9 px-3 rounded border border-slate-200 bg-white text-sm text-slate-600 flex items-center justify-between">全部<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-end gap-3 mb-4">
+            <div class="min-w-[280px]">
+              <label class="block text-xs text-slate-500 mb-1">起止时间</label>
+              <div class="flex items-center gap-2">
+                <input type="text" value="2023-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
+                <span class="text-slate-400">-</span>
+                <input type="text" value="2024-03-21" class="h-9 w-32 px-3 rounded border border-slate-200 text-sm">
+              </div>
+            </div>
+            <button type="button" class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+            <button type="button" id="btn-open-apply-invoice" class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">开票申请</button>
+          </div>
+
+          <div class="overflow-x-auto rounded border border-slate-200">
+            <table class="w-full min-w-[1100px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">开票公司</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">抬头</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">抬头类型</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">开票金额（元）</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">开票类型</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">申请人</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">申请时间</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">开票状态</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50 inv-row" data-inv-id="inv-1">
+                  <td class="px-3 py-3 border-b border-slate-100">苏州没得科技有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100 max-w-[200px] truncate" title="深圳市宝安区精卫小零个体公司)">深圳市宝安区精卫小零个体公司)</td>
+                  <td class="px-3 py-3 border-b border-slate-100">企业</td>
+                  <td class="px-3 py-3 border-b border-slate-100">1500</td>
+                  <td class="px-3 py-3 border-b border-slate-100">增值税普通发</td>
+                  <td class="px-3 py-3 border-b border-slate-100">陆琴</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2024-03-21 16:03</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="inline-flex rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-800">审核</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-inv-detail">查看详情</button></td>
+                </tr>
+                <tr class="hover:bg-slate-50 inv-row" data-inv-id="inv-2">
+                  <td class="px-3 py-3 border-b border-slate-100">苏州没得科技有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100 max-w-[200px] truncate">深圳市宝安区精卫零售</td>
+                  <td class="px-3 py-3 border-b border-slate-100">企业</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2800</td>
+                  <td class="px-3 py-3 border-b border-slate-100">增值税专用发票</td>
+                  <td class="px-3 py-3 border-b border-slate-100">陆琴</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2024-03-20 10:22</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="inline-flex rounded-full bg-red-50 px-2 py-0.5 text-xs font-medium text-red-700">未通过</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-inv-detail">查看详情</button>
+                    <span class="text-slate-300 mx-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline js-inv-reapply">重新申请</button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 inv-row" data-inv-id="inv-3">
+                  <td class="px-3 py-3 border-b border-slate-100">深圳市宝安区精卫零四</td>
+                  <td class="px-3 py-3 border-b border-slate-100 max-w-[200px] truncate">深圳市宝安区精卫零食</td>
+                  <td class="px-3 py-3 border-b border-slate-100">企业</td>
+                  <td class="px-3 py-3 border-b border-slate-100">1500</td>
+                  <td class="px-3 py-3 border-b border-slate-100">增值税普通发</td>
+                  <td class="px-3 py-3 border-b border-slate-100">陆琴</td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-04-20 12:32</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">已通过</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-inv-detail">查看详情</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 flex items-center justify-end gap-2 text-sm">
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-400"><i class="fa-solid fa-angle-left"></i></button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded bg-blue-600 text-white">1</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">2</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">3</button>
+            <span class="text-slate-400">...</span>
+            <button type="button" class="h-8 min-w-8 px-2 rounded border border-slate-200 bg-white text-slate-600">20</button>
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-500"><i class="fa-solid fa-angle-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 申请开-->
+  <div id="modal-apply-invoice" class="fixed inset-0 z-[100] hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-apply></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-lg rounded-lg border border-slate-200 bg-white shadow-xl max-h-[90vh] overflow-y-auto">
+        <div class="relative border-b border-slate-200 px-6 py-4">
+          <h2 class="text-center text-base font-medium text-slate-800">申请开</h2>
+          <button type="button" class="apply-close absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-5 space-y-4 text-sm">
+          <label class="block">
+            <span class="text-slate-600">开票公司<span class="text-red-500">*</span></span>
+            <input type="text" placeholder="请输入或选择开票公司" class="mt-1 w-full h-9 px-3 rounded border border-slate-200">
+          </label>
+          <label class="block">
+            <span class="text-slate-600">关联合同 <span class="text-red-500">*</span></span>
+            <div class="relative mt-1">
+              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                <option selected>HT20260420001</option>
+                <option>HT20260420002</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </label>
+          <label class="block">
+            <span class="text-slate-600">收款金额</span>
+            <input type="text" readonly value="1500" class="mt-1 w-full h-9 px-3 rounded border border-slate-200 bg-slate-50 text-slate-600">
+          </label>
+          <label class="block">
+            <span class="text-slate-600">开票金<span class="text-red-500">*</span></span>
+            <input type="text" value="1500" class="mt-1 w-full h-9 px-3 rounded border border-slate-200">
+          </label>
+          <label class="block">
+            <span class="text-slate-600">开票类型<span class="text-red-500">*</span></span>
+            <div class="relative mt-1">
+              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                <option selected>增值税普通发</option>
+                <option>增值税专用发票</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </label>
+          <label class="block">
+            <span class="text-slate-600">抬头类型 <span class="text-red-500">*</span></span>
+            <div class="relative mt-1">
+              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                <option selected>企业</option>
+                <option>个人</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </label>
+          <label class="block">
+            <span class="text-slate-600">抬头 <span class="text-red-500">*</span></span>
+            <input type="text" value="深圳市宝安区精卫小零个体工商" class="mt-1 w-full h-9 px-3 rounded border border-slate-200">
+          </label>
+          <label class="block">
+            <span class="text-slate-600">统一社会信用代码 <span class="text-red-500">*</span></span>
+            <input type="text" placeholder="请输入统一社会信用代码" class="mt-1 w-full h-9 px-3 rounded border border-slate-200">
+          </label>
+          <label class="block">
+            <span class="text-slate-600">收票邮箱</span>
+            <input type="text" placeholder="请输入收票邮" class="mt-1 w-full h-9 px-3 rounded border border-slate-200">
+          </label>
+          <label class="block">
+            <span class="text-slate-600">申请人<span class="text-red-500">*</span></span>
+            <div class="relative mt-1">
+              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                <option selected>陆琴</option>
+                <option>周芳</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            </div>
+          </label>
+          <label class="block">
+            <span class="text-slate-600">备注</span>
+            <input type="text" placeholder="请输入" class="mt-1 w-full h-9 px-3 rounded border border-slate-200">
+          </label>
+        </div>
+        <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+          <button type="button" id="btn-apply-submit" class="h-9 px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700">提交</button>
+          <button type="button" class="apply-close h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 开票申请详情（审批/ 未通过 / 已通过-->
+  <div id="modal-inv-detail" class="fixed inset-0 z-[110] hidden" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-detail></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-3xl rounded-lg border border-slate-200 bg-white shadow-xl max-h-[92vh] overflow-y-auto">
+        <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-5 py-3">
+          <h2 class="text-base font-medium text-slate-800">开票申请</h2>
+          <button type="button" id="inv-detail-close" class="flex h-8 w-8 items-center justify-center rounded text-slate-400 hover:bg-slate-100 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+
+        <div id="inv-detail-banner" class="mx-5 mt-4 rounded-lg border px-4 py-3 text-sm"></div>
+
+        <div class="mx-5 mt-4">
+          <div class="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+            <span class="h-4 w-1 rounded-sm bg-blue-600"></span>开票信
+          </div>
+          <div id="inv-info-grid" class="grid grid-cols-1 gap-3 p-3 text-sm sm:grid-cols-2 lg:grid-cols-3"></div>
+        </div>
+
+        <div class="mx-5 mt-4 mb-6">
+          <div class="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+            <span class="h-4 w-1 rounded-sm bg-blue-600"></span>审批流程
+          </div>
+          <div id="inv-timeline" class="p-4"></div>
+        </div>
+
+        <div id="inv-detail-footer" class="sticky bottom-0 flex flex-wrap items-center justify-center gap-3 border-t border-slate-100 bg-white px-5 py-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-inv" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg" role="status"></div>
+
+    <script>
+    (function () {
+      var invRecords = {
+        'inv-1': {
+          state: 'pending',
+          company: '深圳市宝安区精卫零四',
+          collectAmount: '1500',
+          invoiceAmount: '1500',
+          invoiceType: '增值税普通发票',
+          contract: 'HT20260420001',
+          title: '深圳市宝安区精卫零售',
+          titleType: '企业',
+          creditCode: 'SZ202604200001',
+          email: '1518101655@outlook.com',
+          bannerTitle: '审批中',
+          bannerSub: '审批人：钱蕾',
+          timeline: [
+            { kind: 'pending', step: '部门审批', name: '钱蕾 财务经理', status: '审批中', statusClass: 'text-amber-600', comment: '' },
+            { kind: 'done', step: '部门审批', name: '马经理 会计顾问主管', time: '2026-04-20 12:32:02', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：客户需要，给予开票' },
+            { kind: 'done', step: '提交申请', name: '陆琴 会计顾问', time: '2026-04-20 12:32:02', status: '发起审批', statusClass: 'text-emerald-600', comment: '' }
+          ],
+          footer: 'approve'
+        },
+        'inv-2': {
+          state: 'rejected',
+          company: '深圳市宝安区精卫零四',
+          collectAmount: '1500',
+          invoiceAmount: '1500',
+          invoiceType: '增值税普通发票',
+          contract: 'HT20260420001',
+          title: '深圳市宝安区精卫零食',
+          titleType: '企业',
+          creditCode: 'SZ202604200001',
+          email: '1518101655@outlook.com',
+          bannerTitle: '审批未通过',
+          bannerSub: '审批人：钱蕾',
+          rejectReason: '驳回意见：开票金额与合同金额不符',
+          timeline: [
+            { kind: 'reject', step: '经理审批', name: '钱蕾 财务经理', time: '2026-04-20 12:32:02', status: '审批不通过', statusClass: 'text-red-600', comment: '审批意见：开票金额与合同金额不符' },
+            { kind: 'done', step: '部门审批', name: '马经理 会计顾问主管', time: '2026-04-20 12:32:02', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：客户要求，给予批准' },
+            { kind: 'done', step: '提交申请', name: '陆琴 会计顾问', time: '2026-04-20 12:32:02', status: '发起审批', statusClass: 'text-emerald-600', comment: '' }
+          ],
+          footer: 'reapply'
+        },
+        'inv-3': {
+          state: 'approved',
+          company: '深圳市宝安区精卫零四',
+          collectAmount: '1500',
+          invoiceAmount: '1500',
+          invoiceType: '增值税普通发票',
+          contract: 'HT20260420001',
+          title: '深圳市宝安区精卫零食',
+          titleType: '企业',
+          creditCode: 'SZ202604200001',
+          email: '1518101655@outlook.com',
+          bannerTitle: '审批已通过',
+          bannerSub: '审批人：钱蕾',
+          timeline: [
+            { kind: 'done', step: '部门审批', name: '钱蕾 财务经理', time: '2026-04-20 12:32:02', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：审批通过' },
+            { kind: 'done', step: '部门审批', name: '马经理 会计顾问主管', time: '2026-04-20 12:32:02', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：客户要求，给予批准' },
+            { kind: 'done', step: '提交申请', name: '陆琴 会计顾问', time: '2026-04-20 12:32:02', status: '发起审批', statusClass: 'text-emerald-600', comment: '' }
+          ],
+          footer: 'approved'
+        }
+      };
+
+      function field(label, value, isLink) {
+        var v = value;
+        if (isLink) {
+          v = '<a href="contract-management.html#' + encodeURIComponent(value) + '" class="text-blue-600 hover:underline">' + value + '</a>';
+        } else {
+          v = '<span class="text-slate-900">' + value + '</span>';
+        }
+        return '<div class="flex flex-col gap-0.5"><span class="text-slate-500">' + label + '</span>' + v + '</div>';
+      }
+
+      function renderInfo(d) {
+        var g = document.getElementById('inv-info-grid');
+        if (!g) return;
+        g.innerHTML =
+          field('开票公司', d.company) +
+          field('收款金额', d.collectAmount) +
+          field('开票金额', d.invoiceAmount) +
+          field('开票类型', d.invoiceType) +
+          field('关联合同', d.contract, true) +
+          field('抬头', d.title) +
+          field('抬头类型', d.titleType) +
+          field('统一社会信用代码', d.creditCode) +
+          field('收票邮箱', d.email);
+      }
+
+      function timelineItem(item, isLast) {
+        var line = isLast ? '' : '<div class="absolute left-4 top-9 bottom-0 w-px bg-slate-200" aria-hidden="true"></div>';
+        var icon;
+        if (item.kind === 'pending') {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-amber-200 bg-amber-50 text-amber-600"><i class="fa-regular fa-clock text-sm"></i></div>';
+        } else if (item.kind === 'reject') {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-500 text-white"><i class="fa-solid fa-xmark text-sm"></i></div>';
+        } else {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white"><i class="fa-solid fa-check text-sm"></i></div>';
+        }
+        var comment = item.comment ? '<p class="mt-1 text-slate-500">' + item.comment + '</p>' : '';
+        var timeLine = item.time ? '<p class="text-slate-500">' + item.time + '</p>' : '';
+        return (
+          '<div class="relative flex gap-3 pb-6 last:pb-2">' +
+          line +
+          icon +
+          '<div class="min-w-0 flex-1 pt-0.5">' +
+          '<p class="font-medium text-slate-800">' + item.step + '</p>' +
+          '<p class="text-slate-600">' + item.name + '</p>' +
+          timeLine +
+          '<p class="' + item.statusClass + ' font-medium">' + item.status + '</p>' +
+          comment +
+          '</div></div>'
+        );
+      }
+
+      function renderTimeline(d) {
+        var el = document.getElementById('inv-timeline');
+        if (!el) return;
+        var html = '';
+        for (var i = 0; i < d.timeline.length; i++) {
+          html += timelineItem(d.timeline[i], i === d.timeline.length - 1);
+        }
+        el.innerHTML = html;
+      }
+
+      function renderBanner(d) {
+        var b = document.getElementById('inv-detail-banner');
+        if (!b) return;
+        b.className = 'mx-5 mt-4 rounded-lg border px-4 py-3 text-sm ';
+        if (d.state === 'pending') {
+          b.className += 'border-amber-200 bg-amber-50/80 text-amber-950';
+          b.innerHTML =
+            '<div class="flex items-start gap-2">' +
+            '<i class="fa-regular fa-clock mt-0.5 text-amber-600"></i>' +
+            '<div><p class="font-semibold text-slate-900">' + d.bannerTitle + '</p>' +
+            '<p class="mt-1 text-slate-600">' + d.bannerSub + '</p></div></div>';
+        } else if (d.state === 'rejected') {
+          b.className += 'border-red-200 bg-red-50/80 text-red-950';
+          b.innerHTML =
+            '<div class="flex items-start gap-2">' +
+            '<i class="fa-solid fa-circle-xmark mt-0.5 text-red-500"></i>' +
+            '<div><p class="font-semibold text-slate-900">' + d.bannerTitle + '</p>' +
+            '<p class="mt-1 text-slate-700">' + d.bannerSub + '</p>' +
+            '<p class="mt-2 text-red-700">' + d.rejectReason + '</p></div></div>';
+        } else {
+          b.className += 'border-blue-200 bg-sky-50/90 text-slate-900';
+          b.innerHTML =
+            '<div class="flex items-start gap-2">' +
+            '<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white"><i class="fa-solid fa-check text-sm"></i></span>' +
+            '<div><p class="font-semibold">' + d.bannerTitle + '</p>' +
+            '<p class="mt-1 text-slate-600">' + d.bannerSub + '</p>' +
+            '<button type="button" class="mt-2 inline-flex items-center gap-1 text-blue-600 hover:underline"><i class="fa-solid fa-paperclip text-xs"></i>查看发票</button></div></div>';
+        }
+      }
+
+      function renderFooter(d) {
+        var f = document.getElementById('inv-detail-footer');
+        if (!f) return;
+        f.innerHTML = '';
+        if (d.footer === 'approve') {
+          f.innerHTML =
+            '<button type="button" class="inv-mock-btn h-9 rounded-md bg-blue-600 px-6 text-sm font-medium text-white hover:bg-blue-700">审批通过</button>' +
+            '<button type="button" class="inv-mock-btn h-9 rounded-md border border-slate-200 bg-white px-6 text-sm text-slate-600 hover:bg-slate-50">审批拒绝</button>';
+        } else if (d.footer === 'reapply') {
+          f.innerHTML =
+            '<button type="button" id="btn-detail-reapply" class="h-9 rounded-md bg-blue-600 px-6 text-sm font-medium text-white hover:bg-blue-700">重新申请</button>' +
+            '<button type="button" class="detail-close h-9 rounded-md border border-slate-200 bg-white px-6 text-sm text-slate-600 hover:bg-slate-50">取消</button>';
+        } else {
+          f.innerHTML =
+            '<button type="button" class="detail-close h-9 rounded-md border border-slate-200 bg-white px-6 text-sm text-slate-600 hover:bg-slate-50">关闭</button>';
+        }
+      }
+
+      function openDetail(id) {
+        var d = invRecords[id];
+        if (!d) return;
+        renderBanner(d);
+        renderInfo(d);
+        renderTimeline(d);
+        renderFooter(d);
+        var m = document.getElementById('modal-inv-detail');
+        m.classList.remove('hidden');
+        m.setAttribute('aria-hidden', 'false');
+
+        m.querySelectorAll('.inv-mock-btn').forEach(function (btn) {
+          btn.onclick = function () { showToast('演示：' + btn.textContent); };
+        });
+        var reapply = document.getElementById('btn-detail-reapply');
+        if (reapply) {
+          reapply.onclick = function () {
+            m.classList.add('hidden');
+            document.getElementById('modal-apply-invoice').classList.remove('hidden');
+          };
+        }
+        m.querySelectorAll('.detail-close').forEach(function (btn) { btn.onclick = closeDetail; });
+      }
+
+      function closeDetail() {
+        var m = document.getElementById('modal-inv-detail');
+        m.classList.add('hidden');
+        m.setAttribute('aria-hidden', 'true');
+      }
+
+      function showToast(msg) {
+        var t = document.getElementById('toast-inv');
+        t.textContent = msg;
+        t.classList.remove('hidden');
+        clearTimeout(window._invToastTimer);
+        window._invToastTimer = setTimeout(function () { t.classList.add('hidden'); }, 2000);
+      }
+
+      function closeApply() {
+        document.getElementById('modal-apply-invoice').classList.add('hidden');
+      }
+
+      document.getElementById('btn-open-apply-invoice').addEventListener('click', function () {
+        document.getElementById('modal-apply-invoice').classList.remove('hidden');
+      });
+      document.querySelectorAll('.apply-close, [data-close-apply]').forEach(function (el) {
+        el.addEventListener('click', closeApply);
+      });
+      document.getElementById('btn-apply-submit').addEventListener('click', function () {
+        closeApply();
+        showToast('提交成功');
+      });
+
+      document.querySelectorAll('.js-inv-detail').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var tr = btn.closest('tr.inv-row');
+          var id = tr && tr.getAttribute('data-inv-id');
+          if (id) openDetail(id);
+        });
+      });
+      document.querySelectorAll('.js-inv-reapply').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.getElementById('modal-apply-invoice').classList.remove('hidden');
+        });
+      });
+
+      document.getElementById('inv-detail-close').addEventListener('click', closeDetail);
+      document.querySelectorAll('[data-close-detail]').forEach(function (el) { el.addEventListener('click', closeDetail); });
+      document.getElementById('inv-detail-banner').addEventListener('click', function (e) {
+        var btn = e.target.closest('button');
+        if (btn && btn.textContent.indexOf('查看发票') !== -1) showToast('演示：打开发票文件');
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (!document.getElementById('modal-inv-detail').classList.contains('hidden')) closeDetail();
+        else if (!document.getElementById('modal-apply-invoice').classList.contains('hidden')) closeApply();
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

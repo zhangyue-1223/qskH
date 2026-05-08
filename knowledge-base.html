@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识库 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .doc-item-active { background: #eef2ff; color: #1d4ed8; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">业绩管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">跟进管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg bg-blue-600 text-white flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between">
+        <div class="text-sm text-slate-500">知识库 / <span class="text-slate-700 font-medium">知识库</span></div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+          <div class="grid grid-cols-12 gap-4 min-h-[640px]">
+            <aside class="col-span-3 border-r border-slate-200 pr-4">
+              <div class="text-sm font-semibold text-slate-800 mb-3"><i class="fa-solid fa-book-open text-cyan-500 mr-1.5"></i>知识库</div>
+              <button type="button" class="w-full h-9 mb-3 rounded border border-slate-200 bg-white text-sm text-slate-700 hover:bg-slate-50">上传文档</button>
+              <div class="relative mb-3">
+                <input type="text" placeholder="输入关键词搜索" class="w-full h-9 rounded border border-slate-200 pl-3 pr-9 text-sm">
+                <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              </div>
+              <div id="doc-list" class="space-y-1.5 text-sm max-h-[540px] overflow-y-auto"></div>
+            </aside>
+
+            <div class="col-span-9 pl-2">
+              <div class="flex items-center justify-between mb-3 text-sm">
+                <p class="pb-2 text-base font-semibold text-slate-800">问答大厅</p>
+                <button type="button" id="btn-open-ask" class="h-7 px-3 rounded bg-blue-600 text-white text-xs hover:bg-blue-700">发布</button>
+              </div>
+
+              <div id="qa-panel">
+                <div class="flex items-start justify-between mb-3">
+                  <p class="text-sm text-slate-500">共 <span class="font-medium text-slate-700">2430</span> 条知识库内容</p>
+                </div>
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="relative flex-1">
+                    <input type="text" placeholder="输入关键词搜索" class="w-full h-9 rounded border border-slate-200 pl-3 pr-9 text-sm">
+                    <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                  </div>
+                  <button class="h-9 px-5 rounded bg-blue-600 text-white text-sm">检索</button>
+                </div>
+                <div id="qa-list" class="space-y-4"></div>
+              </div>
+
+              <div id="doc-panel" class="hidden h-[560px] overflow-auto rounded border border-slate-200 bg-slate-50 p-4">
+                <article id="doc-content" class="mx-auto max-w-[760px] bg-white border border-slate-200 shadow-sm p-8 text-[15px] leading-8 text-slate-700"></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-answer-question" class="fixed inset-0 z-[120] hidden">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-answer></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-2xl rounded-lg border border-slate-200 bg-white shadow-xl">
+        <div class="relative border-b border-slate-200 px-6 py-4">
+          <h3 class="text-center text-base font-medium text-slate-800">问答大厅</h3>
+          <button type="button" data-close-answer class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-5">
+          <div class="grid grid-cols-[76px_1fr] gap-3 items-start">
+            <label class="pt-2 text-sm text-slate-700">回答内容<span class="text-red-500">*</span></label>
+            <div>
+              <textarea id="answer-content" maxlength="1000" placeholder="请输入" class="h-64 w-full rounded border border-slate-200 px-3 py-2 text-sm leading-6 text-slate-700"></textarea>
+              <div class="mt-2 text-right text-sm text-slate-400"><span id="answer-count">0</span>/1000</div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-5 flex justify-center gap-3">
+          <button type="button" class="h-9 min-w-[90px] rounded bg-blue-600 px-6 text-sm text-white">确认</button>
+          <button type="button" data-close-answer class="h-9 min-w-[90px] rounded border border-slate-300 bg-white px-6 text-sm text-slate-600">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-ask-question" class="fixed inset-0 z-[120] hidden">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-ask></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-2xl rounded-lg border border-slate-200 bg-white shadow-xl">
+        <div class="relative border-b border-slate-200 px-6 py-4">
+          <h3 class="text-center text-base font-medium text-slate-800">问答大厅</h3>
+          <button type="button" data-close-ask class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-5">
+          <div class="grid grid-cols-[76px_1fr] gap-3 items-start">
+            <label class="pt-2 text-sm text-slate-700">发布问题<span class="text-red-500">*</span></label>
+            <div>
+              <textarea id="ask-content" maxlength="1000" placeholder="请输入" class="h-64 w-full rounded border border-slate-200 px-3 py-2 text-sm leading-6 text-slate-700"></textarea>
+              <div class="mt-2 text-right text-sm text-slate-400"><span id="ask-count">0</span>/1000</div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-5 flex justify-center gap-3">
+          <button type="button" class="h-9 min-w-[90px] rounded bg-blue-600 px-6 text-sm text-white">确认</button>
+          <button type="button" data-close-ask class="h-9 min-w-[90px] rounded border border-slate-300 bg-white px-6 text-sm text-slate-600">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var docs = [
+        { id: 'd1', title: '平台操作手册', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册</h2><p>一、公司名称：<span class="text-red-600">客户需要注册的名字</span></p><p>二、公司人员：法定代表人、股东、监事等信息需按证件录入。</p><p>三、注册地址：需要和业务实际办公地址一致。</p><p>四、注册资本：100 万。</p><p>五、经营范围：可参考同类行业描述，重点突出主营业务。</p><p class="mt-6 text-slate-500">注：本页面为文档预览效果示例，点击左侧不同文档可切换内容。</p>' },
+        { id: 'd2', title: '用户开发规范', type: 'img', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">用户开发规范</h2><p>1）命名规范：统一采用模块-功能-动作。</p><p>2）数据规范：时间使用 yyyy-MM-dd HH:mm 格式。</p><p>3）交付规范：关键节点必须补充维护记录与跟进记录。</p>' },
+        { id: 'd3', title: '指标管理办法', type: 'sheet', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">指标管理办法</h2><p>销售指标分为：合同金额、回款率、客户续费率、线索转化率。</p><p>每周复盘一次，每月提交总结一次。</p>' },
+        { id: 'd4', title: '平台操作手册（进阶）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（进阶）</h2><p>包含合同模板维护、开票流程联动、订单退款处理流程。</p>' },
+        { id: 'd5', title: '平台操作手册（合同篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（合同篇）</h2><p>合同发起、审批、签约与归档全流程说明。</p>' },
+        { id: 'd6', title: '平台操作手册（订单篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（订单篇）</h2><p>订单创建、支付、退款、状态流转处理规范。</p>' },
+        { id: 'd7', title: '平台操作手册（开票篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（开票篇）</h2><p>开票申请、审批、重开与发票归档说明。</p>' },
+        { id: 'd8', title: '平台操作手册（客户篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（客户篇）</h2><p>客户信息维护、服务记录、跟进记录规范。</p>' },
+        { id: 'd9', title: '平台操作手册（线索篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（线索篇）</h2><p>线索录入、分配、跟进与转化全流程操作。</p>' }
+      ];
+      var qaList = [
+        { q: '如何提升自己的销售能力？', a: '销售能力的提升核心在于标准动作执行：会前预判、过程控节奏、会后及时复盘。', time: '2026-04-17', likes: 228 },
+        { q: '顶级销售都是怎么说话的？', a: '先听后说，先复述再给方案，最后确认下一步行动。避免“泛表达”，多用“业务场景化表达”。同时在沟通中加入场景化案例，持续校准客户关注点，形成可执行的下一步计划。', time: '2026-04-17', likes: 22 },
+        { q: '销售的最高境界是让客户说服自己', a: '通过提问引导客户明确痛点，再让客户自己说出目标与价值，成交会更顺畅。', time: '2026-04-17', likes: 22 }
+      ];
+
+      var docListEl = document.getElementById('doc-list');
+      var qaListEl = document.getElementById('qa-list');
+      var docContentEl = document.getElementById('doc-content');
+      var docPanel = document.getElementById('doc-panel');
+      var qaPanel = document.getElementById('qa-panel');
+      var activeDocId = docs[0].id;
+
+      function renderDocs() {
+        docListEl.innerHTML = docs.map(function (d) {
+          var icon = d.type === 'pdf' ? 'fa-file-pdf text-red-500' : (d.type === 'img' ? 'fa-file-image text-cyan-500' : 'fa-file-lines text-emerald-500');
+          var active = d.id === activeDocId ? 'doc-item-active' : 'text-slate-600 hover:bg-slate-100';
+          return '<button type="button" data-doc-id="' + d.id + '" class="w-full text-left px-3 py-2 rounded ' + active + '"><i class="fa-solid ' + icon + ' mr-2 text-xs"></i>' + d.title + '</button>';
+        }).join('');
+      }
+
+      function renderQa() {
+        qaListEl.innerHTML = qaList.map(function (item, i) {
+          return '<div class="border-b border-slate-200 pb-4">' +
+            '<p class="text-base text-slate-800 mb-2">' + item.q + '</p>' +
+            (i === 0 ? '<button type="button" class="js-open-answer h-6 px-3 rounded bg-sky-500 text-white text-xs mb-2">去回答</button><p class="text-xs text-slate-400 mb-2 pb-2 border-b border-slate-200">销售-周芳林 发布于2026-04-05 12:23</p>' : '') +
+            (i === 1
+              ? '<p class="text-sm leading-7 text-slate-600">' + item.a + '<span class="ml-1 inline-block max-w-[360px] overflow-hidden text-ellipsis whitespace-nowrap align-middle text-slate-600">另外可从客户异议处理、需求确认话术和复盘方法三个维度继续深化。</span><button class="ml-1 text-sky-500 hover:underline text-xs align-middle">展开阅读</button></p>'
+              : '<p class="text-sm leading-7 text-slate-600">' + item.a + '</p>') +
+            '<div class="mt-2 text-xs text-slate-400">' + (item.author || '周芳林') + ' · 更新于：' + item.time + '<span class="float-right text-sky-500"><i class="fa-solid fa-thumbs-up mr-1"></i>' + item.likes + '人觉得有用</span></div>' +
+            '</div>';
+        }).join('');
+      }
+
+      function renderDocContent() {
+        var d = docs.find(function (x) { return x.id === activeDocId; });
+        docContentEl.innerHTML = d ? d.content : '';
+      }
+
+      docListEl.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-doc-id]');
+        if (!btn) return;
+        activeDocId = btn.getAttribute('data-doc-id');
+        renderDocs();
+        renderDocContent();
+        qaPanel.classList.add('hidden');
+        docPanel.classList.remove('hidden');
+      });
+
+      renderDocs();
+      renderQa();
+      renderDocContent();
+      qaPanel.classList.remove('hidden');
+      docPanel.classList.add('hidden');
+
+      var askModal = document.getElementById('modal-ask-question');
+      var answerModal = document.getElementById('modal-answer-question');
+      var askTextarea = document.getElementById('ask-content');
+      var answerTextarea = document.getElementById('answer-content');
+      var askCount = document.getElementById('ask-count');
+      var answerCount = document.getElementById('answer-count');
+      var openAskBtn = document.getElementById('btn-open-ask');
+
+      function bindCounter(textarea, counter) {
+        if (!textarea || !counter) return;
+        function update() { counter.textContent = String(textarea.value.length); }
+        textarea.addEventListener('input', update);
+        update();
+      }
+      bindCounter(askTextarea, askCount);
+      bindCounter(answerTextarea, answerCount);
+
+      if (openAskBtn) {
+        openAskBtn.addEventListener('click', function () {
+          askModal.classList.remove('hidden');
+        });
+      }
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.js-open-answer');
+        if (btn) answerModal.classList.remove('hidden');
+      });
+      document.querySelectorAll('[data-close-ask]').forEach(function (el) {
+        el.addEventListener('click', function () { askModal.classList.add('hidden'); });
+      });
+      document.querySelectorAll('[data-close-answer]').forEach(function (el) {
+        el.addEventListener('click', function () { answerModal.classList.add('hidden'); });
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        askModal.classList.add('hidden');
+        answerModal.classList.add('hidden');
+      });
+    })();
+  </script>
+</body>
+</html>

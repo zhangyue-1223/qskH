@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>角色权限 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .perm-tab { border-bottom: 2px solid transparent; color: #64748b; padding-bottom: 0.5rem; margin-bottom: -1px; }
+    .perm-tab:hover { color: #334155; }
+    .perm-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
+    #modal-add-role:not(.hidden) { display: flex; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">系统管理 / <span class="text-slate-700 font-medium">角色权限</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col min-h-[calc(100vh-7rem)]">
+          <div class="text-sm text-slate-500 px-5 pt-4 shrink-0">系统管理 / 角色权限</div>
+          <div class="flex flex-1 min-h-0 border-t border-slate-100 mt-3">
+            <div class="w-64 shrink-0 border-r border-slate-200 flex flex-col bg-white">
+              <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+                <span class="text-sm font-semibold text-slate-800">角色权限</span>
+                <button type="button" id="btn-add-role" class="h-8 shrink-0 rounded-md bg-blue-600 px-3 text-xs font-medium text-white hover:bg-blue-700">新增角色</button>
+              </div>
+              <div class="px-3 py-2 border-b border-slate-100">
+                <input type="search" placeholder="搜索角色名称" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400">
+              </div>
+              <div class="flex-1 overflow-y-auto py-2 px-2 space-y-0.5" id="role-list">
+                <button type="button" class="js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50" data-role="boss">
+                  <span>老板</span><span class="role-edit-icon w-4 shrink-0"></span>
+                </button>
+                <button type="button" class="js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm bg-sky-50 text-blue-700 font-medium ring-1 ring-inset ring-blue-100" data-role="gm">
+                  <span>总经理</span><span class="role-edit-icon text-blue-500 shrink-0"><i class="fa-solid fa-pen text-xs"></i></span>
+                </button>
+                <button type="button" class="js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50" data-role="sales-lead">
+                  <span>销售主管</span><span class="role-edit-icon w-4 shrink-0"></span>
+                </button>
+                <button type="button" class="js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50" data-role="finance-lead">
+                  <span>财务主管</span><span class="role-edit-icon w-4 shrink-0"></span>
+                </button>
+                <button type="button" class="js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50" data-role="sales">
+                  <span>销售员</span><span class="role-edit-icon w-4 shrink-0"></span>
+                </button>
+                <button type="button" class="js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50" data-role="finance">
+                  <span>财务专员</span><span class="role-edit-icon w-4 shrink-0"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex-1 flex flex-col min-w-0 bg-slate-50/50">
+              <div class="shrink-0 flex gap-8 border-b border-slate-200 bg-white px-6 pt-3">
+                <button type="button" id="tab-role-perm" class="perm-tab perm-tab-active text-sm" data-tab="role">角色权限</button>
+                <button type="button" id="tab-emp-perm" class="perm-tab text-sm" data-tab="emp">员工权限</button>
+              </div>
+              <div id="panel-role-perm" class="flex-1 overflow-y-auto p-5 min-h-[360px]"></div>
+              <div id="panel-emp-perm" class="flex-1 overflow-y-auto p-5 min-h-[360px] hidden"></div>
+              <div class="shrink-0 border-t border-slate-200 bg-white py-4 flex justify-center gap-3">
+                <button type="button" class="h-9 min-w-[100px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700">确认</button>
+                <button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="perm-tpl">
+    <div class="perm-root space-y-3">
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">客户中心</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+              <span class="text-slate-800">线索管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">新增</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">编辑</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导入</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">线索导出</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">分配</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+              <span class="text-slate-800">客户管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">编辑</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导入</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">合同订单</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">合同管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">编辑</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">作废</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">订单管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">开票管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">申请</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">审批</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">交付中心</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">代账客户</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">编辑</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">政务办理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">办理</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">地址管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">维护</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">客户物品</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">出入库</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">销售管理</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">个人业绩</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">部门业绩</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">业绩目标</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">编辑</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">知识库</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">知识库</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">浏览</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">提问</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">回答</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">财务管理</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">用款申请</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">申请</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">审批</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">财务报表</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">导出</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">薪酬管理</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">发放</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="perm-module border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+        <div class="bg-slate-50 flex items-center justify-between px-3 py-2.5 border-b border-slate-200">
+          <span class="text-sm font-semibold text-slate-800">系统管理</span>
+          <label class="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+            <input type="checkbox" class="js-mod-select-all h-3.5 w-3.5 rounded border-slate-300 text-blue-600">
+            全选
+          </label>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">角色权限</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">配置</label>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-y-2 py-2.5 text-sm px-2">
+            <label class="flex w-36 shrink-0 items-center gap-2 px-2 cursor-pointer">
+              <input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600"><span class="text-slate-800">部门员工</span>
+            </label>
+            <div class="hidden sm:block w-px h-5 bg-slate-200 shrink-0 mx-1"></div>
+            <div class="flex flex-1 flex-wrap gap-x-4 gap-y-1 text-slate-600 pl-1 sm:pl-0">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">查看</label>
+              <label class="inline-flex items-center gap-1.5 cursor-pointer"><input type="checkbox" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600">编辑</label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </template>
+
+  <div id="modal-add-role" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close-add-role></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+        <h3 class="text-base font-semibold text-slate-800">新增角色</h3>
+        <button type="button" class="text-slate-400 hover:text-slate-600" data-close-add-role aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-5 py-4 space-y-4 text-sm">
+        <label class="block">
+          <span class="text-slate-600">角色名称 <span class="text-red-500">*</span></span>
+          <input type="text" id="new-role-name" placeholder="请输入角色名称" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3">
+        </label>
+        <label class="block">
+          <span class="text-slate-600">备注</span>
+          <textarea rows="3" placeholder="选填" class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 resize-none"></textarea>
+        </label>
+      </div>
+      <div class="flex justify-end gap-2 border-t border-slate-100 px-5 py-4">
+        <button type="button" class="h-9 rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-add-role>取消</button>
+        <button type="button" class="h-9 rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700" id="btn-submit-role">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var tpl = document.getElementById('perm-tpl');
+      var panelRole = document.getElementById('panel-role-perm');
+      var panelEmp = document.getElementById('panel-emp-perm');
+
+      panelRole.appendChild(tpl.content.cloneNode(true));
+
+      var empFrag = tpl.content.cloneNode(true);
+      var n = 0;
+      empFrag.querySelectorAll('.js-mod-select-all').forEach(function (cb) {
+        cb.classList.remove('js-mod-select-all');
+        cb.classList.add('js-emp-mod-select-all');
+      });
+      empFrag.querySelectorAll('input[type="checkbox"]').forEach(function (inp) {
+        inp.name = 'emp_perm_' + (n++);
+      });
+      panelEmp.appendChild(empFrag);
+
+      function bindModSelectAll(root, klass) {
+        root.querySelectorAll('.' + klass).forEach(function (master) {
+          master.addEventListener('change', function () {
+            var mod = master.closest('.perm-module');
+            if (!mod) return;
+            mod.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
+              if (c !== master) c.checked = master.checked;
+            });
+          });
+        });
+      }
+      bindModSelectAll(panelRole, 'js-mod-select-all');
+      bindModSelectAll(panelEmp, 'js-emp-mod-select-all');
+
+      function bindSubModRowMasters(root) {
+        root.querySelectorAll('.perm-module .divide-y > div').forEach(function (row) {
+          var master = row.querySelector('label.flex.w-36 input[type="checkbox"]');
+          var actionsWrap = row.querySelector('.flex.flex-1.flex-wrap');
+          if (!master || !actionsWrap) return;
+          var opBoxes = actionsWrap.querySelectorAll('input[type="checkbox"]');
+          if (!opBoxes.length) return;
+
+          master.addEventListener('change', function () {
+            opBoxes.forEach(function (c) {
+              c.checked = master.checked;
+            });
+            master.indeterminate = false;
+          });
+
+          function syncMasterFromOps() {
+            var checkedCount = 0;
+            opBoxes.forEach(function (c) {
+              if (c.checked) checkedCount++;
+            });
+            master.checked = checkedCount === opBoxes.length;
+            master.indeterminate = checkedCount > 0 && checkedCount < opBoxes.length;
+          }
+
+          opBoxes.forEach(function (c) {
+            c.addEventListener('change', syncMasterFromOps);
+          });
+        });
+      }
+      bindSubModRowMasters(panelRole);
+      bindSubModRowMasters(panelEmp);
+
+      var tabRole = document.getElementById('tab-role-perm');
+      var tabEmp = document.getElementById('tab-emp-perm');
+      function activatePermTab(which) {
+        var isRole = which === 'role';
+        panelRole.classList.toggle('hidden', !isRole);
+        panelEmp.classList.toggle('hidden', isRole);
+        tabRole.classList.toggle('perm-tab-active', isRole);
+        tabEmp.classList.toggle('perm-tab-active', !isRole);
+      }
+      tabRole.addEventListener('click', function () { activatePermTab('role'); });
+      tabEmp.addEventListener('click', function () { activatePermTab('emp'); });
+
+      var roleList = document.getElementById('role-list');
+      var roleIdle = 'js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 hover:bg-slate-50';
+      var roleActive = 'js-role-item flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm bg-sky-50 text-blue-700 font-medium ring-1 ring-inset ring-blue-100';
+
+      roleList.querySelectorAll('.js-role-item').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          roleList.querySelectorAll('.js-role-item').forEach(function (b) {
+            b.className = roleIdle;
+            var slot = b.querySelector('.role-edit-icon');
+            if (slot) slot.innerHTML = '';
+          });
+          btn.className = roleActive;
+          var iconSlot = btn.querySelector('.role-edit-icon');
+          if (iconSlot) iconSlot.innerHTML = '<i class="fa-solid fa-pen text-xs"></i>';
+        });
+      });
+
+      var addModal = document.getElementById('modal-add-role');
+      function openAddRole() {
+        addModal.classList.remove('hidden');
+        addModal.classList.add('flex');
+        addModal.setAttribute('aria-hidden', 'false');
+        document.getElementById('new-role-name').value = '';
+      }
+      function closeAddRole() {
+        addModal.classList.add('hidden');
+        addModal.classList.remove('flex');
+        addModal.setAttribute('aria-hidden', 'true');
+      }
+      document.getElementById('btn-add-role').addEventListener('click', openAddRole);
+      addModal.querySelectorAll('[data-close-add-role]').forEach(function (el) { el.addEventListener('click', closeAddRole); });
+      document.getElementById('btn-submit-role').addEventListener('click', closeAddRole);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && addModal && !addModal.classList.contains('hidden')) closeAddRole();
+      });
+    })();
+  </script>
+</body>
+</html>

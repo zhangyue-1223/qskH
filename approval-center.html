@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>审批中心 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .ap-tab { border-bottom: 2px solid transparent; color: #64748b; padding: 10px 2px 8px; margin-bottom: -1px; }
+    .ap-tab:hover { color: #334155; }
+    .ap-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
+    #modal-apply:not(.hidden) { display: flex; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-700">
+  <div class="min-h-screen w-full flex">
+    <aside class="w-64 bg-slate-900 text-slate-200 flex flex-col shrink-0">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="#"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</a>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="approval-center.html">审批中心</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0">
+        <div class="text-sm text-slate-500">系统管理 / <span class="text-slate-700 font-medium">审批中心</span></div>
+        <div class="flex items-center gap-3">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2">
+              <p class="text-sm font-medium text-slate-700">祝哥</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-6">
+        <div class="text-sm text-slate-500 mb-3">系统管理 / 审批中心</div>
+        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div class="flex items-end justify-between border-b border-slate-200">
+            <div class="flex gap-10">
+              <button type="button" class="ap-tab ap-tab-active text-sm" data-ap-tab="todo">待处理的</button>
+              <button type="button" class="ap-tab text-sm" data-ap-tab="done">已处理的</button>
+              <button type="button" class="ap-tab text-sm" data-ap-tab="mine">我发起的</button>
+              <button type="button" class="ap-tab text-sm" data-ap-tab="cc">抄送我的</button>
+            </div>
+            <button id="btn-open-apply" type="button" class="mb-2 h-8 rounded-md bg-blue-600 px-4 text-xs font-medium text-white hover:bg-blue-700">发起申请</button>
+          </div>
+
+          <div id="ap-panel-todo" class="overflow-x-auto pt-3">
+            <table class="w-full min-w-[1020px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批类型</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请部门</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请人</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批状态</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">提交时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">期望审批时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">查看详情</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">开票申请</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">待审批</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline mr-3" href="#">驳回</a><a class="text-blue-600 hover:underline" href="#">通过</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">用款申请</td><td class="px-3 py-3 border-b border-slate-100">网销二组</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">待初审</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline mr-3" href="#">退回</a><a class="text-blue-600 hover:underline" href="#">拒绝</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">招聘申请</td><td class="px-3 py-3 border-b border-slate-100">网销三组</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">待初审</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100">--</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline mr-3" href="#">驳回</a><a class="text-blue-600 hover:underline" href="#">转交</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="ap-panel-done" class="hidden overflow-x-auto pt-3">
+            <table class="w-full min-w-[980px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批类型</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请部门</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请人</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批状态</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">提交时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批完成时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">开票申请</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100">高方林</td><td class="px-3 py-3 border-b border-slate-100">审批通过</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">用款申请</td><td class="px-3 py-3 border-b border-slate-100">网销二组</td><td class="px-3 py-3 border-b border-slate-100">高方林</td><td class="px-3 py-3 border-b border-slate-100">初审拒绝</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="ap-panel-mine" class="hidden overflow-x-auto pt-3">
+            <table class="w-full min-w-[980px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批类型</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请部门</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请人</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批状态</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">提交时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">查看详情</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">调岗申请</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">待复审</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">撤销</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">转正申请</td><td class="px-3 py-3 border-b border-slate-100">网销二组</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">待审批</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">撤销</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="ap-panel-cc" class="hidden overflow-x-auto pt-3">
+            <table class="w-full min-w-[980px] text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批类型</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请部门</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">申请人</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">审批状态</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">提交时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium">查看详情</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700">
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">离职申请</td><td class="px-3 py-3 border-b border-slate-100">网销一组</td><td class="px-3 py-3 border-b border-slate-100">周方林</td><td class="px-3 py-3 border-b border-slate-100">审批完成</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td></tr>
+                <tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">招聘申请</td><td class="px-3 py-3 border-b border-slate-100">网销三组</td><td class="px-3 py-3 border-b border-slate-100">高方林</td><td class="px-3 py-3 border-b border-slate-100">待审批</td><td class="px-3 py-3 border-b border-slate-100">2026-04-29 15:39</td><td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="#">查看详情</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-apply" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close-apply></div>
+    <div class="relative w-full max-w-3xl rounded-xl border border-slate-200 bg-white shadow-xl">
+      <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+        <h3 class="text-base font-semibold text-slate-800">发起审批</h3>
+        <button type="button" class="text-slate-400 hover:text-slate-600" data-close-apply><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-5 py-4">
+        <div id="apply-types" class="flex flex-wrap gap-2 mb-4"></div>
+        <form id="apply-form" class="rounded-lg border border-slate-200 p-4">
+          <h4 id="apply-title" class="text-sm font-medium text-slate-800 mb-3"></h4>
+          <div id="apply-fields" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+          <div class="mt-4 flex justify-center gap-3 border-t border-slate-100 pt-4">
+            <button type="submit" class="h-9 min-w-[100px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700">提交</button>
+            <button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-close-apply>取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-success" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg">提交成功</div>
+
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('[data-ap-tab]');
+      var panels = {
+        todo: document.getElementById('ap-panel-todo'),
+        done: document.getElementById('ap-panel-done'),
+        mine: document.getElementById('ap-panel-mine'),
+        cc: document.getElementById('ap-panel-cc')
+      };
+      function switchTab(name) {
+        Object.keys(panels).forEach(function (key) {
+          panels[key].classList.toggle('hidden', key !== name);
+        });
+        tabs.forEach(function (tab) {
+          tab.classList.toggle('ap-tab-active', tab.getAttribute('data-ap-tab') === name);
+        });
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { switchTab(tab.getAttribute('data-ap-tab')); });
+      });
+      switchTab('todo');
+
+      var modal = document.getElementById('modal-apply');
+      var btnOpen = document.getElementById('btn-open-apply');
+      var typeWrap = document.getElementById('apply-types');
+      var titleEl = document.getElementById('apply-title');
+      var fieldsWrap = document.getElementById('apply-fields');
+      var form = document.getElementById('apply-form');
+      var toast = document.getElementById('toast-success');
+      var toastTimer = null;
+
+      var formCfg = {
+        invoice: {
+          label: '开票申请',
+          html:
+            '<div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">' +
+              '<label class="block md:col-span-2"><span class="text-slate-600">开票公司<span class="text-red-500">*</span></span><input type="text" placeholder="请输入或选择开票公司" class="mt-1 h-9 w-full rounded border border-slate-200 px-3"></label>' +
+              '<label class="block md:col-span-2"><span class="text-slate-600">关联合同 <span class="text-red-500">*</span></span><div class="relative mt-1"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>HT20260420001</option><option>HT20260420002</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div></label>' +
+              '<label class="block"><span class="text-slate-600">收款金额</span><input type="text" readonly value="1500" class="mt-1 h-9 w-full rounded border border-slate-200 bg-slate-50 px-3 text-slate-600"></label>' +
+              '<label class="block"><span class="text-slate-600">开票金额<span class="text-red-500">*</span></span><input type="text" value="1500" class="mt-1 h-9 w-full rounded border border-slate-200 px-3"></label>' +
+              '<label class="block"><span class="text-slate-600">开票类型<span class="text-red-500">*</span></span><div class="relative mt-1"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>增值税普通发票</option><option>增值税专用发票</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div></label>' +
+              '<label class="block"><span class="text-slate-600">抬头类型 <span class="text-red-500">*</span></span><div class="relative mt-1"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>企业</option><option>个人</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div></label>' +
+              '<label class="block md:col-span-2"><span class="text-slate-600">抬头 <span class="text-red-500">*</span></span><input type="text" value="深圳市宝安区精卫小零个体工商" class="mt-1 h-9 w-full rounded border border-slate-200 px-3"></label>' +
+              '<label class="block md:col-span-2"><span class="text-slate-600">统一社会信用代码 <span class="text-red-500">*</span></span><input type="text" placeholder="请输入统一社会信用代码" class="mt-1 h-9 w-full rounded border border-slate-200 px-3"></label>' +
+              '<label class="block"><span class="text-slate-600">收票邮箱</span><input type="text" placeholder="请输入收票邮箱" class="mt-1 h-9 w-full rounded border border-slate-200 px-3"></label>' +
+              '<label class="block"><span class="text-slate-600">申请人<span class="text-red-500">*</span></span><div class="relative mt-1"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>陆琴</option><option>周芳</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div></label>' +
+              '<label class="block md:col-span-2"><span class="text-slate-600">备注</span><input type="text" placeholder="请输入" class="mt-1 h-9 w-full rounded border border-slate-200 px-3"></label>' +
+            '</div>'
+        },
+        payment: {
+          label: '用款申请',
+          html:
+            '<div class="space-y-4 text-sm">' +
+              '<div class="rounded bg-slate-50 px-3 py-2 font-medium text-slate-700">| 基本信息</div>' +
+              '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' +
+                '<label>申请人<select class="mt-1 h-9 w-full rounded border border-slate-200 px-3"><option>孙红</option></select></label>' +
+                '<label>报销部门<select class="mt-1 h-9 w-full rounded border border-slate-200 px-3"><option>政务服务部</option></select></label>' +
+                '<label>项目日期<input class="mt-1 h-9 w-full rounded border border-slate-200 px-3" value="2026-04-14"></label>' +
+                '<label>报销角色<select class="mt-1 h-9 w-full rounded border border-slate-200 px-3"><option>外勤</option></select></label>' +
+              '</div>' +
+              '<div class="rounded bg-slate-50 px-3 py-2 font-medium text-slate-700">| 报销明细</div>' +
+              '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">' +
+                '<label>报销类型<span class="text-red-500">*</span><select class="mt-1 h-9 w-full rounded border border-slate-200 px-3"><option>外勤出差-交通</option></select></label>' +
+                '<label>报销金额（元）<span class="text-red-500">*</span><input class="mt-1 h-9 w-full rounded border border-slate-200 px-3" value="500"></label>' +
+                '<label class="md:col-span-2">报销事由<span class="text-red-500">*</span><input class="mt-1 h-9 w-full rounded border border-slate-200 px-3" placeholder="这是报销事由"></label>' +
+              '</div>' +
+              '<button type="button" class="text-sm text-blue-600 hover:underline">+ 新增条目</button>' +
+            '</div>'
+        },
+        recruit: {
+          label: '招聘申请',
+          html:
+            '<div class="grid grid-cols-1 md:grid-cols-[88px_1fr] gap-3 text-sm items-start">' +
+              '<label class="md:text-right text-slate-600 pt-2">招聘部门 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>销售部门</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">申请人 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">申请日期</label><div class="relative"><input value="2026-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">招聘岗位 <span class="text-red-500">*</span></label><input value="销售员" class="h-9 w-full rounded border border-slate-200 px-3">' +
+              '<label class="md:text-right text-slate-600 pt-2">拟招聘人数 <span class="text-red-500">*</span></label><input placeholder="请输入" class="h-9 w-full rounded border border-slate-200 px-3">' +
+              '<label class="md:text-right text-slate-600 pt-2">期望到岗日期</label><div class="relative"><input value="2026-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">岗位职责</label><textarea rows="5" placeholder="请输入" class="w-full rounded border border-slate-200 px-3 py-2"></textarea>' +
+              '<label class="md:text-right text-slate-600 pt-2">任职要求</label><textarea rows="5" placeholder="请输入" class="w-full rounded border border-slate-200 px-3 py-2"></textarea>' +
+              '<label class="md:text-right text-slate-600 pt-2">附件</label><button type="button" class="h-12 w-56 rounded bg-sky-50 text-blue-600 text-sm"><i class="fa-solid fa-circle-plus mr-2"></i>上传附件</button>' +
+            '</div>'
+        },
+        regular: {
+          label: '转正申请',
+          html:
+            '<div class="grid grid-cols-1 md:grid-cols-[88px_1fr] gap-3 text-sm items-start">' +
+              '<label class="md:text-right text-slate-600 pt-2">申请人姓名 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>伊一</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">所属部门 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">入职日期</label><div class="relative"><input value="2026-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">所属岗位 <span class="text-red-500">*</span></label><input value="销售员" class="h-9 w-full rounded border border-slate-200 px-3">' +
+              '<label class="md:text-right text-slate-600 pt-2">试用期时间</label><div class="flex items-center gap-2"><div class="relative flex-1"><input value="2026-03-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div><span>~</span><div class="relative flex-1"><input value="2026-06-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">转正申请</label><div class="flex gap-8 pt-2"><label class="inline-flex items-center gap-2"><input type="checkbox">提前转正</label><label class="inline-flex items-center gap-2"><input type="checkbox">按期转正</label><label class="inline-flex items-center gap-2"><input type="checkbox">延期转正</label></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">入职时间</label><textarea rows="8" class="w-full rounded border border-slate-200 px-3 py-2">本人在试用期间工作总结（包括但不限于工作中的回顾，对企业文化的理解，工作中的优点及不足，对今后工作的规划）</textarea>' +
+              '<label class="md:text-right text-slate-600 pt-2">附件</label><button type="button" class="h-12 w-56 rounded bg-sky-50 text-blue-600 text-sm"><i class="fa-solid fa-circle-plus mr-2"></i>上传附件</button>' +
+            '</div>'
+        },
+        transfer: {
+          label: '调岗申请',
+          html:
+            '<div class="grid grid-cols-1 md:grid-cols-[100px_1fr] gap-3 text-sm items-start">' +
+              '<label class="md:text-right text-slate-600 pt-2">申请人姓名 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>伊一</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">原所属部门 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">原岗位 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">入职日期</label><div class="relative"><input value="2026-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">申请调往部门 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">申请调往岗位 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">调岗生效日期</label><div class="relative"><input value="2026-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">申请调岗原因 <span class="text-red-500">*</span></label><textarea rows="5" placeholder="请输入" class="w-full rounded border border-slate-200 px-3 py-2"></textarea>' +
+            '</div>'
+        },
+        leave: {
+          label: '离职申请',
+          html:
+            '<div class="grid grid-cols-1 md:grid-cols-[88px_1fr] gap-3 text-sm items-start">' +
+              '<label class="md:text-right text-slate-600 pt-2">申请人姓名 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>伊一</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">入职时岗位 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">现任岗位 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">入职日期</label><div class="relative"><input value="2026-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">离职原因 <span class="text-red-500">*</span></label><div class="relative"><select class="h-9 w-full rounded border border-slate-200 bg-white pl-3 pr-8 appearance-none"><option selected>请选择</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i></div>' +
+              '<label class="md:text-right text-slate-600 pt-2">最后工作日 <span class="text-red-500">*</span></label><div class="relative"><input value="2027-04-28" class="h-9 w-full rounded border border-slate-200 px-3"><i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i></div>' +
+            '</div>'
+        }
+      };
+
+      var currentType = 'invoice';
+      function renderFields(type) {
+        var cfg = formCfg[type];
+        currentType = type;
+        titleEl.textContent = cfg.label;
+        fieldsWrap.innerHTML = cfg.html;
+        typeWrap.querySelectorAll('button').forEach(function (b) {
+          var on = b.getAttribute('data-type') === type;
+          b.classList.toggle('bg-blue-600', on);
+          b.classList.toggle('text-white', on);
+          b.classList.toggle('border-blue-600', on);
+          b.classList.toggle('bg-white', !on);
+          b.classList.toggle('text-slate-600', !on);
+        });
+      }
+
+      Object.keys(formCfg).forEach(function (key) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('data-type', key);
+        b.className = 'h-8 rounded-md border border-slate-200 bg-white px-3 text-xs text-slate-600 hover:bg-slate-50';
+        b.textContent = formCfg[key].label;
+        b.addEventListener('click', function () { renderFields(key); });
+        typeWrap.appendChild(b);
+      });
+      renderFields(currentType);
+
+      function openModal() {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+      btnOpen.addEventListener('click', openModal);
+      modal.querySelectorAll('[data-close-apply]').forEach(function (el) {
+        el.addEventListener('click', closeModal);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        closeModal();
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 2000);
+        renderFields(currentType);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) closeModal();
+      });
+    })();
+  </script>
+</body>
+</html>
