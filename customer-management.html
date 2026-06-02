@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
     .table-customers { table-layout: fixed; width: 100%; border-collapse: collapse; }
@@ -15,9 +17,18 @@
     .table-customers thead th { font-size: 14px; line-height: 1.4; color: #64748b; font-weight: 500; }
     .table-customers tbody td { font-size: 14px; line-height: 1.5; color: #334155; }
     .table-customers .col-check { overflow: visible; text-overflow: clip; }
+    #modal-supplement:not(.hidden) { display: flex; }
+    .field-label { font-size: 12px; color: #334155; margin-bottom: 4px; display: block; }
+    .field-input { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; font-size: 12px; color: #0f172a; }
+    .field-input::placeholder, .field-textarea::placeholder { color: #94a3b8; }
+    .field-textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 10px; font-size: 12px; color: #0f172a; resize: vertical; min-height: 68px; }
+    .upload-card { height: 86px; border: 1px solid #dbeafe; border-radius: 4px; background: #f0f7ff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #0ea5e9; font-size: 11px; cursor: pointer; }
+    .entity-type-box { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; display: flex; align-items: center; gap: 16px; font-size: 12px; }
+    .entity-type-box label { display: inline-flex; align-items: center; gap: 6px; color: #475569; cursor: pointer; }
+    .shareholder-block + .shareholder-block { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -28,26 +39,38 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
         <details class="mx-3 mb-1 group" open>
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
             <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
-          </div>
-        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -56,52 +79,49 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
+
+                <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
-        <details class="mx-3 mb-1 group">
+<details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0 w-full">
-      <header class="h-14 bg-white border-b border-slate-200 px-4 sm:px-5 gap-2 flex items-center justify-between">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2 min-w-0 flex-1">
-        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <div class="text-sm text-slate-500 min-w-0 truncate">客户中心 / <span class="text-slate-700 font-medium">客户管理</span></div>
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">销售中心 / <span class="text-slate-700 font-medium">客户管理</span></div>
         </div>
-        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-          <button type="button" class="h-7 w-7 rounded-full bg-slate-100 text-slate-500"><i class="fa-regular fa-bell text-[11px]"></i></button>
-          <button type="button" class="h-7 w-7 rounded-full bg-slate-100 text-slate-500"><i class="fa-solid fa-circle-question text-[11px]"></i></button>
-          <div class="flex items-center gap-2">
-            <img class="h-7 w-7 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
-            <div>
-              <p class="text-[11px] text-slate-700">朱总</p>
-              <p class="text-[10px] text-slate-400">企业管理员</p>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200" aria-label="通知"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 hidden sm:block">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业管理员</p>
             </div>
           </div>
         </div>
@@ -109,57 +129,66 @@
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-3 text-sm">
-            <label class="xl:col-span-1">公司名称<input class="mt-1 h-9 w-full rounded border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
-            <label class="xl:col-span-1">联系人/联系方式<input class="mt-1 h-9 w-full rounded border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
-            <label class="xl:col-span-1">企业类型<button class="mt-1 h-9 w-full rounded border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="xl:col-span-1">合作状态<button class="mt-1 h-9 w-full rounded border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="xl:col-span-1">销售员<button class="mt-1 h-9 w-full rounded border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="xl:col-span-1">工商服务状态<button class="mt-1 h-9 w-full rounded border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
-            <label class="sm:col-span-2 xl:col-span-2">创建时间
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-sm">
+            <label class="lg:col-span-1">客户名称<input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
+            <label class="lg:col-span-1">联系人/联系方式<input class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入"></label>
+            <label class="lg:col-span-1">企业类型<button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
+            <label class="lg:col-span-1">销售顾问<button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-left text-sm text-slate-500">全部</button></label>
+            <label class="lg:col-span-1">代账客户
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-600 bg-white">
+                <option>全部</option>
+                <option>是</option>
+                <option>否</option>
+              </select>
+            </label>
+            <label class="lg:col-span-1">主办会计
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-600 bg-white">
+                <option>全部</option>
+                <option>李顾问</option>
+                <option>王顾问</option>
+                <option>赵顾问</option>
+              </select>
+            </label>
+            <label class="lg:col-span-2">创建时间
               <div class="mt-1 flex items-center gap-1">
-                <input class="h-9 w-full rounded border border-slate-200 px-3 text-sm" value="2023-03-21">
+                <input class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2023-03-21">
                 <span class="text-slate-400">至</span>
-                <input class="h-9 w-full rounded border border-slate-200 px-3 text-sm" value="2024-03-21">
+                <input class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2024-03-21">
               </div>
             </label>
           </div>
 
           <div class="mt-4 flex items-center gap-3">
-            <button class="h-9 rounded bg-blue-600 px-4 text-sm text-white">查询</button>
-            <button class="h-9 rounded border border-slate-200 bg-white px-4 text-sm text-slate-600">重置</button>
-            <button class="h-9 rounded border border-slate-200 bg-white px-4 text-sm text-slate-600"><i class="fa-solid fa-file-arrow-down mr-1"></i>全部导出</button>
+            <button class="h-9 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer px-4 text-sm text-white">查询</button>
+            <button class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-4 text-sm text-slate-600">重置</button>
+            <button class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-4 text-sm text-slate-600"><i class="fa-solid fa-file-arrow-down mr-1"></i>全部导出</button>
           </div>
 
-          <div class="mt-4 rounded border border-slate-200 overflow-hidden">
+          <div class="mt-4 rounded-lg border border-slate-200 overflow-hidden shadow-sm">
             <table class="table-customers w-full">
               <colgroup>
                 <col style="width:2.5%">
-                <col style="width:15%">
-                <col style="width:5%">
+                <col style="width:14%">
+                <col style="width:5.5%">
                 <col style="width:8%">
                 <col style="width:7%">
                 <col style="width:7%">
-                <col style="width:6%">
-                <col style="width:7%">
-                <col style="width:7%">
+                <col style="width:5.5%">
                 <col style="width:7%">
                 <col style="width:10%">
                 <col style="width:6%">
-                <col style="width:12.5%">
+                <col style="width:15.5%">
               </colgroup>
               <thead class="bg-slate-50">
                 <tr>
                   <th class="col-check px-3 py-3 border-b border-slate-200 text-center"><input type="checkbox" class="h-4 w-4"></th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">公司名称</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">客户名称</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">联系人</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">联系方式</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">企业类型</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">合作状态</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">销售员</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">合同类型</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">工商办理状态</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">财务办理状态</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">销售顾问</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">代账客户</th>
+                  <th class="px-3 py-3 border-b border-slate-200 text-left">主办会计</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">创建时间</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">查看详情</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">操作</th>
@@ -169,42 +198,42 @@
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">服务中</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">代理记账</td>
-                  <td class="px-3 py-3">办理中</td><td class="px-3 py-3">办理中</td><td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td><td class="px-3 py-3">李顾问</td>
+                  <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-1" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-1">编辑信息</a></td>
+                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
                 </tr>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">南京实耐时科技有限公司</td><td class="px-3 py-3">王经理</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">服务终止</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">企业注册</td>
-                  <td class="px-3 py-3">已办结</td><td class="px-3 py-3">已办结</td><td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">否</td><td class="px-3 py-3 text-slate-400">--</td>
+                  <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-2" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-2">编辑信息</a></td>
+                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
                 </tr>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">服务中</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">代理记账</td>
-                  <td class="px-3 py-3">办理中</td><td class="px-3 py-3">办理中</td><td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td><td class="px-3 py-3">李顾问</td>
+                  <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-3" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-3">编辑信息</a></td>
+                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
                 </tr>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">南京莱刻科技有限公司</td><td class="px-3 py-3">王经理</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">服务终止</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">企业注册</td>
-                  <td class="px-3 py-3">已办结</td><td class="px-3 py-3">已办结</td><td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">否</td><td class="px-3 py-3 text-slate-400">--</td>
+                  <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-4" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-4">编辑信息</a></td>
+                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50">
                   <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
                   <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">服务中</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">代理记账</td>
-                  <td class="px-3 py-3">办理中</td><td class="px-3 py-3">办理中</td><td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td><td class="px-3 py-3">李顾问</td>
+                  <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="px-3 py-3"><a href="customer-detail.html?id=cust-5" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><a class="text-blue-600 hover:underline" href="customer-edit.html?id=cust-5">编辑信息</a></td>
+                  <td class="px-3 py-3"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
                 </tr>
               </tbody>
             </table>
@@ -224,18 +253,105 @@
     </main>
   </div>
 
+  <div id="modal-supplement" class="fixed inset-0 z-[110] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close="supplement"></div>
+    <div class="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-xl" role="dialog">
+        <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-4">
+          <h2 class="text-base font-medium text-slate-800">补充客户信息</h2>
+          <button type="button" class="text-slate-400 hover:text-slate-600" data-close="supplement" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-4 text-sm">
+          <div class="mb-4 flex flex-wrap gap-6 border-b border-slate-200" id="supplement-tabs">
+            <button type="button" data-tab="tax" class="supp-tab border-b-2 border-blue-600 pb-2 text-sm font-medium text-blue-600">税务信息</button>
+            <button type="button" data-tab="industry" class="supp-tab border-b-2 border-transparent pb-2 text-sm text-slate-500 hover:text-slate-700">工商信息</button>
+          </div>
+          <div id="supp-panel-tax">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 企业名称</span><input type="text" placeholder="请输入企业名称" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 统一社会信用代码</span><input type="text" placeholder="请输入统一社会信用代码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 税务类型</span><div class="relative mt-1"><select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none"><option selected>一般纳税人</option><option>小规模纳税人</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i></div></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 企业类型</span><div class="relative mt-1"><select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none"><option selected>有限责任公司</option><option>个体工商户</option><option>股份有限公司</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i></div></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 个税系统账号</span><input type="text" placeholder="请输入个税系统账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 个税系统密码</span><input type="text" placeholder="请输入个税系统密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block sm:col-span-2"><span class="text-slate-600"><span class="text-red-500">*</span> 工商年报登录方式</span><div class="mt-2 flex items-center gap-6 text-slate-700"><label class="inline-flex items-center gap-2"><input type="radio" name="annualLoginType" checked> 电子证照</label><label class="inline-flex items-center gap-2"><input type="radio" name="annualLoginType"> 工商联络员</label></div></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 社保系统登录方式</span><input type="text" value="账号密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 bg-slate-50 text-slate-500" readonly></label>
+              <div></div>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 社保登录账号</span><input type="text" placeholder="请输入社保登录账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 社保登录密码</span><input type="text" placeholder="请输入社保登录密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 公积金系统登录方式</span><input type="text" value="账号密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 bg-slate-50 text-slate-500" readonly></label>
+              <div></div>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 公积金登录账号</span><input type="text" placeholder="请输入公积金登录账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 公积金登录密码</span><input type="text" placeholder="请输入公积金登录密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block sm:col-span-2"><span class="text-slate-600">客户备注</span><textarea rows="3" placeholder="请输入客户备注" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 resize-y"></textarea></label>
+            </div>
+            <div class="mt-5"><p class="text-sm font-medium text-slate-800 mb-2">上传交接资料</p><div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs"><div><p class="mb-1 text-slate-600">营业执照</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div><div><p class="mb-1 text-slate-600">法人身份证</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div><div><p class="mb-1 text-slate-600">余额表</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div><div><p class="mb-1 text-slate-600">其他附件</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div></div></div>
+          </div>
+          <div id="supp-panel-industry" class="hidden"><div class="mb-3 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>工商信息表</div><div class="text-sm" id="supp-ic-form"><label class="block mb-2.5"><span class="field-label">公司名称</span><input type="text" class="field-input" placeholder="请输入公司名称"></label><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label><span class="field-label">法定代表人</span><input type="text" class="field-input" placeholder="请输入法定代表人姓名"></label><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label class="sm:col-span-1"><span class="field-label">身份证号码</span><input type="text" class="field-input" placeholder="请输入身份证号码"></label></div><div id="supp-shareholder-list" class="mb-2.5"><div class="shareholder-block" data-shareholder-index="0"><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5"><label class="supp-sh-name-wrap"><span class="field-label supp-sh-name-label">股东姓名</span><input type="text" class="field-input supp-sh-name" placeholder="请输入股东姓名"></label><div><span class="field-label">主体类型</span><div class="entity-type-box"><label><input type="radio" name="supp-entityType-0" value="person" class="supp-entity-type"> 自然人</label><label><input type="radio" name="supp-entityType-0" value="company" class="supp-entity-type" checked> 公司</label></div></div><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5"><label class="supp-sh-id-wrap"><span class="field-label supp-sh-id-label">统一社会信用代码</span><input type="text" class="field-input supp-sh-id" placeholder="请输入统一社会信用代码"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label><div class="flex items-end justify-end pb-0.5"><button type="button" id="supp-add-shareholder" class="text-xs text-blue-600 hover:underline whitespace-nowrap">+ 添加股东</button></div></div></div></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label><span class="field-label">内部财务</span><input type="text" class="field-input" placeholder="请输入内部财务姓名"></label><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label><span class="field-label">身份证号码</span><input type="text" class="field-input" placeholder="请输入身份证号码"></label><label><span class="field-label">注册资本（万）</span><input type="text" class="field-input" placeholder="请输入注册资本"></label><label><span class="field-label">注册地址</span><input type="text" class="field-input" placeholder="需要和产证、租赁合同地址一致"></label></div><label class="block mb-2.5"><span class="field-label">经营范围</span><textarea class="field-textarea" rows="3" placeholder="请输入经营范围"></textarea></label><div class="mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-3 text-xs"><div><p class="mb-1 text-slate-600">法人身份证</p><div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证正面</span></div></div><div><p class="mb-1 text-slate-600 invisible sm:visible">&nbsp;</p><div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证反面</span></div></div><div><p class="mb-1 text-slate-600">营业执照（营业执照照片）</p><div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传营业执照</span></div></div><div class="col-span-2 sm:col-span-1 lg:col-span-1"><p class="mb-1 text-slate-600">其他附件（图片） <span class="text-slate-400 font-normal">支持jpg、png图片格式上传</span></p><div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传图片</span></div></div><div class="col-span-2 sm:col-span-1 lg:col-span-1"><p class="mb-1 text-slate-600">其他附件（文件） <span class="text-slate-400 font-normal">支持pdf文档上传</span></p><div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传文件</span></div></div></div></div></div>
+        </div>
+        <div class="sticky bottom-0 flex justify-center gap-3 border-t border-slate-100 bg-white px-6 py-4">
+          <button type="button" id="btn-supplement-ok" class="h-9 px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+          <button type="button" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close="supplement">取消</button>
+        </div>
+    </div>
+  </div>
+
   <script src="./assets/create-contract-modal.js"></script>
   <script>
     window.mountCreateContractModal({ openSelectors: ['.js-open-create-contract'] });
+    (function () {
+      var modalSupplement = document.getElementById('modal-supplement');
+      var supplementTabs = document.querySelectorAll('#supplement-tabs .supp-tab');
+      var suppTaxPanel = document.getElementById('supp-panel-tax');
+      var suppIndustryPanel = document.getElementById('supp-panel-industry');
+      var suppShareholderList = document.getElementById('supp-shareholder-list');
+      var suppAddShareholderBtn = document.getElementById('supp-add-shareholder');
+      var suppShareholderIndex = 0;
+      function showSupplementModal() { modalSupplement.classList.remove('hidden'); modalSupplement.classList.add('flex'); }
+      function hideSupplementModal() { modalSupplement.classList.add('hidden'); modalSupplement.classList.remove('flex'); }
+      function switchSupplementTab(tab) {
+        supplementTabs.forEach(function (btn) {
+          var on = btn.getAttribute('data-tab') === tab;
+          btn.classList.toggle('border-blue-600', on);
+          btn.classList.toggle('text-blue-600', on);
+          btn.classList.toggle('font-medium', on);
+          btn.classList.toggle('border-transparent', !on);
+          btn.classList.toggle('text-slate-500', !on);
+        });
+        if (suppTaxPanel) suppTaxPanel.classList.toggle('hidden', tab !== 'tax');
+        if (suppIndustryPanel) suppIndustryPanel.classList.toggle('hidden', tab !== 'industry');
+      }
+      function applySuppEntityType(block) {
+        var personRadio = block.querySelector('.supp-entity-type[value="person"]');
+        if (!personRadio) return;
+        var isPerson = personRadio.checked;
+        var nameLabel = block.querySelector('.supp-sh-name-label');
+        var nameInput = block.querySelector('.supp-sh-name');
+        var idLabel = block.querySelector('.supp-sh-id-label');
+        var idInput = block.querySelector('.supp-sh-id');
+        if (!nameLabel || !nameInput || !idLabel || !idInput) return;
+        if (isPerson) { nameLabel.textContent = '股东姓名'; nameInput.placeholder = '请输入股东姓名'; idLabel.textContent = '身份证号码'; idInput.placeholder = '请输入身份证号码'; }
+        else { nameLabel.textContent = '股东公司名称'; nameInput.placeholder = '请输入股东公司名称'; idLabel.textContent = '统一社会信用代码'; idInput.placeholder = '请输入统一社会信用代码'; }
+      }
+      function bindSuppShareholderBlock(block) { block.querySelectorAll('.supp-entity-type').forEach(function (radio) { radio.addEventListener('change', function () { applySuppEntityType(block); }); }); applySuppEntityType(block); }
+      function createSuppShareholderBlock(index) {
+        var wrap = document.createElement('div');
+        wrap.className = 'shareholder-block';
+        wrap.setAttribute('data-shareholder-index', String(index));
+        wrap.innerHTML = '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5"><label class="supp-sh-name-wrap"><span class="field-label supp-sh-name-label">股东姓名</span><input type="text" class="field-input supp-sh-name" placeholder="请输入股东姓名"></label><div><span class="field-label">主体类型</span><div class="entity-type-box"><label><input type="radio" name="supp-entityType-' + index + '" value="person" class="supp-entity-type"> 自然人</label><label><input type="radio" name="supp-entityType-' + index + '" value="company" class="supp-entity-type" checked> 公司</label></div></div><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5"><label class="supp-sh-id-wrap"><span class="field-label supp-sh-id-label">统一社会信用代码</span><input type="text" class="field-input supp-sh-id" placeholder="请输入统一社会信用代码"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label><div class="flex items-end justify-end pb-0.5"><button type="button" class="supp-remove-shareholder text-xs text-slate-500 hover:text-red-600 whitespace-nowrap">删除股东</button></div></div>';
+        return wrap;
+      }
+      document.querySelectorAll('.js-supplement').forEach(function (btn) { btn.addEventListener('click', function () { showSupplementModal(); switchSupplementTab('tax'); }); });
+      document.querySelectorAll('[data-close="supplement"]').forEach(function (el) { el.addEventListener('click', hideSupplementModal); });
+      supplementTabs.forEach(function (btn) { btn.addEventListener('click', function () { switchSupplementTab(btn.getAttribute('data-tab')); }); });
+      switchSupplementTab('tax');
+      if (suppShareholderList) {
+        var firstSuppBlock = suppShareholderList.querySelector('.shareholder-block');
+        if (firstSuppBlock) bindSuppShareholderBlock(firstSuppBlock);
+        if (suppAddShareholderBtn) suppAddShareholderBtn.addEventListener('click', function () { suppShareholderIndex += 1; var block = createSuppShareholderBlock(suppShareholderIndex); suppShareholderList.appendChild(block); bindSuppShareholderBlock(block); });
+        suppShareholderList.addEventListener('click', function (e) { var btn = e.target.closest('.supp-remove-shareholder'); if (!btn) return; var blocks = suppShareholderList.querySelectorAll('.shareholder-block'); if (blocks.length <= 1) return; btn.closest('.shareholder-block').remove(); });
+      }
+    })();
   </script>
   <script src="./assets/app-shell.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-

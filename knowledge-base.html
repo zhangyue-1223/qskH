@@ -8,12 +8,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
     .doc-item-active { background: #eef2ff; color: #1d4ed8; }
+    .kb-dept-tab {
+      display: inline-flex; align-items: center; height: 1.75rem; padding: 0 0.625rem;
+      border-radius: 9999px; border: 1px solid #e2e8f0; background: #fff;
+      font-size: 0.75rem; color: #64748b; cursor: pointer; transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .kb-dept-tab:hover { border-color: #93c5fd; color: #2563eb; }
+    .kb-dept-tab-active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 500; }
+    #modal-ask-question:not(.hidden), #modal-answer-question:not(.hidden) { display: block; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -24,26 +34,37 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
-          </div>
-        </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">业绩管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">跟进管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
           </div>
         </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg bg-blue-600 text-white flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -52,68 +73,81 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
+
+                <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg bg-blue-600 text-white flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
-        <details class="mx-3 mb-1 group">
+<details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0 w-full">
-      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2 min-w-0 flex-1">
-        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <div class="text-sm text-slate-500 min-w-0 truncate">知识库 / <span class="text-slate-700 font-medium">知识库</span></div>
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">知识库 / <span class="text-slate-700 font-medium">知识库</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200" aria-label="通知"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 hidden sm:block">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业管理员</p>
+            </div>
+          </div>
         </div>
       </header>
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
-          <div class="grid grid-cols-12 gap-4 min-h-[min(640px,85vh)]">
-            <aside class="col-span-12 md:col-span-4 lg:col-span-3 border-r-0 md:border-r border-slate-200 pr-0 md:pr-4 pb-4 md:pb-0">
+          <div class="grid grid-cols-12 gap-4 min-h-[640px]">
+            <aside class="col-span-3 border-r border-slate-200 pr-4">
               <div class="text-sm font-semibold text-slate-800 mb-3"><i class="fa-solid fa-book-open text-cyan-500 mr-1.5"></i>知识库</div>
-              <button type="button" class="w-full h-9 mb-3 rounded border border-slate-200 bg-white text-sm text-slate-700 hover:bg-slate-50">上传文档</button>
+              <button type="button" class="w-full h-9 mb-3 rounded-md border border-slate-200 bg-white text-sm text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">上传文档</button>
               <div class="relative mb-3">
-                <input type="text" placeholder="输入关键词搜索" class="w-full h-9 rounded border border-slate-200 pl-3 pr-9 text-sm">
-                <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                <input type="text" id="doc-search-input" placeholder="输入关键词搜索" class="w-full h-9 rounded-md border border-slate-200 pl-3 pr-9 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+                <i class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
               </div>
-              <div id="doc-list" class="space-y-1.5 text-sm max-h-[540px] overflow-y-auto"></div>
+              <div class="mb-3">
+                <p class="text-xs font-medium text-slate-500 mb-2 flex items-center gap-1"><i class="fa-solid fa-sitemap text-slate-400"></i>按部门分类</p>
+                <div id="doc-dept-tabs" class="flex flex-wrap gap-1.5"></div>
+              </div>
+              <div id="doc-list" class="space-y-1.5 text-sm max-h-[420px] overflow-y-auto"></div>
             </aside>
 
-            <div class="col-span-12 md:col-span-8 lg:col-span-9 pl-0 md:pl-2 min-h-0">
+            <div class="col-span-9 pl-2">
               <div class="flex items-center justify-between mb-3 text-sm">
                 <p class="pb-2 text-base font-semibold text-slate-800">问答大厅</p>
                 <button type="button" id="btn-open-ask" class="h-7 px-3 rounded bg-blue-600 text-white text-xs hover:bg-blue-700">发布</button>
               </div>
 
               <div id="qa-panel">
-                <div class="flex items-start justify-between mb-3">
-                  <p class="text-sm text-slate-500">共 <span class="font-medium text-slate-700">2430</span> 条知识库内容</p>
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <p class="text-sm text-slate-500">共 <span id="qa-total-count" class="font-medium text-slate-700">2430</span> 条知识库内容</p>
+                  <div id="qa-dept-tabs" class="flex flex-wrap gap-1.5 justify-end"></div>
                 </div>
                 <div class="flex items-center gap-2 mb-4">
                   <div class="relative flex-1">
@@ -168,18 +202,29 @@
           <h3 class="text-center text-base font-medium text-slate-800">问答大厅</h3>
           <button type="button" data-close-ask class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
-        <div class="px-6 py-5">
-          <div class="grid grid-cols-[76px_1fr] gap-3 items-start">
-            <label class="pt-2 text-sm text-slate-700">发布问题<span class="text-red-500">*</span></label>
+        <div class="px-6 py-5 space-y-4">
+          <div class="grid grid-cols-[88px_1fr] gap-3 items-start">
+            <label class="pt-2 text-sm text-slate-700 shrink-0">发布问题<span class="text-red-500">*</span></label>
             <div>
-              <textarea id="ask-content" maxlength="1000" placeholder="请输入" class="h-64 w-full rounded border border-slate-200 px-3 py-2 text-sm leading-6 text-slate-700"></textarea>
+              <textarea id="ask-content" maxlength="1000" placeholder="请输入问题内容" class="h-52 w-full rounded-md border border-slate-200 px-3 py-2 text-sm leading-6 text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"></textarea>
               <div class="mt-2 text-right text-sm text-slate-400"><span id="ask-count">0</span>/1000</div>
             </div>
           </div>
+          <div class="grid grid-cols-[88px_1fr] gap-3 items-center">
+            <label class="text-sm text-slate-700 shrink-0">指定回答人</label>
+            <select id="ask-assignee" class="h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 cursor-pointer focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+              <option value="">请选择（非必填）</option>
+              <option value="周芳林">周芳林</option>
+              <option value="马时笑">马时笑</option>
+              <option value="许悦">许悦</option>
+              <option value="孙红">孙红</option>
+              <option value="王磊">王磊</option>
+            </select>
+          </div>
         </div>
         <div class="pb-5 flex justify-center gap-3">
-          <button type="button" class="h-9 min-w-[90px] rounded bg-blue-600 px-6 text-sm text-white">确认</button>
-          <button type="button" data-close-ask class="h-9 min-w-[90px] rounded border border-slate-300 bg-white px-6 text-sm text-slate-600">取消</button>
+          <button type="button" id="btn-confirm-ask" class="h-9 min-w-[90px] rounded-md bg-blue-600 px-6 text-sm text-white hover:bg-blue-700 cursor-pointer">确认</button>
+          <button type="button" data-close-ask class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white px-6 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">取消</button>
         </div>
       </div>
     </div>
@@ -187,47 +232,126 @@
 
   <script>
     (function () {
+      var departments = [
+        { id: 'all', name: '全部' },
+        { id: 'sales', name: '销售部' },
+        { id: 'gov', name: '政务服务部' },
+        { id: 'accounting', name: '财税顾问部' },
+        { id: 'ops', name: '运营支撑部' },
+        { id: 'hr', name: '人事行政部' }
+      ];
+      var activeDept = 'all';
+
       var docs = [
-        { id: 'd1', title: '平台操作手册', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册</h2><p>一、公司名称：<span class="text-red-600">客户需要注册的名字</span></p><p>二、公司人员：法定代表人、股东、监事等信息需按证件录入。</p><p>三、注册地址：需要和业务实际办公地址一致。</p><p>四、注册资本：100 万。</p><p>五、经营范围：可参考同类行业描述，重点突出主营业务。</p><p class="mt-6 text-slate-500">注：本页面为文档预览效果示例，点击左侧不同文档可切换内容。</p>' },
-        { id: 'd2', title: '用户开发规范', type: 'img', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">用户开发规范</h2><p>1）命名规范：统一采用模块-功能-动作。</p><p>2）数据规范：时间使用 yyyy-MM-dd HH:mm 格式。</p><p>3）交付规范：关键节点必须补充维护记录与跟进记录。</p>' },
-        { id: 'd3', title: '指标管理办法', type: 'sheet', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">指标管理办法</h2><p>销售指标分为：合同金额、回款率、客户续费率、线索转化率。</p><p>每周复盘一次，每月提交总结一次。</p>' },
-        { id: 'd4', title: '平台操作手册（进阶）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（进阶）</h2><p>包含合同模板维护、开票流程联动、订单退款处理流程。</p>' },
-        { id: 'd5', title: '平台操作手册（合同篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（合同篇）</h2><p>合同发起、审批、签约与归档全流程说明。</p>' },
-        { id: 'd6', title: '平台操作手册（订单篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（订单篇）</h2><p>订单创建、支付、退款、状态流转处理规范。</p>' },
-        { id: 'd7', title: '平台操作手册（开票篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（开票篇）</h2><p>开票申请、审批、重开与发票归档说明。</p>' },
-        { id: 'd8', title: '平台操作手册（客户篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（客户篇）</h2><p>客户信息维护、服务记录、跟进记录规范。</p>' },
-        { id: 'd9', title: '平台操作手册（线索篇）', type: 'pdf', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（线索篇）</h2><p>线索录入、分配、跟进与转化全流程操作。</p>' }
+        { id: 'd1', title: '平台操作手册', type: 'pdf', dept: 'ops', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册</h2><p>一、公司名称：<span class="text-red-600">客户需要注册的名字</span></p><p>二、公司人员：法定代表人、股东、监事等信息需按证件录入。</p><p>三、注册地址：需要和业务实际办公地址一致。</p><p>四、注册资本：100 万。</p><p>五、经营范围：可参考同类行业描述，重点突出主营业务。</p><p class="mt-6 text-slate-500">注：本页面为文档预览效果示例，点击左侧不同文档可切换内容。</p>' },
+        { id: 'd2', title: '用户开发规范', type: 'img', dept: 'ops', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">用户开发规范</h2><p>1）命名规范：统一采用模块-功能-动作。</p><p>2）数据规范：时间使用 yyyy-MM-dd HH:mm 格式。</p><p>3）交付规范：关键节点必须补充维护记录与跟进记录。</p>' },
+        { id: 'd3', title: '指标管理办法', type: 'sheet', dept: 'sales', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">指标管理办法</h2><p>销售指标分为：合同金额、回款率、客户续费率、线索转化率。</p><p>每周复盘一次，每月提交总结一次。</p>' },
+        { id: 'd4', title: '平台操作手册（进阶）', type: 'pdf', dept: 'ops', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（进阶）</h2><p>包含合同模板维护、开票流程联动、订单退款处理流程。</p>' },
+        { id: 'd5', title: '平台操作手册（合同篇）', type: 'pdf', dept: 'sales', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（合同篇）</h2><p>合同发起、审批、签约与归档全流程说明。</p>' },
+        { id: 'd6', title: '平台操作手册（订单篇）', type: 'pdf', dept: 'sales', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（订单篇）</h2><p>订单创建、支付、退款、状态流转处理规范。</p>' },
+        { id: 'd7', title: '平台操作手册（开票篇）', type: 'pdf', dept: 'accounting', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（开票篇）</h2><p>开票申请、审批、重开与发票归档说明。</p>' },
+        { id: 'd8', title: '平台操作手册（客户篇）', type: 'pdf', dept: 'gov', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（客户篇）</h2><p>客户信息维护、服务记录、跟进记录规范。</p>' },
+        { id: 'd9', title: '平台操作手册（线索篇）', type: 'pdf', dept: 'sales', content: '<h2 class="text-2xl font-semibold mb-4 text-slate-900">平台操作手册（线索篇）</h2><p>线索录入、分配、跟进与转化全流程操作。</p>' }
       ];
       var qaList = [
-        { q: '如何提升自己的销售能力？', a: '销售能力的提升核心在于标准动作执行：会前预判、过程控节奏、会后及时复盘。', time: '2026-04-17', likes: 228 },
-        { q: '顶级销售都是怎么说话的？', a: '先听后说，先复述再给方案，最后确认下一步行动。避免“泛表达”，多用“业务场景化表达”。同时在沟通中加入场景化案例，持续校准客户关注点，形成可执行的下一步计划。', time: '2026-04-17', likes: 22 },
-        { q: '销售的最高境界是让客户说服自己', a: '通过提问引导客户明确痛点，再让客户自己说出目标与价值，成交会更顺畅。', time: '2026-04-17', likes: 22 }
+        { q: '如何提升自己的销售能力？', a: '销售能力的提升核心在于标准动作执行：会前预判、过程控节奏、会后及时复盘。', time: '2026-04-17', likes: 228, dept: 'sales', author: '周芳林', assignee: '', publishedAt: '2026-04-05 12:23', needsAnswer: true },
+        { q: '顶级销售都是怎么说话的？', a: '先听后说，先复述再给方案，最后确认下一步行动。避免“泛表达”，多用“业务场景化表达”。同时在沟通中加入场景化案例，持续校准客户关注点，形成可执行的下一步计划。', time: '2026-04-17', likes: 22, dept: 'sales', author: '王磊', assignee: '马时笑', expandable: true },
+        { q: '销售的最高境界是让客户说服自己', a: '通过提问引导客户明确痛点，再让客户自己说出目标与价值，成交会更顺畅。', time: '2026-04-17', likes: 22, dept: 'sales', author: '周芳林', assignee: '' },
+        { q: '小规模纳税人申报有哪些注意事项？', a: '关注申报期限、发票额度与优惠政策适用条件，按月完成增值税及附加税费申报。', time: '2026-04-16', likes: 18, dept: 'accounting', author: '许悦', assignee: '' },
+        { q: '政务服务窗口材料审核标准是什么？', a: '按事项清单核对材料完整性、真实性，缺件一次性告知补正。', time: '2026-04-15', likes: 31, dept: 'gov', author: '孙红', assignee: '孙红' }
       ];
 
       var docListEl = document.getElementById('doc-list');
+      var docDeptTabsEl = document.getElementById('doc-dept-tabs');
+      var qaDeptTabsEl = document.getElementById('qa-dept-tabs');
       var qaListEl = document.getElementById('qa-list');
+      var qaTotalCountEl = document.getElementById('qa-total-count');
       var docContentEl = document.getElementById('doc-content');
       var docPanel = document.getElementById('doc-panel');
       var qaPanel = document.getElementById('qa-panel');
       var activeDocId = docs[0].id;
 
+      function deptName(deptId) {
+        var d = departments.find(function (x) { return x.id === deptId; });
+        return d ? d.name : '—';
+      }
+
+      function filterByDept(list, deptKey) {
+        if (activeDept === 'all') return list;
+        return list.filter(function (item) { return item[deptKey] === activeDept; });
+      }
+
+      function renderDeptTabs(container) {
+        if (!container) return;
+        container.innerHTML = departments.map(function (d) {
+          var active = d.id === activeDept ? 'kb-dept-tab-active' : '';
+          return '<button type="button" class="kb-dept-tab ' + active + '" data-dept="' + d.id + '">' + d.name + '</button>';
+        }).join('');
+      }
+
+      function bindDeptTabs(container) {
+        if (!container || container._deptBound) return;
+        container._deptBound = true;
+        container.addEventListener('click', function (e) {
+          var btn = e.target.closest('[data-dept]');
+          if (!btn || !container.contains(btn)) return;
+          activeDept = btn.getAttribute('data-dept');
+          renderDeptTabs(docDeptTabsEl);
+          renderDeptTabs(qaDeptTabsEl);
+          renderDocs();
+          renderQa();
+        });
+      }
+
       function renderDocs() {
-        docListEl.innerHTML = docs.map(function (d) {
+        var filtered = filterByDept(docs, 'dept');
+        if (filtered.length && !filtered.some(function (d) { return d.id === activeDocId; })) {
+          activeDocId = filtered[0].id;
+          renderDocContent();
+        }
+        if (!filtered.length) {
+          docListEl.innerHTML = '<p class="px-3 py-6 text-center text-xs text-slate-400">该部门暂无文档</p>';
+          return;
+        }
+        docListEl.innerHTML = filtered.map(function (d) {
           var icon = d.type === 'pdf' ? 'fa-file-pdf text-red-500' : (d.type === 'img' ? 'fa-file-image text-cyan-500' : 'fa-file-lines text-emerald-500');
           var active = d.id === activeDocId ? 'doc-item-active' : 'text-slate-600 hover:bg-slate-100';
-          return '<button type="button" data-doc-id="' + d.id + '" class="w-full text-left px-3 py-2 rounded ' + active + '"><i class="fa-solid ' + icon + ' mr-2 text-xs"></i>' + d.title + '</button>';
+          return '<button type="button" data-doc-id="' + d.id + '" class="w-full text-left px-3 py-2 rounded cursor-pointer transition-colors ' + active + '">' +
+            '<span class="flex items-start gap-2">' +
+            '<i class="fa-solid ' + icon + ' mt-0.5 text-xs shrink-0"></i>' +
+            '<span class="min-w-0"><span class="block truncate">' + d.title + '</span>' +
+            '<span class="text-[10px] text-slate-400">' + deptName(d.dept) + '</span></span></span></button>';
         }).join('');
       }
 
       function renderQa() {
-        qaListEl.innerHTML = qaList.map(function (item, i) {
+        var filtered = filterByDept(qaList, 'dept');
+        if (qaTotalCountEl) qaTotalCountEl.textContent = String(filtered.length);
+        if (!filtered.length) {
+          qaListEl.innerHTML = '<p class="py-12 text-center text-sm text-slate-400">该部门暂无问答内容</p>';
+          return;
+        }
+        qaListEl.innerHTML = filtered.map(function (item) {
+          var assigneeTag = item.assignee
+            ? '<span class="inline-flex items-center rounded bg-amber-50 border border-amber-200 px-1.5 py-0.5 text-[10px] text-amber-700"><i class="fa-regular fa-user mr-0.5"></i>指定：' + item.assignee + '</span>'
+            : '';
+          var metaLine = deptName(item.dept) + '-' + (item.author || '周芳林') + ' 发布于' + (item.publishedAt || item.time);
+          var answerHtml = '';
+          if (item.a) {
+            answerHtml = item.expandable
+              ? '<p class="text-sm leading-7 text-slate-600">' + item.a + '<span class="ml-1 inline-block max-w-[360px] overflow-hidden text-ellipsis whitespace-nowrap align-middle text-slate-600">另外可从客户异议处理、需求确认话术和复盘方法三个维度继续深化。</span><button type="button" class="ml-1 text-sky-500 hover:underline text-xs align-middle cursor-pointer">展开阅读</button></p>'
+              : '<p class="text-sm leading-7 text-slate-600">' + item.a + '</p>';
+          }
           return '<div class="border-b border-slate-200 pb-4">' +
+            '<div class="flex flex-wrap items-center gap-2 mb-2">' +
+            '<span class="inline-flex rounded bg-slate-100 px-2 py-0.5 text-[10px] text-slate-600">' + deptName(item.dept) + '</span>' +
+            assigneeTag +
+            '</div>' +
             '<p class="text-base text-slate-800 mb-2">' + item.q + '</p>' +
-            (i === 0 ? '<button type="button" class="js-open-answer h-6 px-3 rounded bg-sky-500 text-white text-xs mb-2">去回答</button><p class="text-xs text-slate-400 mb-2 pb-2 border-b border-slate-200">销售-周芳林 发布于2026-04-05 12:23</p>' : '') +
-            (i === 1
-              ? '<p class="text-sm leading-7 text-slate-600">' + item.a + '<span class="ml-1 inline-block max-w-[360px] overflow-hidden text-ellipsis whitespace-nowrap align-middle text-slate-600">另外可从客户异议处理、需求确认话术和复盘方法三个维度继续深化。</span><button class="ml-1 text-sky-500 hover:underline text-xs align-middle">展开阅读</button></p>'
-              : '<p class="text-sm leading-7 text-slate-600">' + item.a + '</p>') +
-            '<div class="mt-2 text-xs text-slate-400">' + (item.author || '周芳林') + ' · 更新于：' + item.time + '<span class="float-right text-sky-500"><i class="fa-solid fa-thumbs-up mr-1"></i>' + item.likes + '人觉得有用</span></div>' +
+            (item.needsAnswer ? '<button type="button" class="js-open-answer h-7 px-3 rounded-md bg-sky-500 text-white text-xs hover:bg-sky-600 cursor-pointer mb-2">去回答</button><p class="text-xs text-slate-400 mb-2 pb-2 border-b border-slate-200">' + metaLine + '</p>' : '') +
+            answerHtml +
+            '<div class="mt-2 text-xs text-slate-400 clearfix">' + (item.author || '周芳林') + ' · 更新于：' + item.time +
+            '<span class="float-right text-sky-500 cursor-pointer"><i class="fa-solid fa-thumbs-up mr-1"></i>' + item.likes + '人觉得有用</span></div>' +
             '</div>';
         }).join('');
       }
@@ -247,6 +371,10 @@
         docPanel.classList.remove('hidden');
       });
 
+      renderDeptTabs(docDeptTabsEl);
+      renderDeptTabs(qaDeptTabsEl);
+      bindDeptTabs(docDeptTabsEl);
+      bindDeptTabs(qaDeptTabsEl);
       renderDocs();
       renderQa();
       renderDocContent();
@@ -270,9 +398,44 @@
       bindCounter(askTextarea, askCount);
       bindCounter(answerTextarea, answerCount);
 
+      var askAssignee = document.getElementById('ask-assignee');
+
       if (openAskBtn) {
         openAskBtn.addEventListener('click', function () {
+          if (askAssignee) askAssignee.value = '';
           askModal.classList.remove('hidden');
+        });
+      }
+      var btnConfirmAsk = document.getElementById('btn-confirm-ask');
+      if (btnConfirmAsk) {
+        btnConfirmAsk.addEventListener('click', function () {
+          var content = askTextarea ? askTextarea.value.trim() : '';
+          if (!content) {
+            if (askTextarea) askTextarea.focus();
+            return;
+          }
+          var assignee = askAssignee ? askAssignee.value : '';
+          var now = new Date();
+          var today = now.toISOString().slice(0, 10);
+          var timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+          qaList.unshift({
+            q: content,
+            a: '',
+            time: today,
+            likes: 0,
+            dept: activeDept === 'all' ? 'sales' : activeDept,
+            author: '朱总',
+            assignee: assignee,
+            publishedAt: today + ' ' + timeStr,
+            needsAnswer: true
+          });
+          if (askTextarea) askTextarea.value = '';
+          if (askAssignee) askAssignee.value = '';
+          if (askCount) askCount.textContent = '0';
+          renderQa();
+          qaPanel.classList.remove('hidden');
+          docPanel.classList.add('hidden');
+          askModal.classList.add('hidden');
         });
       }
       document.addEventListener('click', function (e) {

@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
     .salary-table { min-width: 2200px; }
@@ -15,7 +17,7 @@
     #modal-salary:not(.hidden) { display: flex; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -26,26 +28,38 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
             <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
-          </div>
-        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -54,31 +68,20 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
-          </div>
-        </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+
         <details class="mx-3 mb-1 group" open>
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
-            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="salary-management.html">薪酬管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
           </div>
         </details>
         <details class="mx-3 mb-1 group">
@@ -88,9 +91,8 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -135,18 +137,21 @@
                 <input type="month" value="2024-04" class="h-9 w-36 px-2 rounded border border-slate-200 text-sm">
               </div>
             </div>
-            <button type="button" class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
-            <button type="button" class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">导出</button>
-            <button type="button" class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">批量导入</button>
+            <button type="button" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" id="btn-batch-send" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm inline-flex items-center gap-1.5"><i class="fa-regular fa-paper-plane text-xs"></i>批量发送</button>
+            <button type="button" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">批量导入</button>
           </div>
 
-          <div class="overflow-x-auto rounded border border-slate-200">
+          <div class="overflow-x-auto rounded-lg border border-slate-200">
             <table class="salary-table w-full text-sm">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
+                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 w-12 whitespace-nowrap">
+                    <input type="checkbox" id="salary-check-all" class="h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="全选" title="全选">
+                  </th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">姓名</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">部门</th>
-                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">角色</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">岗位</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">入职时间</th>
                   <th class="text-right px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">基本工资</th>
                   <th class="text-right px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">绩效工资</th>
@@ -165,8 +170,11 @@
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">操作</th>
                 </tr>
               </thead>
-              <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50">
+              <tbody class="text-slate-700" id="salary-table-body">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择张慧佳">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">张慧佳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售员</td>
@@ -191,7 +199,10 @@
                       data-avatar="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&q=80">查看</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择张思佳">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">张思佳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售员</td>
@@ -209,17 +220,21 @@
                   <td class="px-3 py-3 border-b border-slate-100 text-right">517.30</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-right font-medium text-slate-900">7,994.30</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-center">4月</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center">有反馈</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">未确认</td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
-                    <button type="button" class="text-blue-600 hover:underline js-salary-detail" data-state="feedback"
+                    <button type="button" class="text-blue-600 hover:underline js-salary-detail" data-state="unconfirmed"
                       data-name="张思佳" data-dept="销售一组" data-role="销售员" data-month="2026-04" data-actual="7994.3" data-entry="2025-11-08"
-                      data-feedback="提成计算错误！"
                       data-avatar="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=96&q=80">查看</button>
                     <span class="text-slate-300 mx-1">|</span>
                     <button type="button" class="text-blue-600 hover:underline">修改</button>
+                    <span class="text-slate-300 mx-1">|</span>
+                    <button type="button" class="text-blue-600 hover:underline">发送</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择李芳">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">李芳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售员</td>
@@ -244,7 +259,10 @@
                       data-avatar="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=96&q=80">查看</button>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择王强">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">王强</td>
                   <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售主管</td>
@@ -266,10 +284,13 @@
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <span class="text-blue-600 hover:underline cursor-pointer">查看</span>
                     <span class="text-slate-300 mx-1">|</span>
-                    <span class="text-blue-600 hover:underline cursor-pointer">发布</span>
+                    <span class="text-blue-600 hover:underline cursor-pointer">发送</span>
                   </td>
                 </tr>
-                <tr class="hover:bg-slate-50">
+                <tr class="hover:bg-slate-50 salary-row">
+                  <td class="px-3 py-3 border-b border-slate-100 text-center">
+                    <input type="checkbox" class="salary-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" aria-label="选择赵丽">
+                  </td>
                   <td class="px-3 py-3 border-b border-slate-100">赵丽</td>
                   <td class="px-3 py-3 border-b border-slate-100">政务一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">政务员</td>
@@ -291,7 +312,7 @@
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
                     <span class="text-blue-600 hover:underline cursor-pointer">修改</span>
                     <span class="text-slate-300 mx-1">|</span>
-                    <span class="text-blue-600 hover:underline cursor-pointer">发布</span>
+                    <span class="text-blue-600 hover:underline cursor-pointer">发送</span>
                   </td>
                 </tr>
               </tbody>
@@ -365,8 +386,59 @@
     </div>
   </div>
 
+  <div id="salary-toast" class="fixed top-6 left-1/2 z-[140] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg"></div>
+
   <script>
     (function () {
+      var checkAll = document.getElementById('salary-check-all');
+      var rowChecks = document.querySelectorAll('.salary-row-check');
+      var btnBatchSend = document.getElementById('btn-batch-send');
+      var toast = document.getElementById('salary-toast');
+      var toastTimer;
+
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 2200);
+      }
+
+      function syncCheckAllState() {
+        if (!checkAll || !rowChecks.length) return;
+        var checked = 0;
+        rowChecks.forEach(function (cb) { if (cb.checked) checked++; });
+        checkAll.checked = checked === rowChecks.length;
+        checkAll.indeterminate = checked > 0 && checked < rowChecks.length;
+      }
+
+      if (checkAll) {
+        checkAll.addEventListener('change', function () {
+          rowChecks.forEach(function (cb) { cb.checked = checkAll.checked; });
+          checkAll.indeterminate = false;
+        });
+      }
+      rowChecks.forEach(function (cb) {
+        cb.addEventListener('change', syncCheckAllState);
+      });
+
+      if (btnBatchSend) {
+        btnBatchSend.addEventListener('click', function () {
+          var selected = [];
+          rowChecks.forEach(function (cb) {
+            if (!cb.checked) return;
+            var tr = cb.closest('tr');
+            var nameCell = tr && tr.cells[1];
+            if (nameCell) selected.push(nameCell.textContent.trim());
+          });
+          if (!selected.length) {
+            showToast('请先勾选要发送的工资单');
+            return;
+          }
+          showToast('已向 ' + selected.length + ' 名员工批量发送工资确认（' + selected.join('、') + '）');
+        });
+      }
+
       var modal = document.getElementById('modal-salary');
       var banner = document.getElementById('salary-banner');
       var bannerStatus = document.getElementById('salary-banner-status');
@@ -408,14 +480,13 @@
           footer.innerHTML =
             '<button type="button" class="h-9 min-w-[100px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700 js-salary-action">撤回</button>' +
             '<button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50" data-salary-close>取消</button>';
-        } else if (state === 'feedback') {
-          banner.classList.add('border-rose-200', 'bg-rose-50');
-          bannerStatus.className = 'shrink-0 max-w-[55%] text-right text-sm font-medium text-rose-900 leading-snug';
-          var fb = btn.getAttribute('data-feedback') || '';
-          bannerStatus.textContent = '反馈问题：' + fb;
+        } else if (state === 'unconfirmed') {
+          banner.classList.add('border-amber-200', 'bg-amber-50');
+          bannerStatus.className = 'shrink-0 text-sm font-medium text-amber-800';
+          bannerStatus.textContent = '未确认';
           footer.innerHTML =
             '<button type="button" class="h-9 min-w-[100px] rounded-md bg-blue-600 px-4 text-sm font-medium text-white hover:bg-blue-700 js-salary-action">修改</button>' +
-            '<button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50 js-salary-action">发布</button>';
+            '<button type="button" class="h-9 min-w-[100px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50 js-salary-action">发送</button>';
         } else if (state === 'confirmed') {
           banner.classList.add('border-sky-200', 'bg-sky-50');
           bannerStatus.className = 'shrink-0 text-sm font-medium text-sky-800';

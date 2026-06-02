@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>财务报表 - 企税康协同工作平台</title>
+  <title>经营报表 - 企税康协同工作平台</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
     .fin-tab { border-bottom: 2px solid transparent; color: #64748b; padding-bottom: 0.5rem; margin-bottom: -1px; }
     .fin-tab:hover { color: #334155; }
     .fin-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
     .fin-panel[hidden] { display: none !important; }
-    .fin-table { min-width: 920px; }
-    .fin-table th, .fin-table td { font-variant-numeric: tabular-nums; }
+    .stat-card { background:#fff; border:1px solid #e2e8f0; border-radius:0.625rem; padding:0.875rem 1rem; }
+    .stat-card .label { font-size:0.75rem; color:#64748b; margin-bottom:0.25rem; }
+    .stat-card .value { font-size:1.25rem; font-weight:700; color:#1e293b; }
+    .stat-card .sub { font-size:0.7rem; color:#94a3b8; margin-top:0.125rem; }
+    .chart-box { background:#fff; border:1px solid #e2e8f0; border-radius:0.75rem; padding:1.25rem; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -29,26 +34,38 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
             <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
-          </div>
-        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -57,31 +74,20 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
-          </div>
-        </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+
         <details class="mx-3 mb-1 group" open>
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
-            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="financial-reports.html">财务报表</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
           </div>
         </details>
         <details class="mx-3 mb-1 group">
@@ -91,9 +97,8 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -102,8 +107,8 @@
     <main class="flex-1 flex flex-col min-w-0 w-full">
       <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2 min-w-0 flex-1">
-        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <div class="text-sm text-slate-500 min-w-0 truncate">财务管理 / <span class="text-slate-700 font-medium">财务报表</span></div>
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">运营中心 / <span class="text-slate-700 font-medium">经营报表</span></div>
         </div>
         <div class="flex items-center gap-3 shrink-0">
           <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
@@ -119,8 +124,9 @@
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <div class="text-sm text-slate-500 mb-4">财务管理 / 财务报表</div>
+          <div class="text-sm text-slate-500 mb-4">运营中心 / 经营报表</div>
 
+          <!-- 搜索区（保留） -->
           <div class="flex flex-wrap items-end gap-3 mb-4">
             <div>
               <label class="block text-xs text-slate-500 mb-1" for="year-filter">年份：</label>
@@ -143,213 +149,89 @@
                   <option value="finance">财务部</option>
                   <option value="net1">网销一组</option>
                   <option value="changshu">常熟组</option>
-                  <option value="delivery">交付中心</option>
+                  <option value="delivery">客户中心</option>
                 </select>
                 <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"><i class="fa-solid fa-building"></i></span>
               </div>
             </div>
-            <button type="button" class="h-9 px-4 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">查询</button>
-            <button type="button" id="btn-fin-reset" class="h-9 px-4 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+            <button type="button" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" id="btn-fin-reset" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
           </div>
 
-          <div class="flex gap-6 border-b border-slate-200 mb-4">
+          <!-- Tab 切换 -->
+          <div class="flex gap-6 border-b border-slate-200 mb-5">
             <button type="button" id="tab-profit" class="fin-tab fin-tab-active text-sm" data-tab="profit" aria-selected="true">收入与利润统计</button>
             <button type="button" id="tab-monthly" class="fin-tab text-sm" data-tab="monthly" aria-selected="false">收入月度统计</button>
           </div>
 
-          <div id="panel-profit" class="fin-panel overflow-x-auto rounded border border-slate-200" role="tabpanel">
-            <table class="fin-table w-full text-sm">
-              <thead class="bg-slate-50 text-slate-600">
-                <tr>
-                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200 w-36">月份</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">1月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">2月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">3月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">4月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">5月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">6月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">7月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">8月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">9月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">10月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">11月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">12月</th>
-                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">总计（元）</th>
-                </tr>
-              </thead>
-              <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">收入</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">125,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">118,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">132,100</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">140,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">128,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">135,900</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">121,300</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">129,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">138,000</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">142,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">131,700</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">126,200</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">1,570,100</td>
-                </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">支出</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">26,900</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">27,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">30,100</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">25,700</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,300</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">30,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">27,600</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">347,100</td>
-                </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">利润</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">97,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">91,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">102,300</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">109,000</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">101,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">105,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">95,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">101,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">107,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">110,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">102,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">98,600</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium text-blue-700">1,223,000</td>
-                </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">利润率</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">77%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">77%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">77%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">79%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">79%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">78%</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">78%</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- ===== Tab 1：收入与利润统计 ===== -->
+          <div id="panel-profit" class="fin-panel" role="tabpanel">
+            <!-- 汇总卡片 -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+              <div class="stat-card">
+                <p class="label">年度总收入</p>
+                <p class="value text-blue-600">340,617</p>
+                <p class="sub">元</p>
+              </div>
+              <div class="stat-card">
+                <p class="label">年度总支出</p>
+                <p class="value text-orange-500">4,617</p>
+                <p class="sub">元</p>
+              </div>
+              <div class="stat-card">
+                <p class="label">年度净利润</p>
+                <p class="value text-emerald-600">336,000</p>
+                <p class="sub">元</p>
+              </div>
+              <div class="stat-card">
+                <p class="label">平均利润率</p>
+                <p class="value text-violet-600">80%</p>
+                <p class="sub">全年平均</p>
+              </div>
+            </div>
+            <!-- 组合图：柱形（收入/支出/利润）+ 折线（利润率%） -->
+            <div class="chart-box">
+              <p class="text-sm font-medium text-slate-700 mb-3">月度收入、支出与利润趋势（柱形 + 利润率折线）</p>
+              <div style="position:relative;height:340px;">
+                <canvas id="chart-profit"></canvas>
+              </div>
+            </div>
           </div>
 
-          <div id="panel-monthly" class="fin-panel overflow-x-auto rounded border border-slate-200" role="tabpanel" hidden>
-            <table class="fin-table w-full text-sm">
-              <thead class="bg-slate-50 text-slate-600">
-                <tr>
-                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200 min-w-[10rem]">收入</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">1月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">2月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">3月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">4月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">5月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">6月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">7月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">8月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">9月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">10月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">11月</th>
-                  <th class="text-center px-2 py-3 font-medium border-b border-slate-200">12月</th>
-                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 whitespace-nowrap">总计（元）</th>
-                </tr>
-              </thead>
-              <tbody class="text-slate-700">
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100">财税服务费</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">62,000</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">58,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">65,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">68,100</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">61,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">63,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">59,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">62,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">66,900</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">69,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">64,100</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">60,800</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">761,000</td>
-                </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100">增值服务费</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">26,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">30,100</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">32,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">27,300</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">28,900</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">33,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">34,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">31,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">29,600</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">363,800</td>
-                </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100">注册地址租赁费</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">21,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">23,900</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">25,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,400</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">24,100</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">21,000</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,300</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">24,700</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">25,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">23,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">22,200</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">279,700</td>
-                </tr>
-                <tr class="hover:bg-slate-50/80">
-                  <td class="px-3 py-3 border-b border-slate-100">其他费用</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">11,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,900</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">14,300</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">15,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">16,500</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">13,800</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">15,700</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">13,200</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,600</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">11,700</td>
-                  <td class="px-2 py-3 border-b border-slate-100 text-center">12,600</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center font-medium">165,600</td>
-                </tr>
-                <tr class="bg-slate-50 font-medium text-slate-800">
-                  <td class="px-3 py-3 border-b border-slate-200">总计</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">125,800</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">118,400</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">132,100</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">140,200</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">128,600</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">135,900</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">121,300</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">129,500</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">138,000</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">142,400</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">131,700</td>
-                  <td class="px-2 py-3 border-b border-slate-200 text-center">126,200</td>
-                  <td class="px-3 py-3 border-b border-slate-200 text-center text-blue-700">1,570,100</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- ===== Tab 2：收入月度统计 ===== -->
+          <div id="panel-monthly" class="fin-panel" role="tabpanel" hidden>
+            <!-- 汇总卡片 -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+              <div class="stat-card">
+                <p class="label">财税服务费</p>
+                <p class="value text-blue-600">696,670</p>
+                <p class="sub">元</p>
+              </div>
+              <div class="stat-card">
+                <p class="label">增值服务费</p>
+                <p class="value text-teal-600">696,670</p>
+                <p class="sub">元</p>
+              </div>
+              <div class="stat-card">
+                <p class="label">注册地址租赁费</p>
+                <p class="value text-violet-600">696,600</p>
+                <p class="sub">元</p>
+              </div>
+              <div class="stat-card">
+                <p class="label">其他费用</p>
+                <p class="value text-orange-500">696,600</p>
+                <p class="sub">元</p>
+              </div>
+            </div>
+            <!-- 堆叠柱形图 + 折线（总计） -->
+            <div class="chart-box">
+              <p class="text-sm font-medium text-slate-700 mb-3">月度收入构成（堆叠柱形）及合计趋势（折线）</p>
+              <div style="position:relative;height:340px;">
+                <canvas id="chart-monthly"></canvas>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
     </main>
@@ -357,37 +239,283 @@
 
   <script>
     (function () {
-      const tabs = document.querySelectorAll('[data-tab]');
-      const panelProfit = document.getElementById('panel-profit');
-      const panelMonthly = document.getElementById('panel-monthly');
-      const tabProfit = document.getElementById('tab-profit');
-      const tabMonthly = document.getElementById('tab-monthly');
+      /* ---- 数据 ---- */
+      var MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+      var income  = [100987,62500,70000,71900,7300,7300,7300,7300,7300,7300,7300,7300];
+      var expense = [1000,500,609,609,0,0,0,0,0,0,0,0];
+      var profit  = income.map(function(v,i){ return v - expense[i]; });
+      var rate    = income.map(function(v,i){ return v > 0 ? Math.round((profit[i]/v)*100) : 0; });
+
+      var caiShui = [69667,38300,85100,38300,85100,38300,85100,38300,85100,38300,85100,38300];
+      var zenZhi  = [69667,38300,85100,38300,85100,38300,85100,38300,85100,38300,85100,38300];
+      var diZhi   = [38300,85100,38300,85100,38300,85100,38300,85100,38300,85100,38300,85100];
+      var qiTa    = [85100,38300,85100,38300,85100,38300,85100,38300,85100,38300,85100,38300];
+      var total   = MONTHS.map(function(_,i){ return caiShui[i]+zenZhi[i]+diZhi[i]+qiTa[i]; });
+
+      var chartProfit, chartMonthly;
+
+      /* ---- 图表 1：收入与利润统计（组合图） ---- */
+      function initChartProfit() {
+        var ctx = document.getElementById('chart-profit');
+        if (!ctx || chartProfit) return;
+        chartProfit = new Chart(ctx, {
+          data: {
+            labels: MONTHS,
+            datasets: [
+              {
+                type: 'bar',
+                label: '收入（元）',
+                data: income,
+                backgroundColor: 'rgba(37,99,235,0.75)',
+                borderColor: '#2563eb',
+                borderWidth: 1,
+                borderRadius: 4,
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'bar',
+                label: '支出（元）',
+                data: expense,
+                backgroundColor: 'rgba(249,115,22,0.7)',
+                borderColor: '#f97316',
+                borderWidth: 1,
+                borderRadius: 4,
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'bar',
+                label: '利润（元）',
+                data: profit,
+                backgroundColor: 'rgba(16,185,129,0.6)',
+                borderColor: '#10b981',
+                borderWidth: 1,
+                borderRadius: 4,
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'line',
+                label: '利润率（%）',
+                data: rate,
+                borderColor: '#7c3aed',
+                backgroundColor: 'rgba(124,58,237,0.08)',
+                pointBackgroundColor: '#7c3aed',
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.35,
+                yAxisID: 'yRight',
+                order: 1
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { font: { size: 12 }, padding: 16, usePointStyle: true }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(ctx) {
+                    var val = ctx.parsed.y;
+                    if (ctx.dataset.label.indexOf('%') !== -1) return ctx.dataset.label + ': ' + val + '%';
+                    return ctx.dataset.label + ': ¥' + val.toLocaleString();
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                grid: { color: 'rgba(226,232,240,0.6)' },
+                ticks: { font: { size: 12 }, color: '#64748b' }
+              },
+              yLeft: {
+                type: 'linear',
+                position: 'left',
+                grid: { color: 'rgba(226,232,240,0.6)' },
+                ticks: {
+                  font: { size: 11 }, color: '#64748b',
+                  callback: function(v) { return '¥' + (v >= 1000 ? (v/1000).toFixed(0)+'k' : v); }
+                },
+                title: { display: true, text: '金额（元）', color: '#94a3b8', font: { size: 11 } }
+              },
+              yRight: {
+                type: 'linear',
+                position: 'right',
+                min: 0,
+                max: 120,
+                grid: { drawOnChartArea: false },
+                ticks: {
+                  font: { size: 11 }, color: '#7c3aed',
+                  callback: function(v) { return v + '%'; }
+                },
+                title: { display: true, text: '利润率（%）', color: '#7c3aed', font: { size: 11 } }
+              }
+            }
+          }
+        });
+      }
+
+      /* ---- 图表 2：收入月度统计（堆叠柱形 + 合计折线） ---- */
+      function initChartMonthly() {
+        var ctx = document.getElementById('chart-monthly');
+        if (!ctx || chartMonthly) return;
+        chartMonthly = new Chart(ctx, {
+          data: {
+            labels: MONTHS,
+            datasets: [
+              {
+                type: 'bar',
+                label: '财税服务费',
+                data: caiShui,
+                backgroundColor: 'rgba(37,99,235,0.75)',
+                borderColor: '#2563eb',
+                borderWidth: 1,
+                borderRadius: 3,
+                stack: 'income',
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'bar',
+                label: '增值服务费',
+                data: zenZhi,
+                backgroundColor: 'rgba(13,148,136,0.75)',
+                borderColor: '#0d9488',
+                borderWidth: 1,
+                borderRadius: 3,
+                stack: 'income',
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'bar',
+                label: '注册地址租赁费',
+                data: diZhi,
+                backgroundColor: 'rgba(124,58,237,0.65)',
+                borderColor: '#7c3aed',
+                borderWidth: 1,
+                borderRadius: 3,
+                stack: 'income',
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'bar',
+                label: '其他费用',
+                data: qiTa,
+                backgroundColor: 'rgba(249,115,22,0.7)',
+                borderColor: '#f97316',
+                borderWidth: 1,
+                borderRadius: 3,
+                stack: 'income',
+                yAxisID: 'yLeft',
+                order: 2
+              },
+              {
+                type: 'line',
+                label: '月度合计',
+                data: total,
+                borderColor: '#0f172a',
+                backgroundColor: 'rgba(15,23,42,0.06)',
+                pointBackgroundColor: '#0f172a',
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                borderWidth: 2.5,
+                fill: false,
+                tension: 0.3,
+                yAxisID: 'yLeft',
+                order: 1
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { font: { size: 12 }, padding: 16, usePointStyle: true }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(ctx) {
+                    return ctx.dataset.label + ': ¥' + ctx.parsed.y.toLocaleString();
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                stacked: true,
+                grid: { color: 'rgba(226,232,240,0.6)' },
+                ticks: { font: { size: 12 }, color: '#64748b' }
+              },
+              yLeft: {
+                stacked: true,
+                type: 'linear',
+                position: 'left',
+                grid: { color: 'rgba(226,232,240,0.6)' },
+                ticks: {
+                  font: { size: 11 }, color: '#64748b',
+                  callback: function(v) { return '¥' + (v >= 1000 ? (v/1000).toFixed(0)+'k' : v); }
+                },
+                title: { display: true, text: '收入金额（元）', color: '#94a3b8', font: { size: 11 } }
+              }
+            }
+          }
+        });
+      }
+
+      /* ---- Tab 切换 ---- */
+      var tabProfit  = document.getElementById('tab-profit');
+      var tabMonthly = document.getElementById('tab-monthly');
+      var panelProfit  = document.getElementById('panel-profit');
+      var panelMonthly = document.getElementById('panel-monthly');
 
       function activate(name) {
-        const isProfit = name === 'profit';
-        panelProfit.hidden = !isProfit;
+        var isProfit = name === 'profit';
+        panelProfit.hidden  = !isProfit;
         panelMonthly.hidden = isProfit;
         tabProfit.classList.toggle('fin-tab-active', isProfit);
         tabMonthly.classList.toggle('fin-tab-active', !isProfit);
         tabProfit.setAttribute('aria-selected', isProfit);
         tabMonthly.setAttribute('aria-selected', !isProfit);
+        if (isProfit) {
+          initChartProfit();
+          if (chartProfit) chartProfit.resize();
+        } else {
+          initChartMonthly();
+          if (chartMonthly) chartMonthly.resize();
+        }
       }
 
-      tabs.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          activate(btn.getAttribute('data-tab'));
-        });
+      document.querySelectorAll('[data-tab]').forEach(function(btn) {
+        btn.addEventListener('click', function() { activate(btn.getAttribute('data-tab')); });
       });
 
+      /* 重置 */
       var yearFilter = document.getElementById('year-filter');
       var deptFilter = document.getElementById('dept-filter');
-      var resetBtn = document.getElementById('btn-fin-reset');
-      if (resetBtn && yearFilter) {
-        resetBtn.addEventListener('click', function () {
-          yearFilter.value = '2026';
+      var resetBtn   = document.getElementById('btn-fin-reset');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          if (yearFilter) yearFilter.value = '2026';
           if (deptFilter) deptFilter.value = '';
         });
       }
+
+      /* 初始化第一个可见图表 */
+      initChartProfit();
     })();
   </script>
   <script src="./assets/app-shell.js"></script>

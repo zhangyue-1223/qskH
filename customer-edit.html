@@ -7,17 +7,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/responsive.css">
-
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
     .field-label { font-size: 12px; color: #334155; margin-bottom: 4px; display: block; }
     .field-input { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; font-size: 12px; color: #0f172a; }
     .field-input::placeholder, .field-textarea::placeholder { color: #94a3b8; }
-    .field-textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 10px; font-size: 12px; color: #0f172a; resize: none; }
-    .upload-card { height: 86px; border: 1px solid #dbeafe; border-radius: 4px; background: #f0f7ff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #0ea5e9; font-size: 11px; }
+    .field-textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 10px; font-size: 12px; color: #0f172a; resize: vertical; min-height: 68px; }
+    .upload-card { height: 86px; border: 1px solid #dbeafe; border-radius: 4px; background: #f0f7ff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #0ea5e9; font-size: 11px; cursor: pointer; }
+    .entity-type-box { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; display: flex; align-items: center; gap: 16px; font-size: 12px; }
+    .entity-type-box label { display: inline-flex; align-items: center; gap: 6px; color: #475569; cursor: pointer; }
+    .shareholder-block + .shareholder-block { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -28,107 +32,256 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
         <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group" open>
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
     </aside>
 
-    <main class="flex-1 flex flex-col min-w-0 w-full">
-      <header class="h-12 bg-white border-b border-slate-200 px-4 flex items-center gap-2 lg:hidden shrink-0">
-        <button type="button" id="btn-sidebar-toggle" class="shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <span class="text-sm font-medium text-slate-700 truncate">编辑客户信息</span>
-      </header>
-      <div class="flex-1 p-4 sm:p-5 overflow-auto min-h-0">
-      <div class="mb-3 text-xs text-slate-500">客户中心 / 客户管理 / <span class="text-slate-700">编辑信息</span></div>
-      <div class="rounded-xl border border-slate-200 bg-white p-4">
+    <main class="flex-1 p-5 min-w-0">
+      <div class="mb-3 text-xs text-slate-500">销售中心 / 客户管理 / <span class="text-slate-700">编辑信息</span></div>
+      <div class="rounded-xl border border-slate-200 bg-white p-4 sm:p-5">
         <div class="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
           <div class="flex items-center gap-2">
-            <a href="customer-management.html" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-angle-left text-sm"></i></a>
-            <h2 class="text-sm font-semibold text-slate-800">编辑信息</h2>
+            <a href="customer-management.html" class="text-slate-400 hover:text-slate-600" aria-label="返回"><i class="fa-solid fa-angle-left text-sm"></i></a>
+            <h2 class="text-sm font-semibold text-slate-800">工商信息表</h2>
           </div>
           <a href="customer-management.html" class="text-xs text-blue-600 hover:underline">返回列表</a>
         </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-2.5">
-        <label><span class="field-label">公司名称</span><input class="field-input" placeholder="请输入公司名称"></label>
-        <label><span class="field-label">法定代表人</span><input class="field-input" placeholder="请输入法定代表人姓名"></label>
-        <label><span class="field-label">联系电话</span><input class="field-input" placeholder="请输入联系电话"></label>
+        <form id="form-ic" class="text-sm" novalidate>
+          <!-- 公司名称 -->
+          <label class="block mb-2.5">
+            <span class="field-label">公司名称</span>
+            <input type="text" class="field-input" name="companyName" placeholder="请输入公司名称">
+          </label>
 
-        <label><span class="field-label">身份证号码</span><input class="field-input" placeholder="请输入身份证号码"></label>
-        <label><span class="field-label">股份占比（%）</span><input class="field-input" placeholder="请输入股份占比"></label>
-        <label><span class="field-label">联系电话</span><input class="field-input" placeholder="请输入联系电话"></label>
-
-        <label><span class="field-label">联系方式</span><input class="field-input" placeholder="请输入联系方式"></label>
-        <div>
-          <span class="field-label">主体类型</span>
-          <div class="field-input flex items-center gap-4">
-            <label class="inline-flex items-center gap-1.5 text-xs text-slate-600"><input type="checkbox"> 自然人</label>
-            <label class="inline-flex items-center gap-1.5 text-xs text-slate-600"><input type="checkbox" checked> 公司</label>
+          <!-- 法定代表人 -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+            <label><span class="field-label">法定代表人</span><input type="text" class="field-input" name="legalRep" placeholder="请输入法定代表人姓名"></label>
+            <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" name="legalShare" placeholder="请输入股份占比"></label>
+            <label><span class="field-label">联系电话</span><input type="text" class="field-input" name="legalPhone" placeholder="请输入联系电话"></label>
           </div>
-        </div>
-        <label><span class="field-label">股份占比（%）</span><input class="field-input" placeholder="请输入股份占比"></label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+            <label class="sm:col-span-1"><span class="field-label">身份证号码</span><input type="text" class="field-input" name="legalIdNo" placeholder="请输入身份证号码"></label>
+          </div>
 
-        <label><span class="field-label">企业账号</span><input class="field-input" placeholder="请输入企业账号"></label>
-        <label><span class="field-label">法定代表人</span><input class="field-input" placeholder="请输入法定代表人姓名"></label>
-        <label><span class="field-label">身份证号码</span><input class="field-input" placeholder="请输入身份证号码"></label>
+          <!-- 股东（可多条） -->
+          <div id="shareholder-list" class="mb-2.5">
+            <div class="shareholder-block" data-shareholder-index="0">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5">
+                <label class="js-sh-name-wrap"><span class="field-label js-sh-name-label">股东姓名</span><input type="text" class="field-input js-sh-name" placeholder="请输入股东姓名"></label>
+                <div>
+                  <span class="field-label">主体类型</span>
+                  <div class="entity-type-box js-entity-type-box">
+                    <label><input type="radio" name="entityType-0" value="person" class="js-entity-type"> 自然人</label>
+                    <label><input type="radio" name="entityType-0" value="company" class="js-entity-type" checked> 公司</label>
+                  </div>
+                </div>
+                <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input js-sh-share" placeholder="请输入股份占比"></label>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5">
+                <label class="js-sh-id-wrap"><span class="field-label js-sh-id-label">统一社会信用代码</span><input type="text" class="field-input js-sh-id" placeholder="请输入统一社会信用代码"></label>
+                <label><span class="field-label">联系电话</span><input type="text" class="field-input js-sh-phone" placeholder="请输入联系电话"></label>
+                <div class="flex items-end justify-end pb-0.5">
+                  <button type="button" class="js-add-shareholder text-xs text-blue-600 hover:underline whitespace-nowrap">+ 添加股东</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <label><span class="field-label">联系电话</span><input class="field-input" placeholder="请输入联系电话"></label>
-        <div class="pt-5"><button type="button" class="text-xs text-blue-600 hover:underline">+ 添加股东</button></div>
-        <div></div>
+          <!-- 内部财务 -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+            <label><span class="field-label">内部财务</span><input type="text" class="field-input" name="internalFinance" placeholder="请输入内部财务姓名"></label>
+            <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" name="financeShare" placeholder="请输入股份占比"></label>
+            <label><span class="field-label">联系电话</span><input type="text" class="field-input" name="financePhone" placeholder="请输入联系电话"></label>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+            <label><span class="field-label">身份证号码</span><input type="text" class="field-input" name="financeIdNo" placeholder="请输入身份证号码"></label>
+            <label><span class="field-label">注册资本（万）</span><input type="text" class="field-input" name="registeredCapital" placeholder="请输入注册资本"></label>
+            <label><span class="field-label">注册地址</span><input type="text" class="field-input" name="registeredAddress" placeholder="需要和产证、租赁合同地址一致"></label>
+          </div>
 
-        <label><span class="field-label">内部财务</span><input class="field-input" placeholder="请输入财务姓名"></label>
-        <label><span class="field-label">股份占比（%）</span><input class="field-input" placeholder="请输入股份占比"></label>
-        <label><span class="field-label">联系电话</span><input class="field-input" placeholder="请输入联系电话"></label>
+          <label class="block mb-2.5">
+            <span class="field-label">经营范围</span>
+            <textarea class="field-textarea" name="businessScope" rows="3" placeholder="请输入经营范围"></textarea>
+          </label>
 
-        <label><span class="field-label">身份证号码</span><input class="field-input" placeholder="请输入身份证号码"></label>
-        <label><span class="field-label">注册资本（万）</span><input class="field-input" placeholder="请输入注册资本"></label>
-        <label><span class="field-label">注册地址</span><input class="field-input" placeholder="例: XX广场，租金年合同期第一到"></label>
+          <!-- 附件上传 -->
+          <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-3 text-xs">
+            <div>
+              <p class="mb-1 text-slate-600">法人身份证</p>
+              <div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证正面</span></div>
+            </div>
+            <div>
+              <p class="mb-1 text-slate-600 invisible sm:visible">&nbsp;</p>
+              <div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证反面</span></div>
+            </div>
+            <div>
+              <p class="mb-1 text-slate-600">营业执照（营业执照照片）</p>
+              <div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传营业执照</span></div>
+            </div>
+            <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+              <p class="mb-1 text-slate-600">其他附件（图片） <span class="text-slate-400 font-normal">支持jpg、png图片格式上传</span></p>
+              <div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传图片</span></div>
+            </div>
+            <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+              <p class="mb-1 text-slate-600">其他附件（文件） <span class="text-slate-400 font-normal">支持pdf文档上传</span></p>
+              <div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传文件</span></div>
+            </div>
+          </div>
 
-        <label class="md:col-span-2 xl:col-span-3">
-          <span class="field-label">经营范围</span>
-          <textarea rows="2" class="field-textarea" placeholder="请输入经营范围"></textarea>
-        </label>
-      </div>
-
-      <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 gap-y-2 text-xs">
-        <div>
-          <p class="mb-1 text-slate-600">法人身份证正</p>
-          <div class="upload-card"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证正面</span></div>
-        </div>
-        <div>
-          <p class="mb-1 text-slate-600">法人身份证反</p>
-          <div class="upload-card"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证反面</span></div>
-        </div>
-        <div>
-          <p class="mb-1 text-slate-600">营业执照（需上传原件）</p>
-          <div class="upload-card"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传营业执照</span></div>
-        </div>
-        <div class="sm:col-span-2 lg:col-span-3">
-          <p class="mb-1 text-slate-600">其他附件（图片） <span class="text-slate-400">3M以内，png格式图片上传</span></p>
-          <div class="w-[96px] upload-card"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传图片</span></div>
-        </div>
-        <div class="sm:col-span-2 lg:col-span-3">
-          <p class="mb-1 text-slate-600">其他附件（文件） <span class="text-slate-400">支持word和pdf上传</span></p>
-          <div class="w-[96px] upload-card"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传文件</span></div>
-        </div>
-      </div>
-
-        <div class="mt-6 flex justify-center gap-3">
-          <button class="h-8 rounded bg-blue-600 px-6 text-xs text-white">提交信息</button>
-          <a href="customer-management.html" class="h-8 rounded border border-slate-200 bg-white px-6 text-xs text-slate-600 inline-flex items-center">取消</a>
-        </div>
-      </div>
+          <div class="mt-6 flex justify-center gap-3">
+            <button type="submit" class="h-8 rounded bg-blue-600 px-6 text-xs text-white hover:bg-blue-700 cursor-pointer">提交信息</button>
+            <a href="customer-management.html" class="h-8 rounded border border-slate-200 bg-white px-6 text-xs text-slate-600 inline-flex items-center hover:bg-slate-50">取消</a>
+          </div>
+        </form>
       </div>
     </main>
   </div>
+
+  <div id="toast-edit" class="fixed top-6 left-1/2 -translate-x-1/2 z-[130] hidden rounded-lg bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">提交成功</div>
+
+  <script>
+    (function () {
+      var shareholderList = document.getElementById('shareholder-list');
+      var shareholderIndex = 0;
+
+      function applyEntityType(block) {
+        var isPerson = block.querySelector('.js-entity-type[value="person"]').checked;
+        var nameLabel = block.querySelector('.js-sh-name-label');
+        var nameInput = block.querySelector('.js-sh-name');
+        var idLabel = block.querySelector('.js-sh-id-label');
+        var idInput = block.querySelector('.js-sh-id');
+        if (isPerson) {
+          nameLabel.textContent = '股东姓名';
+          nameInput.placeholder = '请输入股东姓名';
+          idLabel.textContent = '身份证号码';
+          idInput.placeholder = '请输入身份证号码';
+        } else {
+          nameLabel.textContent = '股东公司名称';
+          nameInput.placeholder = '请输入股东公司名称';
+          idLabel.textContent = '统一社会信用代码';
+          idInput.placeholder = '请输入统一社会信用代码';
+        }
+      }
+
+      function bindShareholderBlock(block) {
+        block.querySelectorAll('.js-entity-type').forEach(function (radio) {
+          radio.addEventListener('change', function () { applyEntityType(block); });
+        });
+        applyEntityType(block);
+      }
+
+      function createShareholderBlock(index) {
+        var wrap = document.createElement('div');
+        wrap.className = 'shareholder-block';
+        wrap.setAttribute('data-shareholder-index', String(index));
+        wrap.innerHTML =
+          '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5">' +
+            '<label class="js-sh-name-wrap"><span class="field-label js-sh-name-label">股东姓名</span><input type="text" class="field-input js-sh-name" placeholder="请输入股东姓名"></label>' +
+            '<div><span class="field-label">主体类型</span>' +
+              '<div class="entity-type-box js-entity-type-box">' +
+                '<label><input type="radio" name="entityType-' + index + '" value="person" class="js-entity-type"> 自然人</label>' +
+                '<label><input type="radio" name="entityType-' + index + '" value="company" class="js-entity-type" checked> 公司</label>' +
+              '</div></div>' +
+            '<label><span class="field-label">股份占比（%）</span><input type="text" class="field-input js-sh-share" placeholder="请输入股份占比"></label>' +
+          '</div>' +
+          '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5">' +
+            '<label class="js-sh-id-wrap"><span class="field-label js-sh-id-label">统一社会信用代码</span><input type="text" class="field-input js-sh-id" placeholder="请输入统一社会信用代码"></label>' +
+            '<label><span class="field-label">联系电话</span><input type="text" class="field-input js-sh-phone" placeholder="请输入联系电话"></label>' +
+            '<div class="flex items-end justify-end pb-0.5"><button type="button" class="js-remove-shareholder text-xs text-slate-500 hover:text-red-600 whitespace-nowrap">删除股东</button></div>' +
+          '</div>';
+        return wrap;
+      }
+
+      bindShareholderBlock(shareholderList.querySelector('.shareholder-block'));
+
+      document.querySelector('.js-add-shareholder').addEventListener('click', function () {
+        shareholderIndex += 1;
+        var block = createShareholderBlock(shareholderIndex);
+        shareholderList.appendChild(block);
+        bindShareholderBlock(block);
+      });
+
+      shareholderList.addEventListener('click', function (e) {
+        var btn = e.target.closest('.js-remove-shareholder');
+        if (!btn) return;
+        var blocks = shareholderList.querySelectorAll('.shareholder-block');
+        if (blocks.length <= 1) return;
+        btn.closest('.shareholder-block').remove();
+      });
+
+      document.getElementById('form-ic').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var toast = document.getElementById('toast-edit');
+        toast.classList.remove('hidden');
+        setTimeout(function () { toast.classList.add('hidden'); }, 1800);
+      });
+    })();
+  </script>
   <script src="./assets/app-shell.js"></script>
 </body>
 </html>

@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商机管理 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    #modal-follow:not(.hidden),
+    #modal-supplement:not(.hidden),
+    #modal-payment-qrcode:not(.hidden) { display: flex; }
+    .field-label { font-size: 12px; color: #334155; margin-bottom: 4px; display: block; }
+    .field-input { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; font-size: 12px; color: #0f172a; }
+    .field-input::placeholder, .field-textarea::placeholder { color: #94a3b8; }
+    .field-textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 10px; font-size: 12px; color: #0f172a; resize: vertical; min-height: 68px; }
+    .upload-card { height: 86px; border: 1px solid #dbeafe; border-radius: 4px; background: #f0f7ff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #0ea5e9; font-size: 11px; cursor: pointer; }
+    .entity-type-box { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; display: flex; align-items: center; gap: 16px; font-size: 12px; }
+    .entity-type-box label { display: inline-flex; align-items: center; gap: 6px; color: #475569; cursor: pointer; }
+    .shareholder-block + .shareholder-block { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
+  </style>
+</head>
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+          </div>
+        </details>
+
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">销售中心 / <span class="text-slate-700 font-medium">商机管理</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 hidden sm:block">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业管理员</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-4 sm:p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm min-h-[calc(100vh-8.5rem)]">
+          <div class="mb-4 text-sm text-slate-500">销售中心 / 商机管理</div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-4 items-end mb-4 text-sm">
+            <label class="text-xs text-slate-500">企业名称
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
+            </label>
+            <label class="text-xs text-slate-500">联系人/联系方式
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
+            </label>
+            <label class="text-xs text-slate-500">销售顾问
+              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-600 flex items-center justify-between hover:bg-slate-50 cursor-pointer">请选择<i class="fa-solid fa-angle-down text-[10px] text-slate-400 shrink-0"></i></button>
+            </label>
+            <label class="text-xs text-slate-500">商机等级
+              <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-600 flex items-center justify-between hover:bg-slate-50 cursor-pointer">请选择<i class="fa-solid fa-angle-down text-[10px] text-slate-400 shrink-0"></i></button>
+            </label>
+            <label class="text-xs text-slate-500 lg:col-span-2">创建时间
+              <div class="mt-1 flex items-center gap-1.5">
+                <input type="text" value="2023-03-21" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2.5 text-sm">
+                <span class="text-slate-400 text-xs shrink-0">至</span>
+                <input type="text" value="2024-03-21" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2.5 text-sm">
+              </div>
+            </label>
+            <div class="flex flex-wrap items-center gap-2 lg:col-span-2">
+              <button type="button" class="h-9 px-5 rounded-md bg-blue-600 text-sm text-white hover:bg-blue-700 cursor-pointer">查询</button>
+              <button type="button" class="h-9 px-5 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
+              <button type="button" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer flex items-center"><i class="fa-solid fa-file-import mr-2 text-slate-500"></i>批量导入</button>
+              <button type="button" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600">移交</button>
+            </div>
+          </div>
+
+          <div class="mb-3 flex flex-wrap gap-6 border-b border-slate-200 pb-2" id="opp-stage-tabs">
+            <button type="button" data-tab="intent" class="opp-tab border-b-2 border-blue-600 pb-2 text-sm font-medium text-blue-600">意向商机</button>
+            <button type="button" data-tab="won" class="opp-tab border-b-2 border-transparent pb-2 text-sm text-slate-500 hover:text-slate-700">成交商机</button>
+            <button type="button" data-tab="lost" class="opp-tab border-b-2 border-transparent pb-2 text-sm text-slate-500 hover:text-slate-700">流失商机</button>
+          </div>
+
+          <div class="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
+            <table class="data-table w-full min-w-[1000px]">
+              <thead>
+                <tr>
+                  <th>企业名称</th>
+                  <th>联系人</th>
+                  <th>联系方式</th>
+                  <th>销售顾问</th>
+                  <th>商机等级</th>
+                  <th>商机阶段</th>
+                  <th data-col="contract">关联合同</th>
+                  <th data-col="contractType">合同类型</th>
+                  <th data-col="lossReason">流失说明</th>
+                  <th>创建时间</th>
+                  <th>查看详情</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="opp-row" data-stage="intent">
+                  <td>苏州美的科技有限公司</td>
+                  <td>秦总</td>
+                  <td>18900008787</td>
+                  <td>陈丽</td>
+                  <td>A级</td>
+                  <td><span class="text-blue-600">意向商机</span></td>
+                  <td data-col="contract" class="text-slate-400">--</td>
+                  <td data-col="contractType" class="text-slate-400">--</td>
+                  <td data-col="lossReason" class="text-slate-400">--</td>
+                  <td class="whitespace-nowrap">2024-03-21 15:03</td>
+                  <td><a href="opportunity-detail.html?id=opp-1" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
+                  <td class="whitespace-nowrap">
+                    <a href="contract-management.html" class="text-blue-600 hover:text-blue-700 hover:underline">查看合同</a><span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-send-payment-qr text-blue-600 hover:text-blue-700 hover:underline cursor-pointer" data-order-id="opp-1">发送收款码</button><span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-add-follow text-blue-600 hover:text-blue-700 hover:underline cursor-pointer" data-stage="intent">添加跟进</button>
+                  </td>
+                </tr>
+                <tr class="opp-row" data-stage="intent">
+                  <td>苏州美的科技有限公司</td>
+                  <td>王经理</td>
+                  <td>18900008788</td>
+                  <td>周方林</td>
+                  <td>S级</td>
+                  <td><span class="text-blue-600">意向商机</span></td>
+                  <td data-col="contract" class="text-slate-400">--</td>
+                  <td data-col="contractType" class="text-slate-400">--</td>
+                  <td data-col="lossReason" class="text-slate-400">--</td>
+                  <td class="whitespace-nowrap">2024-03-21 15:03</td>
+                  <td><a href="opportunity-detail.html?id=opp-2" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">新增合同</button><span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-add-follow text-blue-600 hover:text-blue-700 hover:underline cursor-pointer" data-stage="intent">添加跟进</button>
+                  </td>
+                </tr>
+                <tr class="opp-row" data-stage="won">
+                  <td>苏州美的科技有限公司</td>
+                  <td>秦总</td>
+                  <td>18900008789</td>
+                  <td>陈丽</td>
+                  <td>A级</td>
+                  <td><span class="text-emerald-600">成交商机</span></td>
+                  <td data-col="contract"><a href="contract-management.html" class="text-blue-600 hover:text-blue-700 hover:underline">HT20240321001</a></td>
+                  <td data-col="contractType">代账合同</td>
+                  <td data-col="lossReason" class="text-slate-400">--</td>
+                  <td class="whitespace-nowrap">2024-03-21 15:03</td>
+                  <td><a href="opportunity-detail.html?id=opp-3" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
+                  <td class="whitespace-nowrap"><button type="button" class="js-supplement text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">新增合同</button></td>
+                </tr>
+                <tr class="opp-row" data-stage="won">
+                  <td>苏州美的科技有限公司</td>
+                  <td>王经理</td>
+                  <td>18900008790</td>
+                  <td>周方林</td>
+                  <td>C级</td>
+                  <td><span class="text-emerald-600">成交商机</span></td>
+                  <td data-col="contract"><a href="contract-management.html" class="text-blue-600 hover:text-blue-700 hover:underline">HT20240321002</a></td>
+                  <td data-col="contractType">注册地址合同</td>
+                  <td data-col="lossReason" class="text-slate-400">--</td>
+                  <td class="whitespace-nowrap">2024-03-21 15:03</td>
+                  <td><a href="opportunity-detail.html?id=opp-4" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
+                  <td class="whitespace-nowrap">
+                    <button type="button" class="js-supplement text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">补充客户信息</button><span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">新增合同</button>
+                  </td>
+                </tr>
+                <tr class="opp-row" data-stage="lost">
+                  <td>苏州美的科技有限公司</td>
+                  <td>秦总</td>
+                  <td>18900008791</td>
+                  <td>陈丽</td>
+                  <td>A级</td>
+                  <td><span class="text-slate-500">流失商机</span></td>
+                  <td data-col="contract" class="text-slate-400">--</td>
+                  <td data-col="contractType" class="text-slate-400">--</td>
+                  <td data-col="lossReason">预算不足，暂不推进</td>
+                  <td class="whitespace-nowrap">2024-03-21 15:03</td>
+                  <td><a href="opportunity-detail.html?id=opp-5" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
+                  <td class="text-slate-400">--</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 flex flex-wrap items-center justify-end gap-2 text-sm">
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-400 hover:bg-slate-50 cursor-pointer" aria-label="上一页"><i class="fa-solid fa-angle-left"></i></button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md bg-blue-600 text-white font-medium">1</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">2</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">3</button>
+            <span class="text-slate-400 px-1">...</span>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">19</button>
+            <button type="button" class="h-8 min-w-8 px-2 rounded-md border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer">20</button>
+            <button type="button" class="h-8 w-8 rounded border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 cursor-pointer" aria-label="下一页"><i class="fa-solid fa-angle-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 补充客户信息 -->
+  <div id="modal-supplement" class="fixed inset-0 z-[110] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close="supplement"></div>
+    <div class="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-xl" role="dialog">
+        <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-4">
+          <h2 class="text-base font-medium text-slate-800">补充客户信息</h2>
+          <button type="button" class="text-slate-400 hover:text-slate-600" data-close="supplement" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-4 text-sm">
+          <div class="mb-4 flex flex-wrap gap-6 border-b border-slate-200" id="supplement-tabs">
+            <button type="button" data-tab="tax" class="supp-tab border-b-2 border-blue-600 pb-2 text-sm font-medium text-blue-600">税务信息</button>
+            <button type="button" data-tab="industry" class="supp-tab border-b-2 border-transparent pb-2 text-sm text-slate-500 hover:text-slate-700">工商信息</button>
+          </div>
+
+          <div id="supp-panel-tax">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 企业名称</span>
+                <input type="text" placeholder="请输入企业名称" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 统一社会信用代码</span>
+                <input type="text" placeholder="请输入统一社会信用代码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 税务类型</span>
+                <div class="relative mt-1">
+                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                    <option selected>一般纳税人</option>
+                    <option>小规模纳税人</option>
+                  </select>
+                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                </div>
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 企业类型</span>
+                <div class="relative mt-1">
+                  <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none">
+                    <option selected>有限责任公司</option>
+                    <option>个体工商户</option>
+                    <option>股份有限公司</option>
+                  </select>
+                  <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                </div>
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 个税系统账号</span>
+                <input type="text" placeholder="请输入个税系统账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 个税系统密码</span>
+                <input type="text" placeholder="请输入个税系统密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 工商年报登录方式</span>
+                <div class="mt-2 flex items-center gap-6 text-slate-700">
+                  <label class="inline-flex items-center gap-2"><input type="radio" name="annualLoginType" checked> 电子证照</label>
+                  <label class="inline-flex items-center gap-2"><input type="radio" name="annualLoginType"> 工商联络员</label>
+                </div>
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 社保系统登录方式</span>
+                <input type="text" value="账号密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 bg-slate-50 text-slate-500" readonly>
+              </label>
+              <div></div>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 社保登录账号</span>
+                <input type="text" placeholder="请输入社保登录账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 社保登录密码</span>
+                <input type="text" placeholder="请输入社保登录密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 公积金系统登录方式</span>
+                <input type="text" value="账号密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 bg-slate-50 text-slate-500" readonly>
+              </label>
+              <div></div>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 公积金登录账号</span>
+                <input type="text" placeholder="请输入公积金登录账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block">
+                <span class="text-slate-600"><span class="text-red-500">*</span> 公积金登录密码</span>
+                <input type="text" placeholder="请输入公积金登录密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200">
+              </label>
+              <label class="block sm:col-span-2">
+                <span class="text-slate-600">客户备注</span>
+                <textarea rows="3" placeholder="请输入客户备注" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 resize-y"></textarea>
+              </label>
+            </div>
+
+            <div class="mt-5">
+              <p class="text-sm font-medium text-slate-800 mb-2">上传交接资料</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div>
+                  <p class="mb-1 text-slate-600">营业执照</p>
+                  <div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="mb-1 text-slate-600">法人身份证</p>
+                  <div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="mb-1 text-slate-600">余额表</p>
+                  <div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span>
+                  </div>
+                </div>
+                <div>
+                  <p class="mb-1 text-slate-600">其他附件</p>
+                  <div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500">
+                    <i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="supp-panel-industry" class="hidden">
+            <div class="mb-3 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+              <span class="h-4 w-1 rounded-sm bg-blue-600"></span>工商信息表
+            </div>
+            <div class="text-sm" id="supp-ic-form">
+              <label class="block mb-2.5">
+                <span class="field-label">公司名称</span>
+                <input type="text" class="field-input" placeholder="请输入公司名称">
+              </label>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+                <label><span class="field-label">法定代表人</span><input type="text" class="field-input" placeholder="请输入法定代表人姓名"></label>
+                <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label>
+                <label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+                <label class="sm:col-span-1"><span class="field-label">身份证号码</span><input type="text" class="field-input" placeholder="请输入身份证号码"></label>
+              </div>
+
+              <div id="supp-shareholder-list" class="mb-2.5">
+                <div class="shareholder-block" data-shareholder-index="0">
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5">
+                    <label class="supp-sh-name-wrap"><span class="field-label supp-sh-name-label">股东姓名</span><input type="text" class="field-input supp-sh-name" placeholder="请输入股东姓名"></label>
+                    <div>
+                      <span class="field-label">主体类型</span>
+                      <div class="entity-type-box">
+                        <label><input type="radio" name="supp-entityType-0" value="person" class="supp-entity-type"> 自然人</label>
+                        <label><input type="radio" name="supp-entityType-0" value="company" class="supp-entity-type" checked> 公司</label>
+                      </div>
+                    </div>
+                    <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label>
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5">
+                    <label class="supp-sh-id-wrap"><span class="field-label supp-sh-id-label">统一社会信用代码</span><input type="text" class="field-input supp-sh-id" placeholder="请输入统一社会信用代码"></label>
+                    <label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label>
+                    <div class="flex items-end justify-end pb-0.5">
+                      <button type="button" id="supp-add-shareholder" class="text-xs text-blue-600 hover:underline whitespace-nowrap">+ 添加股东</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+                <label><span class="field-label">内部财务</span><input type="text" class="field-input" placeholder="请输入内部财务姓名"></label>
+                <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label>
+                <label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5">
+                <label><span class="field-label">身份证号码</span><input type="text" class="field-input" placeholder="请输入身份证号码"></label>
+                <label><span class="field-label">注册资本（万）</span><input type="text" class="field-input" placeholder="请输入注册资本"></label>
+                <label><span class="field-label">注册地址</span><input type="text" class="field-input" placeholder="需要和产证、租赁合同地址一致"></label>
+              </div>
+
+              <label class="block mb-2.5">
+                <span class="field-label">经营范围</span>
+                <textarea class="field-textarea" rows="3" placeholder="请输入经营范围"></textarea>
+              </label>
+
+              <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-3 text-xs">
+                <div>
+                  <p class="mb-1 text-slate-600">法人身份证</p>
+                  <div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证正面</span></div>
+                </div>
+                <div>
+                  <p class="mb-1 text-slate-600 invisible sm:visible">&nbsp;</p>
+                  <div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证反面</span></div>
+                </div>
+                <div>
+                  <p class="mb-1 text-slate-600">营业执照（营业执照照片）</p>
+                  <div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传营业执照</span></div>
+                </div>
+                <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+                  <p class="mb-1 text-slate-600">其他附件（图片） <span class="text-slate-400 font-normal">支持jpg、png图片格式上传</span></p>
+                  <div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传图片</span></div>
+                </div>
+                <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+                  <p class="mb-1 text-slate-600">其他附件（文件） <span class="text-slate-400 font-normal">支持pdf文档上传</span></p>
+                  <div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传文件</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sticky bottom-0 flex justify-center gap-3 border-t border-slate-100 bg-white px-6 py-4">
+          <button type="button" id="btn-supplement-ok" class="h-9 px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+          <button type="button" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close="supplement">取消</button>
+        </div>
+    </div>
+  </div>
+
+  <!-- 收款方式 / 收款码（与订单管理一致） -->
+  <div id="modal-payment-qrcode" class="fixed inset-0 z-[115] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close-payment-qr></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl" role="dialog" aria-labelledby="payment-qr-title">
+      <div class="relative border-b border-slate-200 px-5 py-4">
+        <h2 id="payment-qr-title" class="text-center text-base font-semibold text-slate-800">收款方式</h2>
+        <button type="button" class="payment-qr-close absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="rounded-lg bg-slate-50 border border-slate-100 px-4 py-3 space-y-1.5">
+          <p class="flex justify-between gap-3"><span class="text-slate-500">订单编号</span><span id="pq-order-no" class="text-slate-800 font-medium"></span></p>
+          <p class="flex justify-between gap-3"><span class="text-slate-500">订单金额</span><span id="pq-order-amount" class="text-slate-800 font-medium"></span></p>
+        </div>
+        <label class="block">
+          <span class="text-slate-600">收款方式 <span class="text-red-500">*</span></span>
+          <div class="relative mt-1.5">
+            <select id="pq-pay-method" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+              <option value="">请选择收款方式</option>
+              <option value="alipay">支付宝</option>
+              <option value="wechat">微信</option>
+              <option value="bank">对公转账</option>
+            </select>
+            <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+          </div>
+        </label>
+        <div id="pq-qr-wrap" class="hidden flex flex-col items-center rounded-lg border border-slate-200 bg-slate-50/80 px-4 py-5">
+          <p id="pq-qr-label" class="mb-3 text-sm font-medium text-slate-700"></p>
+          <img id="pq-qr-image" src="" alt="收款二维码" class="w-[220px] h-[220px] rounded-md border border-white bg-white shadow-sm object-contain">
+          <p id="pq-qr-hint" class="mt-3 text-xs text-slate-500 text-center leading-relaxed"></p>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+        <button type="button" id="btn-copy-payment-qr" class="hidden h-9 min-w-[5.5rem] rounded-md border border-slate-200 bg-white px-5 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">复制收款码</button>
+        <button type="button" class="payment-qr-close h-9 min-w-[5.5rem] rounded-md bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 添加跟进弹窗 -->
+  <div id="modal-follow" class="fixed inset-0 z-[110] hidden items-center justify-center bg-slate-900/40 p-4" aria-hidden="true">
+    <div class="absolute inset-0" data-close="follow"></div>
+    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl" role="dialog" aria-labelledby="modal-follow-title">
+      <div class="relative border-b border-slate-100 px-6 py-4">
+        <h3 id="modal-follow-title" class="text-center text-lg font-semibold text-slate-800">商机跟进</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close="follow" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-5 space-y-4 text-sm">
+        <div class="flex items-center gap-3">
+          <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 商机阶段</label>
+          <div class="relative flex-1">
+            <select id="follow-stage" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+              <option value="intent">意向商机</option>
+              <option value="won">成交商机</option>
+              <option value="lost">流失商机</option>
+            </select>
+            <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 跟进时间</label>
+          <div class="relative flex-1">
+            <input type="text" value="2026-04-07 10:09" class="w-full h-9 px-3 pr-9 rounded-md border border-slate-200 text-slate-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+            <i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
+          </div>
+        </div>
+        <div id="follow-content-wrap" class="flex items-start gap-3">
+          <label class="w-24 shrink-0 text-right text-slate-600 pt-2"><span class="text-red-500">*</span> 跟进内容</label>
+          <div class="relative flex-1">
+            <textarea id="follow-content" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full resize-y rounded-md border border-slate-200 px-3 py-2 pr-14 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"></textarea>
+            <span class="absolute bottom-2 right-3 text-xs text-slate-400"><span id="follow-len">0</span>/1000</span>
+          </div>
+        </div>
+        <div id="follow-lost-wrap" class="hidden flex items-start gap-3">
+          <label class="w-24 shrink-0 text-right text-slate-600 pt-2"><span class="text-red-500">*</span> 流失说明</label>
+          <div class="relative flex-1">
+            <textarea id="follow-lost-reason" maxlength="1000" rows="5" placeholder="请输入内容" class="w-full resize-y rounded-md border border-slate-200 px-3 py-2 pr-14 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"></textarea>
+            <span class="absolute bottom-2 right-3 text-xs text-slate-400"><span id="follow-lost-len">0</span>/1000</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+        <button type="button" id="btn-follow-ok" class="h-9 min-w-[5.5rem] rounded-md bg-blue-600 px-5 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+        <button type="button" class="h-9 min-w-[5.5rem] rounded-md border border-slate-200 bg-white px-5 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close="follow">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-opp" class="fixed top-6 left-1/2 -translate-x-1/2 z-[130] hidden rounded-lg bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">添加成功</div>
+
+  <script>
+    (function () {
+      var modalFollow = document.getElementById('modal-follow');
+      var modalSupplement = document.getElementById('modal-supplement');
+      var supplementTabs = document.querySelectorAll('#supplement-tabs .supp-tab');
+      var suppTaxPanel = document.getElementById('supp-panel-tax');
+      var suppIndustryPanel = document.getElementById('supp-panel-industry');
+      var stageSel = document.getElementById('follow-stage');
+      var contentWrap = document.getElementById('follow-content-wrap');
+      var lostWrap = document.getElementById('follow-lost-wrap');
+      var suppShareholderList = document.getElementById('supp-shareholder-list');
+      var suppAddShareholderBtn = document.getElementById('supp-add-shareholder');
+      var suppShareholderIndex = 0;
+
+      function showFollowModal(stage) {
+        modalFollow.classList.remove('hidden');
+        modalFollow.classList.add('flex');
+        modalFollow.setAttribute('aria-hidden', 'false');
+        if (stage) stageSel.value = stage;
+        updateFollowFields();
+      }
+      function hideFollowModal() {
+        modalFollow.classList.add('hidden');
+        modalFollow.classList.remove('flex');
+        modalFollow.setAttribute('aria-hidden', 'true');
+      }
+
+      function showSupplementModal() {
+        modalSupplement.classList.remove('hidden');
+        modalSupplement.classList.add('flex');
+        modalSupplement.setAttribute('aria-hidden', 'false');
+      }
+      function hideSupplementModal() {
+        modalSupplement.classList.add('hidden');
+        modalSupplement.classList.remove('flex');
+        modalSupplement.setAttribute('aria-hidden', 'true');
+      }
+      function switchSupplementTab(tab) {
+        supplementTabs.forEach(function (btn) {
+          var on = btn.getAttribute('data-tab') === tab;
+          btn.classList.toggle('border-blue-600', on);
+          btn.classList.toggle('text-blue-600', on);
+          btn.classList.toggle('font-medium', on);
+          btn.classList.toggle('border-transparent', !on);
+          btn.classList.toggle('text-slate-500', !on);
+        });
+        if (suppTaxPanel) suppTaxPanel.classList.toggle('hidden', tab !== 'tax');
+        if (suppIndustryPanel) suppIndustryPanel.classList.toggle('hidden', tab !== 'industry');
+      }
+      function applySuppEntityType(block) {
+        var personRadio = block.querySelector('.supp-entity-type[value="person"]');
+        if (!personRadio) return;
+        var isPerson = personRadio.checked;
+        var nameLabel = block.querySelector('.supp-sh-name-label');
+        var nameInput = block.querySelector('.supp-sh-name');
+        var idLabel = block.querySelector('.supp-sh-id-label');
+        var idInput = block.querySelector('.supp-sh-id');
+        if (!nameLabel || !nameInput || !idLabel || !idInput) return;
+        if (isPerson) {
+          nameLabel.textContent = '股东姓名';
+          nameInput.placeholder = '请输入股东姓名';
+          idLabel.textContent = '身份证号码';
+          idInput.placeholder = '请输入身份证号码';
+        } else {
+          nameLabel.textContent = '股东公司名称';
+          nameInput.placeholder = '请输入股东公司名称';
+          idLabel.textContent = '统一社会信用代码';
+          idInput.placeholder = '请输入统一社会信用代码';
+        }
+      }
+      function bindSuppShareholderBlock(block) {
+        block.querySelectorAll('.supp-entity-type').forEach(function (radio) {
+          radio.addEventListener('change', function () { applySuppEntityType(block); });
+        });
+        applySuppEntityType(block);
+      }
+      function createSuppShareholderBlock(index) {
+        var wrap = document.createElement('div');
+        wrap.className = 'shareholder-block';
+        wrap.setAttribute('data-shareholder-index', String(index));
+        wrap.innerHTML =
+          '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5">' +
+            '<label class="supp-sh-name-wrap"><span class="field-label supp-sh-name-label">股东姓名</span><input type="text" class="field-input supp-sh-name" placeholder="请输入股东姓名"></label>' +
+            '<div><span class="field-label">主体类型</span>' +
+              '<div class="entity-type-box">' +
+                '<label><input type="radio" name="supp-entityType-' + index + '" value="person" class="supp-entity-type"> 自然人</label>' +
+                '<label><input type="radio" name="supp-entityType-' + index + '" value="company" class="supp-entity-type" checked> 公司</label>' +
+              '</div></div>' +
+            '<label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label>' +
+          '</div>' +
+          '<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5">' +
+            '<label class="supp-sh-id-wrap"><span class="field-label supp-sh-id-label">统一社会信用代码</span><input type="text" class="field-input supp-sh-id" placeholder="请输入统一社会信用代码"></label>' +
+            '<label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label>' +
+            '<div class="flex items-end justify-end pb-0.5"><button type="button" class="supp-remove-shareholder text-xs text-slate-500 hover:text-red-600 whitespace-nowrap">删除股东</button></div>' +
+          '</div>';
+        return wrap;
+      }
+
+      function updateFollowFields() {
+        var lost = stageSel.value === 'lost';
+        contentWrap.classList.toggle('hidden', lost);
+        contentWrap.classList.toggle('flex', !lost);
+        lostWrap.classList.toggle('hidden', !lost);
+        lostWrap.classList.toggle('flex', lost);
+      }
+
+      stageSel.addEventListener('change', updateFollowFields);
+
+      document.querySelectorAll('[data-close="follow"]').forEach(function (el) {
+        el.addEventListener('click', hideFollowModal);
+      });
+      document.querySelectorAll('[data-close="supplement"]').forEach(function (el) {
+        el.addEventListener('click', hideSupplementModal);
+      });
+      document.querySelectorAll('.js-add-follow').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          showFollowModal(btn.getAttribute('data-stage') || 'intent');
+        });
+      });
+      document.querySelectorAll('.js-supplement').forEach(function (btn) {
+        btn.addEventListener('click', function () { showSupplementModal(); });
+      });
+      supplementTabs.forEach(function (btn) {
+        btn.addEventListener('click', function () { switchSupplementTab(btn.getAttribute('data-tab')); });
+      });
+      switchSupplementTab('tax');
+      if (suppShareholderList) {
+        var firstSuppBlock = suppShareholderList.querySelector('.shareholder-block');
+        if (firstSuppBlock) bindSuppShareholderBlock(firstSuppBlock);
+        if (suppAddShareholderBtn) {
+          suppAddShareholderBtn.addEventListener('click', function () {
+            suppShareholderIndex += 1;
+            var block = createSuppShareholderBlock(suppShareholderIndex);
+            suppShareholderList.appendChild(block);
+            bindSuppShareholderBlock(block);
+          });
+        }
+        suppShareholderList.addEventListener('click', function (e) {
+          var btn = e.target.closest('.supp-remove-shareholder');
+          if (!btn) return;
+          var blocks = suppShareholderList.querySelectorAll('.shareholder-block');
+          if (blocks.length <= 1) return;
+          btn.closest('.shareholder-block').remove();
+        });
+      }
+      document.getElementById('btn-follow-ok').addEventListener('click', function () {
+        hideFollowModal();
+        var t = document.getElementById('toast-opp');
+        t.textContent = '添加成功';
+        t.classList.remove('hidden');
+        setTimeout(function () { t.classList.add('hidden'); }, 1800);
+      });
+      document.getElementById('btn-supplement-ok').addEventListener('click', function () {
+        hideSupplementModal();
+        var t = document.getElementById('toast-opp');
+        t.textContent = '提交成功';
+        t.classList.remove('hidden');
+        setTimeout(function () { t.classList.add('hidden'); }, 1800);
+      });
+
+      function bindCounter(inputId, lenId, max) {
+        var inp = document.getElementById(inputId);
+        var len = document.getElementById(lenId);
+        if (!inp || !len) return;
+        function upd() { len.textContent = String(Math.min(inp.value.length, max)); }
+        inp.addEventListener('input', upd);
+        upd();
+      }
+      bindCounter('follow-content', 'follow-len', 1000);
+      bindCounter('follow-lost-reason', 'follow-lost-len', 1000);
+
+      function applyOppStageTab(tab) {
+        document.querySelectorAll('#opp-stage-tabs .opp-tab').forEach(function (btn) {
+          var on = btn.getAttribute('data-tab') === tab;
+          btn.classList.toggle('border-blue-600', on);
+          btn.classList.toggle('text-blue-600', on);
+          btn.classList.toggle('font-medium', on);
+          btn.classList.toggle('border-transparent', !on);
+          btn.classList.toggle('text-slate-500', !on);
+        });
+        document.querySelectorAll('.opp-row').forEach(function (row) {
+          var stage = row.getAttribute('data-stage');
+          var show = stage === tab;
+          row.classList.toggle('hidden', !show);
+        });
+        var showContract = tab === 'won';
+        var showLossReason = tab === 'lost';
+        document.querySelectorAll('[data-col="contract"], [data-col="contractType"]').forEach(function (el) {
+          el.classList.toggle('hidden', !showContract);
+        });
+        document.querySelectorAll('[data-col="lossReason"]').forEach(function (el) {
+          el.classList.toggle('hidden', !showLossReason);
+        });
+      }
+      document.querySelectorAll('#opp-stage-tabs .opp-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyOppStageTab(btn.getAttribute('data-tab'));
+        });
+      });
+      applyOppStageTab('intent');
+
+      var paymentQrModal = document.getElementById('modal-payment-qrcode');
+      var pqPayMethod = document.getElementById('pq-pay-method');
+      var pqQrWrap = document.getElementById('pq-qr-wrap');
+      var pqQrImage = document.getElementById('pq-qr-image');
+      var pqQrLabel = document.getElementById('pq-qr-label');
+      var pqQrHint = document.getElementById('pq-qr-hint');
+      var btnCopyPaymentQr = document.getElementById('btn-copy-payment-qr');
+      var toastOpp = document.getElementById('toast-opp');
+      var currentPaymentQrOrderId = null;
+
+      var oppPaymentOrders = {
+        'opp-1': { orderNo: 'DD20260321001', amount: '24000' }
+      };
+
+      var payMethodMeta = {
+        alipay: { label: '支付宝收款码', hint: '请客户使用支付宝扫码完成支付', color: '1677FF' },
+        wechat: { label: '微信收款码', hint: '请客户使用微信扫码完成支付', color: '07C160' },
+        bank: { label: '对公转账收款码', hint: '请客户扫码查看对公账户信息并完成转账', color: '334155' }
+      };
+
+      function showOppToast(msg) {
+        if (!toastOpp) return;
+        toastOpp.textContent = msg;
+        toastOpp.classList.remove('hidden');
+        setTimeout(function () { toastOpp.classList.add('hidden'); }, 1800);
+      }
+
+      function buildQrImageUrl(payload, color) {
+        var fg = color || '000000';
+        return 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=' + fg + '&data=' + encodeURIComponent(payload);
+      }
+
+      function buildPaymentPayload(method, orderId, amount) {
+        if (method === 'alipay') return 'ALIPAY|ORDER:' + orderId + '|AMT:' + amount;
+        if (method === 'wechat') return 'WECHAT|ORDER:' + orderId + '|AMT:' + amount;
+        return 'BANK|ORDER:' + orderId + '|AMT:' + amount + '|ACCT:苏州范阳信息科技有限公司|BANK:中国工商银行苏州工业园区支行';
+      }
+
+      function resetPaymentQrPreview() {
+        if (pqPayMethod) pqPayMethod.value = '';
+        if (pqQrWrap) pqQrWrap.classList.add('hidden');
+        if (pqQrImage) pqQrImage.removeAttribute('src');
+        if (btnCopyPaymentQr) btnCopyPaymentQr.classList.add('hidden');
+        currentPaymentQrOrderId = null;
+      }
+
+      function renderPaymentQr(method) {
+        if (!method || !currentPaymentQrOrderId) {
+          if (pqQrWrap) pqQrWrap.classList.add('hidden');
+          if (btnCopyPaymentQr) btnCopyPaymentQr.classList.add('hidden');
+          return;
+        }
+        var d = oppPaymentOrders[currentPaymentQrOrderId];
+        if (!d) return;
+        var meta = payMethodMeta[method];
+        var payload = buildPaymentPayload(method, d.orderNo, d.amount);
+        if (pqQrLabel) pqQrLabel.textContent = meta.label;
+        if (pqQrHint) pqQrHint.textContent = meta.hint;
+        if (pqQrImage) pqQrImage.src = buildQrImageUrl(payload, meta.color);
+        if (pqQrWrap) pqQrWrap.classList.remove('hidden');
+        if (btnCopyPaymentQr) btnCopyPaymentQr.classList.remove('hidden');
+      }
+
+      function openPaymentQrModal(orderId) {
+        var d = oppPaymentOrders[orderId];
+        if (!d || !paymentQrModal) return;
+        currentPaymentQrOrderId = orderId;
+        var pqOrderNo = document.getElementById('pq-order-no');
+        var pqOrderAmount = document.getElementById('pq-order-amount');
+        if (pqOrderNo) pqOrderNo.textContent = d.orderNo;
+        if (pqOrderAmount) pqOrderAmount.textContent = '¥' + d.amount;
+        if (pqPayMethod) pqPayMethod.value = '';
+        if (pqQrWrap) pqQrWrap.classList.add('hidden');
+        if (pqQrImage) pqQrImage.removeAttribute('src');
+        if (btnCopyPaymentQr) btnCopyPaymentQr.classList.add('hidden');
+        paymentQrModal.classList.remove('hidden');
+        paymentQrModal.classList.add('flex');
+        paymentQrModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closePaymentQrModal() {
+        if (!paymentQrModal) return;
+        paymentQrModal.classList.add('hidden');
+        paymentQrModal.classList.remove('flex');
+        paymentQrModal.setAttribute('aria-hidden', 'true');
+        resetPaymentQrPreview();
+      }
+
+      document.querySelectorAll('.js-send-payment-qr').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openPaymentQrModal(btn.getAttribute('data-order-id'));
+        });
+      });
+
+      if (pqPayMethod) {
+        pqPayMethod.addEventListener('change', function () {
+          renderPaymentQr(pqPayMethod.value);
+        });
+      }
+      if (paymentQrModal) {
+        paymentQrModal.querySelectorAll('.payment-qr-close, [data-close-payment-qr]').forEach(function (el) {
+          el.addEventListener('click', closePaymentQrModal);
+        });
+      }
+      if (btnCopyPaymentQr) {
+        btnCopyPaymentQr.addEventListener('click', function () {
+          if (!pqQrImage || !pqQrImage.src) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(pqQrImage.src).then(function () { showOppToast('收款码链接已复制'); }).catch(function () { showOppToast('收款码链接已复制'); });
+          } else {
+            showOppToast('收款码链接已复制');
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (!modalFollow.classList.contains('hidden')) hideFollowModal();
+        if (!modalSupplement.classList.contains('hidden')) hideSupplementModal();
+        if (paymentQrModal && !paymentQrModal.classList.contains('hidden')) closePaymentQrModal();
+      });
+    })();
+  </script>
+  <script src="./assets/app-shell.js"></script>
+</body>
+</html>

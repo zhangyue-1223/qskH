@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
 
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
@@ -17,7 +19,7 @@
     #modal-dict-add:not(.hidden), #modal-dict-delete:not(.hidden) { display: flex; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -28,26 +30,38 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white">
             <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
-          </div>
-        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -56,31 +70,20 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
+
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
-          </div>
-        </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">用款申请</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">财务报表</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪酬管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
           </div>
         </details>
         <details class="mx-3 mb-1 group" open>
@@ -90,9 +93,8 @@
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -119,9 +121,11 @@
       <section class="p-4 sm:p-6">
         <div class="text-sm text-slate-500 mb-3">系统管理 / 字典管理</div>
         <div class="rounded-xl border border-slate-200 bg-white shadow-sm min-h-[calc(100vh-8.5rem)] flex">
-          <div class="w-32 shrink-0 border-r border-slate-200 p-2 space-y-1 text-sm">
+          <div class="w-36 shrink-0 border-r border-slate-200 p-2 space-y-1 text-sm">
             <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap dict-menu-active" data-menu="contract">合同设置</button>
             <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="project">项目设置</button>
+            <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="gov-material">政务资料设置</button>
+            <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="tax-material">税务资料设置</button>
             <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="customer">客户设置</button>
             <button type="button" class="w-full text-left rounded px-3 py-2 whitespace-nowrap hover:bg-slate-50" data-menu="approval">审批设置</button>
           </div>
@@ -196,6 +200,14 @@
             { key: 'value', label: '增值服务', btn: '新增项目' }
           ]
         },
+        'gov-material': {
+          standalone: true,
+          tabs: [{ key: 'list', label: '', btn: '新增资料' }]
+        },
+        'tax-material': {
+          standalone: true,
+          tabs: [{ key: 'list', label: '', btn: '新增资料' }]
+        },
         customer: {
           tabs: [
             { key: 'industry', label: '行业类别', btn: '新增类别' },
@@ -210,8 +222,14 @@
       };
 
       function renderTabs() {
-        var tabs = config[state.menu].tabs;
+        var menuCfg = config[state.menu];
+        var tabs = menuCfg.tabs;
         if (!tabs.some(function (t) { return t.key === state.tab; })) state.tab = tabs[0].key;
+        if (menuCfg.standalone) {
+          tabsWrap.innerHTML = '';
+          addBtn.textContent = tabs[0].btn || '新增资料';
+          return;
+        }
         tabsWrap.innerHTML = '';
         tabs.forEach(function (t) {
           var b = document.createElement('button');
@@ -246,6 +264,24 @@
           html = '<table class="w-full min-w-[860px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">服务大类</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">产品名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">对外报价</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">内部提成</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
             '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">工商</td><td class="px-3 py-3 border-b border-slate-100">公司注册(小规模)</td><td class="px-3 py-3 border-b border-slate-100">500.00元/个</td><td class="px-3 py-3 border-b border-slate-100">200.00元/个</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
             '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">社保</td><td class="px-3 py-3 border-b border-slate-100">社保补缴</td><td class="px-3 py-3 border-b border-slate-100">2000.00元/个</td><td class="px-3 py-3 border-b border-slate-100">500.00元/个</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
+            '</tbody></table>';
+        } else if (state.menu === 'gov-material' || state.menu === 'tax-material') {
+          var materialRows = state.menu === 'gov-material'
+            ? [
+              { name: '营业执照正副本', required: '是' },
+              { name: '法人身份证', required: '是' },
+              { name: '公司章程', required: '否' }
+            ]
+            : [
+              { name: '税务登记证', required: '是' },
+              { name: '开户许可证', required: '是' },
+              { name: '电子税务局账号信息', required: '是' }
+            ];
+          html = '<table class="w-full min-w-[820px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">资料名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">是否必填</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">创建时间</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
+            materialRows.map(function (row, i) {
+              var no = (i + 1 < 10 ? '0' : '') + (i + 1);
+              return '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">' + no + '</td><td class="px-3 py-3 border-b border-slate-100">' + row.name + '</td><td class="px-3 py-3 border-b border-slate-100">' + row.required + '</td><td class="px-3 py-3 border-b border-slate-100">2026-04-24 11:23:23</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>';
+            }).join('') +
             '</tbody></table>';
         } else if (state.menu === 'customer') {
           var tabTitle = { industry: '行业类别', form: '企业形式', nature: '企业性质', source: '来源渠道' }[state.tab];
@@ -290,11 +326,17 @@
           fields =
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">合同名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入合同名称"></div>' +
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">模板文件 <span class="text-red-500">*</span></label><button type="button" class="h-10 rounded border border-dashed border-sky-300 bg-sky-50 text-blue-600 text-sm"><i class="fa-solid fa-circle-plus mr-2"></i>上传模板</button></div>';
+        } else if (state.menu === 'gov-material' || state.menu === 'tax-material') {
+          title = '新增资料';
+          fields =
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">资料名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入资料名称"></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">是否必填 <span class="text-red-500">*</span></label><div class="flex gap-16"><label class="inline-flex items-center gap-2"><input type="radio" name="material-required" checked>是</label><label class="inline-flex items-center gap-2"><input type="radio" name="material-required">否</label></div></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-start gap-3"><label class="text-right text-slate-600 pt-2">备注</label><textarea rows="3" class="rounded border border-slate-200 px-3 py-2" placeholder="输入备注说明"></textarea></div>';
         } else if (state.menu === 'project') {
           title = '新增项目';
           fields =
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">项目名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入项目名称"></div>' +
-            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">项目类型 <span class="text-red-500">*</span></label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">' + (state.tab === 'agency' ? '代理记账' : '增值服务') + '<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">项目类型 <span class="text-red-500">*</span></label><button type="button" class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-3 text-left flex items-center justify-between">' + (state.tab === 'agency' ? '代理记账' : '增值服务') + '<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">标准价</label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入价格"></div>' +
             '<div class="grid grid-cols-[100px_1fr] items-start gap-3"><label class="text-right text-slate-600 pt-2">说明</label><textarea rows="3" class="rounded border border-slate-200 px-3 py-2" placeholder="输入说明"></textarea></div>';
         } else if (state.menu === 'customer') {
@@ -304,9 +346,9 @@
           title = '新增审批';
           fields =
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">审批名称</label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入审批名称"></div>' +
-            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">初审批人</label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
-            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">复审批人</label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
-            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">抄送人</label><button type="button" class="h-9 rounded border border-slate-200 bg-white px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>';
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">初审批人</label><button type="button" class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">复审批人</label><button type="button" class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>' +
+            '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">抄送人</label><button type="button" class="h-9 rounded-md border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer px-3 text-left flex items-center justify-between">请选择<i class="fa-solid fa-angle-down text-xs text-slate-400"></i></button></div>';
         }
         addTitle.textContent = title;
         addFields.innerHTML = fields;

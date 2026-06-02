@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -6,31 +6,41 @@
   <title>客户详情 - 企税康协同工作平台</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
-    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-    .tab-active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
-    .step::after { content: ""; position: absolute; left: 10px; right: -10px; top: 9px; height: 2px; background: #dbe2ea; z-index: 0; }
-    .step:last-child::after { display: none; }
-    .service-card { border-bottom: 1px solid #e2e8f0; padding-bottom: 22px; margin-bottom: 22px; }
-    .service-card:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-    .service-title { font-size: 19px; line-height: 1.35; font-weight: 700; color: #0f172a; }
-    .service-link { font-size: 15px; line-height: 1.35; color: #2563eb; }
-    .service-meta { font-size: 15px; line-height: 1.85; color: #334155; }
-    .service-meta .k { color: #64748b; margin-right: 4px; }
-    .timeline-item { position: relative; padding-left: 28px; padding-bottom: 22px; }
-    .timeline-item::before { content: ""; position: absolute; left: 5px; top: 16px; bottom: -6px; width: 2px; background: #cbd5e1; }
-    .timeline-item:last-child::before { display: none; }
-    .timeline-dot { position: absolute; left: 0; top: 4px; width: 12px; height: 12px; border-radius: 9999px; z-index: 1; }
-    .timeline-title { font-size: 16px; line-height: 1.8; color: #1e293b; }
-    .timeline-time { margin-top: 6px; font-size: 14px; color: #94a3b8; }
-    .info-section-title { font-size: 16px; line-height: 1.4; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
-    .info-grid { font-size: 14px; line-height: 1.7; color: #334155; }
-    .info-grid .k { color: #64748b; }
+    #modal-supplement:not(.hidden) { display: flex; }
+    .customer-detail-page { width: 100%; max-width: none; }
+    .customer-detail-page .detail-content-inner { width: 100%; max-width: none; }
+    .svc-phase { font-size: 0.8125rem; color: #64748b; line-height: 1.6; }
+    .svc-phase .done { color: #64748b; }
+    .svc-phase .current { color: #2563eb; font-weight: 600; background: #eff6ff; padding: 0.1rem 0.4rem; border-radius: 0.25rem; }
+    .svc-handlers { font-size: 0.8125rem; color: #475569; line-height: 1.75; }
+    .svc-handlers span + span::before { content: "；"; color: #cbd5e1; }
+    .profile-block { border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #fff; overflow: hidden; }
+    .profile-block + .profile-block { margin-top: 1rem; }
+    .profile-block-hd { display: flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid #f1f5f9; background: #fafbfc; }
+    .profile-block-hd i { color: #2563eb; width: 1rem; text-align: center; }
+    .profile-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.875rem 1.5rem; padding: 1.25rem; }
+    @media (min-width: 768px) { .profile-dl { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1280px) { .profile-dl { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .profile-dl .full { grid-column: 1 / -1; }
+    .profile-dl dt { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.125rem; }
+    .profile-dl dd { font-size: 0.875rem; color: #1e293b; margin: 0; }
+    .attach-tile { aspect-ratio: 4/3; border-radius: 0.5rem; border: 1px dashed #cbd5e1; background: #f8fafc; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; color: #94a3b8; transition: border-color 0.15s, background 0.15s; }
+    .attach-tile:hover { border-color: #93c5fd; background: #eff6ff; color: #3b82f6; }
+    .field-label { font-size: 12px; color: #334155; margin-bottom: 4px; display: block; }
+    .field-input { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; font-size: 12px; color: #0f172a; }
+    .field-input::placeholder, .field-textarea::placeholder { color: #94a3b8; }
+    .field-textarea { width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px 10px; font-size: 12px; color: #0f172a; resize: vertical; min-height: 68px; }
+    .upload-card { height: 86px; border: 1px solid #dbeafe; border-radius: 4px; background: #f0f7ff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #0ea5e9; font-size: 11px; cursor: pointer; }
+    .entity-type-box { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; display: flex; align-items: center; gap: 16px; font-size: 12px; }
+    .entity-type-box label { display: inline-flex; align-items: center; gap: 6px; color: #475569; cursor: pointer; }
+    .shareholder-block + .shareholder-block { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -41,26 +51,38 @@
       </div>
       <nav class="flex-1 py-4 text-sm overflow-y-auto">
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
         <details class="mx-3 mb-1 group" open>
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
             <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="customer-management.html">客户管理</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
-          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
-          </summary>
-          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
-          </div>
-        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -69,347 +91,376 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
           </div>
         </details>
-        <details class="mx-3 mb-1 group">
+
+                <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>交付中心</span>
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账客户</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="#">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
           </div>
         </details>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
-        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-wallet w-5 mr-2"></i>财务管理</a>
-        <details class="mx-3 mb-1 group">
+<details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">部门员工</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="approval-center.html">审批中心</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
     </aside>
 
     <main class="flex-1 flex flex-col min-w-0 w-full">
-      <header class="h-12 bg-white border-b border-slate-200 px-4 flex items-center gap-2 lg:hidden shrink-0">
-        <button type="button" id="btn-sidebar-toggle" class="shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <span class="text-sm font-medium text-slate-700 truncate">客户详情</span>
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">销售中心 / <span class="text-slate-700 font-medium">客户详情</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200" aria-label="通知"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 hidden sm:block">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业管理员</p>
+            </div>
+          </div>
+        </div>
       </header>
-      <div class="flex-1 p-3 sm:p-4 overflow-auto min-h-0">
-      <div class="rounded-xl border border-slate-200 bg-white px-4 py-4">
-        <a href="customer-management.html" class="text-xs text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>客户详情</a>
 
-        <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-8 border-b border-slate-200 pb-5">
-          <div class="step relative">
-            <span class="relative z-10 inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-[11px] text-white"><i class="fa-solid fa-check"></i></span>
-            <p class="mt-3 text-sm text-slate-700">线索完成</p><p class="text-xs text-slate-400">2026-04-10 17:23</p>
+      <section class="customer-detail-page px-4 py-4 sm:px-5 lg:px-6 flex-1 pb-24">
+        <div class="text-sm text-slate-500 mb-3">销售中心 / <a href="customer-management.html" class="hover:text-slate-700">客户管理</a> / <span class="text-slate-700">客户详情</span></div>
+
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden w-full">
+          <div class="px-5 py-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+            <a href="customer-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>返回列表</a>
           </div>
-          <div class="step relative">
-            <span class="relative z-10 inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-[11px] text-white"><i class="fa-solid fa-check"></i></span>
-            <p class="mt-3 text-sm text-slate-700">合同签署</p><p class="text-xs text-slate-400">2026-04-10 17:23</p>
-          </div>
-          <div class="step relative">
-            <span class="relative z-10 inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-[11px] text-white"><i class="fa-solid fa-check"></i></span>
-            <p class="mt-3 text-sm text-slate-700">支付完成</p><p class="text-xs text-slate-400">2026-04-10 17:23</p>
-          </div>
-          <div class="step relative">
-            <span class="relative z-10 inline-flex h-5 w-5 items-center justify-center rounded-full bg-sky-500 text-[11px] text-white"><i class="fa-solid fa-check"></i></span>
-            <p class="mt-3 text-sm text-slate-700">服务一</p><p class="text-xs text-slate-400">2026-04-10 17:23</p>
-          </div>
-          <div class="step relative">
-            <span class="relative z-10 inline-flex h-5 w-5 items-center justify-center rounded-full bg-slate-200 text-[11px] text-slate-500"><i class="fa-solid fa-clock"></i></span>
-            <p class="mt-3 text-sm text-slate-700">合同待签署</p><p class="text-xs text-slate-400">2027-04-10 17:23</p>
-          </div>
-        </div>
 
-        <div class="mt-4 grid grid-cols-12 gap-4">
-          <div class="col-span-12 xl:col-span-7">
-            <div class="border-b border-slate-200 flex items-center justify-between">
-              <div id="left-tabs" class="flex gap-8 text-sm">
-                <button class="pb-3 border-b-2 tab-active" data-tab="service">服务详情</button>
-                <button class="pb-3 border-b-2 border-transparent text-slate-500" data-tab="maintain">客户维护记录</button>
-                <button class="pb-3 border-b-2 border-transparent text-slate-500" data-tab="follow">销售跟进记录</button>
-              </div>
-              <button id="btn-add-maintain" class="hidden h-9 rounded bg-blue-600 px-4 text-sm text-white">+ 添加维护</button>
-            </div>
-
-            <div id="panel-service" class="pt-5">
-              <div class="service-card border-l-[3px] border-cyan-500 pl-3">
-                <div class="flex items-center justify-between">
-                  <p class="service-title">代理记账</p>
-                  <a href="#" class="service-link hover:underline">查看合同</a>
-                </div>
-                <div class="service-meta mt-4 grid grid-cols-2 gap-x-9 gap-y-3">
-                  <p><span class="k">服务套餐:</span>小规模A；800/年</p>
-                  <p><span class="k">服务开始日期:</span>2026年04月10日</p>
-                  <p><span class="k">记账开始月份:</span>2026年5月</p>
-                  <p><span class="k">服务截止日期:</span>2027年03月31日</p>
-                  <p><span class="k">主办会计:</span>杨扬杨</p>
-                  <p><span class="k">时税顾问:</span>周周周</p>
-                  <p><span class="k">销售负责人:</span>周方林</p>
-                  <p><span class="k">办理状态:</span>办理中</p>
+          <div class="px-5 py-4 border-b border-slate-100">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div class="min-w-0 flex-1">
+                <h1 id="customer-name" class="text-lg font-semibold text-slate-800 mb-1">苏州八识天科技有限公司</h1>
+                <div class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-slate-600">
+                  <span><i class="fa-regular fa-user text-slate-400 mr-1.5"></i>联系人：<span id="customer-contact">彭丽丽</span></span>
+                  <span><i class="fa-solid fa-phone text-slate-400 mr-1.5"></i><span id="customer-phone">13616201733</span></span>
+                  <span><i class="fa-solid fa-user-tie text-slate-400 mr-1.5"></i>销售顾问：<span id="customer-sales">周方林 · 网销一组</span></span>
                 </div>
               </div>
-
-              <div class="service-card border-l-[3px] border-cyan-500 pl-3">
-                <div class="flex items-center justify-between">
-                  <p class="service-title">注册地址</p>
-                  <a href="#" class="service-link hover:underline">查看合同</a>
-                </div>
-                <div class="service-meta mt-4 grid grid-cols-2 gap-x-9 gap-y-3">
-                  <p><span class="k">服务套餐:</span>提供企业注册地址</p>
-                  <p><span class="k">租赁使用时长:</span>一年</p>
-                  <p><span class="k">工单交接人:</span>小受</p>
-                  <p><span class="k">租赁截止日期:</span>2027年03月31日</p>
-                  <p><span class="k">销售负责人:</span>周方林</p>
-                  <p><span class="k">办理状态:</span>办理中</p>
-                </div>
-              </div>
-
-              <div class="service-card border-l-[3px] border-cyan-500 pl-3">
-                <div class="flex items-center justify-between">
-                  <p class="service-title">增值服务</p>
-                  <a href="#" class="service-link hover:underline">查看合同</a>
-                </div>
-                <div class="service-meta mt-4 grid grid-cols-2 gap-x-9 gap-y-3">
-                  <p><span class="k">服务类型:</span>公司注册</p>
-                  <p><span class="k">服务开始日期:</span>2026年04月10日</p>
-                  <p><span class="k">办理状态:</span>办理中</p>
-                  <p><span class="k">销售负责人:</span>周方林</p>
-                  <p><span class="k">工单负责人:</span>许悦</p>
-                </div>
-              </div>
-            </div>
-
-            <div id="panel-maintain" class="hidden pt-5 space-y-3">
-              <div class="timeline-item">
-                <span class="timeline-dot bg-sky-500"></span>
-                <p class="timeline-title">资料归档：营业执照副本扫描件已归档至客户档案</p>
-                <p class="timeline-time">2026-04-11 09:30 · 维护人：王乔</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-sky-500"></span>
-                <p class="timeline-title">联系方式：法定代表人联系方式变更，已同步至 CRM</p>
-                <p class="timeline-time">2026-04-09 14:20 · 维护人：王乔</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-sky-500"></span>
-                <p class="timeline-title">年检提醒：已发送次年工商年报提醒短信（系统）</p>
-                <p class="timeline-time">2026-04-08 10:00 · 维护人：系统</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-sky-500"></span>
-                <p class="timeline-title">开户协助：预约银行开户时间并通知客户携带资料清单</p>
-                <p class="timeline-time">2026-04-07 16:45 · 维护人：李悦</p>
-              </div>
-            </div>
-
-            <div id="panel-follow" class="hidden pt-5 space-y-3">
-              <div class="timeline-item">
-                <span class="timeline-dot bg-lime-500"></span>
-                <p class="timeline-title">订单已支付</p>
-                <p class="timeline-time">2026-04-10 17:23</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-lime-500"></span>
-                <p class="timeline-title">合同已签约</p>
-                <p class="timeline-time">2026-04-09 17:23</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-lime-500"></span>
-                <p class="timeline-title">这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明</p>
-                <p class="timeline-time">2026-04-08 17:23</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-sky-500"></span>
-                <p class="timeline-title">发运报价单 <button type="button" class="js-open-quote text-blue-600 hover:underline">查看报价单</button></p>
-                <p class="timeline-time">2026-04-09 17:23</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-sky-500"></span>
-                <p class="timeline-title">查看更多</p>
-                <p class="timeline-time">2026-04-07 17:23</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-lime-500"></span>
-                <p class="timeline-title">这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明这是跟进说明</p>
-                <p class="timeline-time">2026-04-07 17:23</p>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-dot bg-lime-500"></span>
-                <p class="timeline-title">周方林确认跟进</p>
-                <p class="timeline-time">2026-04-07 13:23</p>
+              <div class="flex flex-wrap gap-2 shrink-0">
+                <span class="inline-flex items-center gap-1 rounded-md bg-white border border-slate-200 px-2.5 py-1 text-xs text-slate-600"><i class="fa-solid fa-file-contract text-blue-500"></i>合同 <span id="customer-contract-count">3</span> 份</span>
               </div>
             </div>
           </div>
 
-          <div class="col-span-12 xl:col-span-5">
-            <div class="flex justify-between items-center mb-2">
-              <h3 class="info-section-title mb-0">基本信息</h3>
-              <a href="customer-edit.html?id=cust-1" class="text-sm text-blue-600 hover:underline">编辑信息</a>
-            </div>
-            <div class="info-grid grid grid-cols-4 gap-y-1.5">
-              <p class="k">客户姓名</p><p>李先生</p><p class="k">手机号码</p><p>1890008787</p>
-              <p class="k">所属区域</p><p>苏州园区</p><p class="k">行业类别</p><p>商业贸易</p>
-              <p class="k">企业类型</p><p>一般纳税人</p><p class="k">来源渠道</p><p>小红书</p>
-              <p class="k">备注说明</p><p class="col-span-3">24年7月注册，现有代账服务不佳，拟换代账公司，这是备注说明这是备注说明这是备注说明这是备注说明。</p>
-              <p class="k">客户画像</p><p class="col-span-3 text-blue-600">价格敏感型　需求性价比　发展潜力型　财务规范公司</p>
-            </div>
-            <div class="mt-3 border-t border-slate-100 pt-3">
-              <h3 class="info-section-title">工商信息</h3>
-              <div class="info-grid grid grid-cols-4 gap-y-1.5">
-                <p class="k">公司名称</p><p>苏州八识天科技有限公司</p><p class="k"></p><p></p>
-                <p class="k">法定代表人</p><p>彭丽丽</p><p class="k">联系方式</p><p>13616201733</p>
-                <p class="k">股占比</p><p>100%</p><p class="k">身份证号</p><p>5106031978xxxx2221</p>
-                <p class="k">内部财务</p><p>彭丽丽</p><p class="k">联系电话</p><p>13616201733</p>
-                <p class="k">身份证号码</p><p>5106031978xxxx2221</p><p class="k"></p><p></p>
-                <p class="k">注册资本</p><p>10万</p><p class="k">注册地址</p><p>挂靠苏州工业园区</p>
-                <p class="k">经营范围</p><p class="col-span-3">这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围。</p>
+          <div class="detail-content-inner p-4 sm:p-5 lg:p-6 min-w-0">
+              <div class="border-b border-slate-200 mb-5">
+                <div id="left-tabs" class="flex flex-wrap gap-6 sm:gap-8">
+                  <button type="button" class="detail-tab tab-active" data-tab="service">服务详情</button>
+                  <button type="button" class="detail-tab" data-tab="profile">客户档案</button>
+                </div>
               </div>
-            </div>
-            <div class="mt-3 border-t border-slate-100 pt-3">
-              <h3 class="info-section-title">其他信息</h3>
-              <div class="grid grid-cols-5 gap-3">
-                <p class="info-grid k pt-1">身份证</p>
-                <div class="col-span-2 h-24 rounded bg-slate-200"></div>
-                <div class="col-span-2 h-24 rounded bg-slate-200"></div>
-                <p class="info-grid k pt-1">营业执照</p>
-                <div class="col-span-2 h-24 rounded bg-slate-200"></div>
-                <div class="col-span-2"></div>
+
+              <div id="panel-service" class="space-y-3">
+                <div class="service-card">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+                      <h3 class="text-sm font-semibold text-slate-800">代理记账</h3>
+                      <span class="text-xs text-amber-700">办理中</span>
+                      <span class="text-xs text-slate-400">· 代账服务部 · HT20260410001</span>
+                    </div>
+                    <a href="contract-management.html" class="text-sm text-blue-600 hover:text-blue-700 shrink-0">查看合同</a>
+                  </div>
+                  <p class="svc-phase mb-3">
+                    <span class="text-slate-500">服务进程：</span>
+                    <span class="done">签约</span>、<span class="done">资料交接</span>、<span class="done">建账</span> →
+                    <span class="current">日常记账</span>
+                  </p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-sm mb-3">
+                    <p><span class="text-slate-500">服务套餐：</span><span class="text-slate-800">小规模A · 800元/年</span></p>
+                    <p><span class="text-slate-500">收费截止月份：</span><span class="text-slate-800">2027年05月</span></p>
+                    <p><span class="text-slate-500">记账开始月份：</span><span class="text-slate-800">2026年5月</span></p>
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">服务部门对接人</p>
+                  <p class="svc-handlers">
+                    <span>主办会计 杨扬杨</span>
+                    <span>开票员 周芳林</span>
+                    <span>财税顾问 周周周</span>
+                    <span>销售顾问 周方林</span>
+                  </p>
+                </div>
+
+                <div class="service-card">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+                      <h3 class="text-sm font-semibold text-slate-800">注册地址</h3>
+                      <span class="text-xs text-amber-700">办理中</span>
+                      <span class="text-xs text-slate-400">· 地址服务部 · HT20260410002</span>
+                    </div>
+                    <a href="contract-management.html" class="text-sm text-blue-600 hover:text-blue-700 shrink-0">查看合同</a>
+                  </div>
+                  <p class="svc-phase mb-3">
+                    <span class="text-slate-500">服务进程：</span>
+                    <span class="done">签约</span> →
+                    <span class="current">地址挂靠</span>
+                  </p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-sm mb-3">
+                    <p><span class="text-slate-500">租赁时长：</span><span class="text-slate-800">一年</span></p>
+                    <p><span class="text-slate-500">租赁截止：</span><span class="text-slate-800">2027年03月31日</span></p>
+                    <p><span class="text-slate-500">挂靠地址：</span><span class="text-slate-800">苏州工业园区</span></p>
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">服务部门对接人</p>
+                  <p class="svc-handlers">
+                    <span>地址经办人 小受</span>
+                    <span>销售顾问 周方林</span>
+                  </p>
+                </div>
+
+                <div class="service-card">
+                  <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+                      <h3 class="text-sm font-semibold text-slate-800">增值服务 · 公司注册</h3>
+                      <span class="text-xs text-emerald-700">服务中</span>
+                      <span class="text-xs text-slate-400">· 工商政务部 · HT20260410003</span>
+                    </div>
+                    <a href="contract-management.html" class="text-sm text-blue-600 hover:text-blue-700 shrink-0">查看合同</a>
+                  </div>
+                  <p class="svc-phase mb-3">
+                    <span class="text-slate-500">服务进程：</span>
+                    <span class="done">签约</span> →
+                    <span class="current">工商注册</span>
+                  </p>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-sm mb-3">
+                    <p><span class="text-slate-500">签订日期：</span><span class="text-slate-800">2026年04月10日</span></p>
+                    <p><span class="text-slate-500">预计完成：</span><span class="text-slate-800">2026年05月15日</span></p>
+                    <p><span class="text-slate-500">服务类型：</span><span class="text-slate-800">公司注册</span></p>
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">服务部门对接人</p>
+                  <p class="svc-handlers">
+                    <span>线上申报员 许悦</span>
+                    <span>线下提报员 徐月</span>
+                    <span>销售顾问 周方林</span>
+                  </p>
+                </div>
               </div>
+
+              <div id="panel-profile" class="hidden">
+                <div class="profile-block">
+                  <div class="profile-block-hd">
+                    <i class="fa-solid fa-receipt"></i>
+                    <h3 class="text-sm font-semibold text-slate-800">税务信息</h3>
+                  </div>
+                  <dl class="profile-dl">
+                    <div><dt>企业名称</dt><dd data-sync-company>苏州八识天科技有限公司</dd></div>
+                    <div><dt>统一社会信用代码</dt><dd>91320508MA1W****8X</dd></div>
+                    <div><dt>税务类型</dt><dd>一般纳税人</dd></div>
+                    <div><dt>企业类型</dt><dd>有限责任公司</dd></div>
+                    <div><dt>个税系统账号</dt><dd>tax_szbs_01</dd></div>
+                    <div><dt>工商年报登录方式</dt><dd>电子证照</dd></div>
+                    <div><dt>社保登录账号</dt><dd>sb_szbs_01</dd></div>
+                    <div><dt>公积金登录账号</dt><dd>gjj_szbs_01</dd></div>
+                    <div class="full"><dt>客户备注</dt><dd class="leading-relaxed">客户对资料规范要求高，需在合同签署前完成资料交接与系统账号核验。</dd></div>
+                  </dl>
+                </div>
+
+                <div class="profile-block">
+                  <div class="profile-block-hd">
+                    <i class="fa-solid fa-building"></i>
+                    <h3 class="text-sm font-semibold text-slate-800">工商信息</h3>
+                  </div>
+                  <dl class="profile-dl">
+                    <div class="full"><dt>公司名称</dt><dd class="font-medium" data-sync-company>苏州八识天科技有限公司</dd></div>
+                    <div><dt>法定代表人</dt><dd>彭丽丽</dd></div>
+                    <div><dt>联系电话</dt><dd>13616201733</dd></div>
+                    <div><dt>股份占比</dt><dd>100%</dd></div>
+                    <div><dt>身份证号码</dt><dd>5106031978xxxx2221</dd></div>
+                    <div><dt>内部财务</dt><dd>彭丽丽</dd></div>
+                    <div><dt>财务联系电话</dt><dd>13616201733</dd></div>
+                    <div><dt>注册资本（万）</dt><dd>10</dd></div>
+                    <div><dt>注册地址</dt><dd>挂靠苏州工业园区</dd></div>
+                    <div class="full"><dt>经营范围</dt><dd class="leading-relaxed rounded-lg border border-slate-100 bg-slate-50/80 p-3 mt-0.5">这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围。</dd></div>
+                  </dl>
+                </div>
+
+                <div class="profile-block">
+                  <div class="profile-block-hd">
+                    <i class="fa-regular fa-images"></i>
+                    <h3 class="text-sm font-semibold text-slate-800">附件资料</h3>
+                    <span class="ml-auto text-xs text-slate-400">共 3 项</span>
+                  </div>
+                  <div class="p-4 sm:p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <button type="button" class="attach-tile cursor-pointer"><i class="fa-regular fa-id-card mb-2 text-xl"></i>身份证正面</button>
+                    <button type="button" class="attach-tile cursor-pointer"><i class="fa-regular fa-id-card mb-2 text-xl"></i>身份证反面</button>
+                    <button type="button" class="attach-tile cursor-pointer"><i class="fa-regular fa-file-image mb-2 text-xl"></i>营业执照</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="sticky bottom-0 z-10 flex flex-wrap items-center justify-start gap-3 border-t border-slate-200 bg-white px-5 py-3.5">
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" class="h-9 px-4 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700">新建合同</button>
+              <button type="button" id="btn-open-supplement" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">补充客户信息</button>
             </div>
           </div>
         </div>
-      </div>
-      </div>
+      </section>
     </main>
   </div>
 
-  <div id="modal-quote-preview" class="fixed inset-0 z-[110] hidden">
-    <div class="absolute inset-0 bg-slate-900/40" data-close="quote"></div>
-    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
-      <div class="pointer-events-auto w-full max-w-3xl rounded-lg border border-slate-200 bg-white shadow-xl">
-        <div class="relative border-b border-slate-100 px-6 py-4">
-          <h3 class="text-center text-lg font-semibold text-slate-800">报价单预览</h3>
-          <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close="quote"><i class="fa-solid fa-xmark text-lg"></i></button>
+  <div id="modal-supplement" class="fixed inset-0 z-[110] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close="supplement"></div>
+    <div class="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-xl" role="dialog">
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-4">
+        <h2 class="text-base font-medium text-slate-800">补充客户信息</h2>
+        <button type="button" class="text-slate-400 hover:text-slate-600" data-close="supplement" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-4 text-sm">
+        <div class="mb-4 flex flex-wrap gap-6 border-b border-slate-200" id="supplement-tabs">
+          <button type="button" data-tab="tax" class="supp-tab border-b-2 border-blue-600 pb-2 text-sm font-medium text-blue-600">税务信息</button>
+          <button type="button" data-tab="industry" class="supp-tab border-b-2 border-transparent pb-2 text-sm text-slate-500 hover:text-slate-700">工商信息</button>
         </div>
-        <div class="px-6 py-5 text-sm text-slate-700 space-y-4 max-h-[70vh] overflow-y-auto">
-          <div class="grid grid-cols-3 gap-4">
-            <p><span class="text-slate-500">客户名称：</span>苏州八识天科技有限公司</p>
-            <p><span class="text-slate-500">报价单号：</span>BJ20260409001</p>
-            <p><span class="text-slate-500">报价日期：</span>2026-04-09</p>
-          </div>
-          <div class="rounded border border-slate-200 overflow-hidden">
-            <table class="w-full text-sm">
-              <thead class="bg-slate-50 text-slate-600">
-                <tr>
-                  <th class="px-3 py-2 text-left border-b border-slate-200">项目</th>
-                  <th class="px-3 py-2 text-left border-b border-slate-200">规格</th>
-                  <th class="px-3 py-2 text-right border-b border-slate-200">金额（元）</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td class="px-3 py-2 border-b border-slate-100">代理记账</td><td class="px-3 py-2 border-b border-slate-100">小规模A/年</td><td class="px-3 py-2 border-b border-slate-100 text-right">800</td></tr>
-                <tr><td class="px-3 py-2 border-b border-slate-100">注册地址</td><td class="px-3 py-2 border-b border-slate-100">一年</td><td class="px-3 py-2 border-b border-slate-100 text-right">1200</td></tr>
-                <tr><td class="px-3 py-2">增值服务</td><td class="px-3 py-2">公司注册</td><td class="px-3 py-2 text-right">500</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="flex justify-end text-base font-semibold text-slate-800">合计：2500 元</div>
+        <div id="supp-panel-tax" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 企业名称</span><input type="text" data-sync-company value="苏州八识天科技有限公司" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+          <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 统一社会信用代码</span><input type="text" value="91320508MA1W****8X" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+          <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 税务类型</span><input type="text" value="一般纳税人" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+          <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 企业类型</span><input type="text" value="有限责任公司" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+          <label class="block"><span class="text-slate-600">个税系统账号</span><input type="text" value="tax_szbs_01" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+          <label class="block"><span class="text-slate-600">个税系统密码</span><input type="text" value="******" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+          <label class="block sm:col-span-2"><span class="text-slate-600">客户备注</span><textarea rows="3" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 resize-y">客户对资料规范要求高，需在合同签署前完成资料交接与系统账号核验。</textarea></label>
         </div>
-        <div class="border-t border-slate-100 py-4 flex justify-center gap-3">
-          <button type="button" class="h-9 px-8 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">下载报价单</button>
-          <button type="button" class="h-9 px-8 rounded border border-slate-200 bg-white text-sm text-slate-600" data-close="quote">关闭</button>
+        <div id="supp-panel-industry" class="hidden text-sm">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5">
+            <label><span class="field-label">公司名称</span><input type="text" class="field-input" data-sync-company value="苏州八识天科技有限公司"></label>
+            <label><span class="field-label">法定代表人</span><input type="text" class="field-input" value="彭丽丽"></label>
+            <label><span class="field-label">联系电话</span><input type="text" class="field-input" value="13616201733"></label>
+            <label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" value="100"></label>
+            <label><span class="field-label">身份证号码</span><input type="text" class="field-input" value="5106031978xxxx2221"></label>
+            <label><span class="field-label">注册资本（万）</span><input type="text" class="field-input" value="10"></label>
+            <label class="sm:col-span-3"><span class="field-label">注册地址</span><input type="text" class="field-input" value="挂靠苏州工业园区"></label>
+            <label class="sm:col-span-3"><span class="field-label">经营范围</span><textarea class="field-textarea" rows="3">这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围这是经营范围。</textarea></label>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div id="modal-add-maintain" class="fixed inset-0 z-[110] hidden">
-    <div class="absolute inset-0 bg-slate-900/40" data-close="maintain"></div>
-    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
-      <div class="pointer-events-auto w-full max-w-xl rounded-lg border border-slate-200 bg-white shadow-xl">
-        <div class="relative border-b border-slate-100 px-6 py-4">
-          <h3 class="text-center text-lg font-semibold text-slate-800">添加维护</h3>
-          <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close="maintain"><i class="fa-solid fa-xmark text-lg"></i></button>
-        </div>
-        <div class="px-6 py-5 space-y-4 text-sm">
-          <label class="block"><span class="text-slate-600">维护类型 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 rounded border border-slate-200 px-3"><option>资料归档</option><option>联系方式确认</option><option>年检提醒</option><option>开户协助</option></select></label>
-          <label class="block"><span class="text-slate-600">维护时间 <span class="text-red-500">*</span></span><input class="mt-1 w-full h-9 rounded border border-slate-200 px-3" value="2026-05-07 15:30"></label>
-          <label class="block"><span class="text-slate-600">维护内容 <span class="text-red-500">*</span></span><textarea rows="4" class="mt-1 w-full rounded border border-slate-200 px-3 py-2" placeholder="请输入维护内容"></textarea></label>
-        </div>
-        <div class="border-t border-slate-100 py-4 flex justify-center gap-3">
-          <button type="button" class="h-9 px-8 rounded bg-blue-600 text-white text-sm hover:bg-blue-700">确认添加</button>
-          <button type="button" class="h-9 px-8 rounded border border-slate-200 bg-white text-sm text-slate-600" data-close="maintain">取消</button>
-        </div>
+      <div class="sticky bottom-0 flex justify-center gap-3 border-t border-slate-100 bg-white px-6 py-4">
+        <button type="button" class="h-9 px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700">确认</button>
+        <button type="button" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50" data-close="supplement">取消</button>
       </div>
     </div>
   </div>
 
   <script>
     (function () {
+      function getCustomerId() {
+        var m = /[?&]id=([^&]+)/.exec(location.search);
+        return m ? decodeURIComponent(m[1]) : 'cust-1';
+      }
+
+      function customerFromList(name, contact, phone, sales) {
+        return {
+          name: name,
+          contact: contact,
+          phone: phone,
+          sales: sales + ' · 网销一组',
+          contractCount: '3'
+        };
+      }
+
+      var customers = {
+        'cust-1': customerFromList('苏州怡启尔科技有限公司', '秦总', '13876763515', '陈莉'),
+        'cust-2': customerFromList('南京实耐时科技有限公司', '王经理', '13876763515', '周方林'),
+        'cust-3': customerFromList('苏州怡启尔科技有限公司', '秦总', '13876763515', '陈莉'),
+        'cust-4': customerFromList('南京莱刻科技有限公司', '王经理', '13876763515', '周方林'),
+        'cust-5': customerFromList('苏州怡启尔科技有限公司', '秦总', '13876763515', '陈莉')
+      };
+
+      function applyCustomerProfile() {
+        var data = customers[getCustomerId()] || customers['cust-1'];
+        var nameEl = document.getElementById('customer-name');
+        var contactEl = document.getElementById('customer-contact');
+        var phoneEl = document.getElementById('customer-phone');
+        var salesEl = document.getElementById('customer-sales');
+        var countEl = document.getElementById('customer-contract-count');
+
+        if (nameEl) nameEl.textContent = data.name;
+        if (contactEl) contactEl.textContent = data.contact;
+        if (phoneEl) phoneEl.textContent = data.phone;
+        if (salesEl) salesEl.textContent = data.sales;
+        if (countEl) countEl.textContent = data.contractCount;
+
+        document.querySelectorAll('[data-sync-company]').forEach(function (el) {
+          if (el.tagName === 'INPUT') el.value = data.name;
+          else el.textContent = data.name;
+        });
+      }
+
+      applyCustomerProfile();
+
       var tabs = document.querySelectorAll('#left-tabs [data-tab]');
-      var addBtn = document.getElementById('btn-add-maintain');
+      var openSupplementBtn = document.getElementById('btn-open-supplement');
       var panels = {
         service: document.getElementById('panel-service'),
-        maintain: document.getElementById('panel-maintain'),
-        follow: document.getElementById('panel-follow')
+        profile: document.getElementById('panel-profile')
       };
       function switchTab(tab) {
         tabs.forEach(function (btn) {
           var on = btn.getAttribute('data-tab') === tab;
           btn.classList.toggle('tab-active', on);
-          btn.classList.toggle('text-slate-500', !on);
-          btn.classList.toggle('border-transparent', !on);
         });
-        Object.keys(panels).forEach(function (k) { panels[k].classList.toggle('hidden', k !== tab); });
-        addBtn.classList.toggle('hidden', tab !== 'maintain');
+        Object.keys(panels).forEach(function (k) {
+          if (panels[k]) panels[k].classList.toggle('hidden', k !== tab);
+        });
       }
       tabs.forEach(function (btn) {
         btn.addEventListener('click', function () { switchTab(btn.getAttribute('data-tab')); });
       });
       switchTab('service');
 
-      var quoteModal = document.getElementById('modal-quote-preview');
-      var maintainModal = document.getElementById('modal-add-maintain');
-      document.querySelectorAll('.js-open-quote').forEach(function (btn) {
-        btn.addEventListener('click', function () { quoteModal.classList.remove('hidden'); });
+      var supplementModal = document.getElementById('modal-supplement');
+      var supplementTabs = document.querySelectorAll('#supplement-tabs .supp-tab');
+      var suppTaxPanel = document.getElementById('supp-panel-tax');
+      var suppIndustryPanel = document.getElementById('supp-panel-industry');
+      function switchSupplementTab(tab) {
+        supplementTabs.forEach(function (btn) {
+          var on = btn.getAttribute('data-tab') === tab;
+          btn.classList.toggle('border-blue-600', on);
+          btn.classList.toggle('text-blue-600', on);
+          btn.classList.toggle('font-medium', on);
+          btn.classList.toggle('border-transparent', !on);
+          btn.classList.toggle('text-slate-500', !on);
+        });
+        if (suppTaxPanel) suppTaxPanel.classList.toggle('hidden', tab !== 'tax');
+        if (suppIndustryPanel) suppIndustryPanel.classList.toggle('hidden', tab !== 'industry');
+      }
+      if (openSupplementBtn && supplementModal) {
+        openSupplementBtn.addEventListener('click', function () {
+          supplementModal.classList.remove('hidden');
+          switchSupplementTab('tax');
+        });
+      }
+      document.querySelectorAll('[data-close="supplement"]').forEach(function (el) {
+        el.addEventListener('click', function () { supplementModal.classList.add('hidden'); });
       });
-      addBtn.addEventListener('click', function () {
-        maintainModal.classList.remove('hidden');
-      });
-      document.querySelectorAll('[data-close="quote"]').forEach(function (el) {
-        el.addEventListener('click', function () { quoteModal.classList.add('hidden'); });
-      });
-      document.querySelectorAll('[data-close="maintain"]').forEach(function (el) {
-        el.addEventListener('click', function () { maintainModal.classList.add('hidden'); });
+      supplementTabs.forEach(function (btn) {
+        btn.addEventListener('click', function () { switchSupplementTab(btn.getAttribute('data-tab')); });
       });
       document.addEventListener('keydown', function (e) {
         if (e.key !== 'Escape') return;
-        quoteModal.classList.add('hidden');
-        maintainModal.classList.add('hidden');
+        if (supplementModal) supplementModal.classList.add('hidden');
       });
+
     })();
   </script>
   <script src="./assets/app-shell.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-

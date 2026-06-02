@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -6,15 +6,17 @@
   <title>跟进日志详情 - 企税康协同工作平台</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-    .timeline-line { position: absolute; left: 17px; top: 38px; bottom: -82px; width: 1px; background: #d6deea; }
-    .timeline-icon { width: 35px; height: 35px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; }
+    .timeline-line { position: absolute; left: 17px; top: 38px; bottom: -24px; width: 1px; background: #d6deea; }
+    .timeline-icon { width: 35px; height: 35px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .timeline-step:last-child .timeline-line { display: none; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-700">
+<body class="bg-[#f5f7fa] text-slate-700">
   <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
   <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
     <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
@@ -27,24 +29,32 @@
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
         <details class="mx-3 mb-1 group" open>
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
             <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
           </div>
         </details>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
-            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售管理</span>
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
             <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
           </summary>
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
           </div>
         </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
         <details class="mx-3 mb-1 group">
           <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
@@ -53,7 +63,30 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="invoice-management.html">开票管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
           </div>
         </details>
       </nav>
@@ -62,8 +95,8 @@
     <main class="flex-1 flex flex-col min-w-0 w-full">
       <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2 min-w-0 flex-1">
-        <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
-        <div class="text-sm text-slate-500 min-w-0 truncate">客户中心 / <span class="text-slate-700 font-medium">线索管理</span></div>
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-expanded="false" aria-controls="app-sidebar" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">销售中心 / <span class="text-slate-700 font-medium">线索管理</span></div>
         </div>
         <div class="flex items-center gap-3 shrink-0">
           <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
@@ -78,18 +111,21 @@
       </header>
 
       <section class="p-4 sm:p-6 flex-1">
-        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden h-full min-h-[560px] flex flex-col">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden min-h-[560px] flex flex-col">
           <div class="px-5 py-3 border-b border-slate-200">
             <a href="lead-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>跟进日志</a>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 flex-1">
-            <div class="p-5 border-r border-slate-200">
-              <h3 class="text-base font-semibold text-slate-800 mb-1">跟进说明</h3>
-              <p class="text-xs text-slate-400 mb-4">按时间倒序展示关键节点与备注</p>
-              <div id="timeline" class="space-y-20"></div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 flex-1 min-h-0">
+            <!-- 左侧：跟进进度条 -->
+            <div class="p-5 lg:border-r border-slate-200 overflow-y-auto">
+              <h3 class="text-base font-semibold text-slate-800 mb-1">跟进进度</h3>
+              <p class="text-xs text-slate-400 mb-5">按时间顺序展示线索关键节点</p>
+              <div id="timeline" class="space-y-0"></div>
             </div>
-            <div class="p-5">
+
+            <!-- 右侧：线索信息 -->
+            <div class="p-5 overflow-y-auto">
               <div class="flex items-center justify-between mb-4">
                 <h3 class="text-base font-semibold text-slate-800">线索信息</h3>
                 <span id="status-badge" class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium"></span>
@@ -101,18 +137,27 @@
               </div>
 
               <div id="follow-form" class="mt-6 hidden">
-                <h4 class="text-base font-semibold text-slate-800 mb-3">添加跟进</h4>
+                <h4 class="text-base font-semibold text-slate-800 mb-3">线索跟进</h4>
                 <div class="space-y-3 text-sm">
-                  <label class="flex items-center gap-3"><span class="w-24 text-slate-600">跟进步骤 <span class="text-red-500">*</span></span><select class="flex-1 h-9 px-3 rounded border border-slate-200"><option>跟进中</option><option>已成单</option><option>已放弃</option></select></label>
-                  <label class="flex items-center gap-3"><span class="w-24 text-slate-600">跟进时间 <span class="text-red-500">*</span></span><input class="flex-1 h-9 px-3 rounded border border-slate-200" value="2026-04-17 10:59"></label>
-                  <label class="block"><span class="text-slate-600">跟进内容 <span class="text-red-500">*</span></span><textarea class="mt-1 w-full h-24 rounded border border-slate-200 px-3 py-2" placeholder="请输入内容"></textarea><div class="text-right text-xs text-slate-400 mt-1">0/1000</div></label>
-                  <div class="text-center pt-1"><button id="btn-add-follow" class="h-9 px-10 rounded bg-blue-600 text-white hover:bg-blue-700">确认添加</button></div>
+                  <label class="flex items-center gap-3"><span class="w-24 text-slate-600">是否有效 <span class="text-red-500">*</span></span><select id="detail-follow-valid" class="flex-1 h-9 px-3 rounded-md border border-slate-200 bg-white"><option value="valid" selected>有效</option><option value="invalid">无效</option></select></label>
+                  <label id="detail-result-row" class="flex items-center gap-3"><span class="w-24 text-slate-600">跟进结果 <span class="text-red-500">*</span></span><select id="detail-follow-result" class="flex-1 h-9 px-3 rounded-md border border-slate-200 bg-white"><option value="following" selected>跟进中</option><option value="abandoned">已放弃</option></select></label>
+                  <label id="detail-next-time-row" class="flex items-center gap-3"><span class="w-24 text-slate-600">下次跟进 <span class="text-red-500">*</span></span><input id="detail-next-time" class="flex-1 h-9 px-3 rounded-md border border-slate-200" value="2026年4月7日"></label>
+                  <div id="detail-valid-fields">
+                    <label class="block"><span class="text-slate-600">跟进内容 <span class="text-red-500">*</span></span><textarea id="detail-follow-content" maxlength="1000" class="mt-1 w-full h-24 rounded border border-slate-200 px-3 py-2" placeholder="请输入内容"></textarea><div class="text-right text-xs text-slate-400 mt-1"><span id="detail-follow-len">0</span>/1000</div></label>
+                  </div>
+                  <div id="detail-invalid-fields" class="hidden">
+                    <label class="block"><span class="text-slate-600">无效说明 <span class="text-red-500">*</span></span><textarea id="detail-invalid-reason" maxlength="1000" class="mt-1 w-full h-24 rounded border border-slate-200 px-3 py-2" placeholder="请输入内容"></textarea><div class="text-right text-xs text-slate-400 mt-1"><span id="detail-invalid-len">0</span>/1000</div></label>
+                  </div>
+                  <div id="detail-abandon-fields" class="hidden">
+                    <label class="block"><span class="text-slate-600">放弃说明 <span class="text-red-500">*</span></span><textarea id="detail-abandon-reason" maxlength="1000" class="mt-1 w-full h-24 rounded border border-slate-200 px-3 py-2" placeholder="请输入内容"></textarea><div class="text-right text-xs text-slate-400 mt-1"><span id="detail-abandon-len">0</span>/1000</div></label>
+                  </div>
+                  <div class="text-center pt-1"><button id="btn-add-follow" class="h-9 px-10 rounded bg-blue-600 text-white hover:bg-blue-700">确认</button></div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="border-t border-slate-200 py-3 flex justify-center gap-4">
+          <div class="border-t border-slate-200 py-3 flex justify-center gap-4 shrink-0">
             <button id="btn-prev" class="h-9 px-8 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">查看上一个</button>
             <button id="btn-next" class="h-9 px-8 rounded bg-blue-600 text-sm text-white hover:bg-blue-700">查看下一个</button>
           </div>
@@ -121,13 +166,14 @@
     </main>
   </div>
 
+  <!-- 报价单预览 -->
   <div id="quote-preview-modal" class="fixed inset-0 z-[120] hidden">
     <div class="absolute inset-0 bg-slate-900/55" data-close-quote></div>
     <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
       <div class="pointer-events-auto w-full max-w-[420px] rounded-[10px] border border-slate-200 bg-white shadow-2xl overflow-hidden">
         <div class="relative border-b border-slate-200 px-5 py-3">
-          <h3 class="text-center text-[18px] font-semibold text-slate-800">报价单预览</h3>
-          <button type="button" id="btn-close-quote" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-base"></i></button>
+          <h3 class="text-center text-[18px] font-semibold text-slate-800">报价单</h3>
+          <button type="button" id="btn-close-quote" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-base"></i></button>
         </div>
         <div class="px-5 py-4">
           <div class="flex items-center gap-2.5 mb-3">
@@ -146,7 +192,7 @@
             <tbody>
               <tr class="border-b border-slate-200"><td class="py-2 px-1.5">01</td><td class="py-2 px-1.5">小规模B:1500/年(125.00元/月)</td><td class="py-2 px-1.5">服务时长12个月</td><td class="py-2 px-1.5 text-right">1500.00</td></tr>
               <tr class="border-b border-slate-200"><td class="py-2 px-1.5">02</td><td class="py-2 px-1.5">提供企业注册地址</td><td class="py-2 px-1.5">租赁使用时长一年</td><td class="py-2 px-1.5 text-right">2400.00</td></tr>
-              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">03</td><td class="py-2 px-1.5">跨区迁移</td><td class="py-2 px-1.5">迁入迁出当月完成 否则影响社保</td><td class="py-2 px-1.5 text-right">600.00</td></tr>
+              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">03</td><td class="py-2 px-1.5">跨区迁移</td><td class="py-2 px-1.5">迁入迁出当月完成</td><td class="py-2 px-1.5 text-right">600.00</td></tr>
               <tr><td class="py-2 px-1.5">04</td><td class="py-2 px-1.5">其他事项</td><td class="py-2 px-1.5">增加营业范围</td><td class="py-2 px-1.5 text-right">500.00</td></tr>
             </tbody>
           </table>
@@ -155,14 +201,13 @@
             <p class="font-semibold text-slate-700">报价说明</p>
             <p>1. 此文档仅作为报价依据，报价有效期15天</p>
             <p>2. 以上报价明细仅根据您的需求定制</p>
-            <p>报价人：陈莉 17751477479</p>
-            <p>感谢您对我们的信任与支持</p>
+            <p>报价人：周方林 17751477479</p>
           </div>
         </div>
         <div class="border-t border-slate-200 bg-slate-50/70 py-4 px-5 flex justify-center gap-3">
-          <button class="h-8 px-5 rounded-md border border-blue-600 text-[12px] font-medium text-blue-600 bg-white hover:bg-blue-50">修改报价单</button>
-          <button class="h-8 px-5 rounded-md bg-blue-600 text-[12px] font-medium text-white hover:bg-blue-700">下载报价单</button>
-          <button id="btn-cancel-quote" class="h-8 px-5 rounded-md border border-slate-300 text-[12px] font-medium text-slate-500 bg-white hover:bg-slate-50">取消</button>
+          <button type="button" class="h-8 px-5 rounded-md border border-blue-600 text-[12px] font-medium text-blue-600 bg-white hover:bg-blue-50">修改报价单</button>
+          <button type="button" class="h-8 px-5 rounded-md bg-blue-600 text-[12px] font-medium text-white hover:bg-blue-700">下载报价单</button>
+          <button type="button" id="btn-cancel-quote" class="h-8 px-5 rounded-md border border-slate-300 text-[12px] font-medium text-slate-500 bg-white hover:bg-slate-50">取消</button>
         </div>
       </div>
     </div>
@@ -170,70 +215,176 @@
 
   <div id="follow-toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[130] hidden rounded bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">添加成功</div>
 
-    <script>
+  <script>
     (function () {
-      var order = ['lead-1', 'lead-2', 'lead-3', 'lead-4', 'lead-5'];
+      var order = ['lead-1', 'lead-6', 'lead-2', 'lead-3', 'lead-5', 'lead-4', 'lead-7'];
+
       var dataMap = {
         'lead-1': {
-          status: '待分配', statusCls: 'bg-amber-50 text-amber-700',
-          info: {客户姓名: '王小明', 手机号码: '15900087998', 来源渠道: '抖音', 所属区域: '苏州园区', 行业类别: '贸易', 企业类型: '一般纳税人', 业务类型: '抖音'},
-          note: '客户预计7月注册，目前代理服务仍待决策，需定期触达保持关系，\n稳定客户预期，避免中断记账。',
-          timeline: [
-            {type: 'warn', title: '销售主管【待分配】', time: '2026-04-10 18:23'},
-            {type: 'ok', title: '凌霄创建线索', time: '2026-04-08 17:23'}
+          status: '待跟进', statusCls: 'bg-amber-50 text-amber-700', showForm: true,
+          info: { 客户姓名: '王小', 手机号码: '13800111200', 是否添加微信: '是', 所属区域: '苏州/工业园区', 行业类别: '医疗器械', 企业类型: '一般纳税人', 来源渠道: '抖音', 销售顾问: '丽丽', 企业名称: '苏州初禾医疗科技有限公司' },
+          note: '新线索待销售顾问完成首次跟进。',
+          steps: [
+            { type: 'create', creator: '陆琴', time: '2026-04-18 09:12' },
+            { type: 'pending-first' }
+          ]
+        },
+        'lead-6': {
+          status: '待跟进', statusCls: 'bg-amber-50 text-amber-700', showForm: true,
+          info: { 客户姓名: '刘洋', 手机号码: '13700112233', 是否添加微信: '是', 所属区域: '南京/江宁区', 行业类别: '教育培训', 企业类型: '小规模纳税人', 来源渠道: '58同城', 销售顾问: '周方林', 企业名称: '南京启航教育培训中心' },
+          note: '已超过约定下次跟进时间，需尽快联系客户补充跟进记录。',
+          steps: [
+            { type: 'create', creator: '陆琴', time: '2026-04-05 11:30' },
+            { type: 'first-follow', valid: true, content: '客户咨询小规模纳税人代账方案，约定后续电话详谈。', time: '2026-04-06 10:00' },
+            { type: 'follow', content: '已发送基础套餐介绍，客户表示需内部讨论。', time: '2026-04-12 15:00' },
+            { type: 'pending-overdue', nextTime: '2026-04-20 10:00' }
           ]
         },
         'lead-2': {
-          status: '待跟进', statusCls: 'bg-orange-50 text-orange-700',
-          info: {客户姓名: '李先生', 手机号码: '13812345678', 来源渠道: '小红书', 所属区域: '无锡', 行业类别: '医疗器械', 企业类型: '小规模', 业务类型: '代理记账'},
+          status: '跟进中', statusCls: 'bg-orange-50 text-orange-700', showForm: true,
+          info: { 客户姓名: '李华', 手机号码: '13900118899', 是否添加微信: '否', 所属区域: '无锡/新吴区', 行业类别: '商业贸易', 企业类型: '小规模纳税人', 来源渠道: '小红书', 销售顾问: '周方林', 企业名称: '无锡领越商贸有限公司' },
           note: '客户处于观望阶段，近期需重点跟进产品方案和价格区间。',
-          timeline: [
-            {type: 'warn', title: '待跟进', time: '2026-04-07 10:53'},
-            {type: 'ok', title: '销售主管分配【蔡李】', time: '2026-04-07 09:10'},
-            {type: 'ok', title: '凌霄创建线索', time: '2026-03-18 09:22'}
+          steps: [
+            { type: 'create', creator: '陆琴', time: '2026-04-17 14:20' },
+            { type: 'first-follow', valid: true, content: '客户有代理记账需求，约定本周电话沟通方案。', time: '2026-04-18 10:30' },
+            { type: 'follow', content: '已介绍基础套餐与标准套餐差异，客户关注价格。', time: '2026-04-19 10:00' },
+            { type: 'following', time: '2026-04-19 15:20', nextTime: '2026-06-05 10:00' }
           ]
         },
         'lead-3': {
-          status: '跟进中', statusCls: 'bg-blue-50 text-blue-700', showForm: true,
-          info: {客户姓名: '王敏', 手机号码: '18605118899', 来源渠道: '58同城', 所属区域: '苏州园区', 行业类别: '科技服务', 企业类型: '一般纳税人', 业务类型: '58同城'},
+          status: '跟进中', statusCls: 'bg-orange-50 text-orange-700', showForm: true,
+          info: { 客户姓名: '张伟', 手机号码: '13600115566', 是否添加微信: '是', 所属区域: '昆山', 行业类别: '科技服务', 企业类型: '一般纳税人', 来源渠道: '58同城', 销售顾问: '周方林', 企业名称: '昆山智诺科技服务有限公司' },
           note: '已多轮沟通，客户关注报价细节与交付周期，预计本周内给出反馈。',
-          timeline: [
-            {type: 'doing', title: '跟进中', time: '2026-04-10 18:23'},
-            {type: 'ok', title: '发送报价单', time: '2026-04-09 16:40', link: '查看报价单'},
-            {type: 'ok', title: '已与客户确认需求点', time: '2026-04-08 11:20'},
-            {type: 'ok', title: '周方林确认跟进', time: '2026-04-08 15:00'},
-            {type: 'ok', title: '销售主管分配【周芳林】', time: '2026-04-07 14:23'},
-            {type: 'ok', title: '销售主管创建线索', time: '2026-04-07 14:23'}
-          ]
-        },
-        'lead-4': {
-          status: '已成单', statusCls: 'bg-emerald-50 text-emerald-700',
-          info: {客户姓名: '赵峰', 手机号码: '17705126600', 来源渠道: '抖音', 所属区域: '昆山', 行业类别: '贸易', 企业类型: '小规模', 业务类型: '抖音'},
-          note: '已签约，后续移交交付团队持续服务。',
-          timeline: [
-            {type: 'ok', title: '已成单', time: '2024-04-10 13:23'},
-            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2024-04-09 17:23'},
-            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2024-04-08 17:23'},
-            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2024-04-07 17:23'},
-            {type: 'ok', title: '周方林确认跟进', time: '2024-04-07 15:23'},
-            {type: 'ok', title: '销售主管分配【周方林】', time: '2024-04-07 14:23'},
-            {type: 'ok', title: '零星创建线索', time: '2024-04-07 13:23'}
+          steps: [
+            { type: 'create', creator: '马经理', time: '2026-04-16 11:05' },
+            { type: 'first-follow', valid: true, content: '确认客户注册地址及代账需求，意向较强。', time: '2026-04-17 09:00' },
+            { type: 'follow', content: '现场沟通财税顾问服务范围，客户认可服务清单。', time: '2026-04-18 16:30' },
+            { type: 'quote', time: '2026-04-19 16:40' },
+            { type: 'following', time: '2026-04-20 10:00', nextTime: '2026-06-10 14:00' }
           ]
         },
         'lead-5': {
           status: '已放弃', statusCls: 'bg-slate-100 text-slate-600',
-          info: {客户姓名: '陈涛', 手机号码: '13900011223', 来源渠道: '小红书', 所属区域: '无锡', 行业类别: '制造', 企业类型: '一般纳税人', 业务类型: '代理记账'},
-          note: '客户预算有限，暂无法推进；已标记放弃并保留历史记录。',
-          timeline: [
-            {type: 'reject', title: '放弃：这是放弃说明。经评估该客户与当前服务套餐匹配度低，且短期内无预算，团队一致同意终止跟进并释放销售精力。', time: '2020-05-10 13:23'},
-            {type: 'ok', title: '已与客户财务负责人沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。下一步约定现场核对进项发票留存与税负测算口径，形成书面报价依据。', time: '2020-05-09 17:23'},
-            {type: 'dot', title: '查看更多', time: ''},
-            {type: 'ok', title: '周方林确认跟进', time: '2020-05-08 10:00'},
-            {type: 'ok', title: '销售主管分配【周方林】', time: '2020-05-08 09:30'},
-            {type: 'ok', title: '凌霄创建线索', time: '2020-05-08 09:00'}
+          info: { 客户姓名: '陈晨', 手机号码: '13500117788', 是否添加微信: '否', 所属区域: '苏州/高新区', 行业类别: '制造业', 企业类型: '小规模纳税人', 来源渠道: '小红书', 销售顾问: '周方林', 企业名称: '苏州凯锐精工有限公司' },
+          note: '客户已选择其他服务商，经评估后标记放弃。',
+          steps: [
+            { type: 'create', creator: '陆琴', time: '2026-03-28 15:22' },
+            { type: 'first-follow', valid: true, content: '客户有代账需求，初步沟通服务范围。', time: '2026-03-28 16:40' },
+            { type: 'follow', content: '发送报价方案后客户反馈价格偏高。', time: '2026-03-29 10:15' },
+            { type: 'abandon', reason: '客户已选择其他服务商，暂不考虑合作', time: '2026-03-29 14:30' }
+          ]
+        },
+        'lead-4': {
+          status: '无效', statusCls: 'bg-slate-100 text-slate-500',
+          info: { 客户姓名: '赵敏', 手机号码: '13700113344', 是否添加微信: '是', 所属区域: '苏州/姑苏区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 来源渠道: '抖音', 销售顾问: '周方林', 企业名称: '苏州悦澜商贸有限公司' },
+          note: '首次跟进判定线索无效，已终止跟进。',
+          steps: [
+            { type: 'create', creator: '陆琴', time: '2026-04-10 08:40' },
+            { type: 'first-follow', valid: false, reason: '空号无法联系，多次拨打均提示停机', time: '2026-04-15 09:00' }
+          ]
+        },
+        'lead-7': {
+          status: '已转商机', statusCls: 'bg-blue-50 text-blue-700',
+          info: { 客户姓名: '孙磊', 手机号码: '13300116677', 是否添加微信: '是', 所属区域: '苏州/相城区', 行业类别: '建筑工程', 企业类型: '一般纳税人', 来源渠道: '转介绍', 销售顾问: '周方林', 企业名称: '苏州拓远建设工程有限公司' },
+          note: '线索已成功转为商机，后续在商机管理中继续跟进。',
+          steps: [
+            { type: 'create', creator: '陆琴', time: '2026-03-15 10:08' },
+            { type: 'first-follow', valid: true, content: '客户有注册地址及代账打包需求，意向明确。', time: '2026-03-20 11:00' },
+            { type: 'follow', content: '完成需求确认与方案讲解，客户同意转商机推进。', time: '2026-04-02 14:20' },
+            { type: 'convert-opp', time: '2026-04-03 09:30' }
           ]
         }
       };
+
+      function formatCnDate(str) {
+        if (!str || str === '--') return str;
+        var m = String(str).match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+        if (!m) return str;
+        return m[1] + '年' + parseInt(m[2], 10) + '月' + parseInt(m[3], 10) + '日';
+      }
+
+      function stepIcon(step, isLast) {
+        if (step.type === 'pending-first') return '<span class="timeline-icon bg-amber-100 border-2 border-amber-400 text-amber-600"><i class="fa-regular fa-clock text-[15px]"></i></span>';
+        if (step.type === 'pending-overdue') return '<span class="timeline-icon bg-amber-500 text-white"><i class="fa-solid fa-triangle-exclamation text-[14px]"></i></span>';
+        if (step.type === 'following') return '<span class="timeline-icon bg-orange-500 text-white"><i class="fa-solid fa-spinner text-[14px]"></i></span>';
+        if (step.type === 'convert-opp') return '<span class="timeline-icon bg-blue-500 text-white"><i class="fa-solid fa-arrow-right-arrow-left text-[13px]"></i></span>';
+        if (step.type === 'won') return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
+        if (step.type === 'abandon') return '<span class="timeline-icon bg-red-500 text-white"><i class="fa-solid fa-xmark text-[16px]"></i></span>';
+        if (step.type === 'first-follow' && step.valid === false) return '<span class="timeline-icon bg-slate-400 text-white"><i class="fa-solid fa-ban text-[14px]"></i></span>';
+        return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
+      }
+
+      function renderStepBody(step) {
+        var html = '';
+        if (step.type === 'create') {
+          html = '<p class="text-sm font-medium text-slate-800">线索创建</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">创建人：<span class="text-slate-800">' + step.creator + '</span></p>' +
+            '<p class="text-[13px] text-slate-400 mt-0.5">' + step.time + '</p>';
+        } else if (step.type === 'pending-first') {
+          html = '<p class="text-sm font-medium text-amber-700">待首次跟进</p>' +
+            '<p class="text-[13px] text-slate-500 mt-0.5">等待销售顾问完成首次跟进</p>';
+        } else if (step.type === 'pending-overdue') {
+          html = '<p class="text-sm font-medium text-amber-700">待跟进</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">下次跟进：<span class="text-amber-600 font-medium">' + formatCnDate(step.nextTime) + '</span></p>' +
+            '<p class="text-[13px] text-red-500 mt-0.5">已超过约定跟进时间，请尽快添加跟进</p>';
+        } else if (step.type === 'first-follow') {
+          html = '<p class="text-sm font-medium text-slate-800">首次跟进</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">线索' + (step.valid ? '<span class="text-emerald-600 font-medium">有效</span>' : '<span class="text-slate-500 font-medium">无效</span>') + '</p>';
+          if (step.valid) {
+            html += '<p class="text-[13px] text-slate-600 mt-1">跟进内容：<span class="text-slate-800">' + step.content + '</span></p>';
+          } else {
+            html += '<p class="text-[13px] text-slate-600 mt-1">无效说明：<span class="text-slate-800">' + step.reason + '</span></p>';
+          }
+          html += '<p class="text-[13px] text-slate-400 mt-0.5">跟进时间：' + step.time + '</p>';
+        } else if (step.type === 'follow') {
+          html = '<p class="text-sm font-medium text-slate-800">跟进记录</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">跟进内容：<span class="text-slate-800">' + step.content + '</span></p>' +
+            '<p class="text-[13px] text-slate-400 mt-0.5">跟进时间：' + step.time + '</p>';
+        } else if (step.type === 'quote') {
+          html = '<p class="text-sm font-medium text-slate-800">发送报价单</p>' +
+            '<div class="mt-2 flex flex-wrap items-center gap-2">' +
+            '<span class="inline-flex items-center rounded border border-blue-200 bg-blue-50 px-2 py-0.5 text-xs text-blue-700">已发送报价单</span>' +
+            '<button type="button" class="js-view-quote text-xs text-blue-600 hover:underline cursor-pointer">查看报价单</button>' +
+            '</div>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        } else if (step.type === 'contract') {
+          html = '<p class="text-sm font-medium text-slate-800">合同已签署</p>' +
+            '<div class="mt-2"><a href="contract-management.html" class="inline-flex items-center rounded border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs text-blue-600 hover:bg-blue-100">查看合同</a></div>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        } else if (step.type === 'payment') {
+          html = '<p class="text-sm font-medium text-slate-800">订单已支付</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">支付时间：<span class="text-slate-800">' + step.payTime + '</span></p>';
+        } else if (step.type === 'won') {
+          html = '<p class="text-sm font-medium text-emerald-700">已成单</p>' +
+            '<p class="text-[13px] text-slate-400 mt-0.5">' + step.time + '</p>';
+        } else if (step.type === 'following') {
+          html = '<p class="text-sm font-medium text-orange-600">跟进中</p>';
+          if (step.nextTime) {
+            html += '<p class="text-[13px] text-slate-600 mt-1">下次跟进：<span class="text-slate-800">' + formatCnDate(step.nextTime) + '</span></p>';
+          }
+          html += '<p class="text-[13px] text-slate-400 mt-0.5">' + step.time + '</p>';
+        } else if (step.type === 'convert-opp') {
+          html = '<p class="text-sm font-medium text-blue-700">已转商机</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">线索已转为商机，后续在商机管理中跟进</p>' +
+            '<p class="text-[13px] text-slate-400 mt-0.5">' + step.time + '</p>';
+        } else if (step.type === 'abandon') {
+          html = '<p class="text-sm font-medium text-red-600">放弃</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">放弃说明：<span class="text-slate-800">' + step.reason + '</span></p>' +
+            '<p class="text-[13px] text-slate-400 mt-0.5">' + step.time + '</p>';
+        }
+        return html;
+      }
+
+      function renderTimeline(steps) {
+        return steps.map(function (step, i) {
+          var isLast = i === steps.length - 1;
+          return '<div class="timeline-step relative pl-12 pb-10' + (isLast ? ' last:pb-0' : '') + '">' +
+            (!isLast ? '<div class="timeline-line"></div>' : '') +
+            '<div class="absolute left-0 top-0">' + stepIcon(step, isLast) + '</div>' +
+            '<div>' + renderStepBody(step) + '</div>' +
+            '</div>';
+        }).join('');
+      }
 
       var params = new URLSearchParams(location.search);
       var id = params.get('id') || 'lead-1';
@@ -242,7 +393,7 @@
 
       var badge = document.getElementById('status-badge');
       badge.className = 'inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ' + data.statusCls;
-      badge.textContent = '当前：' + data.status;
+      badge.textContent = data.status;
 
       var infoEl = document.getElementById('lead-info');
       infoEl.innerHTML = Object.keys(data.info).map(function (k) {
@@ -250,24 +401,7 @@
       }).join('');
       document.getElementById('lead-note').innerHTML = data.note.replace(/\n/g, '<br>');
       document.getElementById('follow-form').classList.toggle('hidden', !data.showForm);
-
-      function icon(item) {
-        if (item.type === 'warn') return '<span class="timeline-icon bg-amber-400 text-white"><i class="fa-regular fa-clock text-[16px]"></i></span>';
-        if (item.type === 'doing') return '<span class="timeline-icon bg-orange-500 text-white"><i class="fa-regular fa-clock text-[16px]"></i></span>';
-        if (item.type === 'reject') return '<span class="timeline-icon bg-red-500 text-white"><i class="fa-solid fa-xmark text-[16px]"></i></span>';
-        if (item.type === 'dot') return '<span class="timeline-icon bg-blue-50 border border-blue-300 text-blue-500"><i class="fa-solid fa-ellipsis text-[10px]"></i></span>';
-        return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
-      }
-
-      var timelineEl = document.getElementById('timeline');
-      timelineEl.innerHTML = data.timeline.map(function (item, i) {
-        var link = item.link ? '<div class="mt-1 text-xs"><a href="#" class="text-blue-600 hover:underline js-view-quote">' + item.link + '</a></div>' : '';
-        return '<div class="relative pl-12">' +
-          (i < data.timeline.length - 1 ? '<div class="timeline-line"></div>' : '') +
-          '<div class="absolute left-0 top-0">' + icon(item) + '</div>' +
-          '<div><p class="text-sm font-medium text-slate-800 leading-5">' + item.title + '</p><p class="text-[13px] text-slate-400 mt-0.5">' + item.time + '</p>' + link + '</div>' +
-          '</div>';
-      }).join('');
+      document.getElementById('timeline').innerHTML = renderTimeline(data.steps);
 
       var idx = order.indexOf(id);
       var prev = idx > 0 ? order[idx - 1] : null;
@@ -283,38 +417,91 @@
       btnPrev.addEventListener('click', function () { if (prev) location.href = 'lead-follow-detail.html?id=' + prev; });
       btnNext.addEventListener('click', function () { if (next) location.href = 'lead-follow-detail.html?id=' + next; });
 
-      function showToast(msg) {
-        var toast = document.getElementById('follow-toast');
-        toast.textContent = msg;
-        toast.classList.remove('hidden');
-        clearTimeout(window._followToastTimer);
-        window._followToastTimer = setTimeout(function () { toast.classList.add('hidden'); }, 1800);
-      }
-
       var quoteModal = document.getElementById('quote-preview-modal');
       function openQuoteModal() { quoteModal.classList.remove('hidden'); }
       function closeQuoteModal() { quoteModal.classList.add('hidden'); }
 
-      document.querySelectorAll('.js-view-quote').forEach(function (el) {
-        el.addEventListener('click', function (e) { e.preventDefault(); openQuoteModal(); });
+      document.getElementById('timeline').addEventListener('click', function (e) {
+        var btn = e.target.closest('.js-view-quote');
+        if (btn) { e.preventDefault(); openQuoteModal(); }
       });
       document.getElementById('btn-close-quote').addEventListener('click', closeQuoteModal);
       document.getElementById('btn-cancel-quote').addEventListener('click', closeQuoteModal);
       quoteModal.querySelectorAll('[data-close-quote]').forEach(function (el) { el.addEventListener('click', closeQuoteModal); });
 
+      function bindDetailCounter(inputId, lenId, max) {
+        var inp = document.getElementById(inputId);
+        var len = document.getElementById(lenId);
+        if (!inp || !len) return;
+        function upd() { len.textContent = String(Math.min(inp.value.length, max)); }
+        inp.addEventListener('input', upd);
+        upd();
+      }
+      bindDetailCounter('detail-follow-content', 'detail-follow-len', 1000);
+      bindDetailCounter('detail-invalid-reason', 'detail-invalid-len', 1000);
+      bindDetailCounter('detail-abandon-reason', 'detail-abandon-len', 1000);
+
+      function setDetailBlockVisible(el, show) {
+        if (!el) return;
+        el.classList.toggle('hidden', !show);
+      }
+
+      function updateDetailFollowFields() {
+        var validSel = document.getElementById('detail-follow-valid');
+        var resultSel = document.getElementById('detail-follow-result');
+        var resultRow = document.getElementById('detail-result-row');
+        var nextTimeRow = document.getElementById('detail-next-time-row');
+        var validBlock = document.getElementById('detail-valid-fields');
+        var invalidBlock = document.getElementById('detail-invalid-fields');
+        var abandonBlock = document.getElementById('detail-abandon-fields');
+        if (!validSel) return;
+        var isValid = validSel.value === 'valid';
+        var isAbandoned = resultSel && resultSel.value === 'abandoned';
+
+        if (!isValid) {
+          setDetailBlockVisible(resultRow, false);
+          setDetailBlockVisible(nextTimeRow, false);
+          setDetailBlockVisible(validBlock, false);
+          setDetailBlockVisible(abandonBlock, false);
+          setDetailBlockVisible(invalidBlock, true);
+        } else if (isAbandoned) {
+          setDetailBlockVisible(resultRow, true);
+          setDetailBlockVisible(nextTimeRow, false);
+          setDetailBlockVisible(validBlock, false);
+          setDetailBlockVisible(invalidBlock, false);
+          setDetailBlockVisible(abandonBlock, true);
+        } else {
+          setDetailBlockVisible(resultRow, true);
+          setDetailBlockVisible(nextTimeRow, true);
+          setDetailBlockVisible(validBlock, true);
+          setDetailBlockVisible(invalidBlock, false);
+          setDetailBlockVisible(abandonBlock, false);
+        }
+      }
+      var detailFollowValid = document.getElementById('detail-follow-valid');
+      var detailFollowResult = document.getElementById('detail-follow-result');
+      if (detailFollowValid) {
+        detailFollowValid.addEventListener('change', updateDetailFollowFields);
+      }
+      if (detailFollowResult) {
+        detailFollowResult.addEventListener('change', updateDetailFollowFields);
+      }
+      updateDetailFollowFields();
+
       var addFollowBtn = document.getElementById('btn-add-follow');
-      if (addFollowBtn) addFollowBtn.addEventListener('click', function () { showToast('添加成功'); });
+      if (addFollowBtn) {
+        addFollowBtn.addEventListener('click', function () {
+          var toast = document.getElementById('follow-toast');
+          toast.classList.remove('hidden');
+          setTimeout(function () { toast.classList.add('hidden'); }, 1800);
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !quoteModal.classList.contains('hidden')) closeQuoteModal();
+      });
     })();
   </script>
   <script src="./assets/app-shell.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

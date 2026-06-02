@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人事管理 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    #modal-apply:not(.hidden), #modal-detail:not(.hidden), #modal-insurance-voucher:not(.hidden) { display: flex; }
+    .hr-type-tab { height: 2rem; padding: 0 1rem; border-radius: 0.25rem; border: 1px solid #e2e8f0; background: #fff; font-size: 0.8125rem; color: #475569; transition: all 0.15s; }
+    .hr-type-tab:hover { border-color: #93c5fd; color: #2563eb; }
+    .hr-type-tab-active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 500; }
+    .hr-form-panel[hidden] { display: none !important; }
+    .field-req::after { content: '*'; color: #ef4444; margin-left: 2px; }
+    .hr-list-tab { padding-bottom: 0.625rem; border-bottom: 2px solid transparent; color: #64748b; font-size: 0.875rem; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
+    .hr-list-tab:hover { color: #334155; }
+    .hr-list-tab.hr-list-tab-active { color: #2563eb; border-bottom-color: #2563eb; font-weight: 600; }
+  </style>
+</head>
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        
+        
+        
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+
+<details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+          </div>
+        </details>
+
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-label="打开导航"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">运营中心 / <span class="text-slate-700 font-medium">人事管理</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 hidden sm:block">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业端</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-4 sm:p-6">
+        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-3">
+            <label class="text-xs text-slate-500">审批状态
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600">
+                <option value="">全部</option>
+                <option>审批中</option>
+                <option>已通过</option>
+                <option>未通过</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500">申请人
+              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm" placeholder="请输入">
+            </label>
+            <label class="text-xs text-slate-500">申请类型
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600">
+                <option value="">请选择</option>
+                <option>招聘申请</option>
+                <option>入职申请</option>
+                <option>转正申请</option>
+                <option>调岗申请</option>
+                <option>离职申请</option>
+              </select>
+            </label>
+            <label class="text-xs text-slate-500 lg:col-span-2">申请时间
+              <div class="mt-1 flex items-center gap-1">
+                <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2023-03-21">
+                <span class="text-slate-400 shrink-0">至</span>
+                <input type="date" class="h-9 w-full rounded-md border border-slate-200 px-3 text-sm" value="2024-03-21">
+              </div>
+            </label>
+            <label class="text-xs text-slate-500">申请部门
+              <select class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600">
+                <option value="">请选择</option>
+                <option>政务服务部</option>
+                <option>运营支撑部</option>
+                <option>销售一组</option>
+              </select>
+            </label>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <button type="button" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
+            <button type="button" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
+            <button type="button" id="btn-open-apply" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">人事管理</button>
+          </div>
+
+          <div class="flex flex-wrap gap-6 text-sm mb-4 border-b border-slate-200" id="hr-list-tabs">
+            <button type="button" class="hr-list-tab hr-list-tab-active" data-hr-tab="submitted">我提交的</button>
+            <button type="button" class="hr-list-tab" data-hr-tab="todo">待我处理的</button>
+            <button type="button" class="hr-list-tab" data-hr-tab="done">我已处理的</button>
+            <button type="button" class="hr-list-tab" data-hr-tab="cc">抄送我的</button>
+          </div>
+
+          <div class="rounded border border-slate-200 overflow-x-auto">
+            <table class="w-full text-sm min-w-[960px]">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请人</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请类型</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">审批状态</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">申请部门</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">提交时间</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">查看详情</th>
+                  <th class="px-3 py-3 text-left border-b border-slate-200 whitespace-nowrap">操作</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate-700" id="hr-table-body">
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="todo">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">招聘申请</td>
+                  <td class="px-3 py-3 text-amber-500">审批中</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-14 11:13</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="pending" data-type="recruit" data-applicant="孙红" data-dept="政务服务部" data-time="2024-04-14 11:13">查看详情</button></td>
+                  <td class="px-3 py-3 whitespace-nowrap">
+                    <button type="button" class="text-emerald-600 hover:underline">同意</button>
+                    <span class="px-2 text-slate-300">|</span>
+                    <button type="button" class="text-rose-500 hover:underline">拒绝</button>
+                  </td>
+                </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="submitted">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">转正申请</td>
+                  <td class="px-3 py-3 text-rose-500">未通过</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-14 11:13</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="rejected" data-type="regular" data-applicant="孙红" data-dept="政务服务部" data-time="2024-04-14 11:13">查看详情</button></td>
+                  <td class="px-3 py-3 whitespace-nowrap">
+                    <button type="button" class="text-blue-600 hover:underline js-reapply">重新申请</button>
+                  </td>
+                </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="done">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">调岗申请</td>
+                  <td class="px-3 py-3 text-emerald-600">已通过</td>
+                  <td class="px-3 py-3">运营支撑部</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-14 11:13</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="transfer" data-applicant="孙红" data-dept="运营支撑部" data-time="2024-04-14 11:13">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="done">
+                  <td class="px-3 py-3">李强</td>
+                  <td class="px-3 py-3">离职申请</td>
+                  <td class="px-3 py-3 text-emerald-600">已通过</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-08 10:30</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="resign" data-insurance="done" data-applicant="李强" data-dept="政务服务部" data-time="2024-04-08 10:30">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="todo">
+                  <td class="px-3 py-3">孙红</td>
+                  <td class="px-3 py-3">离职申请</td>
+                  <td class="px-3 py-3 text-amber-500">审批中</td>
+                  <td class="px-3 py-3">政务服务部</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-14 11:13</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="pending" data-type="resign" data-applicant="孙红" data-dept="政务服务部" data-time="2024-04-14 11:13">查看详情</button></td>
+                  <td class="px-3 py-3 whitespace-nowrap">
+                    <button type="button" class="text-emerald-600 hover:underline">同意</button>
+                    <span class="px-2 text-slate-300">|</span>
+                    <button type="button" class="text-rose-500 hover:underline">拒绝</button>
+                  </td>
+                </tr>
+                <tr class="hr-row border-b border-slate-100 hover:bg-slate-50" data-hr-tab="submitted">
+                  <td class="px-3 py-3">王磊</td>
+                  <td class="px-3 py-3">招聘申请</td>
+                  <td class="px-3 py-3 text-amber-500">审批中</td>
+                  <td class="px-3 py-3">网销一组</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-12 09:20</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="pending" data-type="recruit" data-applicant="王磊" data-dept="网销一组" data-time="2024-04-12 09:20">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
+                <tr class="hr-row hover:bg-slate-50" data-hr-tab="cc">
+                  <td class="px-3 py-3">周芳林</td>
+                  <td class="px-3 py-3">转正申请</td>
+                  <td class="px-3 py-3 text-emerald-600">已通过</td>
+                  <td class="px-3 py-3">销售一组</td>
+                  <td class="px-3 py-3 whitespace-nowrap">2024-04-10 16:45</td>
+                  <td class="px-3 py-3"><button type="button" class="text-blue-600 hover:underline js-view-detail" data-status="approved" data-type="regular" data-applicant="周芳林" data-dept="销售一组" data-time="2024-04-10 16:45">查看详情</button></td>
+                  <td class="px-3 py-3 text-slate-400">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p id="hr-table-empty" class="hidden py-10 text-center text-sm text-slate-400 border border-t-0 border-slate-200 rounded-b-lg -mt-px">暂无数据</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 人事管理弹窗 -->
+  <div id="modal-apply" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true">
+    <div class="absolute inset-0" data-close-modal></div>
+    <div class="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="shrink-0 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <h3 class="text-lg font-medium text-slate-800">人事申请</h3>
+        <button type="button" data-close-modal class="text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-xl"></i></button>
+      </div>
+      <div class="flex-1 overflow-y-auto px-6 py-4 text-sm">
+        <div class="flex flex-wrap gap-2 mb-4" id="hr-type-tabs">
+          <button type="button" class="hr-type-tab hr-type-tab-active" data-type="recruit">招聘申请</button>
+          <button type="button" class="hr-type-tab" data-type="onboard">入职申请</button>
+          <button type="button" class="hr-type-tab" data-type="regular">转正申请</button>
+          <button type="button" class="hr-type-tab" data-type="transfer">调岗申请</button>
+          <button type="button" class="hr-type-tab" data-type="resign">离职申请</button>
+        </div>
+
+        <!-- 招聘申请 -->
+        <div id="panel-recruit" class="hr-form-panel">
+          <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-slate-600"><span class="field-req">申请人</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>孙红</option></select></label>
+            <label class="text-slate-600"><span class="field-req">申请部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option></select></label>
+            <label class="text-slate-600"><span class="field-req">招聘岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option><option>销售专员</option></select></label>
+            <label class="text-slate-600"><span class="field-req">拟招聘人数</span><input type="number" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入"></label>
+            <label class="text-slate-600 sm:col-span-2"><span class="field-req">薪资范围</span>
+              <div class="mt-1 flex flex-wrap items-center gap-2">
+                <input type="number" id="recruit-salary-min" class="h-9 w-full min-w-0 flex-1 rounded-md border border-slate-200 px-3 sm:max-w-[8.5rem]" placeholder="最低" min="0" step="100">
+                <span class="text-slate-400 shrink-0">至</span>
+                <input type="number" id="recruit-salary-max" class="h-9 w-full min-w-0 flex-1 rounded-md border border-slate-200 px-3 sm:max-w-[8.5rem]" placeholder="最高" min="0" step="100">
+                <span class="text-slate-500 shrink-0 text-xs sm:text-sm">元/月</span>
+              </div>
+            </label>
+            <label class="text-slate-600 sm:col-span-2">期望到岗日期<input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600 sm:col-span-2">岗位职责<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[72px]" placeholder="请输入"></textarea></label>
+            <label class="text-slate-600 sm:col-span-2">任职要求<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[72px]" placeholder="请输入"></textarea></label>
+          </div>
+        </div>
+
+        <!-- 入职申请 -->
+        <div id="panel-onboard" class="hr-form-panel" hidden>
+          <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-slate-600"><span class="field-req">员工姓名</span><input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入" value="孙红"></label>
+            <label class="text-slate-600"><span class="field-req">所属部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option><option>运营支撑部</option><option>销售一组</option></select></label>
+            <label class="text-slate-600"><span class="field-req">入职日期</span><input type="date" id="onboard-date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600"><span class="field-req">转正日期</span><input type="date" id="onboard-regular-date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-07-28"></label>
+            <label class="text-slate-600"><span class="field-req">所属岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option><option>运营专员</option><option>销售专员</option></select></label>
+            <label class="text-slate-600"><span class="field-req">试用期薪资</span>
+              <div class="mt-1 flex items-center gap-2">
+                <input type="number" class="h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入" min="0" step="100">
+                <span class="text-slate-500 text-xs sm:text-sm shrink-0">元/月</span>
+              </div>
+            </label>
+            <label class="text-slate-600"><span class="field-req">转正后薪资</span>
+              <div class="mt-1 flex items-center gap-2">
+                <input type="number" class="h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入" min="0" step="100">
+                <span class="text-slate-500 text-xs sm:text-sm shrink-0">元/月</span>
+              </div>
+            </label>
+            <label class="text-slate-600">登录账号<input type="text" id="onboard-login-account" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-slate-50 px-3 text-slate-600" value="sunhong" readonly aria-readonly="true"></label>
+            <label class="text-slate-600"><span class="field-req">登录密码</span><input type="password" id="onboard-login-password" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" placeholder="请输入登录密码" value=""></label>
+            <label class="text-slate-600"><span class="field-req">合同到期日</span><input type="date" id="onboard-contract-end" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2029-04-27"></label>
+            <label class="text-slate-600 sm:col-span-2"><span class="field-req">入职说明</span><textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[88px]" placeholder="请填写入职说明"></textarea></label>
+            <div class="sm:col-span-2">
+              <p class="text-slate-600 mb-2">附件上传</p>
+              <button type="button" class="inline-flex items-center gap-1.5 h-9 px-4 rounded border border-blue-200 bg-blue-50 text-sm text-blue-600 hover:bg-blue-100"><i class="fa-solid fa-plus text-xs"></i>上传附件</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 转正申请 -->
+        <div id="panel-regular" class="hr-form-panel" hidden>
+          <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-slate-600"><span class="field-req">申请人</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>孙红</option></select></label>
+            <label class="text-slate-600"><span class="field-req">所属部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option></select></label>
+            <label class="text-slate-600">入职日期<input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600"><span class="field-req">所属岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option></select></label>
+            <label class="text-slate-600"><span class="field-req">转正申请</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>到期转正</option><option>提前转正</option></select></label>
+            <label class="text-slate-600">转正日期<input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600 sm:col-span-2">转正说明<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[88px]" placeholder="本人在试用期间工作总结（包括但不限于工作的回顾，对企业文化的理解，工作中的优点及不足，对今后工作的规划）"></textarea></label>
+            <div class="sm:col-span-2">
+              <p class="text-slate-600 mb-2">附件</p>
+              <button type="button" class="inline-flex items-center gap-1.5 h-9 px-4 rounded border border-blue-200 bg-blue-50 text-sm text-blue-600 hover:bg-blue-100"><i class="fa-solid fa-plus text-xs"></i>上传附件</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 调岗申请 -->
+        <div id="panel-transfer" class="hr-form-panel" hidden>
+          <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-slate-600"><span class="field-req">申请人</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>孙红</option></select></label>
+            <label class="text-slate-600"><span class="field-req">原所属部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option></select></label>
+            <label class="text-slate-600"><span class="field-req">原岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option></select></label>
+            <label class="text-slate-600">入职日期<input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600"><span class="field-req">申请调往部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>运营支撑部</option></select></label>
+            <label class="text-slate-600"><span class="field-req">申请调往岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>运营专员</option></select></label>
+            <label class="text-slate-600 sm:col-span-2">调岗生效日期<input type="date" class="mt-1 h-9 w-full sm:max-w-xs rounded border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600 sm:col-span-2">调岗说明<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[72px]" placeholder="调岗原因和调岗后的工作规划"></textarea></label>
+            <div class="sm:col-span-2">
+              <p class="text-slate-600 mb-2">附件</p>
+              <button type="button" class="inline-flex items-center gap-1.5 h-9 px-4 rounded border border-blue-200 bg-blue-50 text-sm text-blue-600 hover:bg-blue-100"><i class="fa-solid fa-plus text-xs"></i>上传附件</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 离职申请 -->
+        <div id="panel-resign" class="hr-form-panel" hidden>
+          <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>基本信息</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <label class="text-slate-600"><span class="field-req">申请人</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>孙红</option></select></label>
+            <label class="text-slate-600"><span class="field-req">所属部门</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务服务部</option></select></label>
+            <label class="text-slate-600">入职日期<input type="date" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600"><span class="field-req">所属岗位</span><select class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 bg-white"><option>政务员</option></select></label>
+            <label class="text-slate-600 sm:col-span-2">最后工作日<input type="date" class="mt-1 h-9 w-full sm:max-w-xs rounded border border-slate-200 px-3" value="2026-04-28"></label>
+            <label class="text-slate-600 sm:col-span-2">离职原因<textarea class="mt-1 w-full rounded border border-slate-200 px-3 py-2 min-h-[72px]" placeholder="离职原因说明"></textarea></label>
+            <div class="sm:col-span-2">
+              <p class="text-slate-600 mb-2">附件</p>
+              <button type="button" class="inline-flex items-center gap-1.5 h-9 px-4 rounded border border-blue-200 bg-blue-50 text-sm text-blue-600 hover:bg-blue-100"><i class="fa-solid fa-plus text-xs"></i>上传附件</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 mb-2 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>审批流程</div>
+        <div id="hr-flow-recruit" class="space-y-2 text-slate-600 pl-1 text-sm">
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>部门审批：孙红</p>
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>人事审批：人事专员</p>
+          <p><i class="fa-regular fa-paper-plane text-slate-400 mr-2"></i>抄送人：老板、经理</p>
+        </div>
+        <div id="hr-flow-resign" class="space-y-2 text-slate-600 pl-1 text-sm hidden">
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>部门审批：孙红</p>
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>经理审批：业务经理</p>
+          <p><i class="fa-solid fa-shield-halved text-slate-400 mr-2"></i>退保处理人：HR人事</p>
+          <p><i class="fa-regular fa-paper-plane text-slate-400 mr-2"></i>抄送人：老板、人事</p>
+        </div>
+        <div id="hr-flow-other" class="space-y-2 text-slate-600 pl-1 text-sm hidden">
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>部门审批：孙红</p>
+          <p><i class="fa-regular fa-user text-slate-400 mr-2"></i>经理审批：业务经理</p>
+          <p><i class="fa-regular fa-paper-plane text-slate-400 mr-2"></i>抄送人：老板、人事</p>
+        </div>
+      </div>
+      <div class="shrink-0 border-t border-slate-200 py-4 px-6 flex justify-center gap-4 bg-white">
+        <button type="button" id="btn-apply-submit" class="h-10 min-w-[100px] rounded bg-blue-600 text-white text-sm hover:bg-blue-700">确认</button>
+        <button type="button" data-close-modal class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 详情弹窗 -->
+  <div id="modal-detail" class="fixed inset-0 z-[120] hidden items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true">
+    <div class="absolute inset-0" data-close-detail></div>
+    <div class="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="shrink-0 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+        <h3 class="text-base font-medium text-slate-800">审批详情</h3>
+        <button type="button" data-close-detail class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 text-sm">
+        <div id="detail-status" class="mb-4 rounded-lg border px-4 py-3"></div>
+        <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>申请内容</div>
+        <div id="detail-content" class="text-slate-600 mb-4 px-1"></div>
+        <div class="mb-4 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>审批流程</div>
+        <div id="detail-timeline" class="p-2"></div>
+      </div>
+      <div id="detail-footer" class="shrink-0 border-t border-slate-200 py-4 px-6 flex justify-center gap-3"></div>
+    </div>
+  </div>
+
+  <div id="modal-insurance-voucher" class="fixed inset-0 z-[130] hidden items-center justify-center p-4 bg-slate-900/45" role="dialog" aria-modal="true">
+    <div class="absolute inset-0" data-close-voucher></div>
+    <div class="relative w-full max-w-md rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="border-b border-slate-200 px-5 py-4 flex items-center justify-between">
+        <h3 class="text-base font-medium text-slate-800">退保凭证</h3>
+        <button type="button" data-close-voucher class="text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="p-5 text-sm">
+        <p class="text-slate-500 mb-3">申请人：李强 · 政务服务部 · 离职申请</p>
+        <div class="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center">
+          <i class="fa-regular fa-file-pdf text-4xl text-rose-500 mb-3"></i>
+          <p class="font-medium text-slate-800">社保退保凭证.pdf</p>
+          <p class="text-xs text-slate-400 mt-1">上传时间：2024-04-09 16:20</p>
+        </div>
+        <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-blue-600 hover:underline" onclick="return false"><i class="fa-solid fa-download text-xs"></i>下载凭证</a>
+      </div>
+      <div class="border-t border-slate-100 px-5 py-3 flex justify-center">
+        <button type="button" data-close-voucher class="h-9 min-w-[5rem] rounded-md border border-slate-200 text-sm text-slate-600 hover:bg-slate-50">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-hr" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg"></div>
+
+  <script>
+    (function () {
+      var applyModal = document.getElementById('modal-apply');
+      var detailModal = document.getElementById('modal-detail');
+      var hrRows = document.querySelectorAll('.hr-row');
+      var hrTableEmpty = document.getElementById('hr-table-empty');
+      var currentHrTab = 'submitted';
+
+      function filterHrTable() {
+        var visible = 0;
+        hrRows.forEach(function (row) {
+          var show = row.getAttribute('data-hr-tab') === currentHrTab;
+          row.classList.toggle('hidden', !show);
+          if (show) visible++;
+        });
+        if (hrTableEmpty) hrTableEmpty.classList.toggle('hidden', visible > 0);
+      }
+
+      document.querySelectorAll('#hr-list-tabs .hr-list-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('#hr-list-tabs .hr-list-tab').forEach(function (t) {
+            t.classList.remove('hr-list-tab-active');
+          });
+          tab.classList.add('hr-list-tab-active');
+          currentHrTab = tab.getAttribute('data-hr-tab');
+          filterHrTable();
+        });
+      });
+      filterHrTable();
+
+      var typeLabels = { recruit: '招聘申请', onboard: '入职申请', regular: '转正申请', transfer: '调岗申请', resign: '离职申请' };
+      var panels = { recruit: 'panel-recruit', onboard: 'panel-onboard', regular: 'panel-regular', transfer: 'panel-transfer', resign: 'panel-resign' };
+
+      function openModal(el) { el.classList.remove('hidden'); el.classList.add('flex'); }
+      function closeModal(el) { el.classList.add('hidden'); el.classList.remove('flex'); }
+
+      function switchHrType(type) {
+        document.querySelectorAll('.hr-type-tab').forEach(function (t) {
+          t.classList.toggle('hr-type-tab-active', t.getAttribute('data-type') === type);
+        });
+        Object.keys(panels).forEach(function (k) {
+          var p = document.getElementById(panels[k]);
+          if (p) p.hidden = k !== type;
+        });
+        document.getElementById('hr-flow-recruit').classList.toggle('hidden', type !== 'recruit');
+        document.getElementById('hr-flow-resign').classList.toggle('hidden', type !== 'resign');
+        document.getElementById('hr-flow-other').classList.toggle('hidden', type === 'recruit' || type === 'resign');
+      }
+
+      document.querySelectorAll('.hr-type-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () { switchHrType(btn.getAttribute('data-type')); });
+      });
+
+      document.getElementById('btn-open-apply').addEventListener('click', function () {
+        switchHrType('recruit');
+        openModal(applyModal);
+      });
+
+      document.querySelectorAll('[data-close-modal]').forEach(function (el) {
+        el.addEventListener('click', function () { closeModal(applyModal); });
+      });
+      document.querySelectorAll('[data-close-detail]').forEach(function (el) {
+        el.addEventListener('click', function () { closeModal(detailModal); });
+      });
+
+      document.querySelectorAll('.js-reapply').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          closeModal(detailModal);
+          switchHrType('regular');
+          openModal(applyModal);
+        });
+      });
+
+      var statusBox = document.getElementById('detail-status');
+      var detailContent = document.getElementById('detail-content');
+      var timelineEl = document.getElementById('detail-timeline');
+      var footer = document.getElementById('detail-footer');
+
+      var typeSamples = {
+        recruit: { position: '政务员', count: '2', salaryRange: '6000 - 8000 元/月', onboard: '2026-05-15', duties: '负责政务服务窗口接待、政策咨询与业务办理。', requirements: '大专及以上学历，沟通能力强，有政务服务经验者优先。' },
+        onboard: { name: '孙红', dept: '政务服务部', onboard: '2026-04-28', regularDate: '2026-07-28', position: '政务员', probationSalary: '5500 元/月', regularSalary: '7000 元/月', loginAccount: 'sunhong', loginPassword: '******', contractEnd: '2029-04-27', desc: '拟录用为政务员，试用期3个月，试用期结束后根据绩效评估转正。', files: ['入职申请表.pdf'] },
+        regular: { onboard: '2025-10-08', position: '政务员', regularType: '到期转正', regularDate: '2026-04-28', desc: '试用期间工作认真负责，熟悉业务流程，能够独立完成窗口服务与材料审核，申请按期转正。', files: ['转正申请表.pdf'] },
+        transfer: { fromDept: '政务服务部', fromPos: '政务员', toDept: '运营支撑部', toPos: '运营专员', effective: '2026-05-01', desc: '因业务发展需要，申请调至运营支撑部担任运营专员，已做好工作交接安排。', files: ['调岗申请书.pdf'] },
+        resign: { onboard: '2025-10-08', position: '政务员', lastDay: '2026-05-31', reason: '因个人职业规划原因申请离职，承诺在离职前完成工作交接。', files: ['离职申请书.pdf'] }
+      };
+
+      function gridField(label, value) {
+        return '<p class="text-slate-500 shrink-0">' + label + '</p><p class="text-slate-800 font-medium">' + value + '</p>';
+      }
+      function blockField(label, value) {
+        return '<div class="border-t border-slate-100 pt-4"><p class="text-slate-500 mb-1.5">' + label + '</p><p class="text-slate-800 leading-relaxed">' + value + '</p></div>';
+      }
+      function attachField(files) {
+        if (!files || !files.length) return '';
+        var links = files.map(function (f) {
+          return '<a href="#" class="inline-flex items-center gap-1.5 rounded border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-blue-600 hover:bg-slate-100 whitespace-nowrap"><i class="fa-regular fa-file-pdf"></i>' + f + '</a>';
+        }).join('');
+        return '<div class="border-t border-slate-100 pt-4"><p class="text-slate-500 mb-2">附件</p><div class="flex flex-wrap gap-2">' + links + '</div></div>';
+      }
+      function renderDetailContent(tp, base) {
+        var s = typeSamples[tp] || typeSamples.recruit;
+        var html = '<div class="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-4">';
+        html += gridField('申请人', base.applicant);
+        html += gridField('申请时间', base.time);
+        html += gridField('申请部门', base.dept);
+        html += gridField('申请类型', base.typeLabel);
+        if (tp === 'recruit') {
+          html += gridField('招聘岗位', s.position);
+          html += gridField('拟招聘人数', s.count);
+          html += gridField('薪资范围', s.salaryRange);
+          html += gridField('期望到岗日期', s.onboard);
+          html += '</div>' + blockField('岗位职责', s.duties) + blockField('任职要求', s.requirements);
+        } else if (tp === 'onboard') {
+          html += gridField('员工姓名', s.name);
+          html += gridField('所属部门', s.dept);
+          html += gridField('入职日期', s.onboard);
+          html += gridField('转正日期', s.regularDate);
+          html += gridField('所属岗位', s.position);
+          html += gridField('试用期薪资', s.probationSalary);
+          html += gridField('转正后薪资', s.regularSalary);
+          html += gridField('登录账号', s.loginAccount);
+          html += gridField('登录密码', s.loginPassword);
+          html += gridField('合同到期日', s.contractEnd);
+          html += '</div>' + blockField('入职说明', s.desc) + attachField(s.files);
+        } else if (tp === 'regular') {
+          html += gridField('所属岗位', s.position);
+          html += gridField('入职日期', s.onboard);
+          html += gridField('转正类型', s.regularType);
+          html += gridField('转正日期', s.regularDate);
+          html += '</div>' + blockField('转正说明', s.desc) + attachField(s.files);
+        } else if (tp === 'transfer') {
+          html += gridField('原所属部门', s.fromDept);
+          html += gridField('原岗位', s.fromPos);
+          html += gridField('调往部门', s.toDept);
+          html += gridField('调往岗位', s.toPos);
+          html += gridField('调岗生效日期', s.effective);
+          html += '</div>' + blockField('调岗说明', s.desc) + attachField(s.files);
+        } else {
+          html += gridField('所属岗位', s.position);
+          html += gridField('入职日期', s.onboard);
+          html += gridField('最后工作日', s.lastDay);
+          html += '</div>' + blockField('离职原因', s.reason) + attachField(s.files);
+        }
+        return html;
+      }
+
+      function getSecondStep(type) {
+        return type === 'recruit' ? '人事审批' : '经理审批';
+      }
+      function getSecondApprover(type) {
+        return type === 'recruit' ? '李婷　人事专员' : '王磊　业务经理';
+      }
+      function getTimeline(status, type, base, insuranceDone) {
+        var step2 = getSecondStep(type);
+        var approver2 = getSecondApprover(type);
+        var submitName = base.applicant + '　' + base.dept;
+        var deptApprover = '孙红　政务部主管';
+        var t = base.time + ':00';
+        if (status === 'pending') {
+          return [
+            { kind: 'pending', step: step2, name: approver2, time: '2024-04-14 14:20:00', status: '审批中...', statusClass: 'text-amber-600', comment: '' },
+            { kind: 'done', step: '部门审批', name: deptApprover, time: '2024-04-14 13:05:00', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：同意申请' },
+            { kind: 'done', step: '提交申请', name: submitName, time: t, status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
+          ];
+        }
+        if (status === 'rejected') {
+          return [
+            { kind: 'reject', step: step2, name: approver2, time: '2024-04-14 14:20:00', status: '审批未通过', statusClass: 'text-rose-600', comment: '审批意见：材料不完整，请补充后重新提交' },
+            { kind: 'done', step: '部门审批', name: deptApprover, time: '2024-04-14 13:05:00', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：同意申请' },
+            { kind: 'done', step: '提交申请', name: submitName, time: t, status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
+          ];
+        }
+        var approvedSteps = [
+          { kind: 'done', step: step2, name: approver2, time: '2024-04-14 15:10:00', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：审批通过' },
+          { kind: 'done', step: '部门审批', name: deptApprover, time: '2024-04-14 13:05:00', status: '审批通过', statusClass: 'text-emerald-600', comment: '审批意见：同意申请' },
+          { kind: 'done', step: '提交申请', name: submitName, time: t, status: '发起申请', statusClass: 'text-emerald-600', comment: '' }
+        ];
+        if (status === 'approved' && type === 'resign' && insuranceDone) {
+          approvedSteps.unshift({
+            kind: 'done',
+            step: '退保已处理',
+            name: 'HR人事',
+            time: '2024-04-09 16:20:00',
+            status: '已处理',
+            statusClass: 'text-emerald-600',
+            comment: '已完成社保退保办理',
+            voucher: true
+          });
+        }
+        return approvedSteps;
+      }
+
+      var statusCfg = {
+        pending: {
+          cls: 'border-amber-200 bg-amber-50 text-amber-700',
+          title: '审批中',
+          desc: function (type) {
+            var p = getSecondApprover(type).split('　');
+            return '当前审批人：' + p[0] + '（' + (p[1] || '') + '）';
+          },
+          btns: '<button type="button" class="h-10 min-w-[100px] rounded bg-blue-600 text-white text-sm hover:bg-blue-700">审批通过</button><button type="button" class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">审批拒绝</button>'
+        },
+        rejected: {
+          cls: 'border-rose-200 bg-rose-50 text-rose-700',
+          title: '审批未通过',
+          desc: function (type) {
+            var p = getSecondApprover(type).split('　');
+            return '审批人：' + p[0] + '（' + (p[1] || '') + '）';
+          },
+          btns: '<button type="button" class="h-10 min-w-[100px] rounded bg-blue-600 text-white text-sm hover:bg-blue-700 js-reapply-from-detail">重新申请</button><button type="button" data-close-detail class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">取消</button>'
+        },
+        approved: {
+          cls: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+          title: '审批通过',
+          desc: '审批已完成',
+          btns: '<button type="button" data-close-detail class="h-10 min-w-[100px] rounded border border-slate-300 text-slate-600 text-sm hover:bg-slate-50">关闭</button>'
+        }
+      };
+
+      function timelineItem(item, isLast) {
+        var line = isLast ? '' : '<div class="absolute left-4 top-9 bottom-0 w-px bg-slate-200"></div>';
+        var icon;
+        if (item.kind === 'pending') {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-amber-200 bg-amber-50 text-amber-600"><i class="fa-regular fa-clock text-sm"></i></div>';
+        } else if (item.kind === 'reject') {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white"><i class="fa-solid fa-xmark text-sm"></i></div>';
+        } else {
+          icon = '<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white"><i class="fa-solid fa-check text-sm"></i></div>';
+        }
+        var comment = item.comment ? '<p class="mt-1 text-slate-500">' + item.comment + '</p>' : '';
+        var voucherBtn = item.voucher
+          ? '<p class="mt-2"><button type="button" class="js-view-insurance-voucher inline-flex items-center gap-1.5 rounded border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-100"><i class="fa-regular fa-file-pdf"></i>查看退保凭证</button></p>'
+          : '';
+        return '<div class="relative flex gap-3 pb-6">' + line + icon +
+          '<div class="min-w-0 flex-1 pt-0.5"><p class="font-medium text-slate-800">' + item.step + '</p>' +
+          '<p class="text-slate-600">' + item.name + '　' + item.time + '</p>' +
+          '<p class="' + item.statusClass + ' font-medium">' + item.status + '</p>' + comment + voucherBtn + '</div></div>';
+      }
+      function renderTimeline(items) {
+        var html = '';
+        for (var i = 0; i < items.length; i++) html += timelineItem(items[i], i === items.length - 1);
+        timelineEl.innerHTML = html;
+        timelineEl.querySelectorAll('.js-view-insurance-voucher').forEach(function (btn) {
+          btn.addEventListener('click', openInsuranceVoucherModal);
+        });
+      }
+
+      var voucherModal = document.getElementById('modal-insurance-voucher');
+      function openInsuranceVoucherModal() {
+        if (!voucherModal) return;
+        voucherModal.classList.remove('hidden');
+        voucherModal.classList.add('flex');
+      }
+      function closeInsuranceVoucherModal() {
+        if (!voucherModal) return;
+        voucherModal.classList.add('hidden');
+        voucherModal.classList.remove('flex');
+      }
+      if (voucherModal) {
+        voucherModal.querySelectorAll('[data-close-voucher]').forEach(function (el) {
+          el.addEventListener('click', closeInsuranceVoucherModal);
+        });
+      }
+
+      function openDetail(btn) {
+        var st = btn.getAttribute('data-status') || 'pending';
+        var tp = btn.getAttribute('data-type') || 'recruit';
+        var cfg = statusCfg[st] || statusCfg.pending;
+        var base = {
+          applicant: btn.getAttribute('data-applicant') || '孙红',
+          dept: btn.getAttribute('data-dept') || '政务服务部',
+          time: btn.getAttribute('data-time') || '2024-04-14 11:13',
+          typeLabel: typeLabels[tp] || '招聘申请'
+        };
+        var desc = typeof cfg.desc === 'function' ? cfg.desc(tp) : cfg.desc;
+        statusBox.className = 'mb-4 rounded-lg border px-4 py-3 ' + cfg.cls;
+        statusBox.innerHTML = '<p class="font-semibold">' + cfg.title + '</p><p class="text-xs mt-1 opacity-90">' + desc + '</p>';
+        detailContent.innerHTML = renderDetailContent(tp, base);
+        footer.innerHTML = cfg.btns;
+        footer.querySelectorAll('.js-reapply-from-detail').forEach(function (re) {
+          re.addEventListener('click', function () {
+            closeModal(detailModal);
+            switchHrType(tp);
+            openModal(applyModal);
+          });
+        });
+        var insuranceDone = btn.getAttribute('data-insurance') === 'done';
+        renderTimeline(getTimeline(st, tp, base, insuranceDone));
+        openModal(detailModal);
+      }
+
+      document.querySelectorAll('.js-view-detail').forEach(function (btn) {
+        btn.addEventListener('click', function () { openDetail(btn); });
+      });
+
+      document.getElementById('btn-apply-submit').addEventListener('click', function () {
+        closeModal(applyModal);
+        var t = document.getElementById('toast-hr');
+        t.textContent = '提交成功';
+        t.classList.remove('hidden');
+        setTimeout(function () { t.classList.add('hidden'); }, 1800);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        closeModal(applyModal);
+        closeModal(detailModal);
+        closeInsuranceVoucherModal();
+      });
+    })();
+  </script>
+  <script src="./assets/app-shell.js"></script>
+</body>
+</html>

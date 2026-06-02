@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商机详情 - 企税康协同工作平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/responsive.css">
+  <script src="./assets/responsive.js" defer></script>
+  <link rel="stylesheet" href="./assets/design-system.css">
+  <style>
+    body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+    .timeline-line { position: absolute; left: 17px; top: 38px; bottom: -24px; width: 1px; background: #d6deea; }
+    .timeline-icon { width: 35px; height: 35px; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .timeline-step:last-child .timeline-line { display: none; }
+  </style>
+</head>
+<body class="bg-[#f5f7fa] text-slate-700">
+  <div id="sidebar-backdrop" class="fixed inset-0 z-[150] bg-slate-900/40 hidden lg:hidden"></div>
+  <div class="min-h-screen w-full flex flex-col lg:flex-row relative">
+    <aside id="app-sidebar" class="w-64 max-w-[min(18rem,88vw)] bg-slate-900 text-slate-200 flex flex-col shrink-0 fixed lg:static inset-y-0 left-0 z-[160] h-screen lg:h-auto -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-out overflow-y-auto lg:overflow-visible shadow-xl lg:shadow-none">
+      <div class="h-16 px-3 flex items-center border-b border-slate-800">
+        <div class="w-full rounded-lg bg-white px-2 py-1.5 flex items-center justify-center">
+          <img src="./assets/qishuikang-logo.png" alt="企税康Logo" class="h-8 w-full max-h-8 object-contain object-center mix-blend-multiply">
+        </div>
+      </div>
+      <nav class="flex-1 py-4 text-sm overflow-y-auto">
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="index.html"><i class="fa-solid fa-table-columns w-5 mr-2"></i>工作台</a>
+        <details class="mx-3 mb-1 group" open>
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg bg-slate-800/80 flex items-center justify-between text-white [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-chart-line w-5 mr-2"></i>销售中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-target.html">销售目标</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="lead-management.html">线索管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm bg-blue-600 text-white font-medium" href="opportunity-management.html">商机管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-management.html">客户管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="sales-performance.html">销售业绩</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-building-user w-5 mr-2"></i>客户中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
+<a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+          </div>
+        </details>
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
+
+        <a class="mx-3 mb-1 h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center" href="knowledge-base.html"><i class="fa-solid fa-book-open w-5 mr-2"></i>知识库</a>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-file-signature w-5 mr-2"></i>合同订单</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="contract-management.html">合同管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="order-management.html">订单管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-wallet w-5 mr-2"></i>运营中心</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="payment-request.html">财务报销</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="financial-reports.html">经营报表</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="hr-request.html">人事管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="salary-management.html">薪资管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="department-employees.html">员工管理</a>
+          </div>
+        </details>
+        <details class="mx-3 mb-1 group">
+          <summary class="list-none cursor-pointer h-10 px-4 rounded-lg hover:bg-slate-800 flex items-center justify-between text-slate-200 [&::-webkit-details-marker]:hidden">
+            <span class="flex items-center"><i class="fa-solid fa-gear w-5 mr-2"></i>系统管理</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="role-permissions.html">角色权限</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="dictionary-management.html">字典管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="menu-management.html">菜单管理</a>
+          </div>
+        </details>
+      </nav>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 w-full">
+      <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 gap-2 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <button type="button" id="btn-sidebar-toggle" class="lg:hidden shrink-0 w-10 h-10 rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 flex items-center justify-center" aria-label="打开导航菜单"><i class="fa-solid fa-bars text-lg"></i></button>
+          <div class="text-sm text-slate-500 min-w-0 truncate">销售中心 / <span class="text-slate-700 font-medium">商机管理</span></div>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button type="button" class="w-9 h-9 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"><i class="fa-regular fa-bell"></i></button>
+          <div class="flex items-center">
+            <img class="w-9 h-9 rounded-full object-cover" src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=80&q=80" alt="用户头像">
+            <div class="ml-2 hidden sm:block">
+              <p class="text-sm font-medium text-slate-700">朱总</p>
+              <p class="text-xs text-slate-400">企业管理员</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="p-4 sm:p-6 flex-1">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden min-h-[560px] flex flex-col">
+          <div class="px-5 py-3 border-b border-slate-200">
+            <a href="opportunity-management.html" class="text-sm text-slate-500 hover:text-slate-700"><i class="fa-solid fa-angle-left mr-1"></i>商机详情</a>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 flex-1 min-h-0">
+            <div class="p-5 lg:border-r border-slate-200 overflow-y-auto">
+              <h3 class="text-base font-semibold text-slate-800 mb-1">跟进说明</h3>
+              <p class="text-xs text-slate-400 mb-5">按时间倒序展示商机关键节点</p>
+              <div id="timeline" class="space-y-0"></div>
+            </div>
+
+            <div class="p-5 overflow-y-auto flex flex-col gap-6">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-base font-semibold text-slate-800">商机信息</h3>
+                  <button type="button" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i class="fa-regular fa-pen-to-square text-xs"></i>客户信息</button>
+                </div>
+                <div id="opp-info" class="grid grid-cols-2 gap-y-3 gap-x-6 text-sm mb-3"></div>
+                <div>
+                  <p class="text-sm font-medium text-slate-800 mb-1">备注说明</p>
+                  <div id="opp-note" class="rounded border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600 leading-relaxed"></div>
+                </div>
+              </div>
+
+              <div id="detail-follow-form" class="border-t border-slate-100 pt-5">
+                <h4 class="text-base font-semibold text-slate-800 mb-3">添加跟进</h4>
+                <div class="space-y-3 text-sm">
+                  <label class="flex items-center gap-3">
+                    <span class="w-24 shrink-0 text-slate-600"><span class="text-red-500">*</span> 商机阶段</span>
+                    <div class="relative flex-1">
+                      <select id="detail-stage" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none">
+                        <!-- 选项由脚本按商机类型动态填充 -->
+                      </select>
+                      <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+                    </div>
+                  </label>
+                  <label class="flex items-center gap-3">
+                    <span class="w-24 shrink-0 text-slate-600"><span class="text-red-500">*</span> 跟进时间</span>
+                    <div class="relative flex-1">
+                      <input type="text" value="2026-04-07 10:09" class="w-full h-9 px-3 pr-9 rounded-md border border-slate-200">
+                      <i class="fa-regular fa-calendar absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none"></i>
+                    </div>
+                  </label>
+                  <div id="detail-content-wrap" class="block">
+                    <label class="block">
+                      <span class="text-slate-600"><span class="text-red-500">*</span> 跟进内容</span>
+                      <textarea id="detail-content" maxlength="1000" rows="5" placeholder="请输入内容" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 text-sm resize-y"></textarea>
+                      <div class="text-right text-xs text-slate-400 mt-1"><span id="detail-content-len">0</span>/1000</div>
+                    </label>
+                  </div>
+                  <div id="detail-lost-wrap" class="hidden">
+                    <label class="block">
+                      <span class="text-slate-600"><span class="text-red-500">*</span> 流失说明</span>
+                      <textarea id="detail-lost-reason" maxlength="1000" rows="5" placeholder="请输入内容" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 text-sm resize-y"></textarea>
+                      <div class="text-right text-xs text-slate-400 mt-1"><span id="detail-lost-len">0</span>/1000</div>
+                    </label>
+                  </div>
+                  <div class="text-center pt-2">
+                    <button type="button" id="btn-detail-follow" class="h-9 px-10 rounded-md bg-blue-600 text-white hover:bg-blue-700">确认添加</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-200 py-3 flex justify-center gap-4 shrink-0">
+            <button id="btn-prev" type="button" class="h-9 px-8 rounded border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">查看上一个</button>
+            <button id="btn-next" type="button" class="h-9 px-8 rounded bg-blue-600 text-sm text-white hover:bg-blue-700">查看下一个</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="quote-preview-modal" class="fixed inset-0 z-[120] hidden">
+    <div class="absolute inset-0 bg-slate-900/55" data-close-quote></div>
+    <div class="relative flex min-h-full items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-[420px] rounded-[10px] border border-slate-200 bg-white shadow-2xl overflow-hidden">
+        <div class="relative border-b border-slate-200 px-5 py-3">
+          <h3 class="text-center text-[18px] font-semibold text-slate-800">报价单</h3>
+          <button type="button" id="btn-close-quote" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" aria-label="关闭"><i class="fa-solid fa-xmark text-base"></i></button>
+        </div>
+        <div class="px-5 py-4">
+          <div class="flex items-center gap-2.5 mb-3">
+            <img src="./assets/qishuikang-logo.png" alt="logo" class="h-7 object-contain">
+            <span class="text-[20px] text-sky-500 font-semibold tracking-wide">报价单</span>
+          </div>
+          <table class="w-full text-[12px] text-slate-700 border border-slate-200 rounded overflow-hidden">
+            <thead>
+              <tr class="bg-sky-500 text-white">
+                <th class="py-2 px-1.5 text-left font-normal w-8">编号</th>
+                <th class="py-2 px-1.5 text-left font-normal">项目内容</th>
+                <th class="py-2 px-1.5 text-left font-normal">说明</th>
+                <th class="py-2 px-1.5 text-right font-normal w-16">价格(元)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">01</td><td class="py-2 px-1.5">小规模B:1500/年</td><td class="py-2 px-1.5">服务时长12个月</td><td class="py-2 px-1.5 text-right">1500.00</td></tr>
+              <tr class="border-b border-slate-200"><td class="py-2 px-1.5">02</td><td class="py-2 px-1.5">提供企业注册地址</td><td class="py-2 px-1.5">租赁使用时长一年</td><td class="py-2 px-1.5 text-right">2400.00</td></tr>
+              <tr><td class="py-2 px-1.5">03</td><td class="py-2 px-1.5">跨区迁移</td><td class="py-2 px-1.5">迁入迁出当月完成</td><td class="py-2 px-1.5 text-right">600.00</td></tr>
+            </tbody>
+          </table>
+          <div class="text-right text-[13px] font-semibold text-slate-800 mt-2">合计：4500.00元</div>
+        </div>
+        <div class="border-t border-slate-200 bg-slate-50/70 py-4 px-5 flex justify-center gap-3">
+          <button type="button" class="h-8 px-5 rounded-md border border-blue-600 text-[12px] font-medium text-blue-600 bg-white hover:bg-blue-50">修改报价单</button>
+          <button type="button" class="h-8 px-5 rounded-md bg-blue-600 text-[12px] font-medium text-white hover:bg-blue-700">下载报价单</button>
+          <button type="button" id="btn-cancel-quote" class="h-8 px-5 rounded-md border border-slate-300 text-[12px] font-medium text-slate-500 bg-white hover:bg-slate-50">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-opp" class="fixed top-6 left-1/2 -translate-x-1/2 z-[130] hidden rounded bg-slate-800 px-5 py-2 text-sm text-white shadow-lg">添加成功</div>
+
+  <script>
+    (function () {
+      var order = ['opp-1', 'opp-2', 'opp-3', 'opp-4', 'opp-5'];
+
+      function baseSteps(salesName) {
+        return [
+          { type: 'quote', sales: salesName || '周芳林', time: '2026-04-07 13:23' },
+          { type: 'follow', content: '这是跟进说明，已与客户沟通本期申报资料清单，对方表示下周三前可提供电子账册导出文件。', time: '2026-04-07 14:23' },
+          { type: 'send-contract', time: '2026-04-08 17:23' },
+          { type: 'contract-signed', time: '2026-04-08 17:23' }
+        ];
+      }
+
+      var dataMap = {
+        'opp-1': {
+          stage: 'intent', stageKey: 'intent',
+          info: { 客户姓名: '李先生', 手机号码: '18900008787', 联系人: '王经理', 企业类型: '一般纳税人', 商机等级: 'A级', 商机阶段: '意向商机' },
+          note: '24年7月注册好的，现在代账服务不好，想换公司。客户对价格敏感，需重点跟进方案与交付周期。',
+          steps: baseSteps('周芳林').concat([{ type: 'pending-payment' }])
+        },
+        'opp-2': {
+          stage: 'intent', stageKey: 'intent',
+          info: { 客户姓名: '李先生', 手机号码: '18900008788', 联系人: '王经理', 企业类型: '小规模', 商机等级: 'S级', 商机阶段: '意向商机' },
+          note: '客户意向较强，待确认合同条款后推进签约。',
+          steps: baseSteps('陈丽').concat([{ type: 'pending-payment' }])
+        },
+        'opp-3': {
+          stage: 'won', stageKey: 'won',
+          info: { 客户姓名: '李先生', 手机号码: '18900008789', 联系人: '秦总', 企业类型: '一般纳税人', 商机等级: 'A级', 商机阶段: '成交商机' },
+          note: '合同已签署，订单待支付，需跟进回款。',
+          steps: baseSteps('周芳林').concat([
+            { type: 'payment', payTime: '2026-04-09 17:23' },
+            { type: 'won', time: '2026-04-10 13:23' }
+          ])
+        },
+        'opp-4': {
+          stage: 'won', stageKey: 'won',
+          info: { 客户姓名: '李先生', 手机号码: '18900008790', 联系人: '王经理', 企业类型: '小规模', 商机等级: 'C级', 商机阶段: '成交商机' },
+          note: '已完成支付并成单，移交交付团队。',
+          steps: baseSteps('周芳林').concat([
+            { type: 'payment', payTime: '2026-04-09 17:23' },
+            { type: 'won', time: '2026-04-10 13:23' }
+          ])
+        },
+        'opp-5': {
+          stage: 'lost', stageKey: 'lost',
+          info: { 客户姓名: '李先生', 手机号码: '18900008791', 联系人: '秦总', 企业类型: '一般纳税人', 商机等级: 'A级', 商机阶段: '流失商机' },
+          note: '客户预算有限，经评估后终止跟进。',
+          steps: baseSteps('周芳林').concat([
+            { type: 'lost', reason: '这是流失说明。经评估该客户与当前服务套餐匹配度低，且短期内无预算，团队一致同意终止跟进。', time: '2026-04-10 13:23' }
+          ])
+        }
+      };
+
+      function stepIcon(step) {
+        if (step.type === 'pending-payment') return '<span class="timeline-icon bg-amber-100 border-2 border-amber-400 text-amber-600"><i class="fa-regular fa-clock text-[15px]"></i></span>';
+        if (step.type === 'won') return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
+        if (step.type === 'lost') return '<span class="timeline-icon bg-red-500 text-white"><i class="fa-solid fa-xmark text-[16px]"></i></span>';
+        if (step.type === 'payment') return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
+        return '<span class="timeline-icon bg-emerald-500 text-white"><i class="fa-solid fa-check text-[16px]"></i></span>';
+      }
+
+      function renderStepBody(step) {
+        if (step.type === 'quote') {
+          return '<p class="text-sm font-medium text-slate-800">' + step.sales + '创建报价单</p>' +
+            '<p class="mt-1"><button type="button" class="js-view-quote text-blue-600 hover:underline text-sm cursor-pointer">查看报价单</button></p>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        }
+        if (step.type === 'follow') {
+          return '<p class="text-sm font-medium text-slate-800">跟进说明</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1 leading-relaxed">' + step.content + '</p>' +
+            '<p class="text-[13px] text-slate-400 mt-1">跟进时间：' + step.time + '</p>';
+        }
+        if (step.type === 'send-contract') {
+          return '<p class="text-sm font-medium text-slate-800">发送合同</p>' +
+            '<p class="mt-1"><a href="contract-management.html" class="text-blue-600 hover:underline text-sm">查看合同</a></p>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        }
+        if (step.type === 'contract-signed') {
+          return '<p class="text-sm font-medium text-slate-800">合同已签署</p>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        }
+        if (step.type === 'pending-payment') {
+          return '<p class="text-sm font-medium text-amber-700">订单待支付</p>' +
+            '<p class="text-[13px] text-slate-500 mt-0.5">等待客户完成订单支付</p>';
+        }
+        if (step.type === 'payment') {
+          return '<p class="text-sm font-medium text-slate-800">订单已支付</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1">支付时间：<span class="text-slate-800">' + step.payTime + '</span></p>';
+        }
+        if (step.type === 'won') {
+          return '<p class="text-sm font-medium text-emerald-700">已成单</p>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        }
+        if (step.type === 'lost') {
+          return '<p class="text-sm font-medium text-red-600">商机流失</p>' +
+            '<p class="text-[13px] text-slate-600 mt-1 leading-relaxed">流失说明：' + step.reason + '</p>' +
+            '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
+        }
+        return '';
+      }
+
+      function renderTimeline(steps) {
+        var display = steps.slice().reverse();
+        return display.map(function (step, i) {
+          var isLast = i === display.length - 1;
+          return '<div class="timeline-step relative pl-12 pb-10">' +
+            (!isLast ? '<div class="timeline-line"></div>' : '') +
+            '<div class="absolute left-0 top-0">' + stepIcon(step) + '</div>' +
+            '<div>' + renderStepBody(step) + '</div></div>';
+        }).join('');
+      }
+
+      var params = new URLSearchParams(location.search);
+      var id = params.get('id') || 'opp-1';
+      if (!dataMap[id]) id = 'opp-1';
+      var data = dataMap[id];
+
+      document.getElementById('opp-info').innerHTML = Object.keys(data.info).map(function (k) {
+        return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + data.info[k] + '</p></div>';
+      }).join('');
+      document.getElementById('opp-note').textContent = data.note;
+      document.getElementById('timeline').innerHTML = renderTimeline(data.steps);
+
+      var detailStage = document.getElementById('detail-stage');
+      var followForm = document.getElementById('detail-follow-form');
+      var contentWrap = document.getElementById('detail-content-wrap');
+      var lostWrap = document.getElementById('detail-lost-wrap');
+      var stageKey = data.stageKey;
+
+      function updateDetailFollowFields() {
+        var lost = detailStage.value === 'lost';
+        contentWrap.classList.toggle('hidden', lost);
+        lostWrap.classList.toggle('hidden', !lost);
+      }
+
+      function initDetailFollowForm() {
+        if (stageKey === 'won' || stageKey === 'lost') {
+          followForm.classList.add('hidden');
+          return;
+        }
+        followForm.classList.remove('hidden');
+        var options = stageKey === 'intent'
+          ? [
+              { value: 'intent', label: '意向商机' },
+              { value: 'lost', label: '流失商机' }
+            ]
+          : [
+              { value: 'intent', label: '意向商机' },
+              { value: 'won', label: '成交商机' },
+              { value: 'lost', label: '流失商机' }
+            ];
+        detailStage.innerHTML = options.map(function (o) {
+          return '<option value="' + o.value + '">' + o.label + '</option>';
+        }).join('');
+        detailStage.value = stageKey;
+        detailStage.addEventListener('change', updateDetailFollowFields);
+        updateDetailFollowFields();
+      }
+      initDetailFollowForm();
+
+      var idx = order.indexOf(id);
+      var prev = idx > 0 ? order[idx - 1] : null;
+      var next = idx < order.length - 1 ? order[idx + 1] : null;
+      var btnPrev = document.getElementById('btn-prev');
+      var btnNext = document.getElementById('btn-next');
+      if (!prev) { btnPrev.disabled = true; btnPrev.classList.add('opacity-50', 'cursor-not-allowed'); }
+      if (!next) { btnNext.disabled = true; btnNext.classList.add('opacity-50', 'cursor-not-allowed'); }
+      btnPrev.addEventListener('click', function () { if (prev) location.href = 'opportunity-detail.html?id=' + prev; });
+      btnNext.addEventListener('click', function () { if (next) location.href = 'opportunity-detail.html?id=' + next; });
+
+      var quoteModal = document.getElementById('quote-preview-modal');
+      function openQuote() { quoteModal.classList.remove('hidden'); }
+      function closeQuote() { quoteModal.classList.add('hidden'); }
+      document.getElementById('timeline').addEventListener('click', function (e) {
+        if (e.target.closest('.js-view-quote')) { e.preventDefault(); openQuote(); }
+      });
+      document.getElementById('btn-close-quote').addEventListener('click', closeQuote);
+      document.getElementById('btn-cancel-quote').addEventListener('click', closeQuote);
+      quoteModal.querySelectorAll('[data-close-quote]').forEach(function (el) { el.addEventListener('click', closeQuote); });
+
+      document.getElementById('btn-detail-follow').addEventListener('click', function () {
+        var t = document.getElementById('toast-opp');
+        t.classList.remove('hidden');
+        setTimeout(function () { t.classList.add('hidden'); }, 1800);
+      });
+
+      function bindCounter(inputId, lenId, max) {
+        var inp = document.getElementById(inputId);
+        var len = document.getElementById(lenId);
+        if (!inp || !len) return;
+        function upd() { len.textContent = String(Math.min(inp.value.length, max)); }
+        inp.addEventListener('input', upd);
+        upd();
+      }
+      bindCounter('detail-content', 'detail-content-len', 1000);
+      bindCounter('detail-lost-reason', 'detail-lost-len', 1000);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !quoteModal.classList.contains('hidden')) closeQuote();
+      });
+    })();
+  </script>
+  <script src="./assets/app-shell.js"></script>
+</body>
+</html>
