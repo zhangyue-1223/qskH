@@ -6,7 +6,7 @@
 
     var wrap = document.createElement('div');
     wrap.innerHTML =
-      '<div id="modal-create-contract" class="hidden flex fixed inset-0 z-[120] items-center justify-end bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="create-contract-title">' +
+      '<div id="modal-create-contract" class="hidden flex fixed inset-0 z-[180] items-center justify-end bg-slate-900/45" role="dialog" aria-modal="true" aria-labelledby="create-contract-title">' +
       '  <div class="h-full w-full max-w-[860px] bg-white border-l border-slate-200 shadow-2xl flex flex-col">' +
       '    <div class="relative h-14 px-5 border-b border-slate-100 flex items-center justify-between shrink-0">' +
       '      <h2 id="create-contract-title" class="text-base font-semibold text-slate-800">创建合同</h2>' +
@@ -27,7 +27,7 @@
       '            <label class="inline-flex items-center gap-1.5"><input type="radio" name="contractTagShared" class="accent-blue-600" checked><span>新签</span></label>' +
       '            <label class="inline-flex items-center gap-1.5"><input type="radio" name="contractTagShared" class="accent-blue-600"><span>续签</span></label>' +
       '          </div>' +
-      '          <div class="grid grid-cols-3 gap-3">' +
+      '          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
       '            <label class="text-sm"><span class="text-slate-600">公司名称 <span class="text-red-500">*</span></span><input type="text" placeholder="输入公司名称" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label class="text-sm"><span class="text-slate-600">联系人</span><input type="text" placeholder="输入联系人姓名" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label class="text-sm"><span class="text-slate-600">联系方式 <span class="text-red-500">*</span></span><input type="text" placeholder="输入联系人手机号" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
@@ -37,13 +37,12 @@
       '      <section class="border border-slate-200 rounded-lg overflow-hidden">' +
       '        <div class="h-9 px-3 bg-slate-50 text-sm text-slate-700 font-medium flex items-center"><span class="w-1 h-4 rounded bg-blue-600 mr-2"></span>合同信息</div>' +
       '        <div class="p-4 space-y-3 text-sm">' +
-      '          <div class="grid grid-cols-4 gap-3">' +
+      '          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
       '            <label><span class="text-slate-600">所选服务 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>请选择</option></select></label>' +
       '            <label><span class="text-slate-600">合同金额(元) <span class="text-red-500">*</span></span><input type="text" placeholder="请输入" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label><span class="text-slate-600">付款方式 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>年付</option></select></label>' +
-      '            <label><span class="text-slate-600">是否开票</span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>不开票</option></select></label>' +
       '          </div>' +
-      '          <div class="grid grid-cols-4 gap-3">' +
+      '          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">' +
       '            <label><span class="text-slate-600">合同起止</span><input type="text" value="2026-04-14" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label><span class="text-slate-600 invisible">结束</span><input type="text" value="2028-04-14" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label><span class="text-slate-600">履约时长</span><input type="text" value="1 年" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
@@ -55,7 +54,7 @@
       '      <section class="border border-slate-200 rounded-lg overflow-hidden">' +
       '        <div class="h-9 px-3 bg-slate-50 text-sm text-slate-700 font-medium flex items-center"><span class="w-1 h-4 rounded bg-blue-600 mr-2"></span>签约信息</div>' +
       '        <div class="p-4 space-y-3 text-sm">' +
-      '          <div class="grid grid-cols-3 gap-3">' +
+      '          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
       '            <label><span class="text-slate-600">签约公司 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>苏州范阳信息科技有限公司</option></select></label>' +
       '            <label><span class="text-slate-600">签约人 <span class="text-red-500">*</span></span><select class="mt-1 w-full h-9 px-3 rounded border border-slate-200"><option>周方林</option></select></label>' +
       '            <div class="flex items-end"><label class="inline-flex items-center gap-2 text-sm text-slate-600"><input type="checkbox" class="accent-blue-600" checked>需要盖章</label></div>' +

@@ -1,0 +1,292 @@
+/**
+ * 企税康 B 端 — 统一设计系统
+ * 规范来源：design-system/pages/customer-detail.md
+ */
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+/* —— 章节标题 —— */
+.sec-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.sec-title::before {
+  content: "";
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: #2563eb;
+  flex-shrink: 0;
+}
+
+/* —— 卡片 —— */
+.page-card,
+.dash-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+/* —— Tab —— */
+.detail-tab,
+.dash-tab,
+.list-tab,
+.emp-tab {
+  padding-bottom: 0.625rem;
+  border-bottom: 2px solid transparent;
+  color: #64748b;
+  font-size: 0.875rem;
+  transition: color 0.15s, border-color 0.15s;
+  cursor: pointer;
+}
+.detail-tab:hover,
+.dash-tab:hover,
+.list-tab:hover,
+.emp-tab:hover {
+  color: #334155;
+}
+.detail-tab.tab-active,
+.dash-tab.tab-active,
+.list-tab.tab-active,
+.emp-tab-active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+  font-weight: 600;
+}
+.emp-tab {
+  padding-bottom: 0.5rem;
+  margin-bottom: -1px;
+}
+
+/* —— 流程步骤条 —— */
+.wo-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0;
+  padding: 0.5rem 0 1.25rem;
+  overflow-x: auto;
+}
+.wo-step {
+  flex: 1;
+  min-width: 5.5rem;
+  position: relative;
+  text-align: center;
+}
+.wo-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: calc(50% + 16px);
+  right: calc(-50% + 16px);
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 0;
+}
+.wo-step.done:not(:last-child)::after,
+.wo-step.active:not(:last-child)::after {
+  background: #3b82f6;
+}
+.wo-step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 0 auto 0.5rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  border: 2px solid #e2e8f0;
+  background: #fff;
+  color: #94a3b8;
+}
+.wo-step.done .wo-step-dot,
+.wo-step.active .wo-step-dot {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+.wo-step.pending .wo-step-dot {
+  background: #fff;
+  border-color: #cbd5e1;
+  color: #94a3b8;
+}
+.wo-step-label {
+  font-size: 0.8125rem;
+  color: #334155;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.wo-step-sub {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+  line-height: 1.2;
+}
+
+/* —— 信息字段 —— */
+.info-field .k {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 0.125rem;
+}
+.info-field .v {
+  font-size: 0.875rem;
+  color: #1e293b;
+}
+
+/* —— 业务卡片 —— */
+.service-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+.service-card + .service-card {
+  margin-top: 1rem;
+}
+.timeline-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+}
+.timeline-card + .timeline-card {
+  margin-top: 0.75rem;
+}
+
+/* —— 标签 —— */
+.tag-advantage {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+.tag-risk {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+/* —— 数据表格 —— */
+.data-table th {
+  background: #f8fafc;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+  white-space: nowrap;
+}
+.data-table td {
+  font-size: 0.875rem;
+  color: #334155;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+.data-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* —— 表单（编辑页） —— */
+.field-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+.field-input {
+  height: 2.25rem;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+}
+.field-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.field-textarea {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  resize: vertical;
+}
+.field-textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 1rem 0 0.75rem;
+}
+
+/* —— 筛选按钮 —— */
+.filter-btn {
+  height: 2.25rem;
+  padding: 0 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-size: 0.875rem;
+  color: #475569;
+  transition: background-color 0.15s, border-color 0.15s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.filter-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* —— 详情右栏吸顶 —— */
+.profile-panel {
+  position: sticky;
+  top: 1rem;
+}
+@media (max-width: 1279px) {
+  .profile-panel {
+    position: static;
+  }
+}
+
+/* —— 弹窗默认 flex —— */
+[class*="modal"]:not(.hidden) {
+  /* 页面内联 #modal-xxx:not(.hidden) 仍优先 */
+}

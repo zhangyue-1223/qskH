@@ -1,0 +1,357 @@
+/**
+ * 企税康 — 全局响应式与浏览器自适应
+ * 覆盖页面布局、宽表格、弹窗、表单与侧栏抽屉
+ */
+
+/* —— 基础 —— */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+main,
+.min-h-screen > main {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* —— 弹窗：Tailwind flex 工具类在 block 容器上不生效，打开时需 display:flex —— */
+.fixed.inset-0.flex:not(.hidden),
+.fixed.inset-0.items-center:not(.hidden),
+.fixed.inset-0.justify-center:not(.hidden),
+.fixed.inset-0.justify-end:not(.hidden) {
+  display: flex !important;
+}
+
+/* —— 弹窗层级：必须高于侧栏 #app-sidebar (z-160) 与遮罩 (z-150) —— */
+.fixed.inset-0[id^="modal-"]:not(.hidden):not(#sidebar-backdrop),
+.fixed.inset-0[id$="-modal"]:not(.hidden),
+.fixed.inset-0[role="dialog"]:not(.hidden),
+#order-detail-modal:not(.hidden),
+#quote-preview-modal:not(.hidden),
+#modal-create-contract:not(.hidden) {
+  z-index: 180 !important;
+}
+
+body.qsk-modal-open #app-sidebar,
+body.qsk-modal-open #sidebar-backdrop {
+  z-index: 140 !important;
+}
+
+/* —— 弹窗容器与面板 —— */
+.fixed.inset-0:not(.hidden):not(#sidebar-backdrop):not(#app-sidebar) {
+  padding: max(0.75rem, env(safe-area-inset-top, 0px)) max(0.75rem, env(safe-area-inset-right, 0px))
+    max(0.75rem, env(safe-area-inset-bottom, 0px)) max(0.75rem, env(safe-area-inset-left, 0px));
+}
+
+.fixed.inset-0:not(.hidden) .pointer-events-auto,
+.fixed.inset-0:not(.hidden) > .relative.w-full,
+.fixed.inset-0:not(.hidden) > .relative.rounded,
+.fixed.inset-0:not(.hidden) [class*="max-w-"]:not(.absolute),
+.fixed.inset-0:not(.hidden) .bg-white.rounded,
+.fixed.inset-0:not(.hidden) .bg-white.rounded-xl,
+.fixed.inset-0:not(.hidden) .bg-white.rounded-lg {
+  width: 100%;
+  max-width: min(100%, var(--qsk-modal-max, 64rem));
+  max-height: min(92dvh, 92vh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fixed.inset-0:not(.hidden) .flex.flex-col.max-h-\[90vh\],
+.fixed.inset-0:not(.hidden) .max-h-\[92vh\] {
+  max-height: min(92dvh, 92vh);
+}
+
+/* 创建合同侧滑抽屉：小屏全屏 */
+#modal-create-contract:not(.hidden) {
+  padding: 0 !important;
+  justify-content: stretch !important;
+  align-items: stretch !important;
+}
+
+#modal-create-contract:not(.hidden) > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: 100dvh !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+}
+
+@media (min-width: 768px) {
+  #modal-create-contract:not(.hidden) {
+    padding: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  #modal-create-contract:not(.hidden) > div {
+    width: 100% !important;
+    max-width: 860px !important;
+    height: 100% !important;
+    border-left: 1px solid #e2e8f0 !important;
+  }
+}
+
+/* —— 弹窗内表单行：小屏标签与输入纵向排列 —— */
+@media (max-width: 639px) {
+  .fixed.inset-0:not(.hidden) .flex.items-center.gap-3,
+  .fixed.inset-0:not(.hidden) form .flex.items-center.gap-3,
+  .fixed.inset-0:not(.hidden) .flex.items-center.gap-4,
+  .fixed.inset-0:not(.hidden) .flex.items-center.gap-6 {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0.375rem;
+  }
+
+  .fixed.inset-0:not(.hidden) label.w-28,
+  .fixed.inset-0:not(.hidden) label.w-24,
+  .fixed.inset-0:not(.hidden) label.w-20,
+  .fixed.inset-0:not(.hidden) .w-28.shrink-0,
+  .fixed.inset-0:not(.hidden) .w-24.shrink-0,
+  .fixed.inset-0:not(.hidden) .w-20.text-slate-600,
+  .fixed.inset-0:not(.hidden) span.w-20.text-slate-600 {
+    width: 100% !important;
+    text-align: left !important;
+    flex-shrink: 0;
+  }
+
+  .fixed.inset-0:not(.hidden) .grid-cols-\[88px_1fr\],
+  .fixed.inset-0:not(.hidden) .grid-cols-2,
+  .fixed.inset-0:not(.hidden) .grid-cols-3,
+  .fixed.inset-0:not(.hidden) .grid-cols-4,
+  #modal-create-contract:not(.hidden) .grid-cols-3,
+  #modal-create-contract:not(.hidden) .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .fixed.inset-0:not(.hidden) .flex.justify-end.gap-3,
+  .fixed.inset-0:not(.hidden) .flex.justify-center.gap-3,
+  .fixed.inset-0:not(.hidden) .flex.items-center.justify-center.gap-3 {
+    flex-wrap: wrap;
+  }
+
+  .fixed.inset-0:not(.hidden) .flex.justify-end.gap-3 > button,
+  .fixed.inset-0:not(.hidden) .flex.justify-center.gap-3 > button {
+    flex: 1 1 calc(50% - 0.375rem);
+    min-width: 5.5rem;
+  }
+
+  .fixed.inset-0:not(.hidden) .relative.flex.min-h-full {
+    padding: 0.5rem !important;
+    min-height: 100%;
+    align-items: flex-end;
+  }
+
+  .fixed.inset-0:not(.hidden) .relative.flex.min-h-full .pointer-events-auto {
+    max-height: 96dvh;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+  }
+}
+
+/* —— 宽表格横向滚动 —— */
+.table-scroll,
+.qsk-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+main .overflow-hidden:has(> table),
+main .rounded.border:has(> table),
+main .rounded-lg.border:has(> table),
+section .rounded.border:has(> table),
+.fixed.inset-0 .overflow-hidden:has(> table) {
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* —— 线索/客户宽表：全尺寸保持最小宽度，避免列挤压重叠 —— */
+main .table-leads {
+  min-width: 1280px;
+}
+
+main .table-customers {
+  min-width: 1100px;
+}
+
+@media (max-width: 1023px) {
+  .table-scroll,
+  .qsk-table-scroll,
+  main table[class*="min-w-"],
+  main .table-leads,
+  main .table-customers,
+  main .data-table,
+  main .sp-table,
+  main .salary-table,
+  .fixed.inset-0 table[class*="min-w-"] {
+    min-width: 640px;
+  }
+
+  main .table-leads {
+    min-width: 1280px;
+  }
+
+  main .table-customers {
+    min-width: 1100px;
+  }
+}
+
+/* —— 页面工具栏与筛选 —— */
+@media (max-width: 767px) {
+  main header .flex.items-center.justify-between {
+    gap: 0.5rem;
+  }
+
+  main .flex.flex-wrap.items-center.gap-2,
+  main .flex.flex-wrap.items-center.gap-3,
+  main .mt-4.flex.items-center.gap-3 {
+    gap: 0.5rem;
+  }
+
+  main .flex.flex-wrap.items-center.gap-2 > button,
+  main .flex.flex-wrap.items-center.gap-3 > button {
+    flex: 1 1 auto;
+  }
+
+  .wo-steps {
+    justify-content: flex-start;
+    gap: 0.25rem;
+  }
+
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .todo-action {
+    align-self: flex-end;
+  }
+}
+
+/* —— 详情页双栏 / 知识库布局 —— */
+@media (max-width: 1023px) {
+  .profile-panel {
+    position: static !important;
+  }
+
+  .grid.grid-cols-12.gap-4.min-h-\[640px\] {
+    grid-template-columns: 1fr;
+    min-height: 0 !important;
+  }
+
+  .grid.grid-cols-12.gap-4.min-h-\[640px\] aside.col-span-3 {
+    grid-column: 1 / -1;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0;
+    padding-right: 0 !important;
+    padding-bottom: 1rem;
+    max-height: 42vh;
+    overflow-y: auto;
+  }
+
+  .grid.grid-cols-12.gap-4.min-h-\[640px\] .col-span-9 {
+    grid-column: 1 / -1;
+    padding-left: 0 !important;
+  }
+}
+
+/* —— 菜单管理列表 —— */
+@media (max-width: 1023px) {
+  .menu-list-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-list-head,
+  .menu-list-row {
+    min-width: 720px;
+  }
+}
+
+/* —— 字典管理 / 角色权限 左右分栏 —— */
+@media (max-width: 767px) {
+  main section .rounded-xl.border.bg-white.shadow-sm.flex.min-h-\[calc\(100vh-8\.5rem\)\] {
+    flex-direction: column;
+  }
+
+  main section .rounded-xl.border.bg-white.shadow-sm.flex.min-h-\[calc\(100vh-8\.5rem\)\] > .w-36 {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.5rem !important;
+  }
+
+  main section .rounded-xl.border.bg-white.shadow-sm.flex.min-h-\[calc\(100vh-8\.5rem\)\] > .w-36 button {
+    width: auto;
+    flex: 1 1 calc(50% - 0.25rem);
+  }
+
+  main section .bg-white.rounded-xl .flex.flex-1.min-h-0.border-t {
+    flex-direction: column;
+  }
+
+  main section .bg-white.rounded-xl .flex.flex-1.min-h-0.border-t > .w-64 {
+    width: 100% !important;
+    max-height: 38vh;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0;
+  }
+}
+
+/* —— 文档页（docs/*.html）—— */
+body.qsk-doc {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  body.qsk-doc {
+    padding: 8mm 5mm;
+    font-size: 10.5pt;
+  }
+
+  body.qsk-doc h1 {
+    font-size: 18pt;
+  }
+
+  body.qsk-doc h2 {
+    font-size: 14pt;
+  }
+
+  body.qsk-doc .qsk-table-scroll {
+    margin: 0.75rem 0;
+    border: 1px solid var(--border, #cbd5e1);
+    border-radius: 0.375rem;
+  }
+}
+
+/* —— 登录页 —— */
+@media (max-width: 639px) {
+  body.min-h-screen.m-0 .rounded-2xl.bg-white {
+    padding: 1.5rem !important;
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08) !important;
+  }
+}
+
+body.qsk-modal-open {
+  overflow: hidden;
+}
