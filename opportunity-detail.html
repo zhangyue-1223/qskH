@@ -125,15 +125,8 @@
 
             <div class="p-5 overflow-y-auto flex flex-col gap-6">
               <div>
-                <div class="flex items-center justify-between mb-4">
-                  <h3 class="text-base font-semibold text-slate-800">商机信息</h3>
-                  <button type="button" class="text-sm text-blue-600 hover:underline flex items-center gap-1"><i class="fa-regular fa-pen-to-square text-xs"></i>客户信息</button>
-                </div>
-                <div id="opp-info" class="grid grid-cols-2 gap-y-3 gap-x-6 text-sm mb-3"></div>
-                <div>
-                  <p class="text-sm font-medium text-slate-800 mb-1">备注说明</p>
-                  <div id="opp-note" class="rounded border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600 leading-relaxed"></div>
-                </div>
+                <h3 class="text-base font-semibold text-slate-800 mb-4">商机信息</h3>
+                <div id="opp-info" class="grid grid-cols-2 gap-y-3 gap-x-6 text-sm"></div>
               </div>
 
               <div id="detail-follow-form" class="border-t border-slate-100 pt-5">
@@ -243,19 +236,19 @@
       var dataMap = {
         'opp-1': {
           stage: 'intent', stageKey: 'intent',
-          info: { 客户姓名: '李先生', 手机号码: '18900008787', 联系人: '王经理', 企业类型: '一般纳税人', 商机等级: 'A级', 商机阶段: '意向商机' },
+          info: { 客户姓名: '秦总', 手机号码: '18900008787', 所属区域: '苏州/工业园区', 行业类别: '医疗器械', 企业类型: '一般纳税人', 商机阶段: '意向商机', 商机等级: 'A级' },
           note: '24年7月注册好的，现在代账服务不好，想换公司。客户对价格敏感，需重点跟进方案与交付周期。',
           steps: baseSteps('周芳林').concat([{ type: 'pending-payment' }])
         },
         'opp-2': {
           stage: 'intent', stageKey: 'intent',
-          info: { 客户姓名: '李先生', 手机号码: '18900008788', 联系人: '王经理', 企业类型: '小规模', 商机等级: 'S级', 商机阶段: '意向商机' },
+          info: { 客户姓名: '王经理', 手机号码: '18900008788', 所属区域: '昆山', 行业类别: '科技服务', 企业类型: '小规模纳税人', 商机阶段: '意向商机', 商机等级: 'S级' },
           note: '客户意向较强，待确认合同条款后推进签约。',
           steps: baseSteps('陈丽').concat([{ type: 'pending-payment' }])
         },
         'opp-3': {
           stage: 'won', stageKey: 'won',
-          info: { 客户姓名: '李先生', 手机号码: '18900008789', 联系人: '秦总', 企业类型: '一般纳税人', 商机等级: 'A级', 商机阶段: '成交商机' },
+          info: { 客户姓名: '秦总', 手机号码: '18900008789', 所属区域: '苏州/工业园区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 商机阶段: '成交商机', 商机等级: 'A级' },
           note: '合同已签署，订单待支付，需跟进回款。',
           steps: baseSteps('周芳林').concat([
             { type: 'payment', payTime: '2026-04-09 17:23' },
@@ -264,7 +257,7 @@
         },
         'opp-4': {
           stage: 'won', stageKey: 'won',
-          info: { 客户姓名: '李先生', 手机号码: '18900008790', 联系人: '王经理', 企业类型: '小规模', 商机等级: 'C级', 商机阶段: '成交商机' },
+          info: { 客户姓名: '王经理', 手机号码: '18900008790', 所属区域: '无锡/新吴区', 行业类别: '制造业', 企业类型: '小规模纳税人', 商机阶段: '成交商机', 商机等级: 'C级' },
           note: '已完成支付并成单，移交交付团队。',
           steps: baseSteps('周芳林').concat([
             { type: 'payment', payTime: '2026-04-09 17:23' },
@@ -273,7 +266,7 @@
         },
         'opp-5': {
           stage: 'lost', stageKey: 'lost',
-          info: { 客户姓名: '李先生', 手机号码: '18900008791', 联系人: '秦总', 企业类型: '一般纳税人', 商机等级: 'A级', 商机阶段: '流失商机' },
+          info: { 客户姓名: '秦总', 手机号码: '18900008791', 所属区域: '苏州/姑苏区', 行业类别: '商业贸易', 企业类型: '一般纳税人', 商机阶段: '流失商机', 商机等级: 'A级' },
           note: '客户预算有限，经评估后终止跟进。',
           steps: baseSteps('周芳林').concat([
             { type: 'lost', reason: '这是流失说明。经评估该客户与当前服务套餐匹配度低，且短期内无预算，团队一致同意终止跟进。', time: '2026-04-10 13:23' }
@@ -318,7 +311,7 @@
             '<p class="text-[13px] text-slate-600 mt-1">支付时间：<span class="text-slate-800">' + step.payTime + '</span></p>';
         }
         if (step.type === 'won') {
-          return '<p class="text-sm font-medium text-emerald-700">已成单</p>' +
+          return '<p class="text-sm font-medium text-emerald-700">已成交</p>' +
             '<p class="text-[13px] text-slate-400 mt-1">' + step.time + '</p>';
         }
         if (step.type === 'lost') {
@@ -348,7 +341,6 @@
       document.getElementById('opp-info').innerHTML = Object.keys(data.info).map(function (k) {
         return '<div><p class="text-xs text-slate-500 mb-1">' + k + '</p><p class="text-sm text-slate-800">' + data.info[k] + '</p></div>';
       }).join('');
-      document.getElementById('opp-note').textContent = data.note;
       document.getElementById('timeline').innerHTML = renderTimeline(data.steps);
 
       var detailStage = document.getElementById('detail-stage');

@@ -85,7 +85,7 @@
     .order-carousel-dot-active { background: #2563eb; width: 1.125rem; }
     #modal-add-lead:not(.hidden) { display: block; }
     #modal-follow-note:not(.hidden),
-    #modal-first-call:not(.hidden) { display: flex; }
+    #modal-add-maintain:not(.hidden) { display: flex; }
     .first-call-field {
       border: 1px solid #e2e8f0;
       border-radius: 0.75rem;
@@ -271,11 +271,11 @@
                   </div>
                   <p class="text-sm font-medium text-slate-700">发起合同签署</p>
                 </button>
-                <button type="button" id="btn-open-first-call" class="quick-entry">
+                <button type="button" id="btn-open-add-maintain" class="quick-entry">
                   <div class="w-9 h-9 rounded-lg bg-amber-100 text-amber-500 flex items-center justify-center mb-2">
-                    <i class="fa-solid fa-phone-volume"></i>
+                    <i class="fa-solid fa-user-gear"></i>
                   </div>
-                  <p class="text-sm font-medium text-slate-700">顾问首电确认</p>
+                  <p class="text-sm font-medium text-slate-700">添加客户维护</p>
                 </button>
               </div>
             </section>
@@ -626,16 +626,6 @@
             </div>
           </div>
           <div class="flex items-center gap-3">
-            <label class="w-28 shrink-0 text-right text-slate-600">是否添加微信</label>
-            <div class="relative flex-1">
-              <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
-                <option selected>是</option>
-                <option>否</option>
-              </select>
-              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
             <label class="w-28 shrink-0 text-right text-slate-600">所属区域</label>
             <div class="relative flex-1">
               <select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
@@ -665,6 +655,39 @@
                 <option>小规模纳税人</option>
               </select>
               <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-28 shrink-0 text-right text-slate-600">添加微信</label>
+            <div class="relative flex-1">
+              <select id="nl-wechat" class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
+                <option selected>是</option>
+                <option>否</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-28 shrink-0 text-right text-slate-600">是否有效</label>
+            <div class="relative flex-1">
+              <select id="nl-valid" class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none text-slate-700">
+                <option value="valid" selected>有效</option>
+                <option value="invalid">无效</option>
+              </select>
+              <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-28 shrink-0 text-right text-slate-600">下次跟进</label>
+            <div class="relative flex-1">
+              <input id="nl-next-follow" type="date" class="w-full h-9 pl-3 pr-3 rounded border border-slate-200 text-slate-700">
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <label class="w-28 shrink-0 text-right text-slate-600 pt-2">跟进内容</label>
+            <div class="relative flex-1">
+              <textarea id="nl-follow-content" maxlength="500" rows="3" placeholder="请输入跟进内容" class="w-full px-3 py-2 rounded border border-slate-200 text-slate-700 resize-y min-h-[80px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400"></textarea>
+              <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="nl-follow-content-len">0</span>/500</span>
             </div>
           </div>
           <div class="flex items-center gap-3">
@@ -814,53 +837,62 @@
   <div id="toast-add-lead-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">新增成功</div>
   
   <div id="toast-follow-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">提交成功</div>
-  <!-- 顾问首电确认弹窗（与代账服务一致） -->
-  <div id="modal-first-call" class="hidden fixed inset-0 z-[130] items-center justify-center bg-slate-900/45 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-first-call-title">
-    <div class="absolute inset-0" data-close-first-call></div>
-    <div class="relative w-full max-w-5xl rounded-xl border border-slate-200 bg-white shadow-xl">
-      <div class="relative border-b border-slate-200 px-5 py-4">
-        <h3 id="modal-first-call-title" class="text-center text-base font-semibold text-slate-800">首电确认</h3>
-        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer" data-close-first-call><i class="fa-solid fa-xmark text-lg"></i></button>
+  <div id="toast-maintain-success" class="fixed top-6 left-1/2 -translate-x-1/2 z-[120] hidden px-5 py-2.5 rounded-lg bg-slate-800 text-white text-sm shadow-lg" role="status">维护记录已添加</div>
+
+  <!-- 添加维护弹窗 -->
+  <div id="modal-add-maintain" class="hidden fixed inset-0 z-[130] items-center justify-center bg-slate-900/45 p-4" role="dialog" aria-modal="true" aria-labelledby="modal-add-maintain-title">
+    <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col border border-slate-200">
+      <div class="relative flex items-center justify-center h-14 px-4 border-b border-slate-100 shrink-0">
+        <h2 id="modal-add-maintain-title" class="text-lg font-semibold text-slate-800">添加维护</h2>
+        <button type="button" id="btn-close-add-maintain" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center" aria-label="关闭">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
       </div>
-      <div class="px-6 py-5 text-sm space-y-4 max-h-[72vh] overflow-y-auto">
-        <div class="rounded-lg border border-slate-100 bg-slate-50/70 p-4">
-          <p class="text-sm font-medium text-slate-700 mb-3">企业基础信息</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="first-call-field"><label class="first-call-label">企业名称</label><input type="text" class="first-call-input" value="苏州企业税务服务科技有限公司"></div>
-            <div class="first-call-field"><label class="first-call-label">实际对接人姓名 <span class="text-red-500">*</span></label><select class="first-call-input"><option value="">请输入实际对接人姓名</option><option>张三</option><option>李四</option></select></div>
-            <div class="first-call-field"><label class="first-call-label">实际对接人电话 <span class="text-red-500">*</span></label><input type="text" class="first-call-input" placeholder="请输入实际对接人电话"></div>
-            <div class="first-call-field"><label class="first-call-label">所属区域</label><select class="first-call-input"><option value="">请选择所属区域</option><option>苏州</option><option>昆山</option></select></div>
-            <div class="first-call-field"><label class="first-call-label">有无社保 <span class="text-red-500">*</span></label><select class="first-call-input"><option>有</option><option>无</option></select></div>
-            <div class="first-call-field"><label class="first-call-label">成立日期</label><select class="first-call-input"><option value="">请选择成立日期</option></select></div>
+      <form id="form-add-maintain" class="overflow-y-auto flex-1 px-6 py-5 space-y-4 text-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <label class="w-full sm:w-28 shrink-0 text-slate-600 sm:text-right">公司名称 <span class="text-red-500">*</span></label>
+          <div class="flex-1 min-w-0 relative">
+            <select id="maintain-company" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <option value="">请选择公司名称</option>
+              <option>苏州企业税务服务科技有限公司</option>
+              <option>苏州初禾医疗科技有限公司</option>
+              <option>无锡领越商贸有限公司</option>
+              <option>昆山智诺科技服务有限公司</option>
+            </select>
+            <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
           </div>
         </div>
-        <div class="rounded-lg border border-slate-100 p-4">
-          <p class="text-sm font-medium text-slate-700 mb-3">税务与资质信息</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="first-call-field"><label class="first-call-label">税务核定</label><select class="first-call-input"><option value="">请选择税务核定日期</option></select></div>
-            <div class="first-call-field"><label class="first-call-label">税务分局</label><input type="text" class="first-call-input" placeholder="请输入税务分局"></div>
-            <div class="first-call-field"><label class="first-call-label">税务局电话</label><input type="text" class="first-call-input" placeholder="请输入税务局电话"></div>
-            <div class="first-call-field"><label class="first-call-label">开票税点</label><input type="text" class="first-call-input" placeholder="请输入开票税点"></div>
-            <div class="first-call-field"><label class="first-call-label">电子税务局密码</label><input type="text" class="first-call-input" placeholder="请输入电子税务局密码"></div>
-            <div class="first-call-field"><label class="first-call-label">资质许可证</label><input type="text" class="first-call-input" placeholder="请输入资质许可证信息"></div>
-            <div class="first-call-field"><label class="first-call-label">挂靠地址</label><input type="text" class="first-call-input" placeholder="请输入挂靠地址"></div>
-            <div class="first-call-field"><label class="first-call-label">开户行</label><input type="text" class="first-call-input" placeholder="请输入开户行"></div>
-            <div class="first-call-field"><label class="first-call-label">开户行账号</label><input type="text" class="first-call-input" placeholder="请输入开户行账号"></div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <label class="w-full sm:w-28 shrink-0 text-slate-600 sm:text-right">维护类型 <span class="text-red-500">*</span></label>
+          <div class="flex-1 min-w-0 relative">
+            <select id="maintain-type" class="w-full h-9 pl-3 pr-9 rounded-md border border-slate-200 text-slate-800 bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
+              <option value="">请选择维护类型</option>
+              <option>日常回访</option>
+              <option>续费提醒</option>
+              <option>政策解读</option>
+              <option>问题处理</option>
+              <option>其他</option>
+            </select>
+            <i class="fa-solid fa-angle-down pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
           </div>
         </div>
-        <div class="rounded-lg border border-slate-100 p-4">
-          <p class="text-sm font-medium text-slate-700 mb-3">补充说明</p>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="first-call-field md:col-span-2"><label class="first-call-label">特殊业务</label><textarea class="first-call-textarea h-20" placeholder="请填写特殊业务说明"></textarea></div>
-            <div class="first-call-field md:col-span-2"><label class="first-call-label">经营范围</label><textarea class="first-call-textarea h-20" placeholder="请输入经营范围"></textarea></div>
-            <div class="first-call-field"><label class="first-call-label">开票信息</label><input type="text" class="first-call-input" placeholder="请输入企业开票信息"></div>
-            <div class="first-call-field md:col-span-2"><label class="first-call-label">客户备注</label><textarea class="first-call-textarea h-20" placeholder="请输入备注内容"></textarea></div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <label class="w-full sm:w-28 shrink-0 text-slate-600 sm:text-right">维护时间 <span class="text-red-500">*</span></label>
+          <div class="flex-1 min-w-0 relative">
+            <input id="maintain-time" type="datetime-local" class="w-full h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400">
           </div>
         </div>
-      </div>
-      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
-        <button type="button" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" data-close-first-call>确认</button>
-        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-first-call>取消</button>
+        <div class="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+          <label class="w-full sm:w-28 shrink-0 text-slate-600 sm:text-right pt-2">维护内容 <span class="text-red-500">*</span></label>
+          <div class="flex-1 min-w-0 relative">
+            <textarea id="maintain-content" maxlength="1000" rows="5" placeholder="请输入维护内容" class="w-full px-3 py-2.5 pb-8 rounded-md border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 resize-y min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-400/30 focus:border-blue-400 bg-slate-50/80"></textarea>
+            <span class="absolute bottom-2 right-3 text-xs text-slate-400 tabular-nums pointer-events-none"><span id="cnt-maintain-content">0</span>/1000</span>
+          </div>
+        </div>
+      </form>
+      <div class="flex justify-center gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/80 shrink-0">
+        <button type="button" id="btn-confirm-add-maintain" class="h-9 px-8 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">确认</button>
+        <button type="button" id="btn-cancel-add-maintain" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>
       </div>
     </div>
   </div>
@@ -1015,8 +1047,17 @@
       var cntFollowNote = document.getElementById('cnt-follow-note');
       var toastTimer;
       var toastFollowTimer;
-      var modalFirstCall = document.getElementById('modal-first-call');
-      var btnOpenFirstCall = document.getElementById('btn-open-first-call');
+      var modalAddMaintain = document.getElementById('modal-add-maintain');
+      var btnOpenAddMaintain = document.getElementById('btn-open-add-maintain');
+      var btnCloseAddMaintain = document.getElementById('btn-close-add-maintain');
+      var btnCancelAddMaintain = document.getElementById('btn-cancel-add-maintain');
+      var btnConfirmAddMaintain = document.getElementById('btn-confirm-add-maintain');
+      var toastMaintain = document.getElementById('toast-maintain-success');
+      var maintainContent = document.getElementById('maintain-content');
+      var cntMaintainContent = document.getElementById('cnt-maintain-content');
+      var nlFollowContent = document.getElementById('nl-follow-content');
+      var nlFollowContentLen = document.getElementById('nl-follow-content-len');
+      var toastMaintainTimer;
 
       function openAddLeadModal() {
         if (!modalAddLead) return;
@@ -1065,18 +1106,25 @@
         }, 2200);
       }
 
-      function openFirstCallModal() {
-        if (!modalFirstCall) return;
-        modalFirstCall.classList.remove('hidden');
-        modalFirstCall.classList.add('flex');
+      function openAddMaintainModal() {
+        if (!modalAddMaintain) return;
+        modalAddMaintain.classList.remove('hidden');
         document.body.classList.add('overflow-hidden');
       }
 
-      function closeFirstCallModal() {
-        if (!modalFirstCall) return;
-        modalFirstCall.classList.add('hidden');
-        modalFirstCall.classList.remove('flex');
+      function closeAddMaintainModal() {
+        if (!modalAddMaintain) return;
+        modalAddMaintain.classList.add('hidden');
         document.body.classList.remove('overflow-hidden');
+      }
+
+      function showMaintainSuccess() {
+        if (!toastMaintain) return;
+        toastMaintain.classList.remove('hidden');
+        clearTimeout(toastMaintainTimer);
+        toastMaintainTimer = setTimeout(function () {
+          toastMaintain.classList.add('hidden');
+        }, 2200);
       }
 
       if (btnOpenAddLead) btnOpenAddLead.addEventListener('click', openAddLeadModal);
@@ -1097,10 +1145,18 @@
           showFollowSuccess();
         });
       }
-      if (btnOpenFirstCall) btnOpenFirstCall.addEventListener('click', openFirstCallModal);
-      if (modalFirstCall) {
-        modalFirstCall.querySelectorAll('[data-close-first-call]').forEach(function (el) {
-          el.addEventListener('click', closeFirstCallModal);
+      if (btnOpenAddMaintain) btnOpenAddMaintain.addEventListener('click', openAddMaintainModal);
+      if (btnCloseAddMaintain) btnCloseAddMaintain.addEventListener('click', closeAddMaintainModal);
+      if (btnCancelAddMaintain) btnCancelAddMaintain.addEventListener('click', closeAddMaintainModal);
+      if (btnConfirmAddMaintain) {
+        btnConfirmAddMaintain.addEventListener('click', function () {
+          closeAddMaintainModal();
+          showMaintainSuccess();
+        });
+      }
+      if (modalAddMaintain) {
+        modalAddMaintain.addEventListener('click', function (e) {
+          if (e.target === modalAddMaintain) closeAddMaintainModal();
         });
       }
       if (modalAddLead) {
@@ -1119,14 +1175,17 @@
       }
       bindLeadCounter('nl-name', 'nl-name-len', 5);
       bindLeadCounter('nl-phone', 'nl-phone-len', 11);
+      if (nlFollowContent && nlFollowContentLen) {
+        nlFollowContent.addEventListener('input', function () { syncCount(nlFollowContent, nlFollowContentLen); });
+        syncCount(nlFollowContent, nlFollowContentLen);
+      }
+      if (maintainContent && cntMaintainContent) {
+        maintainContent.addEventListener('input', function () { syncCount(maintainContent, cntMaintainContent); });
+        syncCount(maintainContent, cntMaintainContent);
+      }
       if (modalFollowNote) {
         modalFollowNote.addEventListener('click', function (e) {
           if (e.target === modalFollowNote) closeFollowNoteModal();
-        });
-      }
-      if (modalFirstCall) {
-        modalFirstCall.addEventListener('click', function (e) {
-          if (e.target === modalFirstCall) closeFirstCallModal();
         });
       }
       if (followNoteContent && cntFollowNote) {
@@ -1224,8 +1283,8 @@
         if (e.key === 'Escape' && modalFollowNote && !modalFollowNote.classList.contains('hidden')) {
           closeFollowNoteModal();
         }
-        if (e.key === 'Escape' && modalFirstCall && !modalFirstCall.classList.contains('hidden')) {
-          closeFirstCallModal();
+        if (e.key === 'Escape' && modalAddMaintain && !modalAddMaintain.classList.contains('hidden')) {
+          closeAddMaintainModal();
         }
       });
       window.mountCreateContractModal({ openSelectors: ['#btn-open-create-contract'] });

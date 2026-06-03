@@ -114,8 +114,36 @@
       </header>
 
       <section class="p-4 sm:p-6 space-y-4">
-        <!-- 概览 -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <form class="page-card st-filter-panel rounded-lg border border-slate-200 p-3 sm:p-4" id="st-search-form" onsubmit="return false">
+          <div class="flex items-center gap-2 mb-2.5 pb-2.5 border-b border-slate-200/70">
+            <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white text-xs"><i class="fa-solid fa-filter"></i></span>
+            <span class="text-sm font-medium text-slate-700">筛选条件</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 items-end">
+            <label class="text-xs text-slate-500">目标周期
+              <input type="month" value="2026-05" class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+            </label>
+            <label class="text-xs text-slate-500">设置状态
+              <select class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                <option value="">全部</option>
+                <option>已设置</option>
+                <option>待设置</option>
+              </select>
+            </label>
+            <div class="col-span-2 sm:col-span-3 lg:col-span-2 flex flex-wrap items-end gap-2">
+              <label class="text-xs text-slate-500 flex-1 min-w-[8rem]">关键词
+                <input type="text" class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 placeholder:text-slate-400" placeholder="部门 / 姓名">
+              </label>
+              <div class="flex flex-wrap items-center gap-2 shrink-0">
+                <button type="button" class="h-9 px-5 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">查询</button>
+                <button type="button" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
+                <button type="button" class="h-9 px-3 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-file-export text-xs text-slate-400"></i>导出</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <div class="page-card p-4">
             <p class="text-xs text-slate-500">本月已设目标</p>
             <p class="text-2xl font-semibold text-slate-800 mt-1" id="stat-set-count">12</p>
@@ -131,56 +159,10 @@
             <p class="text-2xl font-semibold text-amber-600 mt-1" id="stat-pending-count">5</p>
             <p class="text-xs text-slate-400 mt-1">未配置本月目标</p>
           </div>
-          <div class="page-card p-4">
-            <p class="text-xs text-slate-500">整体完成率</p>
-            <p class="text-2xl font-semibold text-blue-600 mt-1">62%</p>
-            <div class="st-progress-bar mt-2"><div class="st-progress-fill" style="width:62%"></div></div>
-          </div>
         </div>
 
         <div class="page-card p-4 sm:p-5">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-            <h2 class="text-lg font-semibold text-slate-800">销售目标</h2>
-            <div class="flex flex-wrap items-center gap-2">
-              <button type="button" class="h-9 px-3 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-file-import text-xs text-slate-400"></i>导入模板</button>
-              <button type="button" class="h-9 px-3 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-file-export text-xs text-slate-400"></i>导出</button>
-            </div>
-          </div>
-
-          <form class="st-filter-panel rounded-lg border border-slate-200 p-4 mb-5" id="st-search-form" onsubmit="return false">
-            <div class="flex items-center gap-2 mb-3 pb-3 border-b border-slate-200/70">
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white text-xs"><i class="fa-solid fa-filter"></i></span>
-              <span class="text-sm font-medium text-slate-700">筛选条件</span>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 items-end">
-              <label class="text-xs text-slate-500">目标周期
-                <input type="month" value="2026-05" class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
-              </label>
-              <label class="text-xs text-slate-500">所属部门
-                <select class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
-                  <option value="">全部</option>
-                  <option>销售一组</option>
-                  <option>销售二组</option>
-                  <option>销售三组</option>
-                  <option>渠道拓展部</option>
-                </select>
-              </label>
-              <label class="text-xs text-slate-500">设置状态
-                <select class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
-                  <option value="">全部</option>
-                  <option>已设置</option>
-                  <option>待设置</option>
-                </select>
-              </label>
-              <label class="text-xs text-slate-500">关键词
-                <input type="text" class="st-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 placeholder:text-slate-400" placeholder="部门 / 姓名">
-              </label>
-            </div>
-            <div class="mt-3 pt-3 border-t border-slate-200/70 flex flex-wrap justify-end gap-2">
-              <button type="button" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
-              <button type="button" class="h-9 px-5 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">查询</button>
-            </div>
-          </form>
+          <h2 class="text-lg font-semibold text-slate-800 mb-4">销售目标</h2>
 
           <div class="flex flex-wrap items-center justify-between gap-3 mb-4 border-b border-slate-200">
             <div class="flex gap-6">
@@ -201,7 +183,7 @@
 
           <!-- 部门目标表 -->
           <div id="panel-dept" class="overflow-x-auto rounded-lg border border-slate-200">
-            <table class="st-target-table w-full text-sm min-w-[880px]">
+            <table class="st-target-table w-full text-sm min-w-[1000px]">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
                   <th class="text-center px-3 py-3 font-medium border-b border-slate-200 w-12">
@@ -209,63 +191,63 @@
                   </th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200">部门</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200">部门主管</th>
-                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">人数</th>
-                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">业绩目标（元）</th>
-                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">每月新增户数</th>
-                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">已完成</th>
-                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 w-28">完成率</th>
-                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200">状态</th>
+                  <th class="text-left px-3 py-3 font-medium border-b border-slate-200">部门人数</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">业绩目标</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">新增代账户数</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">线索转化率</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">代账续费率</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">百元转化率</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 w-24">操作</th>
                 </tr>
               </thead>
               <tbody id="dept-table-body" class="text-slate-700">
-                <tr class="hover:bg-slate-50 st-data-row" data-name="销售一组" data-type="dept">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="销售一组" data-type="dept" data-dept-group="sales">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check dept-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
                   <td class="px-3 py-3 border-b border-slate-100">8</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">1,200,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers">24</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">768,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="text-blue-600 font-medium">64%</span></td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">已设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">¥ 120万</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts">24</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate">35%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate text-slate-400">--</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">编辑</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="销售二组" data-type="dept">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="销售二组" data-type="dept" data-dept-group="sales">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check dept-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">销售二组</td>
                   <td class="px-3 py-3 border-b border-slate-100">陈莉</td>
                   <td class="px-3 py-3 border-b border-slate-100">6</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">980,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers">18</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">539,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="text-blue-600 font-medium">55%</span></td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">已设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">¥ 98万</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts">18</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate">42%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate text-slate-400">--</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">编辑</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="销售三组" data-type="dept">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="销售三组" data-type="dept" data-dept-group="sales">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check dept-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">销售三组</td>
                   <td class="px-3 py-3 border-b border-slate-100">王磊</td>
                   <td class="px-3 py-3 border-b border-slate-100">5</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">0</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700">待设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate">38%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate text-slate-400">--</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">设置</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="渠道拓展部" data-type="dept">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="顾问三组" data-type="dept" data-dept-group="advisor">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check dept-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
-                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">渠道拓展部</td>
+                  <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">顾问三组</td>
                   <td class="px-3 py-3 border-b border-slate-100">张敏</td>
                   <td class="px-3 py-3 border-b border-slate-100">4</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">0</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700">待设置</span></td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">设置</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">¥ 65万</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts">12</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate">85%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate">12%</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">编辑</button></td>
                 </tr>
               </tbody>
             </table>
@@ -273,7 +255,7 @@
 
           <!-- 人员目标表 -->
           <div id="panel-person" class="hidden overflow-x-auto rounded-lg border border-slate-200">
-            <table class="st-target-table w-full text-sm min-w-[960px]">
+            <table class="st-target-table w-full text-sm min-w-[1080px]">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
                   <th class="text-center px-3 py-3 font-medium border-b border-slate-200 w-12">
@@ -282,73 +264,73 @@
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200">姓名</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200">部门</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200">岗位</th>
-                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">业绩目标（元）</th>
-                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">每月新增户数</th>
-                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">已完成</th>
-                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200 w-28">完成率</th>
-                  <th class="text-center px-3 py-3 font-medium border-b border-slate-200">状态</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">业绩目标</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">新增代账户数</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">线索转化率</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">代账续费率</th>
+                  <th class="text-right px-3 py-3 font-medium border-b border-slate-200">百元转化率</th>
                   <th class="text-left px-3 py-3 font-medium border-b border-slate-200 w-24">操作</th>
                 </tr>
               </thead>
               <tbody id="person-table-body" class="text-slate-700">
-                <tr class="hover:bg-slate-50 st-data-row" data-name="张慧佳" data-type="person" data-dept="销售一组">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="张慧佳" data-type="person" data-dept="销售一组" data-dept-group="sales">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check person-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">张慧佳</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售顾问</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">180,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers">4</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">126,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="text-blue-600 font-medium">70%</span></td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">已设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">¥ 18万</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts">4</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate">40%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate text-slate-400">--</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">编辑</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="李明" data-type="person" data-dept="销售一组">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="李明" data-type="person" data-dept="销售一组" data-dept-group="sales">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check person-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">李明</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售一组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售顾问</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">150,000</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers">3</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">82,500</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="text-blue-600 font-medium">55%</span></td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">已设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue">¥ 15万</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts">3</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate">32%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate text-slate-400">--</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">编辑</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="赵婷" data-type="person" data-dept="销售二组">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="赵婷" data-type="person" data-dept="销售二组" data-dept-group="sales">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check person-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">赵婷</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售二组</td>
                   <td class="px-3 py-3 border-b border-slate-100">销售主管</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">0</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700">待设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate">45%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate text-slate-400">--</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">设置</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="孙浩" data-type="person" data-dept="销售二组">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="孙浩" data-type="person" data-dept="顾问三组" data-dept-group="advisor">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check person-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">孙浩</td>
-                  <td class="px-3 py-3 border-b border-slate-100">销售二组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">销售顾问</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">0</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700">待设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100">顾问三组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">财税顾问</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate">88%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate">15%</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">设置</button></td>
                 </tr>
-                <tr class="hover:bg-slate-50 st-data-row" data-name="刘洋" data-type="person" data-dept="销售三组">
+                <tr class="hover:bg-slate-50 st-data-row" data-name="刘洋" data-type="person" data-dept="顾问三组" data-dept-group="advisor">
                   <td class="px-3 py-3 border-b border-slate-100 text-center"><input type="checkbox" class="st-row-check person-row-check h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer"></td>
                   <td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800">刘洋</td>
-                  <td class="px-3 py-3 border-b border-slate-100">销售三组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">销售顾问</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-customers text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-right text-slate-500">0</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center text-slate-400">—</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-center"><span class="inline-flex px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700">待设置</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100">顾问三组</td>
+                  <td class="px-3 py-3 border-b border-slate-100">财税顾问</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-revenue text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-accounts text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-lead-rate text-slate-400">--</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-renew-rate">82%</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-right st-col-hundred-rate">10%</td>
                   <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-edit-row text-blue-600 hover:underline cursor-pointer">设置</button></td>
                 </tr>
               </tbody>
@@ -376,28 +358,51 @@
         <button type="button" id="btn-close-batch" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center cursor-pointer" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
       <div class="overflow-y-auto flex-1 px-6 py-5 space-y-4">
-        <div class="rounded-lg bg-blue-50 border border-blue-100 px-4 py-3 text-sm text-blue-800">
-          <p>将为 <strong id="batch-target-count">0</strong> 个<span id="batch-target-type-label">部门</span>统一设置本月目标</p>
-          <p id="batch-target-names" class="text-xs text-blue-700/80 mt-1 truncate" title=""></p>
+        <div class="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm">
+          <p class="text-slate-500">设置对象</p>
+          <p id="batch-target-names" class="text-slate-800 font-medium mt-0.5 truncate" title=""></p>
+          <p class="text-xs text-slate-500 mt-1">共 <strong id="batch-target-count" class="text-blue-600">0</strong> 个<span id="batch-target-type-label">部门</span></p>
         </div>
         <label class="block text-xs text-slate-500">目标周期 <span class="text-red-500">*</span>
           <input type="month" id="batch-period" value="2026-05" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 cursor-pointer">
         </label>
-        <label class="block text-xs text-slate-500">业绩目标（元） <span class="text-red-500">*</span>
-          <div class="mt-1 relative">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">¥</span>
-            <input type="text" id="batch-revenue" class="h-9 w-full rounded-md border border-slate-200 pl-7 pr-3 text-sm text-slate-800" placeholder="请输入金额" value="188000">
-          </div>
-        </label>
-        <label class="block text-xs text-slate-500">每月新增户数
-          <input type="number" id="batch-customers" min="0" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入户数" value="3">
-        </label>
-        <label class="block text-xs text-slate-500">备注
-          <textarea id="batch-remark" rows="2" class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm text-slate-700 resize-none" placeholder="选填，如拆分说明、考核口径等"></textarea>
-        </label>
+        <div id="batch-fields-sales" class="space-y-4">
+          <label class="block text-xs text-slate-500">业绩目标 <span class="text-red-500">*</span>
+            <input type="text" id="batch-revenue" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入，如 120万">
+          </label>
+          <label class="block text-xs text-slate-500">新增代账户数 <span class="text-red-500">*</span>
+            <input type="number" id="batch-accounts" min="0" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+          </label>
+          <label class="block text-xs text-slate-500">线索转化率 <span class="text-red-500">*</span>
+            <div class="mt-1 relative">
+              <input type="text" id="batch-lead-rate" class="h-9 w-full rounded-md border border-slate-200 pl-3 pr-8 text-sm text-slate-800" placeholder="请输入">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">%</span>
+            </div>
+          </label>
+        </div>
+        <div id="batch-fields-advisor" class="hidden space-y-4">
+          <label class="block text-xs text-slate-500">业绩目标 <span class="text-red-500">*</span>
+            <input type="text" id="batch-revenue-advisor" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入，如 65万">
+          </label>
+          <label class="block text-xs text-slate-500">新增代账户数 <span class="text-red-500">*</span>
+            <input type="number" id="batch-accounts-advisor" min="0" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+          </label>
+          <label class="block text-xs text-slate-500">代账续费率 <span class="text-red-500">*</span>
+            <div class="mt-1 relative">
+              <input type="text" id="batch-renew-rate" class="h-9 w-full rounded-md border border-slate-200 pl-3 pr-8 text-sm text-slate-800" placeholder="请输入">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">%</span>
+            </div>
+          </label>
+          <label class="block text-xs text-slate-500">百元转化率 <span class="text-red-500">*</span>
+            <div class="mt-1 relative">
+              <input type="text" id="batch-hundred-rate" class="h-9 w-full rounded-md border border-slate-200 pl-3 pr-8 text-sm text-slate-800" placeholder="请输入">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">%</span>
+            </div>
+          </label>
+        </div>
         <label class="flex items-start gap-2 cursor-pointer text-sm text-slate-600">
           <input type="checkbox" id="batch-overwrite" class="mt-0.5 h-3.5 w-3.5 rounded border-slate-300 text-blue-600 cursor-pointer" checked>
-          <span>覆盖已有目标（未勾选时仅更新「待设置」项）</span>
+          <span>覆盖已有目标（未勾选时仅更新未设置项）</span>
         </label>
       </div>
       <div class="flex justify-end gap-2 px-6 py-4 border-t border-slate-100 shrink-0">
@@ -415,13 +420,47 @@
         <button type="button" id="btn-close-row" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 flex items-center justify-center cursor-pointer" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
       <form id="form-row-target" class="px-6 py-5 space-y-4">
-        <p class="text-sm text-slate-600">对象：<strong id="row-target-name" class="text-slate-800"></strong></p>
-        <label class="block text-xs text-slate-500">业绩目标（元） <span class="text-red-500">*</span>
-          <input type="text" id="row-revenue" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+        <div class="rounded-lg bg-slate-50 border border-slate-200 px-4 py-3 text-sm">
+          <p class="text-slate-500">设置对象</p>
+          <p id="row-target-name" class="text-slate-800 font-medium mt-0.5"></p>
+        </div>
+        <label class="block text-xs text-slate-500">目标周期 <span class="text-red-500">*</span>
+          <input type="month" id="row-period" value="2026-05" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-700 cursor-pointer">
         </label>
-        <label class="block text-xs text-slate-500">每月新增户数
-          <input type="number" id="row-customers" min="0" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
-        </label>
+        <div id="row-fields-sales" class="space-y-4">
+          <label class="block text-xs text-slate-500">业绩目标 <span class="text-red-500">*</span>
+            <input type="text" id="row-revenue" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+          </label>
+          <label class="block text-xs text-slate-500">新增代账户数 <span class="text-red-500">*</span>
+            <input type="number" id="row-accounts" min="0" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+          </label>
+          <label class="block text-xs text-slate-500">线索转化率 <span class="text-red-500">*</span>
+            <div class="mt-1 relative">
+              <input type="text" id="row-lead-rate" class="h-9 w-full rounded-md border border-slate-200 pl-3 pr-8 text-sm text-slate-800" placeholder="请输入">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">%</span>
+            </div>
+          </label>
+        </div>
+        <div id="row-fields-advisor" class="hidden space-y-4">
+          <label class="block text-xs text-slate-500">业绩目标 <span class="text-red-500">*</span>
+            <input type="text" id="row-revenue-advisor" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+          </label>
+          <label class="block text-xs text-slate-500">新增代账户数 <span class="text-red-500">*</span>
+            <input type="number" id="row-accounts-advisor" min="0" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm text-slate-800" placeholder="请输入">
+          </label>
+          <label class="block text-xs text-slate-500">代账续费率 <span class="text-red-500">*</span>
+            <div class="mt-1 relative">
+              <input type="text" id="row-renew-rate" class="h-9 w-full rounded-md border border-slate-200 pl-3 pr-8 text-sm text-slate-800" placeholder="请输入">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">%</span>
+            </div>
+          </label>
+          <label class="block text-xs text-slate-500">百元转化率 <span class="text-red-500">*</span>
+            <div class="mt-1 relative">
+              <input type="text" id="row-hundred-rate" class="h-9 w-full rounded-md border border-slate-200 pl-3 pr-8 text-sm text-slate-800" placeholder="请输入">
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">%</span>
+            </div>
+          </label>
+        </div>
       </form>
       <div class="flex justify-end gap-2 px-6 py-4 border-t border-slate-100 shrink-0">
         <button type="button" id="btn-cancel-row" class="h-9 px-5 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">取消</button>
@@ -474,12 +513,128 @@
         return rows;
       }
 
-      function formatMoney(num) {
-        return Number(num).toLocaleString('zh-CN');
+      function getDeptGroup(row) {
+        var g = row.getAttribute('data-dept-group');
+        if (g) return g;
+        var dept = row.getAttribute('data-dept') || '';
+        if (String(dept).indexOf('顾问') >= 0) return 'advisor';
+        return 'sales';
       }
 
-      function parseMoney(str) {
-        return String(str || '').replace(/,/g, '').trim();
+      function setTargetModalFields(group, prefix) {
+        var isSales = group === 'sales';
+        var salesBlock = document.getElementById(prefix + '-fields-sales');
+        var advisorBlock = document.getElementById(prefix + '-fields-advisor');
+        if (salesBlock) salesBlock.classList.toggle('hidden', !isSales);
+        if (advisorBlock) advisorBlock.classList.toggle('hidden', isSales);
+      }
+
+      function cellText(el) {
+        if (!el) return '';
+        var t = el.textContent.trim();
+        return t === '--' || t === '—' ? '' : t;
+      }
+
+      function fillRowForm(row) {
+        var group = getDeptGroup(row);
+        setTargetModalFields(group, 'row');
+        document.getElementById('row-target-name').textContent = row.getAttribute('data-name');
+        var rev = cellText(row.querySelector('.st-col-revenue'));
+        var acc = cellText(row.querySelector('.st-col-accounts'));
+        if (group === 'sales') {
+          document.getElementById('row-revenue').value = rev.replace(/^¥\s*/, '');
+          document.getElementById('row-accounts').value = acc;
+          document.getElementById('row-lead-rate').value = cellText(row.querySelector('.st-col-lead-rate')).replace('%', '');
+        } else {
+          document.getElementById('row-revenue-advisor').value = rev.replace(/^¥\s*/, '');
+          document.getElementById('row-accounts-advisor').value = acc;
+          document.getElementById('row-renew-rate').value = cellText(row.querySelector('.st-col-renew-rate')).replace('%', '');
+          document.getElementById('row-hundred-rate').value = cellText(row.querySelector('.st-col-hundred-rate')).replace('%', '');
+        }
+        var revCell = row.querySelector('.st-col-revenue');
+        var isEmpty = !revCell || revCell.textContent.trim() === '--' || revCell.textContent.trim() === '—';
+        document.getElementById('modal-row-title').textContent = (isEmpty ? '设置' : '编辑') + '销售目标';
+      }
+
+      function applyTargetToRow(row, payload) {
+        var revCell = row.querySelector('.st-col-revenue');
+        var accCell = row.querySelector('.st-col-accounts');
+        var leadCell = row.querySelector('.st-col-lead-rate');
+        var renewCell = row.querySelector('.st-col-renew-rate');
+        var hundredCell = row.querySelector('.st-col-hundred-rate');
+        if (revCell) revCell.textContent = payload.revenue ? '¥ ' + payload.revenue : '--';
+        if (accCell) accCell.textContent = payload.accounts !== '' ? payload.accounts : '--';
+        if (payload.group === 'sales') {
+          if (leadCell) leadCell.textContent = payload.leadRate ? payload.leadRate + '%' : '--';
+          if (renewCell) { renewCell.textContent = '--'; renewCell.classList.add('text-slate-400'); }
+          if (hundredCell) { hundredCell.textContent = '--'; hundredCell.classList.add('text-slate-400'); }
+        } else {
+          if (renewCell) {
+            renewCell.textContent = payload.renewRate ? payload.renewRate + '%' : '--';
+            renewCell.classList.remove('text-slate-400');
+          }
+          if (hundredCell) {
+            hundredCell.textContent = payload.hundredRate ? payload.hundredRate + '%' : '--';
+            hundredCell.classList.remove('text-slate-400');
+          }
+          if (leadCell) { leadCell.textContent = '--'; leadCell.classList.add('text-slate-400'); }
+        }
+        if (revCell) revCell.classList.remove('text-slate-400');
+        if (accCell) accCell.classList.remove('text-slate-400');
+        if (leadCell && leadCell.textContent !== '--') leadCell.classList.remove('text-slate-400');
+        var actionBtn = row.querySelector('.js-edit-row');
+        if (actionBtn) actionBtn.textContent = '编辑';
+      }
+
+      function readBatchPayload(group) {
+        if (group === 'sales') {
+          return {
+            group: 'sales',
+            revenue: document.getElementById('batch-revenue').value.trim(),
+            accounts: document.getElementById('batch-accounts').value,
+            leadRate: document.getElementById('batch-lead-rate').value.trim(),
+            renewRate: '',
+            hundredRate: ''
+          };
+        }
+        return {
+          group: 'advisor',
+          revenue: document.getElementById('batch-revenue-advisor').value.trim(),
+          accounts: document.getElementById('batch-accounts-advisor').value,
+          leadRate: '',
+          renewRate: document.getElementById('batch-renew-rate').value.trim(),
+          hundredRate: document.getElementById('batch-hundred-rate').value.trim()
+        };
+      }
+
+      function readRowPayload(group) {
+        if (group === 'sales') {
+          return {
+            group: 'sales',
+            revenue: document.getElementById('row-revenue').value.trim(),
+            accounts: document.getElementById('row-accounts').value,
+            leadRate: document.getElementById('row-lead-rate').value.trim(),
+            renewRate: '',
+            hundredRate: ''
+          };
+        }
+        return {
+          group: 'advisor',
+          revenue: document.getElementById('row-revenue-advisor').value.trim(),
+          accounts: document.getElementById('row-accounts-advisor').value,
+          leadRate: '',
+          renewRate: document.getElementById('row-renew-rate').value.trim(),
+          hundredRate: document.getElementById('row-hundred-rate').value.trim()
+        };
+      }
+
+      function validatePayload(payload) {
+        if (!payload.revenue) return '请填写业绩目标';
+        if (payload.accounts === '' || payload.accounts === null) return '请填写新增代账户数';
+        if (payload.group === 'sales' && !payload.leadRate) return '请填写线索转化率';
+        if (payload.group === 'advisor' && !payload.renewRate) return '请填写代账续费率';
+        if (payload.group === 'advisor' && !payload.hundredRate) return '请填写百元转化率';
+        return '';
       }
 
       function updateSelectionUI() {
@@ -534,11 +689,13 @@
         var rows = getCheckedRows();
         if (!rows.length) return;
         var names = rows.map(function (r) { return r.getAttribute('data-name'); });
+        var group = getDeptGroup(rows[0]);
         document.getElementById('batch-target-count').textContent = rows.length;
         document.getElementById('batch-target-type-label').textContent = currentTab === 'dept' ? '部门' : '人员';
         var namesEl = document.getElementById('batch-target-names');
         namesEl.textContent = names.join('、');
         namesEl.title = names.join('、');
+        setTargetModalFields(group, 'batch');
         openModal(modalBatch);
       });
 
@@ -551,19 +708,6 @@
         if (e.target === modalBatch) closeModal(modalBatch);
       });
 
-      function applyTargetToRow(row, revenue, customers) {
-        var revCell = row.querySelector('.st-col-revenue');
-        var custCell = row.querySelector('.st-col-customers');
-        if (revCell) revCell.textContent = formatMoney(revenue);
-        if (custCell) custCell.textContent = customers;
-        var statusCell = row.cells[row.cells.length - 2];
-        if (statusCell) {
-          statusCell.innerHTML = '<span class="inline-flex px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">已设置</span>';
-        }
-        var actionBtn = row.querySelector('.js-edit-row');
-        if (actionBtn) actionBtn.textContent = '编辑';
-      }
-
       function showToast(msg) {
         var toast = document.getElementById('toast-target');
         toast.textContent = msg;
@@ -573,18 +717,24 @@
       }
 
       document.getElementById('btn-confirm-batch').addEventListener('click', function () {
-        var revenue = parseMoney(document.getElementById('batch-revenue').value);
-        var customers = document.getElementById('batch-customers').value;
-        var overwrite = document.getElementById('batch-overwrite').checked;
-        if (!revenue) {
-          showToast('请填写业绩目标');
+        var rows = getCheckedRows();
+        if (!rows.length) return;
+        var group = getDeptGroup(rows[0]);
+        var payload = readBatchPayload(group);
+        var err = validatePayload(payload);
+        if (err) {
+          showToast(err);
           return;
         }
-        var rows = getCheckedRows();
+        var overwrite = document.getElementById('batch-overwrite').checked;
         rows.forEach(function (row) {
-          var isPending = row.querySelector('.bg-amber-50');
-          if (overwrite || isPending) {
-            applyTargetToRow(row, revenue, customers || '0');
+          var revCell = row.querySelector('.st-col-revenue');
+          var isEmpty = !revCell || revCell.textContent.trim() === '--' || revCell.textContent.trim() === '—';
+          if (overwrite || isEmpty) {
+            var rowGroup = getDeptGroup(row);
+            var rowPayload = readBatchPayload(rowGroup);
+            if (validatePayload(rowPayload)) return;
+            applyTargetToRow(row, rowPayload);
           }
         });
         closeModal(modalBatch);
@@ -596,13 +746,7 @@
       document.querySelectorAll('.js-edit-row').forEach(function (btn) {
         btn.addEventListener('click', function () {
           editingRow = btn.closest('.st-data-row');
-          var name = editingRow.getAttribute('data-name');
-          document.getElementById('row-target-name').textContent = name;
-          var rev = editingRow.querySelector('.st-col-revenue').textContent;
-          var cust = editingRow.querySelector('.st-col-customers').textContent;
-          document.getElementById('row-revenue').value = rev === '—' ? '' : rev.replace(/,/g, '');
-          document.getElementById('row-customers').value = cust === '—' ? '' : cust;
-          document.getElementById('modal-row-title').textContent = (rev === '—' ? '设置' : '编辑') + '销售目标';
+          fillRowForm(editingRow);
           openModal(modalRow);
         });
       });
@@ -619,13 +763,14 @@
       document.getElementById('form-row-target').addEventListener('submit', function (e) {
         e.preventDefault();
         if (!editingRow) return;
-        var revenue = parseMoney(document.getElementById('row-revenue').value);
-        var customers = document.getElementById('row-customers').value;
-        if (!revenue) {
-          showToast('请填写业绩目标');
+        var group = getDeptGroup(editingRow);
+        var payload = readRowPayload(group);
+        var err = validatePayload(payload);
+        if (err) {
+          showToast(err);
           return;
         }
-        applyTargetToRow(editingRow, revenue, customers || '0');
+        applyTargetToRow(editingRow, payload);
         closeModal(modalRow);
         editingRow = null;
         showToast('保存成功');

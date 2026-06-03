@@ -128,10 +128,7 @@
           <div class="mb-4 text-sm text-slate-500">销售中心 / 商机管理</div>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 gap-y-4 items-end mb-4 text-sm">
-            <label class="text-xs text-slate-500">企业名称
-              <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
-            </label>
-            <label class="text-xs text-slate-500">联系人/联系方式
+            <label class="text-xs text-slate-500">客户姓名/手机号
               <input type="text" class="mt-1 h-9 w-full rounded-md border border-slate-200 px-3 text-sm placeholder:text-slate-400" placeholder="请输入">
             </label>
             <label class="text-xs text-slate-500">销售顾问
@@ -140,11 +137,24 @@
             <label class="text-xs text-slate-500">商机等级
               <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-600 flex items-center justify-between hover:bg-slate-50 cursor-pointer">请选择<i class="fa-solid fa-angle-down text-[10px] text-slate-400 shrink-0"></i></button>
             </label>
-            <label class="text-xs text-slate-500 lg:col-span-2">创建时间
+            <label class="text-xs text-slate-500">创建时间
+              <div class="relative mt-1">
+                <select id="filter-create-time" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 appearance-none">
+                  <option value="">请选择</option>
+                  <option>本周</option>
+                  <option>本月</option>
+                  <option>上月</option>
+                  <option value="custom">自定义</option>
+                </select>
+                <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 pointer-events-none"></i>
+              </div>
+            </label>
+            <label id="filter-create-time-custom" class="text-xs text-slate-500 hidden lg:col-span-2">
+              <span class="invisible">自定义区间</span>
               <div class="mt-1 flex items-center gap-1.5">
-                <input type="text" value="2023-03-21" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2.5 text-sm">
+                <input type="date" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2.5 text-sm">
                 <span class="text-slate-400 text-xs shrink-0">至</span>
-                <input type="text" value="2024-03-21" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2.5 text-sm">
+                <input type="date" class="h-9 flex-1 min-w-0 rounded-md border border-slate-200 px-2.5 text-sm">
               </div>
             </label>
             <div class="flex flex-wrap items-center gap-2 lg:col-span-2">
@@ -162,17 +172,21 @@
           </div>
 
           <div class="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
-            <table class="data-table w-full min-w-[1000px]">
+            <table class="data-table w-full min-w-[1380px]">
               <thead>
                 <tr>
-                  <th>企业名称</th>
-                  <th>联系人</th>
-                  <th>联系方式</th>
-                  <th>销售顾问</th>
-                  <th>商机等级</th>
+                  <th>客户姓名</th>
+                  <th>手机号码</th>
+                  <th>所属区域</th>
+                  <th>行业类别</th>
+                  <th>企业类型</th>
                   <th>商机阶段</th>
+                  <th>商机等级</th>
+                  <th data-col="sales">销售顾问</th>
                   <th data-col="contract">关联合同</th>
                   <th data-col="contractType">合同类型</th>
+                  <th data-col="receiveAmount">收款金额</th>
+                  <th data-col="performanceAmount">业绩金额</th>
                   <th data-col="lossReason">流失说明</th>
                   <th>创建时间</th>
                   <th>查看详情</th>
@@ -181,14 +195,18 @@
               </thead>
               <tbody>
                 <tr class="opp-row" data-stage="intent">
-                  <td>苏州美的科技有限公司</td>
                   <td>秦总</td>
                   <td>18900008787</td>
-                  <td>陈丽</td>
-                  <td>A级</td>
+                  <td>苏州/工业园区</td>
+                  <td>医疗器械</td>
+                  <td>一般纳税人</td>
                   <td><span class="text-blue-600">意向商机</span></td>
+                  <td>A级</td>
+                  <td data-col="sales">陈丽</td>
                   <td data-col="contract" class="text-slate-400">--</td>
                   <td data-col="contractType" class="text-slate-400">--</td>
+                  <td data-col="receiveAmount" class="text-slate-400">--</td>
+                  <td data-col="performanceAmount" class="text-slate-400">--</td>
                   <td data-col="lossReason" class="text-slate-400">--</td>
                   <td class="whitespace-nowrap">2024-03-21 15:03</td>
                   <td><a href="opportunity-detail.html?id=opp-1" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
@@ -199,14 +217,18 @@
                   </td>
                 </tr>
                 <tr class="opp-row" data-stage="intent">
-                  <td>苏州美的科技有限公司</td>
                   <td>王经理</td>
                   <td>18900008788</td>
-                  <td>周方林</td>
-                  <td>S级</td>
+                  <td>昆山</td>
+                  <td>科技服务</td>
+                  <td>小规模纳税人</td>
                   <td><span class="text-blue-600">意向商机</span></td>
+                  <td>S级</td>
+                  <td data-col="sales">周方林</td>
                   <td data-col="contract" class="text-slate-400">--</td>
                   <td data-col="contractType" class="text-slate-400">--</td>
+                  <td data-col="receiveAmount" class="text-slate-400">--</td>
+                  <td data-col="performanceAmount" class="text-slate-400">--</td>
                   <td data-col="lossReason" class="text-slate-400">--</td>
                   <td class="whitespace-nowrap">2024-03-21 15:03</td>
                   <td><a href="opportunity-detail.html?id=opp-2" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
@@ -216,45 +238,56 @@
                   </td>
                 </tr>
                 <tr class="opp-row" data-stage="won">
-                  <td>苏州美的科技有限公司</td>
                   <td>秦总</td>
                   <td>18900008789</td>
-                  <td>陈丽</td>
-                  <td>A级</td>
+                  <td>苏州/工业园区</td>
+                  <td>商业贸易</td>
+                  <td>一般纳税人</td>
                   <td><span class="text-emerald-600">成交商机</span></td>
+                  <td>A级</td>
+                  <td data-col="sales">陈丽</td>
                   <td data-col="contract"><a href="contract-management.html" class="text-blue-600 hover:text-blue-700 hover:underline">HT20240321001</a></td>
                   <td data-col="contractType">代账合同</td>
+                  <td data-col="receiveAmount" class="tabular-nums text-slate-800">¥ 24,000</td>
+                  <td data-col="performanceAmount" class="tabular-nums text-blue-600 font-medium">¥ 18,000</td>
                   <td data-col="lossReason" class="text-slate-400">--</td>
                   <td class="whitespace-nowrap">2024-03-21 15:03</td>
                   <td><a href="opportunity-detail.html?id=opp-3" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
-                  <td class="whitespace-nowrap"><button type="button" class="js-supplement text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">新增合同</button></td>
+                  <td class="whitespace-nowrap"><button type="button" class="text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">新增合同</button></td>
                 </tr>
                 <tr class="opp-row" data-stage="won">
-                  <td>苏州美的科技有限公司</td>
                   <td>王经理</td>
                   <td>18900008790</td>
-                  <td>周方林</td>
-                  <td>C级</td>
+                  <td>无锡/新吴区</td>
+                  <td>制造业</td>
+                  <td>小规模纳税人</td>
                   <td><span class="text-emerald-600">成交商机</span></td>
+                  <td>C级</td>
+                  <td data-col="sales">周方林</td>
                   <td data-col="contract"><a href="contract-management.html" class="text-blue-600 hover:text-blue-700 hover:underline">HT20240321002</a></td>
                   <td data-col="contractType">注册地址合同</td>
+                  <td data-col="receiveAmount" class="tabular-nums text-slate-800">¥ 12,000</td>
+                  <td data-col="performanceAmount" class="tabular-nums text-blue-600 font-medium">¥ 9,600</td>
                   <td data-col="lossReason" class="text-slate-400">--</td>
                   <td class="whitespace-nowrap">2024-03-21 15:03</td>
                   <td><a href="opportunity-detail.html?id=opp-4" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
                   <td class="whitespace-nowrap">
-                    <button type="button" class="js-supplement text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">补充客户信息</button><span class="px-1 text-slate-300">|</span>
                     <button type="button" class="text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">新增合同</button>
                   </td>
                 </tr>
                 <tr class="opp-row" data-stage="lost">
-                  <td>苏州美的科技有限公司</td>
                   <td>秦总</td>
                   <td>18900008791</td>
-                  <td>陈丽</td>
-                  <td>A级</td>
+                  <td>苏州/姑苏区</td>
+                  <td>商业贸易</td>
+                  <td>一般纳税人</td>
                   <td><span class="text-slate-500">流失商机</span></td>
+                  <td>A级</td>
+                  <td data-col="sales">陈丽</td>
                   <td data-col="contract" class="text-slate-400">--</td>
                   <td data-col="contractType" class="text-slate-400">--</td>
+                  <td data-col="receiveAmount" class="text-slate-400">--</td>
+                  <td data-col="performanceAmount" class="text-slate-400">--</td>
                   <td data-col="lossReason">预算不足，暂不推进</td>
                   <td class="whitespace-nowrap">2024-03-21 15:03</td>
                   <td><a href="opportunity-detail.html?id=opp-5" class="text-blue-600 hover:text-blue-700 hover:underline">查看详情</a></td>
@@ -768,11 +801,15 @@
         });
         var showContract = tab === 'won';
         var showLossReason = tab === 'lost';
-        document.querySelectorAll('[data-col="contract"], [data-col="contractType"]').forEach(function (el) {
+        var showSales = tab === 'intent';
+        document.querySelectorAll('[data-col="contract"], [data-col="contractType"], [data-col="receiveAmount"], [data-col="performanceAmount"]').forEach(function (el) {
           el.classList.toggle('hidden', !showContract);
         });
         document.querySelectorAll('[data-col="lossReason"]').forEach(function (el) {
           el.classList.toggle('hidden', !showLossReason);
+        });
+        document.querySelectorAll('[data-col="sales"]').forEach(function (el) {
+          el.classList.toggle('hidden', !showSales);
         });
       }
       document.querySelectorAll('#opp-stage-tabs .opp-tab').forEach(function (btn) {
@@ -781,6 +818,15 @@
         });
       });
       applyOppStageTab('intent');
+
+      var filterCreateTime = document.getElementById('filter-create-time');
+      var filterCreateTimeCustom = document.getElementById('filter-create-time-custom');
+      if (filterCreateTime && filterCreateTimeCustom) {
+        filterCreateTime.addEventListener('change', function () {
+          var isCustom = filterCreateTime.value === 'custom';
+          filterCreateTimeCustom.classList.toggle('hidden', !isCustom);
+        });
+      }
 
       var paymentQrModal = document.getElementById('modal-payment-qrcode');
       var pqPayMethod = document.getElementById('pq-pay-method');
