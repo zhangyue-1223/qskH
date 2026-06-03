@@ -328,9 +328,19 @@
             <section class="dash-card p-5">
               <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <h2 class="sec-title mb-0">我的代办</h2>
-                <span class="text-xs text-slate-500">朱总 · 共 <span class="text-blue-600 font-semibold">5</span> 项待办</span>
+                <span class="text-xs text-slate-500">朱总 · 共 <span class="text-blue-600 font-semibold">6</span> 项待办</span>
               </div>
               <ul class="space-y-2.5" id="todo-list">
+                <li class="todo-item">
+                  <div class="flex items-center gap-3 min-w-0 flex-1">
+                    <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-file-circle-xmark"></i></div>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-slate-800">客户资料被驳回待补充</p>
+                      <p class="text-xs text-slate-500 mt-0.5 truncate">1 位客户资料被驳回，需重新补充</p>
+                    </div>
+                  </div>
+                  <button type="button" class="js-todo-supplement todo-action bg-red-50 text-red-700 hover:bg-red-100 inline-flex items-center">去补充</button>
+                </li>
                 <li class="todo-item">
                   <div class="flex items-center gap-3 min-w-0 flex-1">
                     <div class="w-10 h-10 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-user-clock"></i></div>
@@ -599,6 +609,49 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <!-- 补充客户信息（与客户管理一致） -->
+﻿  <div id="modal-supplement" class="fixed inset-0 z-[110] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close="supplement"></div>
+    <div class="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-xl" role="dialog">
+        <div class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-4">
+          <h2 class="text-base font-medium text-slate-800">补充客户信息</h2>
+          <button type="button" class="text-slate-400 hover:text-slate-600" data-close="supplement" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+        </div>
+        <div class="px-6 py-4 text-sm">
+          <div class="mb-4 flex flex-wrap gap-6 border-b border-slate-200" id="supplement-tabs">
+            <button type="button" data-tab="tax" class="supp-tab border-b-2 border-blue-600 pb-2 text-sm font-medium text-blue-600">税务信息</button>
+            <button type="button" data-tab="industry" class="supp-tab border-b-2 border-transparent pb-2 text-sm text-slate-500 hover:text-slate-700">工商信息</button>
+          </div>
+          <div id="supp-panel-tax">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 企业名称</span><input type="text" placeholder="请输入企业名称" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 统一社会信用代码</span><input type="text" placeholder="请输入统一社会信用代码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 税务类型</span><div class="relative mt-1"><select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none"><option selected>一般纳税人</option><option>小规模纳税人</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i></div></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 企业类型</span><div class="relative mt-1"><select class="w-full h-9 pl-3 pr-8 rounded border border-slate-200 bg-white appearance-none"><option selected>有限责任公司</option><option>个体工商户</option><option>股份有限公司</option></select><i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i></div></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 个税系统账号</span><input type="text" placeholder="请输入个税系统账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 个税系统密码</span><input type="text" placeholder="请输入个税系统密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block sm:col-span-2"><span class="text-slate-600"><span class="text-red-500">*</span> 工商年报登录方式</span><div class="mt-2 flex items-center gap-6 text-slate-700"><label class="inline-flex items-center gap-2"><input type="radio" name="annualLoginType" checked> 电子证照</label><label class="inline-flex items-center gap-2"><input type="radio" name="annualLoginType"> 工商联络员</label></div></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 社保系统登录方式</span><input type="text" value="账号密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 bg-slate-50 text-slate-500" readonly></label>
+              <div></div>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 社保登录账号</span><input type="text" placeholder="请输入社保登录账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 社保登录密码</span><input type="text" placeholder="请输入社保登录密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 公积金系统登录方式</span><input type="text" value="账号密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 bg-slate-50 text-slate-500" readonly></label>
+              <div></div>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 公积金登录账号</span><input type="text" placeholder="请输入公积金登录账号" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block"><span class="text-slate-600"><span class="text-red-500">*</span> 公积金登录密码</span><input type="text" placeholder="请输入公积金登录密码" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200"></label>
+              <label class="block sm:col-span-2"><span class="text-slate-600">客户备注</span><textarea rows="3" placeholder="请输入客户备注" class="mt-1 w-full rounded border border-slate-200 px-3 py-2 resize-y"></textarea></label>
+            </div>
+            <div class="mt-5"><p class="text-sm font-medium text-slate-800 mb-2">上传交接资料</p><div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs"><div><p class="mb-1 text-slate-600">营业执照</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div><div><p class="mb-1 text-slate-600">法人身份证</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div><div><p class="mb-1 text-slate-600">余额表</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div><div><p class="mb-1 text-slate-600">其他附件</p><div class="h-24 rounded border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500"><i class="fa-solid fa-cloud-arrow-up mb-2"></i><span>上传文件</span></div></div></div></div>
+          </div>
+          <div id="supp-panel-industry" class="hidden"><div class="mb-3 flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800"><span class="h-4 w-1 rounded-sm bg-blue-600"></span>工商信息表</div><div class="text-sm" id="supp-ic-form"><label class="block mb-2.5"><span class="field-label">公司名称</span><input type="text" class="field-input" placeholder="请输入公司名称"></label><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label><span class="field-label">法定代表人</span><input type="text" class="field-input" placeholder="请输入法定代表人姓名"></label><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label class="sm:col-span-1"><span class="field-label">身份证号码</span><input type="text" class="field-input" placeholder="请输入身份证号码"></label></div><div id="supp-shareholder-list" class="mb-2.5"><div class="shareholder-block" data-shareholder-index="0"><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5"><label class="supp-sh-name-wrap"><span class="field-label supp-sh-name-label">股东姓名</span><input type="text" class="field-input supp-sh-name" placeholder="请输入股东姓名"></label><div><span class="field-label">主体类型</span><div class="entity-type-box"><label><input type="radio" name="supp-entityType-0" value="person" class="supp-entity-type"> 自然人</label><label><input type="radio" name="supp-entityType-0" value="company" class="supp-entity-type" checked> 公司</label></div></div><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mt-2.5"><label class="supp-sh-id-wrap"><span class="field-label supp-sh-id-label">统一社会信用代码</span><input type="text" class="field-input supp-sh-id" placeholder="请输入统一社会信用代码"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label><div class="flex items-end justify-end pb-0.5"><button type="button" id="supp-add-shareholder" class="text-xs text-blue-600 hover:underline whitespace-nowrap">+ 添加股东</button></div></div></div></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label><span class="field-label">内部财务</span><input type="text" class="field-input" placeholder="请输入内部财务姓名"></label><label><span class="field-label">股份占比（%）</span><input type="text" class="field-input" placeholder="请输入股份占比"></label><label><span class="field-label">联系电话</span><input type="text" class="field-input" placeholder="请输入联系电话"></label></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-2.5 mb-2.5"><label><span class="field-label">身份证号码</span><input type="text" class="field-input" placeholder="请输入身份证号码"></label><label><span class="field-label">注册资本（万）</span><input type="text" class="field-input" placeholder="请输入注册资本"></label><label><span class="field-label">注册地址</span><input type="text" class="field-input" placeholder="需要和产证、租赁合同地址一致"></label></div><label class="block mb-2.5"><span class="field-label">经营范围</span><textarea class="field-textarea" rows="3" placeholder="请输入经营范围"></textarea></label><div class="mt-4 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-x-3 gap-y-3 text-xs"><div><p class="mb-1 text-slate-600">法人身份证</p><div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证正面</span></div></div><div><p class="mb-1 text-slate-600 invisible sm:visible">&nbsp;</p><div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传身份证反面</span></div></div><div><p class="mb-1 text-slate-600">营业执照（营业执照照片）</p><div class="upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传营业执照</span></div></div><div class="col-span-2 sm:col-span-1 lg:col-span-1"><p class="mb-1 text-slate-600">其他附件（图片） <span class="text-slate-400 font-normal">支持jpg、png图片格式上传</span></p><div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传图片</span></div></div><div class="col-span-2 sm:col-span-1 lg:col-span-1"><p class="mb-1 text-slate-600">其他附件（文件） <span class="text-slate-400 font-normal">支持pdf文档上传</span></p><div class="w-full max-w-[120px] upload-card" role="button" tabindex="0"><i class="fa-solid fa-circle-plus text-lg"></i><span>上传文件</span></div></div></div></div></div>
+        </div>
+        <div class="sticky bottom-0 flex justify-center gap-3 border-t border-slate-100 bg-white px-6 py-4">
+          <button type="button" id="btn-supplement-ok" class="h-9 px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+          <button type="button" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close="supplement">取消</button>
+        </div>
+    </div>
   </div>
 
   <!-- 新增线索弹窗（与线索管理一致） -->
@@ -1290,6 +1343,10 @@
       window.mountCreateContractModal({ openSelectors: ['#btn-open-create-contract'] });
 
     })();
+  </script>
+  <script src="./assets/customer-supplement-modal.js"></script>
+  <script>
+    window.mountCustomerSupplementModal({ openSelectors: ['.js-todo-supplement'] });
   </script>
   <script src="./assets/app-shell.js"></script>
 </body>

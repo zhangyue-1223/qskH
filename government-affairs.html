@@ -22,6 +22,18 @@
     .gov-days-overdue { background: #fee2e2; color: #dc2626; }
     .gov-filter-panel { background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%); }
     .gov-filter-input:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15); }
+    .profile-block { border: 1px solid #e2e8f0; border-radius: 0.75rem; background: #fff; overflow: hidden; }
+    .profile-block + .profile-block { margin-top: 0.75rem; }
+    .profile-block-hd { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-bottom: 1px solid #f1f5f9; background: #fafbfc; }
+    .profile-block-hd i { color: #2563eb; width: 1rem; text-align: center; }
+    .profile-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem 1.25rem; padding: 1rem; }
+    @media (min-width: 640px) { .profile-dl { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .profile-dl .full { grid-column: 1 / -1; }
+    .profile-dl dt { font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.125rem; }
+    .profile-dl dd { font-size: 0.8125rem; color: #1e293b; margin: 0; }
+    .attach-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 4.5rem; border: 1px dashed #cbd5e1; border-radius: 0.5rem; background: #f8fafc; color: #64748b; font-size: 0.75rem; }
+    #modal-material-confirm .material-footer-mode { display: none; }
+    #modal-material-confirm .material-footer-mode.is-active { display: block; }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -125,12 +137,8 @@
 
       <section class="p-4 sm:p-6">
         <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div class="mb-4">
             <h2 class="text-lg font-semibold text-slate-800">政务服务</h2>
-            <div class="flex flex-wrap items-center gap-2">
-              <button type="button" id="btn-open-new-order" class="h-9 px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-plus text-xs"></i>新增政务工单</button>
-              <button type="button" id="btn-open-transfer" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-right-left text-xs text-slate-400"></i>移交</button>
-            </div>
           </div>
 
           <form class="gov-filter-panel rounded-lg border border-slate-200 p-4 mb-5" id="gov-search-form" onsubmit="return false">
@@ -138,7 +146,7 @@
               <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white text-xs"><i class="fa-solid fa-filter"></i></span>
               <span class="text-sm font-medium text-slate-700">筛选条件</span>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-3 items-end">
               <label class="text-xs text-slate-500">企业名称
                 <input type="text" class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-700 placeholder:text-slate-400" placeholder="请输入企业名称">
               </label>
@@ -159,6 +167,22 @@
                   <option>苏州昆山市</option>
                 </select>
               </label>
+              <label class="text-xs text-slate-500">工商专员
+                <select id="filter-agent" class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>许月</option>
+                  <option>许悦</option>
+                  <option>周芳林</option>
+                </select>
+              </label>
+              <label class="text-xs text-slate-500">办件方式
+                <select id="filter-handle-method" class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="">全部</option>
+                  <option>线上</option>
+                  <option>线下</option>
+                  <option>线上/下</option>
+                </select>
+              </label>
               <label class="text-xs text-slate-500">销售顾问
                 <select class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
                   <option value="">全部</option>
@@ -175,41 +199,53 @@
                   <option>政务服务部</option>
                 </select>
               </label>
-              <label class="text-xs text-slate-500">办事人员
-                <select id="filter-agent" class="gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
-                  <option value="">全部</option>
-                  <option>许月</option>
-                  <option>许悦</option>
-                  <option>周芳林</option>
-                </select>
-              </label>
             </div>
-            <div class="mt-3 pt-3 border-t border-slate-200/70 grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
-              <label class="text-xs text-slate-500">派单时间
-                <div class="mt-1 flex items-center gap-1.5">
+            <div class="mt-3 pt-3 border-t border-slate-200/70 grid grid-cols-3 gap-4 items-start w-full">
+              <label class="text-xs text-slate-500 min-w-0">派单时间
+                <select class="gov-time-preset gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="week">本周</option>
+                  <option value="month" selected>本月</option>
+                  <option value="last-month">上月</option>
+                  <option value="custom">自定义</option>
+                </select>
+                <div class="gov-time-custom hidden mt-1.5 flex items-center gap-1.5">
                   <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
                   <span class="text-slate-400 shrink-0 text-xs">至</span>
                   <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
                 </div>
               </label>
-              <label class="text-xs text-slate-500">完成时间
-                <div class="mt-1 flex items-center gap-1.5">
+              <label class="text-xs text-slate-500 min-w-0">完成时间
+                <select class="gov-time-preset gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="week">本周</option>
+                  <option value="month" selected>本月</option>
+                  <option value="last-month">上月</option>
+                  <option value="custom">自定义</option>
+                </select>
+                <div class="gov-time-custom hidden mt-1.5 flex items-center gap-1.5">
                   <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
                   <span class="text-slate-400 shrink-0 text-xs">至</span>
                   <input type="date" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
                 </div>
               </label>
-              <label class="text-xs text-slate-500">创建时间
-                <div class="mt-1 flex items-center gap-1.5">
+              <label class="text-xs text-slate-500 min-w-0">创建时间
+                <select class="gov-time-preset gov-filter-input mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-slate-600 cursor-pointer">
+                  <option value="week" selected>本周</option>
+                  <option value="month">本月</option>
+                  <option value="last-month">上月</option>
+                  <option value="custom">自定义</option>
+                </select>
+                <div class="gov-time-custom hidden mt-1.5 flex items-center gap-1.5">
                   <input type="date" value="2023-03-21" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
                   <span class="text-slate-400 shrink-0 text-xs">至</span>
                   <input type="date" value="2024-03-21" class="gov-filter-input h-9 flex-1 min-w-0 rounded-md border border-slate-200 bg-white px-3 text-sm">
                 </div>
               </label>
             </div>
-            <div class="mt-3 pt-3 border-t border-slate-200/70 flex flex-wrap items-center justify-end gap-2">
-              <button type="reset" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
+            <div class="mt-3 pt-3 border-t border-slate-200/70 flex flex-wrap items-center justify-start gap-2">
               <button type="submit" class="h-9 px-5 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-magnifying-glass text-xs"></i>查询</button>
+              <button type="reset" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>
+              <button type="button" id="btn-open-new-order" class="h-9 px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-plus text-xs"></i>新增政务工单</button>
+              <button type="button" id="btn-open-transfer" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center gap-1.5"><i class="fa-solid fa-right-left text-xs text-slate-400"></i>移交</button>
             </div>
           </form>
 
@@ -220,21 +256,21 @@
           </div>
 
           <div class="overflow-x-auto rounded-lg border border-slate-200">
-            <table class="w-full min-w-[1400px] text-sm">
+            <table class="w-full min-w-[1360px] text-sm">
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">企业名称</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">业务类型</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属区域</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">销售顾问</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属部门</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">线上申报员</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">线下提报员</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">客户资料</th>
-                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">接收资料时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">资料确认时间</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">工商专员</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">办件方式</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">已办理天数</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">派单时间</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">完成日期</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">销售顾问</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属部门</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">查看详情</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">操作</th>
                 </tr>
@@ -249,25 +285,26 @@
                     data-region="苏州工业园区"
                     data-sales="周芳林"
                     data-dept="网销一组"
-                    data-online="周芳林"
-                    data-offline="许月"
-                    data-material="未交接"
+                    data-agent="许月"
+                    data-material="驳回"
+                    data-handle-method=""
+                    data-material-confirm=""
                     data-start="2026-04-10"
                     data-end="">
                   <td class="px-3 py-3 border-b border-slate-100">苏州美药科技有限公司</td>
                   <td class="px-3 py-3 border-b border-slate-100">解地址异常、资料补正</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州工业园区</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="text-red-600">驳回</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
-                  <td class="px-3 py-3 border-b border-slate-100">未交接</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-overdue">7天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-1">查看详情</a></td>
-                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="text-blue-600 hover:underline js-dispatch">派单</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                 </tr>
                 <tr class="hover:bg-slate-50 gov-row" data-status="doing"
                     data-id="gov-2"
@@ -278,23 +315,24 @@
                     data-region="苏州吴中区"
                     data-sales="周芳林"
                     data-dept="网销一组"
-                    data-online="周芳林"
-                    data-offline="许月"
-                    data-material="部分交接"
+                    data-agent="许月"
+                    data-material="待确认"
+                    data-handle-method=""
+                    data-material-confirm=""
                     data-start="2026-04-14"
                     data-end="2026-04-20">
                   <td class="px-3 py-3 border-b border-slate-100">苏州维尔因科技有限公司</td>
                   <td class="px-3 py-3 border-b border-slate-100">解除地址异常、工商变更</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州吴中区</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="text-amber-600">待确认</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
-                  <td class="px-3 py-3 border-b border-slate-100">部分交接</td>
-                  <td class="px-3 py-3 border-b border-slate-100">2026-04-10 17:23</td>
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-warning">5天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-21 16:03</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-2">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-material-confirm">资料确认</button></td>
                 </tr>
@@ -307,23 +345,24 @@
                     data-region="苏州昆山市"
                     data-sales="陈莉"
                     data-dept="网销二组"
-                    data-online="周芳林"
-                    data-offline="许月"
-                    data-material="未交接"
+                    data-agent="许月"
+                    data-material="已确认"
+                    data-handle-method="线上"
+                    data-material-confirm="2026-04-12 09:45"
                     data-start="2026-04-14"
                     data-end="2026-04-14">
                   <td class="px-3 py-3 border-b border-slate-100">苏州美的信息科技有限公司</td>
                   <td class="px-3 py-3 border-b border-slate-100">解除地址异常、税务注销</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
-                  <td class="px-3 py-3 border-b border-slate-100">陈莉</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><span class="text-emerald-600">已确认</span></td>
+                  <td class="px-3 py-3 border-b border-slate-100">2026-04-12 09:45</td>
                   <td class="px-3 py-3 border-b border-slate-100">许月</td>
-                  <td class="px-3 py-3 border-b border-slate-100">未交接</td>
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">线上</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-normal">3天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-20 10:15</td>
                   <td class="px-3 py-3 border-b border-slate-100 text-slate-400">—</td>
+                  <td class="px-3 py-3 border-b border-slate-100">陈莉</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销二组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-3">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button></td>
                 </tr>
@@ -336,23 +375,24 @@
                     data-region="苏州昆山市"
                     data-sales="周芳林"
                     data-dept="网销一组"
-                    data-online="周芳林"
-                    data-offline="许月"
+                    data-agent="许月"
                     data-material="已交接"
+                    data-handle-method="线上/下"
+                    data-material-confirm="2026-03-05 14:00"
                     data-start="2026-03-01"
                     data-end="2026-03-28">
                   <td class="px-3 py-3 border-b border-slate-100">昆山示例贸易有限公司</td>
                   <td class="px-3 py-3 border-b border-slate-100">工商变更、税务备案</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
-                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
-                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
-                  <td class="px-3 py-3 border-b border-slate-100">许月</td>
                   <td class="px-3 py-3 border-b border-slate-100">已交接</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-05 14:00</td>
+                  <td class="px-3 py-3 border-b border-slate-100">许月</td>
+                  <td class="px-3 py-3 border-b border-slate-100">线上/下</td>
                   <td class="px-3 py-3 border-b border-slate-100"><span class="gov-days-badge gov-days-normal">28天</span></td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-01 09:00</td>
                   <td class="px-3 py-3 border-b border-slate-100">2026-03-28</td>
+                  <td class="px-3 py-3 border-b border-slate-100">周芳林</td>
+                  <td class="px-3 py-3 border-b border-slate-100">网销一组</td>
                   <td class="px-3 py-3 border-b border-slate-100"><a class="text-blue-600 hover:underline" href="government-affairs-detail.html?id=gov-4">查看详情</a></td>
                   <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap"><button type="button" class="text-blue-600 hover:underline js-progress">添加进度</button></td>
                 </tr>
@@ -564,28 +604,67 @@
   <!-- 资料确认 -->
   <div id="modal-material-confirm" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" role="dialog" aria-labelledby="modal-material-confirm-title">
     <div class="absolute inset-0" data-close-material-confirm></div>
-    <div class="relative w-full max-w-lg rounded-xl border border-slate-200 bg-white shadow-xl">
-      <div class="relative border-b border-slate-200 px-5 py-4">
+    <div class="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="relative shrink-0 border-b border-slate-200 px-5 py-4">
         <h3 id="modal-material-confirm-title" class="text-center text-base font-semibold text-slate-800">资料确认</h3>
         <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-material-confirm aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-      <div class="px-6 py-5 space-y-4 text-sm">
-        <div>
-          <label class="block text-slate-600 mb-2">客户资料 <span class="text-red-500">*</span></label>
-          <select id="material-confirm-status" class="h-9 w-full rounded-md border border-slate-200 px-3 bg-white text-slate-700 cursor-pointer">
-            <option value="未交接">未交接</option>
-            <option value="已交接">已交接</option>
-            <option value="部分交接" selected>部分交接</option>
-          </select>
-        </div>
-        <div id="material-supplement-wrap">
-          <label class="block text-slate-600 mb-2">补全说明 <span class="text-red-500">*</span></label>
-          <textarea id="material-supplement-note" class="w-full min-h-[88px] rounded-md border border-slate-200 px-3 py-2 resize-none" placeholder="请填写需补全的资料说明"></textarea>
-        </div>
+      <div class="flex-1 overflow-y-auto px-5 py-4 text-sm min-h-0">
+        <p class="text-sm font-medium text-slate-700 mb-3">资料预览</p>
+        <div id="material-preview-wrap"></div>
       </div>
-      <div class="flex justify-center gap-3 border-t border-slate-100 px-5 py-4">
-        <button type="button" id="btn-confirm-material" class="h-9 min-w-[90px] rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">确认</button>
-        <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-material-confirm>取消</button>
+      <div class="shrink-0 border-t border-slate-100 bg-white px-5 py-4">
+        <div id="material-footer-default" class="material-footer-mode is-active">
+          <div class="flex flex-wrap justify-center gap-3">
+            <button type="button" id="btn-material-reject" class="h-9 min-w-[100px] px-4 rounded-md border border-red-200 bg-white text-sm text-red-600 hover:bg-red-50 cursor-pointer">资料驳回</button>
+            <button type="button" id="btn-material-dispatch" class="h-9 min-w-[100px] px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">确认并派单</button>
+            <button type="button" class="h-9 min-w-[90px] px-4 rounded-md border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-material-confirm>取消</button>
+          </div>
+        </div>
+        <div id="material-footer-reject" class="material-footer-mode space-y-3">
+          <label class="block text-slate-600">驳回说明 <span class="text-red-500">*</span></label>
+          <textarea id="material-reject-note" class="w-full min-h-[80px] rounded-md border border-slate-200 px-3 py-2 resize-none text-sm" placeholder="请填写资料驳回说明"></textarea>
+          <div class="flex flex-wrap justify-center gap-3 pt-1">
+            <button type="button" id="btn-submit-material-reject" class="h-9 min-w-[90px] px-4 rounded-md bg-red-600 text-white text-sm hover:bg-red-700 cursor-pointer">提交驳回</button>
+            <button type="button" class="h-9 min-w-[90px] px-4 rounded-md border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-material-back>返回</button>
+          </div>
+        </div>
+        <div id="material-footer-dispatch" class="material-footer-mode space-y-3">
+          <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600"><span class="text-red-500">*</span> 业务类型</label>
+            <select id="material-dispatch-service" class="h-9 rounded-md border border-slate-200 px-3 bg-white text-slate-700 text-sm cursor-pointer">
+              <option>解除地址异常</option>
+              <option>解地址异常</option>
+              <option>工商变更</option>
+              <option>税务注销</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600"><span class="text-red-500">*</span> 办件方式</label>
+            <select id="material-dispatch-method" class="h-9 rounded-md border border-slate-200 px-3 bg-white text-slate-700 text-sm cursor-pointer">
+              <option value="">请选择</option>
+              <option>线上</option>
+              <option>线下</option>
+              <option>线上/下</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600"><span class="text-red-500">*</span> 工商专员</label>
+            <select id="material-dispatch-agent" class="h-9 rounded-md border border-slate-200 px-3 bg-white text-slate-700 text-sm cursor-pointer">
+              <option>许月</option>
+              <option>许悦</option>
+              <option>周芳林</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-[88px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600"><span class="text-red-500">*</span> 结束日期</label>
+            <input type="date" id="material-dispatch-end" class="h-9 rounded-md border border-slate-200 px-3 bg-white text-slate-700 text-sm">
+          </div>
+          <div class="flex flex-wrap justify-center gap-3 pt-1">
+            <button type="button" id="btn-submit-material-dispatch" class="h-9 min-w-[90px] px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">确认派单</button>
+            <button type="button" class="h-9 min-w-[90px] px-4 rounded-md border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-material-back>返回</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -639,10 +718,134 @@
       var modalDispatch = document.getElementById('modal-dispatch');
       var modalProgress = document.getElementById('modal-progress');
       var modalMaterialConfirm = document.getElementById('modal-material-confirm');
-      var materialStatusSelect = document.getElementById('material-confirm-status');
-      var materialSupplementWrap = document.getElementById('material-supplement-wrap');
-      var materialSupplementNote = document.getElementById('material-supplement-note');
+      var materialPreviewWrap = document.getElementById('material-preview-wrap');
+      var materialFooterDefault = document.getElementById('material-footer-default');
+      var materialFooterReject = document.getElementById('material-footer-reject');
+      var materialFooterDispatch = document.getElementById('material-footer-dispatch');
+      var materialRejectNote = document.getElementById('material-reject-note');
+      var materialDispatchService = document.getElementById('material-dispatch-service');
+      var materialDispatchMethod = document.getElementById('material-dispatch-method');
+      var materialDispatchAgent = document.getElementById('material-dispatch-agent');
+      var materialDispatchEnd = document.getElementById('material-dispatch-end');
+      var currentMaterialRow = null;
       var modalTransferGov = document.getElementById('modal-transfer-gov');
+
+      var govProfileDataMap = {
+        'gov-1': {
+          ic: {
+            企业名称: '苏州九川数字科技有限公司',
+            法定代表人: '李川',
+            股份占比: '100%',
+            联系电话: '1381620733',
+            法人身份证号码: '51060398708042221',
+            内部财务: '李川',
+            联系电话2: '1381620733',
+            身份证号码2: '51060398708042221',
+            注册资本: '10万',
+            注册地址: '挂靠苏州园区'
+          },
+          scope: '这是经营范围。这是经营范围。这是经营范围。这是经营范围。这是经营范围。这是经营范围。这是经营范围。这是经营范围。这是经营范围。这是经营范围。'
+        },
+        'gov-2': {
+          ic: {
+            企业名称: '苏州维尔因科技有限公司',
+            法定代表人: '李某',
+            股份占比: '60%',
+            联系电话: '0512-66660002',
+            身份证号码: '3205**********9012',
+            内部财务: '王会计',
+            联系电话2: '13700002222',
+            身份证号码2: '3205**********3456',
+            注册资本: '200万元',
+            注册地址: '苏州市吴中区开发区塔韵路188号'
+          },
+          scope: '软件开发；电子产品销售；技术咨询与服务；货物及技术进出口。'
+        },
+        'gov-3': {
+          ic: {
+            企业名称: '苏州美的信息科技有限公司',
+            法定代表人: '周某',
+            股份占比: '100%',
+            联系电话: '0512-77770003',
+            身份证号码: '3205**********7788',
+            内部财务: '—',
+            联系电话2: '—',
+            身份证号码2: '—',
+            注册资本: '1000万元',
+            注册地址: '苏州市昆山市前进东路888号'
+          },
+          scope: '信息技术服务；数据处理与存储；云计算设备销售；信息系统集成。'
+        },
+        'gov-4': {
+          ic: {
+            企业名称: '昆山示例贸易有限公司',
+            法定代表人: '陈某',
+            股份占比: '100%',
+            联系电话: '0512-55550004',
+            身份证号码: '3205**********4466',
+            内部财务: '赵会计',
+            联系电话2: '13600003333',
+            身份证号码2: '3205**********8899',
+            注册资本: '300万元',
+            注册地址: '苏州市昆山市花桥镇绿地大道1000号'
+          },
+          scope: '日用百货、五金交电、机械设备及配件销售；商务信息咨询。'
+        }
+      };
+
+      function renderMaterialProfilePreview(govId) {
+        if (!materialPreviewWrap) return;
+        var profile = govProfileDataMap[govId] || govProfileDataMap['gov-2'];
+        var ic = profile.ic || {};
+        var scope = profile.scope || '—';
+        var idNo = ic.法人身份证号码 || ic.身份证号码 || '—';
+        var phone2 = ic.联系电话2 || '—';
+        var idNo2 = ic.身份证号码2 || '—';
+        var icHtml =
+          '<div class="full"><dt>企业名称</dt><dd class="font-medium">' + (ic.企业名称 || '—') + '</dd></div>' +
+          '<div><dt>法定代表人</dt><dd>' + (ic.法定代表人 || '—') + '</dd></div>' +
+          '<div><dt>联系电话</dt><dd>' + (ic.联系电话 || '—') + '</dd></div>' +
+          '<div><dt>股份占比</dt><dd>' + (ic.股份占比 || '—') + '</dd></div>' +
+          '<div><dt>身份证号码</dt><dd>' + idNo + '</dd></div>' +
+          '<div><dt>内部财务</dt><dd>' + (ic.内部财务 || '—') + '</dd></div>' +
+          '<div><dt>财务联系电话</dt><dd>' + phone2 + '</dd></div>' +
+          '<div><dt>财务身份证号</dt><dd>' + idNo2 + '</dd></div>' +
+          '<div><dt>注册资本</dt><dd>' + (ic.注册资本 || '—') + '</dd></div>' +
+          '<div><dt>注册地址</dt><dd>' + (ic.注册地址 || '—') + '</dd></div>' +
+          '<div class="full"><dt>经营范围</dt><dd class="leading-relaxed rounded-lg border border-slate-100 bg-slate-50/80 p-3 mt-0.5">' + scope + '</dd></div>';
+        materialPreviewWrap.innerHTML =
+          '<div class="profile-block">' +
+          '  <div class="profile-block-hd"><i class="fa-solid fa-building"></i><h4 class="text-sm font-semibold text-slate-800">工商信息</h4></div>' +
+          '  <dl class="profile-dl">' + icHtml + '</dl>' +
+          '</div>' +
+          '<div class="profile-block">' +
+          '  <div class="profile-block-hd"><i class="fa-regular fa-images"></i><h4 class="text-sm font-semibold text-slate-800">附件资料</h4><span class="ml-auto text-xs text-slate-400">共 3 项</span></div>' +
+          '  <div class="p-4 grid grid-cols-2 sm:grid-cols-3 gap-3">' +
+          '    <div class="attach-tile"><i class="fa-regular fa-id-card mb-2 text-xl"></i>身份证</div>' +
+          '    <div class="attach-tile"><i class="fa-regular fa-file-image mb-2 text-xl"></i>营业执照</div>' +
+          '    <div class="attach-tile"><i class="fa-regular fa-folder mb-2 text-xl"></i>其他附件</div>' +
+          '  </div>' +
+          '</div>';
+      }
+
+      function setMaterialFooterMode(mode) {
+        [materialFooterDefault, materialFooterReject, materialFooterDispatch].forEach(function (el) {
+          if (el) el.classList.toggle('is-active', el.id === 'material-footer-' + mode);
+        });
+      }
+
+      document.querySelectorAll('.gov-time-preset').forEach(function (sel) {
+        var label = sel.closest('label');
+        var customWrap = label ? label.querySelector('.gov-time-custom') : null;
+        function syncCustom() {
+          if (!customWrap) return;
+          var isCustom = sel.value === 'custom';
+          customWrap.classList.toggle('hidden', !isCustom);
+          customWrap.classList.toggle('flex', isCustom);
+        }
+        sel.addEventListener('change', syncCustom);
+        syncCustom();
+      });
       var toast = document.getElementById('gov-toast');
       var toastTimer;
 
@@ -687,9 +890,10 @@
         var endSel = document.getElementById('dispatch-end');
         if (endSel) endSel.value = row.dataset.end || '';
         var onlineSel = document.getElementById('dispatch-online');
-        if (onlineSel && row.dataset.online) onlineSel.value = row.dataset.online;
+        var agent = row.dataset.agent || row.dataset.offline || '';
+        if (onlineSel && agent) onlineSel.value = agent;
         var offlineSel = document.getElementById('dispatch-offline');
-        if (offlineSel && row.dataset.offline) offlineSel.value = row.dataset.offline;
+        if (offlineSel && agent) offlineSel.value = agent;
         modalDispatch.classList.remove('hidden');
         modalDispatch.classList.add('flex');
       }
@@ -707,35 +911,44 @@
         });
       });
 
-      function toggleMaterialSupplement() {
-        if (!materialStatusSelect || !materialSupplementWrap) return;
-        var v = materialStatusSelect.value;
-        var show = v === '未交接' || v === '部分交接';
-        materialSupplementWrap.classList.toggle('hidden', !show);
-      }
-
       function openMaterialConfirmModal(row) {
         if (!modalMaterialConfirm) return;
-        if (materialStatusSelect && row) {
-          var mat = row.getAttribute('data-material') || '未交接';
-          if (['未交接', '已交接', '部分交接'].indexOf(mat) !== -1) {
-            materialStatusSelect.value = mat;
+        currentMaterialRow = row || null;
+        var govId = row ? (row.getAttribute('data-id') || 'gov-2') : 'gov-2';
+        renderMaterialProfilePreview(govId);
+        if (materialRejectNote) materialRejectNote.value = '';
+        if (materialDispatchService && row) {
+          var svc = row.getAttribute('data-service') || '';
+          var firstSvc = svc.split('、')[0] || svc;
+          var opts = materialDispatchService.options;
+          for (var i = 0; i < opts.length; i++) {
+            if (opts[i].text === firstSvc || svc.indexOf(opts[i].text) !== -1) {
+              materialDispatchService.selectedIndex = i;
+              break;
+            }
           }
         }
-        if (materialSupplementNote) materialSupplementNote.value = '';
-        toggleMaterialSupplement();
+        if (materialDispatchAgent && row) {
+          materialDispatchAgent.value = row.getAttribute('data-agent') || '许月';
+        }
+        if (materialDispatchEnd && row) {
+          materialDispatchEnd.value = row.getAttribute('data-end') || '';
+        }
+        if (materialDispatchMethod) {
+          var method = row ? (row.getAttribute('data-handle-method') || '') : '';
+          materialDispatchMethod.value = method && method !== '—' ? method : '';
+        }
+        setMaterialFooterMode('default');
         modalMaterialConfirm.classList.remove('hidden');
         modalMaterialConfirm.classList.add('flex');
       }
 
       function closeMaterialConfirmModal() {
         if (!modalMaterialConfirm) return;
+        currentMaterialRow = null;
+        setMaterialFooterMode('default');
         modalMaterialConfirm.classList.add('hidden');
         modalMaterialConfirm.classList.remove('flex');
-      }
-
-      if (materialStatusSelect) {
-        materialStatusSelect.addEventListener('change', toggleMaterialSupplement);
       }
 
       document.querySelectorAll('.js-material-confirm').forEach(function (btn) {
@@ -748,11 +961,64 @@
         modalMaterialConfirm.querySelectorAll('[data-close-material-confirm]').forEach(function (el) {
           el.addEventListener('click', closeMaterialConfirmModal);
         });
-        var btnConfirmMaterial = document.getElementById('btn-confirm-material');
-        if (btnConfirmMaterial) {
-          btnConfirmMaterial.addEventListener('click', function () {
+        var btnMaterialReject = document.getElementById('btn-material-reject');
+        if (btnMaterialReject) {
+          btnMaterialReject.addEventListener('click', function () {
+            setMaterialFooterMode('reject');
+          });
+        }
+        var btnMaterialDispatch = document.getElementById('btn-material-dispatch');
+        if (btnMaterialDispatch) {
+          btnMaterialDispatch.addEventListener('click', function () {
+            setMaterialFooterMode('dispatch');
+          });
+        }
+        modalMaterialConfirm.querySelectorAll('[data-material-back]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            setMaterialFooterMode('default');
+          });
+        });
+        var btnSubmitReject = document.getElementById('btn-submit-material-reject');
+        if (btnSubmitReject) {
+          btnSubmitReject.addEventListener('click', function () {
+            if (!materialRejectNote || !materialRejectNote.value.trim()) {
+              showToast('请填写驳回说明');
+              return;
+            }
             closeMaterialConfirmModal();
-            showToast('资料确认已保存');
+            showToast('资料已驳回');
+          });
+        }
+        var btnSubmitDispatch = document.getElementById('btn-submit-material-dispatch');
+        if (btnSubmitDispatch) {
+          btnSubmitDispatch.addEventListener('click', function () {
+            if (!materialDispatchService || !materialDispatchService.value) {
+              showToast('请选择业务类型');
+              return;
+            }
+            if (!materialDispatchMethod || !materialDispatchMethod.value) {
+              showToast('请选择办件方式');
+              return;
+            }
+            if (!materialDispatchAgent || !materialDispatchAgent.value) {
+              showToast('请选择工商专员');
+              return;
+            }
+            if (!materialDispatchEnd || !materialDispatchEnd.value) {
+              showToast('请选择结束日期');
+              return;
+            }
+            if (currentMaterialRow) {
+              currentMaterialRow.setAttribute('data-agent', materialDispatchAgent.value);
+              currentMaterialRow.setAttribute('data-handle-method', materialDispatchMethod.value);
+              currentMaterialRow.setAttribute('data-material', '已确认');
+              var cells = currentMaterialRow.querySelectorAll('td');
+              if (cells[3]) cells[3].innerHTML = '<span class="text-emerald-600">已确认</span>';
+              if (cells[5]) cells[5].textContent = materialDispatchAgent.value;
+              if (cells[6]) cells[6].textContent = materialDispatchMethod.value;
+            }
+            closeMaterialConfirmModal();
+            showToast('资料已确认并派单');
           });
         }
       }
@@ -769,10 +1035,11 @@
         var newOnline = document.getElementById('gov-transfer-new-online');
         var newOffline = document.getElementById('gov-transfer-new-offline');
         if (row) {
-          if (onlineIn) onlineIn.value = row.dataset.online || '—';
-          if (offlineIn) offlineIn.value = row.dataset.offline || '—';
-          if (newOnline && row.dataset.online) newOnline.value = row.dataset.online;
-          if (newOffline && row.dataset.offline) newOffline.value = row.dataset.offline;
+          var agent = row.dataset.agent || row.dataset.offline || '—';
+          if (onlineIn) onlineIn.value = agent;
+          if (offlineIn) offlineIn.value = agent;
+          if (newOnline && agent) newOnline.value = agent;
+          if (newOffline && agent) newOffline.value = agent;
         }
         if (modalTransferGov) {
           modalTransferGov.classList.remove('hidden');
@@ -816,7 +1083,7 @@
         if (!level || !days) return;
         var cells = row.querySelectorAll('td');
         if (!cells.length) return;
-        var daysCell = cells[9];
+        var daysCell = cells[7];
         if (!daysCell || daysCell.querySelector('.gov-days-badge')) return;
         var cls = daysLevelClass[level] || daysLevelClass.normal;
         daysCell.innerHTML = '<span class="gov-days-badge ' + cls + '">' + days + '天</span>';

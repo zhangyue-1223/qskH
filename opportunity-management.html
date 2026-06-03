@@ -137,7 +137,7 @@
             <label class="text-xs text-slate-500">商机等级
               <button type="button" class="mt-1 h-9 w-full rounded-md border border-slate-200 bg-white px-3 text-left text-sm text-slate-600 flex items-center justify-between hover:bg-slate-50 cursor-pointer">请选择<i class="fa-solid fa-angle-down text-[10px] text-slate-400 shrink-0"></i></button>
             </label>
-            <label class="text-xs text-slate-500">创建时间
+            <label class="text-xs text-slate-500"><span id="opp-filter-time-label">创建时间</span>
               <div class="relative mt-1">
                 <select id="filter-create-time" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 appearance-none">
                   <option value="">请选择</option>
@@ -188,7 +188,7 @@
                   <th data-col="receiveAmount">收款金额</th>
                   <th data-col="performanceAmount">业绩金额</th>
                   <th data-col="lossReason">流失说明</th>
-                  <th>创建时间</th>
+                  <th id="opp-time-col-header">创建时间</th>
                   <th>查看详情</th>
                   <th>操作</th>
                 </tr>
@@ -785,7 +785,14 @@
       bindCounter('follow-content', 'follow-len', 1000);
       bindCounter('follow-lost-reason', 'follow-lost-len', 1000);
 
+      var oppTimeColLabels = { intent: '创建时间', won: '成交时间', lost: '流失时间' };
+
       function applyOppStageTab(tab) {
+        var timeLabel = oppTimeColLabels[tab] || '创建时间';
+        var timeHeader = document.getElementById('opp-time-col-header');
+        if (timeHeader) timeHeader.textContent = timeLabel;
+        var filterTimeLabel = document.getElementById('opp-filter-time-label');
+        if (filterTimeLabel) filterTimeLabel.textContent = timeLabel;
         document.querySelectorAll('#opp-stage-tabs .opp-tab').forEach(function (btn) {
           var on = btn.getAttribute('data-tab') === tab;
           btn.classList.toggle('border-blue-600', on);
