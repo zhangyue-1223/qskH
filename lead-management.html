@@ -334,7 +334,7 @@
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-blue-600 hover:underline js-quote">生成报价单</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
-                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="李华" data-company-name="无锡领越商贸有限公司" data-contact-name="李华" data-contact-phone="13900118899">转商机</button>
+                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-customer-name="李华" data-phone="13900118899" data-region="无锡/新吴区" data-industry="商业贸易" data-enterprise-type="小规模纳税人">转商机</button>
                     </span>
                   </td>
                 </tr>
@@ -361,7 +361,7 @@
                       <span class="text-slate-300 select-none px-0.5">|</span>
                       <button type="button" class="text-blue-600 hover:underline js-quote">生成报价单</button>
                       <span class="text-slate-300 select-none px-0.5">|</span>
-                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-lead-name="张伟" data-company-name="昆山智诺科技服务有限公司" data-contact-name="张伟" data-contact-phone="13600115566">转商机</button>
+                      <button type="button" class="text-emerald-600 hover:underline js-convert-opp" data-customer-name="张伟" data-phone="13600115566" data-region="昆山" data-industry="科技服务" data-enterprise-type="一般纳税人">转商机</button>
                     </span>
                   </td>
                 </tr>
@@ -1022,16 +1022,24 @@
         </div>
         <div class="px-6 py-6 space-y-4 text-sm bg-white">
           <div class="flex items-center gap-3">
-            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 企业名称</label>
-            <input id="convert-opp-company" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 客户姓名</label>
+            <input id="convert-opp-customer" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
           </div>
           <div class="flex items-center gap-3">
-            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 联系人</label>
-            <input id="convert-opp-contact" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
-          </div>
-          <div class="flex items-center gap-3">
-            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 联系方式</label>
+            <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 手机号码</label>
             <input id="convert-opp-phone" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600">所属区域</label>
+            <input id="convert-opp-region" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600">行业类型</label>
+            <input id="convert-opp-industry" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="w-24 shrink-0 text-right text-slate-600">企业类型</label>
+            <input id="convert-opp-enterprise" type="text" class="flex-1 h-9 pl-3 pr-3 rounded-md border border-slate-200 text-slate-700 bg-slate-50" readonly>
           </div>
           <div class="flex items-center gap-3">
             <label class="w-24 shrink-0 text-right text-slate-600"><span class="text-red-500">*</span> 商机阶段</label>
@@ -1079,9 +1087,11 @@
         quote: document.getElementById('modal-quote'),
         'convert-opp': document.getElementById('modal-convert-opp')
       };
-      var convertOppCompany = document.getElementById('convert-opp-company');
-      var convertOppContact = document.getElementById('convert-opp-contact');
+      var convertOppCustomer = document.getElementById('convert-opp-customer');
       var convertOppPhone = document.getElementById('convert-opp-phone');
+      var convertOppRegion = document.getElementById('convert-opp-region');
+      var convertOppIndustry = document.getElementById('convert-opp-industry');
+      var convertOppEnterprise = document.getElementById('convert-opp-enterprise');
       var convertOppStage = document.getElementById('convert-opp-stage');
       var convertOppLevel = document.getElementById('convert-opp-level');
       var currentConvertLeadName = '';
@@ -1132,11 +1142,13 @@
 
       function openConvertOppModal(payload) {
         payload = payload || {};
-        var leadName = payload.leadName || '';
-        currentConvertLeadName = leadName || '';
-        if (convertOppCompany) convertOppCompany.value = payload.companyName || '--';
-        if (convertOppContact) convertOppContact.value = payload.contactName || currentConvertLeadName || '--';
-        if (convertOppPhone) convertOppPhone.value = payload.contactPhone || '--';
+        var customerName = payload.customerName || '';
+        currentConvertLeadName = customerName || '';
+        if (convertOppCustomer) convertOppCustomer.value = customerName || '--';
+        if (convertOppPhone) convertOppPhone.value = payload.phone || '--';
+        if (convertOppRegion) convertOppRegion.value = payload.region || '--';
+        if (convertOppIndustry) convertOppIndustry.value = payload.industry || '--';
+        if (convertOppEnterprise) convertOppEnterprise.value = payload.enterpriseType || '--';
         if (convertOppStage) convertOppStage.value = 'intent';
         if (convertOppLevel) convertOppLevel.value = 'A';
         showModal('convert-opp');
@@ -1150,10 +1162,11 @@
           e.preventDefault();
           e.stopPropagation();
           openConvertOppModal({
-            leadName: convertBtn.getAttribute('data-lead-name') || '',
-            companyName: convertBtn.getAttribute('data-company-name') || '',
-            contactName: convertBtn.getAttribute('data-contact-name') || '',
-            contactPhone: convertBtn.getAttribute('data-contact-phone') || ''
+            customerName: convertBtn.getAttribute('data-customer-name') || '',
+            phone: convertBtn.getAttribute('data-phone') || '',
+            region: convertBtn.getAttribute('data-region') || '',
+            industry: convertBtn.getAttribute('data-industry') || '',
+            enterpriseType: convertBtn.getAttribute('data-enterprise-type') || ''
           });
         });
       }
