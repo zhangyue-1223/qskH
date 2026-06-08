@@ -12,14 +12,22 @@
   <link rel="stylesheet" href="./assets/design-system.css">
   <style>
     body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
-    .table-customers { table-layout: fixed; width: 100%; min-width: 1080px; border-collapse: collapse; }
+    .table-customers { table-layout: fixed; width: 100%; min-width: 1180px; border-collapse: collapse; }
     .table-customers th, .table-customers td { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .table-customers thead th { font-size: 14px; line-height: 1.4; color: #64748b; font-weight: 500; }
     .table-customers tbody td { font-size: 14px; line-height: 1.5; color: #334155; }
     .table-customers .col-check,
     .table-customers .col-link,
-    .table-customers .col-ops { overflow: visible; text-overflow: clip; }
-    #modal-supplement:not(.hidden) { display: flex; }
+    .table-customers .col-ops,
+    .table-customers .col-agency,
+    .table-customers .col-biz-type { overflow: visible; text-overflow: clip; }
+    .table-customers .col-agency { min-width: 4.5rem; text-align: center; }
+    .table-customers .col-biz-type { min-width: 6.5rem; }
+    .cm-badge-agency-yes { display: inline-block; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; background: #dcfce7; color: #166534; }
+    .cm-badge-agency-no { display: inline-block; padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; background: #f1f5f9; color: #64748b; }
+    .cm-text-muted { color: #94a3b8; }
+    #modal-supplement:not(.hidden),
+    #modal-customer-cost:not(.hidden) { display: flex; }
     .field-label { font-size: 12px; color: #334155; margin-bottom: 4px; display: block; }
     .field-input { height: 34px; width: 100%; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0 10px; font-size: 12px; color: #0f172a; }
     .field-input::placeholder, .field-textarea::placeholder { color: #94a3b8; }
@@ -174,26 +182,28 @@
           <div class="mt-4 rounded-lg border border-slate-200 overflow-x-auto shadow-sm">
             <table class="table-customers w-full">
               <colgroup>
-                <col style="width:3%">
-                <col style="width:16%">
+                <col class="col-check" style="width:3%">
+                <col style="width:14%">
                 <col style="width:6%">
                 <col style="width:9%">
                 <col style="width:8%">
                 <col style="width:7%">
-                <col style="width:6%">
+                <col class="col-agency" style="width:7%">
+                <col class="col-biz-type" style="width:11%">
                 <col style="width:11%">
-                <col style="width:7%">
-                <col style="width:27%">
+                <col class="col-link" style="width:6%">
+                <col class="col-ops" style="width:24%">
               </colgroup>
               <thead class="bg-slate-50">
                 <tr>
-                  <th class="col-check px-3 py-3 border-b border-slate-200 text-center"><input type="checkbox" class="h-4 w-4"></th>
+                  <th class="col-check px-3 py-3 border-b border-slate-200 text-center"><input type="checkbox" class="h-4 w-4" aria-label="全选"></th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">企业名称</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">联系人</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">联系方式</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">企业类型</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">销售顾问</th>
-                  <th class="px-3 py-3 border-b border-slate-200 text-left">是否代账</th>
+                  <th class="col-agency px-3 py-3 border-b border-slate-200 text-center">是否代账</th>
+                  <th class="col-biz-type px-3 py-3 border-b border-slate-200 text-left">业务类型</th>
                   <th class="px-3 py-3 border-b border-slate-200 text-left">创建时间</th>
                   <th class="col-link px-3 py-3 border-b border-slate-200 text-left">查看详情</th>
                   <th class="col-ops px-3 py-3 border-b border-slate-200 text-left">操作</th>
@@ -201,44 +211,69 @@
               </thead>
               <tbody>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
-                  <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td>
+                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4" aria-label="选择行"></td>
+                  <td class="px-3 py-3" title="苏州怡启尔科技有限公司">苏州怡启尔科技有限公司</td>
+                  <td class="px-3 py-3">秦总</td>
+                  <td class="px-3 py-3">13876763515</td>
+                  <td class="px-3 py-3">一般纳税人</td>
+                  <td class="px-3 py-3">陈莉</td>
+                  <td class="col-agency px-3 py-3 text-center"><span class="cm-badge-agency-yes">已代账</span></td>
+                  <td class="col-biz-type px-3 py-3">解除地址异常</td>
                   <td class="px-3 py-3">2026-03-21 16:03</td>
                   <td class="col-link px-3 py-3"><a href="customer-detail.html?id=cust-1" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
+                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-add-customer-cost text-blue-600 hover:underline">添加客户成本</button></td>
                 </tr>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
-                  <td class="px-3 py-3">南京实耐时科技有限公司</td><td class="px-3 py-3">王经理</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">否</td>
-                  <td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4" aria-label="选择行"></td>
+                  <td class="px-3 py-3" title="南京实耐时科技有限公司">南京实耐时科技有限公司</td>
+                  <td class="px-3 py-3">王经理</td>
+                  <td class="px-3 py-3">13876763516</td>
+                  <td class="px-3 py-3">小规模</td>
+                  <td class="px-3 py-3">周方林</td>
+                  <td class="col-agency px-3 py-3 text-center"><span class="cm-badge-agency-no">未代账</span></td>
+                  <td class="col-biz-type px-3 py-3">个体户注册</td>
+                  <td class="px-3 py-3">2026-03-20 11:18</td>
                   <td class="col-link px-3 py-3"><a href="customer-detail.html?id=cust-2" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
+                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-add-customer-cost text-blue-600 hover:underline">添加客户成本</button></td>
                 </tr>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
-                  <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td>
-                  <td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4" aria-label="选择行"></td>
+                  <td class="px-3 py-3" title="苏州美药科技有限公司">苏州美药科技有限公司</td>
+                  <td class="px-3 py-3">李总</td>
+                  <td class="px-3 py-3">13912345678</td>
+                  <td class="px-3 py-3">一般纳税人</td>
+                  <td class="px-3 py-3">陈莉</td>
+                  <td class="col-agency px-3 py-3 text-center"><span class="cm-badge-agency-yes">已代账</span></td>
+                  <td class="col-biz-type px-3 py-3">工商变更</td>
+                  <td class="px-3 py-3">2026-03-19 09:42</td>
                   <td class="col-link px-3 py-3"><a href="customer-detail.html?id=cust-3" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
+                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-add-customer-cost text-blue-600 hover:underline">添加客户成本</button></td>
                 </tr>
                 <tr class="border-b border-slate-100 hover:bg-slate-50">
-                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
-                  <td class="px-3 py-3">南京莱刻科技有限公司</td><td class="px-3 py-3">王经理</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">小规模</td><td class="px-3 py-3">周方林</td><td class="px-3 py-3">否</td>
-                  <td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4" aria-label="选择行"></td>
+                  <td class="px-3 py-3" title="南京莱刻科技有限公司">南京莱刻科技有限公司</td>
+                  <td class="px-3 py-3">王经理</td>
+                  <td class="px-3 py-3">13788889999</td>
+                  <td class="px-3 py-3">小规模</td>
+                  <td class="px-3 py-3">周方林</td>
+                  <td class="col-agency px-3 py-3 text-center"><span class="cm-badge-agency-no">未代账</span></td>
+                  <td class="col-biz-type px-3 py-3">个体户注册</td>
+                  <td class="px-3 py-3">2026-03-18 15:06</td>
                   <td class="col-link px-3 py-3"><a href="customer-detail.html?id=cust-4" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
+                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-add-customer-cost text-blue-600 hover:underline">添加客户成本</button></td>
                 </tr>
                 <tr class="hover:bg-slate-50">
-                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4"></td>
-                  <td class="px-3 py-3">苏州怡启尔科技有限公司</td><td class="px-3 py-3">秦总</td><td class="px-3 py-3">13876763515</td>
-                  <td class="px-3 py-3">一般纳税人</td><td class="px-3 py-3">陈莉</td><td class="px-3 py-3">是</td>
-                  <td class="px-3 py-3">2026-03-21 16:03</td>
+                  <td class="col-check px-3 py-3 text-center"><input type="checkbox" class="h-4 w-4" aria-label="选择行"></td>
+                  <td class="px-3 py-3" title="昆山汇诚商贸有限公司">昆山汇诚商贸有限公司</td>
+                  <td class="px-3 py-3">赵经理</td>
+                  <td class="px-3 py-3">13666667777</td>
+                  <td class="px-3 py-3">一般纳税人</td>
+                  <td class="px-3 py-3">周芳林</td>
+                  <td class="col-agency px-3 py-3 text-center"><span class="cm-badge-agency-no">未代账</span></td>
+                  <td class="col-biz-type px-3 py-3">开税</td>
+                  <td class="px-3 py-3">2026-03-17 10:25</td>
                   <td class="col-link px-3 py-3"><a href="customer-detail.html?id=cust-5" class="text-blue-600 hover:underline">查看详情</a></td>
-                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button></td>
+                  <td class="col-ops px-3 py-3 whitespace-nowrap"><button type="button" class="js-open-create-contract text-blue-600 hover:underline">新增合同</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-supplement text-blue-600 hover:underline">补充客户信息</button><span class="px-1 text-slate-300">|</span><button type="button" class="js-add-customer-cost text-blue-600 hover:underline">添加客户成本</button></td>
                 </tr>
               </tbody>
             </table>
@@ -313,9 +348,62 @@
     })();
     window.mountCreateContractModal({ openSelectors: ['.js-open-create-contract'] });
   </script>
+  <div id="modal-customer-cost" class="fixed inset-0 z-[110] hidden items-center justify-center p-4" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/40" data-close="customer-cost"></div>
+    <div class="relative w-full max-w-lg rounded-lg border border-slate-200 bg-white shadow-xl" role="dialog" aria-labelledby="customer-cost-title">
+      <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+        <div>
+          <h2 id="customer-cost-title" class="text-base font-medium text-slate-800">添加客户成本</h2>
+          <p id="cost-company-hint" class="mt-0.5 text-xs text-slate-400 hidden"></p>
+        </div>
+        <button type="button" class="text-slate-400 hover:text-slate-600" data-close="customer-cost" aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <div class="px-6 py-4 text-sm space-y-4">
+        <label class="block">
+          <span class="text-slate-600"><span class="text-red-500">*</span> 客户成本类型</span>
+          <div class="relative mt-1">
+            <select id="cost-type" class="w-full h-9 pl-3 pr-8 rounded-md border border-slate-200 bg-white appearance-none text-sm">
+              <option value="audit">审计费</option>
+              <option value="address">第三方地址费</option>
+              <option value="seal">刻章费</option>
+              <option value="other">其他费用</option>
+            </select>
+            <i class="fa-solid fa-angle-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+          </div>
+        </label>
+        <label class="block">
+          <span class="text-slate-600"><span class="text-red-500">*</span> 客户成本金额（元）</span>
+          <input type="number" id="cost-amount" min="0" step="0.01" placeholder="请输入金额" class="mt-1 w-full h-9 px-3 rounded-md border border-slate-200 text-sm">
+        </label>
+        <label class="block">
+          <span class="text-slate-600">备注说明</span>
+          <textarea id="cost-remark" rows="3" placeholder="请输入备注说明" class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm resize-y"></textarea>
+        </label>
+        <div>
+          <span class="text-slate-600 block mb-1">附件上传</span>
+          <input type="file" id="cost-attachment" class="hidden" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+          <div id="cost-upload-area" class="h-24 rounded-md border border-dashed border-slate-300 bg-slate-50 flex flex-col items-center justify-center text-slate-500 cursor-pointer hover:border-blue-300 hover:bg-blue-50/50 transition-colors" role="button" tabindex="0">
+            <i class="fa-solid fa-cloud-arrow-up mb-2 text-lg text-slate-400"></i>
+            <span class="text-xs">点击上传附件</span>
+            <span id="cost-attachment-name" class="mt-1 text-xs text-blue-600 max-w-[90%] truncate"></span>
+          </div>
+          <p class="mt-1 text-xs text-slate-400">支持 pdf、jpg、png、doc 等格式</p>
+        </div>
+      </div>
+      <div class="flex justify-center gap-3 border-t border-slate-100 px-6 py-4">
+        <button type="button" id="btn-cost-ok" class="h-9 px-8 rounded-md bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer">确认</button>
+        <button type="button" class="h-9 px-8 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close="customer-cost">取消</button>
+      </div>
+    </div>
+  </div>
+
   <script src="./assets/customer-supplement-modal.js"></script>
   <script>
     window.mountCustomerSupplementModal({ openSelectors: ['.js-supplement'] });
+  </script>
+  <script src="./assets/customer-cost-modal.js"></script>
+  <script>
+    window.mountCustomerCostModal({ openSelectors: ['.js-add-customer-cost'] });
   </script>
   <script src="./assets/app-shell.js"></script>
 </body>

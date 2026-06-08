@@ -154,6 +154,21 @@
                 <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"><i class="fa-solid fa-building"></i></span>
               </div>
             </div>
+            <div>
+              <label class="block text-xs text-slate-500 mb-1" for="person-filter">个人：</label>
+              <div class="relative">
+                <select id="person-filter" class="h-9 pl-3 pr-9 rounded border border-slate-200 bg-white text-sm text-slate-700 appearance-none min-w-[140px]">
+                  <option value="" selected>全部</option>
+                  <option value="xuhengxing">许恒星</option>
+                  <option value="zhengliang">郑亮</option>
+                  <option value="zhoufanglin">周方林</option>
+                  <option value="zhoufang">周芳</option>
+                  <option value="luqin">陆琴</option>
+                  <option value="sunhong">孙红</option>
+                </select>
+                <span class="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"><i class="fa-regular fa-user"></i></span>
+              </div>
+            </div>
             <button type="button" class="h-9 px-4 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white text-sm hover:bg-blue-700">查询</button>
             <button type="button" id="btn-fin-reset" class="h-9 px-4 rounded-md border border-slate-200 hover:bg-slate-50 cursor-pointer bg-white text-sm text-slate-600 hover:bg-slate-50">重置</button>
           </div>
@@ -504,13 +519,15 @@
       });
 
       /* 重置 */
-      var yearFilter = document.getElementById('year-filter');
-      var deptFilter = document.getElementById('dept-filter');
-      var resetBtn   = document.getElementById('btn-fin-reset');
+      var yearFilter   = document.getElementById('year-filter');
+      var deptFilter   = document.getElementById('dept-filter');
+      var personFilter = document.getElementById('person-filter');
+      var resetBtn     = document.getElementById('btn-fin-reset');
       if (resetBtn) {
         resetBtn.addEventListener('click', function() {
           if (yearFilter) yearFilter.value = '2026';
           if (deptFilter) deptFilter.value = '';
+          if (personFilter) personFilter.value = '';
         });
       }
 

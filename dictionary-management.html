@@ -16,7 +16,32 @@
     .dict-tab:hover { color: #334155; }
     .dict-tab-active { border-bottom-color: #2563eb; color: #2563eb; font-weight: 600; }
     .dict-menu-active { background: #f1f5f9; color: #0f172a; font-weight: 600; }
-    #modal-dict-add:not(.hidden), #modal-dict-delete:not(.hidden) { display: flex; }
+    #modal-dict-add:not(.hidden), #modal-dict-delete:not(.hidden), #modal-gov-business:not(.hidden) { display: flex; }
+    .gov-biz-filter {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      margin-bottom: 0.25rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .gov-biz-filter-label {
+      display: block;
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .gov-material-summary { font-size: 0.8125rem; color: #475569; line-height: 1.5; }
+    .gov-material-summary li { margin-top: 0.125rem; }
+    .gov-checklist-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      background: #f8fafc;
+      padding: 0.75rem;
+    }
+    .gov-checklist-item + .gov-checklist-item { margin-top: 0.5rem; }
   </style>
 </head>
 <body class="bg-[#f5f7fa] text-slate-700">
@@ -160,6 +185,36 @@
     </div>
   </div>
 
+  <div id="modal-gov-business" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true" role="dialog" aria-labelledby="gov-business-modal-title">
+    <div class="absolute inset-0" data-close-gov-business></div>
+    <div class="relative w-full max-w-3xl max-h-[90vh] flex flex-col rounded-xl border border-slate-200 bg-white shadow-xl overflow-hidden">
+      <div class="relative shrink-0 border-b border-slate-200 px-5 py-4">
+        <h3 id="gov-business-modal-title" class="text-center text-base font-semibold text-slate-800">新增业务</h3>
+        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600" data-close-gov-business aria-label="关闭"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form id="gov-business-form" class="flex-1 overflow-y-auto px-5 py-4 text-sm min-h-0">
+        <div class="space-y-4">
+          <div class="grid grid-cols-[108px_1fr] items-center gap-3">
+            <label class="text-right text-slate-600" for="gov-biz-name">业务名称 <span class="text-red-500">*</span></label>
+            <input type="text" id="gov-biz-name" class="h-9 rounded-md border border-slate-200 px-3" placeholder="请输入业务类型名称，如：开税" required>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-slate-700 font-medium">所需资料清单配置 <span class="text-red-500">*</span></span>
+              <button type="button" id="btn-gov-add-checklist-item" class="h-8 px-3 rounded-md border border-blue-200 bg-blue-50 text-blue-600 text-xs hover:bg-blue-100 cursor-pointer"><i class="fa-solid fa-plus mr-1"></i>添加资料项</button>
+            </div>
+            <p class="text-xs text-slate-500 mb-3">每项填写资料名称及可选值说明，例如：税务注销情况 — 已完成 / 未完成（或者有/无《清税证明》）</p>
+            <div id="gov-checklist-wrap" class="space-y-2"></div>
+          </div>
+        </div>
+        <div class="shrink-0 flex justify-center gap-3 border-t border-slate-100 mt-5 pt-4">
+          <button type="submit" class="h-9 min-w-[90px] rounded-md bg-blue-600 px-4 text-sm text-white hover:bg-blue-700 cursor-pointer">确认</button>
+          <button type="button" class="h-9 min-w-[90px] rounded-md border border-slate-300 bg-white px-4 text-sm text-slate-600 hover:bg-slate-50 cursor-pointer" data-close-gov-business>取消</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div id="modal-dict-delete" class="fixed inset-0 z-[130] hidden items-center justify-center bg-slate-900/45 p-4" aria-hidden="true">
     <div class="absolute inset-0" data-close-delete></div>
     <div class="relative w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
@@ -170,6 +225,8 @@
       </div>
     </div>
   </div>
+
+  <input type="file" id="gov-batch-import-file" class="hidden" accept=".xlsx,.xls,.csv">
 
   <div id="dict-toast" class="fixed top-6 left-1/2 z-[200] hidden -translate-x-1/2 rounded-lg bg-slate-800 px-5 py-2.5 text-sm text-white shadow-lg">提交成功</div>
 
@@ -186,6 +243,49 @@
       var delModal = document.getElementById('modal-dict-delete');
       var toast = document.getElementById('dict-toast');
       var toastTimer = null;
+      var govBizModal = document.getElementById('modal-gov-business');
+      var govBizForm = document.getElementById('gov-business-form');
+      var govBizTitle = document.getElementById('gov-business-modal-title');
+      var govBizNameInput = document.getElementById('gov-biz-name');
+      var govChecklistWrap = document.getElementById('gov-checklist-wrap');
+      var govFilterType = null;
+      var govEditingId = null;
+      var pendingDeleteGovId = null;
+
+      var govBusinessRows = [
+        {
+          id: 'gov-biz-1',
+          type: '开税',
+          materials: [
+            { name: '税务注销情况', options: '已完成 / 未完成（或者有/无《清税证明》）' },
+            { name: '客户类型', options: '自有代账客户 / 外接客户' },
+            { name: '申报情况', options: '0报 / 非0报' },
+            { name: '个体户征收方式（若适用）', options: '核定 / 查账征收' }
+          ],
+          createdAt: '2026-04-20 10:30:00',
+          creator: '周芳林'
+        },
+        {
+          id: 'gov-biz-2',
+          type: '解除地址异常',
+          materials: [
+            { name: '营业执照正副本', options: '原件 / 复印件' },
+            { name: '法人身份证', options: '正反面扫描件' }
+          ],
+          createdAt: '2026-04-18 14:22:00',
+          creator: '许月'
+        },
+        {
+          id: 'gov-biz-3',
+          type: '工商变更',
+          materials: [
+            { name: '变更申请书', options: '已盖章 / 未盖章' },
+            { name: '股东会决议', options: '有 / 无' }
+          ],
+          createdAt: '2026-04-15 09:10:00',
+          creator: '陈莉'
+        }
+      ];
 
       var config = {
         contract: {
@@ -202,7 +302,7 @@
         },
         'gov-material': {
           standalone: true,
-          tabs: [{ key: 'list', label: '', btn: '新增资料' }]
+          tabs: [{ key: 'list', label: '', btn: '新增业务' }]
         },
         'tax-material': {
           standalone: true,
@@ -227,9 +327,15 @@
         if (!tabs.some(function (t) { return t.key === state.tab; })) state.tab = tabs[0].key;
         if (menuCfg.standalone) {
           tabsWrap.innerHTML = '';
-          addBtn.textContent = tabs[0].btn || '新增资料';
+          if (state.menu === 'gov-material') {
+            addBtn.classList.add('hidden');
+          } else {
+            addBtn.classList.remove('hidden');
+            addBtn.textContent = tabs[0].btn || '新增';
+          }
           return;
         }
+        addBtn.classList.remove('hidden');
         tabsWrap.innerHTML = '';
         tabs.forEach(function (t) {
           var b = document.createElement('button');
@@ -243,8 +349,214 @@
         addBtn.textContent = active ? active.btn : '新增';
       }
 
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function formatMaterialsSummary(materials) {
+        if (!materials || !materials.length) return '<span class="text-slate-400">—</span>';
+        return '<ol class="gov-material-summary list-decimal list-inside max-w-xl">' +
+          materials.map(function (m, i) {
+            return '<li><span class="text-slate-700">' + escapeHtml(m.name) + '：</span>' + escapeHtml(m.options) + '</li>';
+          }).join('') +
+          '</ol>';
+      }
+
+      function getGovFilterOptions() {
+        var types = [];
+        govBusinessRows.forEach(function (row) {
+          if (types.indexOf(row.type) === -1) types.push(row.type);
+        });
+        return types;
+      }
+
+      function renderGovMaterialToolbar() {
+        var types = getGovFilterOptions();
+        var optionsHtml = '<option value="">全部</option>' +
+          types.map(function (t) {
+            return '<option value="' + escapeHtml(t) + '">' + escapeHtml(t) + '</option>';
+          }).join('');
+        return '<div class="gov-biz-filter" id="gov-biz-filter-bar">' +
+          '<label class="min-w-[10rem]"><span class="gov-biz-filter-label">业务类型</span>' +
+          '<select id="gov-filter-biz-type" class="h-9 w-full min-w-[10rem] rounded-md border border-slate-200 px-3 bg-white text-sm">' + optionsHtml + '</select></label>' +
+          '<button type="button" id="btn-gov-filter-search" class="h-9 px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer">查询</button>' +
+          '<button type="button" id="btn-gov-filter-reset" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer">重置</button>' +
+          '<button type="button" id="btn-gov-add-business" class="h-9 px-4 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 cursor-pointer inline-flex items-center"><i class="fa-solid fa-plus mr-1.5 text-xs" aria-hidden="true"></i>新增业务</button>' +
+          '<button type="button" id="btn-gov-batch-import" class="h-9 px-4 rounded-md border border-slate-200 bg-white text-sm text-slate-600 hover:bg-slate-50 cursor-pointer inline-flex items-center"><i class="fa-solid fa-file-import mr-1.5 text-xs text-slate-500" aria-hidden="true"></i>批量导入</button>' +
+          '</div>';
+      }
+
+      function renderGovMaterialTable(filterValue) {
+        var rows = govBusinessRows.filter(function (row) {
+          if (!filterValue) return true;
+          return row.type === filterValue;
+        });
+        var body = rows.length
+          ? rows.map(function (row) {
+            return '<tr class="hover:bg-slate-50" data-gov-id="' + escapeHtml(row.id) + '">' +
+              '<td class="px-3 py-3 border-b border-slate-100 font-medium text-slate-800 whitespace-nowrap">' + escapeHtml(row.type) + '</td>' +
+              '<td class="px-3 py-3 border-b border-slate-100">' + formatMaterialsSummary(row.materials) + '</td>' +
+              '<td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">' + escapeHtml(row.createdAt) + '</td>' +
+              '<td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">' + escapeHtml(row.creator) + '</td>' +
+              '<td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">' +
+              '<button type="button" class="text-blue-600 hover:underline mr-3 js-gov-edit" data-gov-id="' + escapeHtml(row.id) + '">编辑</button>' +
+              '<button type="button" class="text-blue-600 hover:underline js-dict-delete" data-gov-id="' + escapeHtml(row.id) + '">删除</button>' +
+              '</td></tr>';
+          }).join('')
+          : '<tr><td colspan="5" class="px-3 py-8 text-center text-slate-400">暂无数据</td></tr>';
+        return renderGovMaterialToolbar() +
+          '<table class="w-full min-w-[960px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr>' +
+          '<th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">业务类型</th>' +
+          '<th class="text-left px-3 py-3 border-b border-slate-200 font-medium">所需资料清单</th>' +
+          '<th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">创建时间</th>' +
+          '<th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">创建人</th>' +
+          '<th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">操作</th>' +
+          '</tr></thead><tbody class="text-slate-700">' + body + '</tbody></table>';
+      }
+
+      function bindGovFilterEvents() {
+        var filterSel = document.getElementById('gov-filter-biz-type');
+        var btnSearch = document.getElementById('btn-gov-filter-search');
+        var btnReset = document.getElementById('btn-gov-filter-reset');
+        var btnAddBiz = document.getElementById('btn-gov-add-business');
+        var btnBatchImport = document.getElementById('btn-gov-batch-import');
+        var batchImportFile = document.getElementById('gov-batch-import-file');
+        if (btnAddBiz) {
+          btnAddBiz.addEventListener('click', function () {
+            openGovBusinessModal('add');
+          });
+        }
+        if (btnBatchImport) {
+          btnBatchImport.addEventListener('click', function () {
+            var fileInput = document.getElementById('gov-batch-import-file');
+            if (fileInput) fileInput.click();
+          });
+        }
+        if (btnSearch) {
+          btnSearch.addEventListener('click', function () {
+            govFilterType = filterSel ? filterSel.value : '';
+            tableWrap.innerHTML = renderGovMaterialTable(govFilterType);
+            bindGovFilterEvents();
+            bindGovTableEvents();
+            var sel = document.getElementById('gov-filter-biz-type');
+            if (sel) sel.value = govFilterType;
+          });
+        }
+        if (btnReset) {
+          btnReset.addEventListener('click', function () {
+            govFilterType = '';
+            tableWrap.innerHTML = renderGovMaterialTable('');
+            bindGovFilterEvents();
+            bindGovTableEvents();
+          });
+        }
+      }
+
+      function bindGovTableEvents() {
+        bindDeleteEvents();
+        tableWrap.querySelectorAll('.js-gov-edit').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var id = btn.getAttribute('data-gov-id');
+            var row = govBusinessRows.find(function (r) { return r.id === id; });
+            if (row) openGovBusinessModal('edit', row);
+          });
+        });
+      }
+
+      function createChecklistItemEl(item, index) {
+        var wrap = document.createElement('div');
+        wrap.className = 'gov-checklist-item';
+        wrap.setAttribute('data-checklist-index', String(index));
+        wrap.innerHTML =
+          '<div class="flex items-start justify-between gap-2 mb-2">' +
+          '<span class="text-xs font-medium text-slate-500 pt-2">资料项 ' + (index + 1) + '</span>' +
+          '<button type="button" class="text-xs text-red-500 hover:text-red-700 shrink-0 js-remove-checklist-item cursor-pointer">删除</button>' +
+          '</div>' +
+          '<div class="grid grid-cols-1 gap-2">' +
+          '<input type="text" class="gov-checklist-name h-9 rounded-md border border-slate-200 px-3 w-full" placeholder="资料项名称，如：税务注销情况" value="' + escapeHtml(item && item.name ? item.name : '') + '">' +
+          '<textarea rows="2" class="gov-checklist-options rounded-md border border-slate-200 px-3 py-2 w-full resize-none" placeholder="选项配置，如：已完成 / 未完成（或者有/无《清税证明》）">' + escapeHtml(item && item.options ? item.options : '') + '</textarea>' +
+          '</div>';
+        wrap.querySelector('.js-remove-checklist-item').addEventListener('click', function () {
+          if (govChecklistWrap.children.length <= 1) {
+            showToast('至少保留一项资料配置');
+            return;
+          }
+          wrap.remove();
+          reindexChecklistItems();
+        });
+        return wrap;
+      }
+
+      function reindexChecklistItems() {
+        govChecklistWrap.querySelectorAll('.gov-checklist-item').forEach(function (el, i) {
+          el.setAttribute('data-checklist-index', String(i));
+          var label = el.querySelector('.text-xs.font-medium');
+          if (label) label.textContent = '资料项 ' + (i + 1);
+        });
+      }
+
+      function getDefaultChecklistItems() {
+        return [
+          { name: '税务注销情况', options: '已完成 / 未完成（或者有/无《清税证明》）' },
+          { name: '客户类型', options: '自有代账客户 / 外接客户' },
+          { name: '申报情况', options: '0报 / 非0报' },
+          { name: '个体户征收方式（若适用）', options: '核定 / 查账征收' }
+        ];
+      }
+
+      function renderChecklistItems(items) {
+        govChecklistWrap.innerHTML = '';
+        (items || []).forEach(function (item, i) {
+          govChecklistWrap.appendChild(createChecklistItemEl(item, i));
+        });
+      }
+
+      function collectChecklistFromForm() {
+        var items = [];
+        govChecklistWrap.querySelectorAll('.gov-checklist-item').forEach(function (el) {
+          var nameIn = el.querySelector('.gov-checklist-name');
+          var optIn = el.querySelector('.gov-checklist-options');
+          var name = nameIn ? nameIn.value.trim() : '';
+          var options = optIn ? optIn.value.trim() : '';
+          if (name || options) items.push({ name: name, options: options });
+        });
+        return items;
+      }
+
+      function openGovBusinessModal(mode, row) {
+        govEditingId = mode === 'edit' && row ? row.id : null;
+        govBizTitle.textContent = mode === 'edit' ? '编辑业务' : '新增业务';
+        if (govBizNameInput) {
+          govBizNameInput.value = row ? row.type : '';
+          govBizNameInput.readOnly = false;
+        }
+        var items = row && row.materials && row.materials.length
+          ? row.materials
+          : getDefaultChecklistItems();
+        renderChecklistItems(items);
+        govBizModal.classList.remove('hidden');
+        govBizModal.classList.add('flex');
+      }
+
+      function closeGovBusinessModal() {
+        govEditingId = null;
+        govBizModal.classList.add('hidden');
+        govBizModal.classList.remove('flex');
+      }
+
       function renderTable() {
         var html = '';
+        if (state.menu === 'gov-material') {
+          html = renderGovMaterialTable(govFilterType || '');
+          tableWrap.innerHTML = html;
+          bindGovFilterEvents();
+          bindGovTableEvents();
+          return;
+        }
         if (state.menu === 'contract' && state.tab === 'company') {
           html = '<table class="w-full min-w-[900px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">公司名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">开户银行</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">银行账号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
             '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">苏州企税康科技有限公司 <span class="ml-2 inline-flex rounded bg-blue-600 px-1.5 py-0.5 text-xs text-white">默认</span></td><td class="px-3 py-3 border-b border-slate-100">中国农业银行苏州工业园区支行</td><td class="px-3 py-3 border-b border-slate-100">10551011040285537</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
@@ -265,18 +577,12 @@
             '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">01</td><td class="px-3 py-3 border-b border-slate-100">工商</td><td class="px-3 py-3 border-b border-slate-100">公司注册(小规模)</td><td class="px-3 py-3 border-b border-slate-100">500.00元/个</td><td class="px-3 py-3 border-b border-slate-100">200.00元/个</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
             '<tr class="hover:bg-slate-50"><td class="px-3 py-3 border-b border-slate-100">02</td><td class="px-3 py-3 border-b border-slate-100">社保</td><td class="px-3 py-3 border-b border-slate-100">社保补缴</td><td class="px-3 py-3 border-b border-slate-100">2000.00元/个</td><td class="px-3 py-3 border-b border-slate-100">500.00元/个</td><td class="px-3 py-3 border-b border-slate-100"><a href="#" class="text-blue-600 hover:underline mr-3">修改</a><button type="button" class="text-blue-600 hover:underline js-dict-delete">删除</button></td></tr>' +
             '</tbody></table>';
-        } else if (state.menu === 'gov-material' || state.menu === 'tax-material') {
-          var materialRows = state.menu === 'gov-material'
-            ? [
-              { name: '营业执照正副本', required: '是' },
-              { name: '法人身份证', required: '是' },
-              { name: '公司章程', required: '否' }
-            ]
-            : [
-              { name: '税务登记证', required: '是' },
-              { name: '开户许可证', required: '是' },
-              { name: '电子税务局账号信息', required: '是' }
-            ];
+        } else if (state.menu === 'tax-material') {
+          var materialRows = [
+            { name: '税务登记证', required: '是' },
+            { name: '开户许可证', required: '是' },
+            { name: '电子税务局账号信息', required: '是' }
+          ];
           html = '<table class="w-full min-w-[820px] text-sm"><thead class="bg-slate-50 text-slate-600"><tr><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">序号</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">资料名称</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">是否必填</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">创建时间</th><th class="text-left px-3 py-3 border-b border-slate-200 font-medium">操作</th></tr></thead><tbody class="text-slate-700">' +
             materialRows.map(function (row, i) {
               var no = (i + 1 < 10 ? '0' : '') + (i + 1);
@@ -326,7 +632,7 @@
           fields =
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">合同名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入合同名称"></div>' +
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">模板文件 <span class="text-red-500">*</span></label><button type="button" class="h-10 rounded border border-dashed border-sky-300 bg-sky-50 text-blue-600 text-sm"><i class="fa-solid fa-circle-plus mr-2"></i>上传模板</button></div>';
-        } else if (state.menu === 'gov-material' || state.menu === 'tax-material') {
+        } else if (state.menu === 'tax-material') {
           title = '新增资料';
           fields =
             '<div class="grid grid-cols-[100px_1fr] items-center gap-3"><label class="text-right text-slate-600">资料名称 <span class="text-red-500">*</span></label><input class="h-9 rounded border border-slate-200 px-3" placeholder="输入资料名称"></div>' +
@@ -382,7 +688,10 @@
 
       function bindDeleteEvents() {
         tableWrap.querySelectorAll('.js-dict-delete').forEach(function (btn) {
-          btn.addEventListener('click', function () { openDeleteModal(); });
+          btn.addEventListener('click', function () {
+            pendingDeleteGovId = btn.getAttribute('data-gov-id') || null;
+            openDeleteModal();
+          });
         });
       }
 
@@ -392,7 +701,71 @@
         });
       });
 
-      addBtn.addEventListener('click', openAddModal);
+      addBtn.addEventListener('click', function () {
+        openAddModal();
+      });
+
+      var govBatchImportFile = document.getElementById('gov-batch-import-file');
+      if (govBatchImportFile) {
+        govBatchImportFile.addEventListener('change', function () {
+          if (govBatchImportFile.files && govBatchImportFile.files.length) {
+            showToast('批量导入成功');
+            govBatchImportFile.value = '';
+          }
+        });
+      }
+
+      document.getElementById('btn-gov-add-checklist-item').addEventListener('click', function () {
+        var count = govChecklistWrap.children.length;
+        govChecklistWrap.appendChild(createChecklistItemEl({ name: '', options: '' }, count));
+      });
+
+      if (govBizModal) {
+        govBizModal.querySelectorAll('[data-close-gov-business]').forEach(function (el) {
+          el.addEventListener('click', closeGovBusinessModal);
+        });
+      }
+      if (govBizForm) {
+        govBizForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = govBizNameInput ? govBizNameInput.value.trim() : '';
+          if (!name) {
+            showToast('请填写业务名称');
+            return;
+          }
+          var materials = collectChecklistFromForm();
+          if (!materials.length) {
+            showToast('请配置至少一项所需资料');
+            return;
+          }
+          var invalid = materials.some(function (m) { return !m.name || !m.options; });
+          if (invalid) {
+            showToast('请完善每项资料的名称与选项配置');
+            return;
+          }
+          if (govEditingId) {
+            var existing = govBusinessRows.find(function (r) { return r.id === govEditingId; });
+            if (existing) {
+              existing.type = name;
+              existing.materials = materials;
+            }
+            showToast('保存成功');
+          } else {
+            govBusinessRows.unshift({
+              id: 'gov-biz-' + Date.now(),
+              type: name,
+              materials: materials,
+              createdAt: new Date().toISOString().slice(0, 19).replace('T', ' '),
+              creator: '祝哥'
+            });
+            showToast('新增成功');
+          }
+          closeGovBusinessModal();
+          govFilterType = '';
+          renderTable();
+        });
+      }
+
       addModal.querySelectorAll('[data-close-add]').forEach(function (el) {
         el.addEventListener('click', closeAddModal);
       });
@@ -406,6 +779,11 @@
         el.addEventListener('click', closeDeleteModal);
       });
       document.getElementById('btn-confirm-delete').addEventListener('click', function () {
+        if (pendingDeleteGovId && state.menu === 'gov-material') {
+          govBusinessRows = govBusinessRows.filter(function (r) { return r.id !== pendingDeleteGovId; });
+          pendingDeleteGovId = null;
+          renderTable();
+        }
         closeDeleteModal();
         showToast('删除成功');
       });
@@ -413,6 +791,7 @@
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           if (!addModal.classList.contains('hidden')) closeAddModal();
+          if (govBizModal && !govBizModal.classList.contains('hidden')) closeGovBusinessModal();
           if (!delModal.classList.contains('hidden')) closeDeleteModal();
         }
       });
