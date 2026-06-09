@@ -53,8 +53,8 @@
           <div class="mt-1 ml-2 pl-3 border-l border-slate-700 space-y-0.5">
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="government-affairs.html">政务服务</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="accounting-customer-management.html">代账服务</a>
-            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
             <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="address-management.html">地址管理</a>
+            <a class="block py-2 px-3 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white" href="customer-items.html">客户物品</a>
           </div>
         </details>
         <a class="mx-3 mb-1 h-10 px-4 rounded-lg bg-blue-600 text-white font-medium flex items-center" href="supply-chain-management.html"><i class="fa-solid fa-truck-fast w-5 mr-2"></i>供应链中心</a>
@@ -162,6 +162,7 @@
               <thead class="bg-slate-50 text-slate-600">
                 <tr>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">服务产品</th>
+                  <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">合作价</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">供应商名称</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">所属区域</th>
                   <th class="text-left px-3 py-3 border-b border-slate-200 font-medium whitespace-nowrap">联系人</th>
@@ -175,16 +176,63 @@
               <tbody class="text-slate-700" id="supplier-table-body">
                 <tr class="hover:bg-slate-50 supplier-row"
                     data-name="苏州一舟电子商务有限公司"
-                    data-advantage="注册地址"
-                    data-advantage-price="1000"
-                    data-other='[{"project":"工商变更","price":"800"},{"project":"政务代办","price":"600"}]'
+                    data-service-product="注册地址"
+                    data-cooperation-price="1000"
                     data-region="苏州市吴中区"
                     data-contact="耿先生"
                     data-phone="15252263036"
                     data-wechat="gx_yizhou"
-                    data-account="622 2552 1251 2222 2222"
-                    data-projects="注册地址,工商变更,政务代办">
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">注册地址 ¥1000；工商变更 ¥800；政务代办 ¥600</td>
+                    data-account="622 2552 1251 2222 2222">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">注册地址</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">¥1,000</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州一舟电子商务有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州市吴中区</td>
+                  <td class="px-3 py-3 border-b border-slate-100">耿先生</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">15252263036</td>
+                  <td class="px-3 py-3 border-b border-slate-100">gx_yizhou</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">622 2552 1251 2222 2222</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-view-detail text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="js-edit-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 supplier-row"
+                    data-name="苏州一舟电子商务有限公司"
+                    data-service-product="工商变更"
+                    data-cooperation-price="800"
+                    data-region="苏州市吴中区"
+                    data-contact="耿先生"
+                    data-phone="15252263036"
+                    data-wechat="gx_yizhou"
+                    data-account="622 2552 1251 2222 2222">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">工商变更</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">¥800</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州一舟电子商务有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州市吴中区</td>
+                  <td class="px-3 py-3 border-b border-slate-100">耿先生</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">15252263036</td>
+                  <td class="px-3 py-3 border-b border-slate-100">gx_yizhou</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">622 2552 1251 2222 2222</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-view-detail text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="js-edit-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 supplier-row"
+                    data-name="苏州一舟电子商务有限公司"
+                    data-service-product="政务代办"
+                    data-cooperation-price="600"
+                    data-region="苏州市吴中区"
+                    data-contact="耿先生"
+                    data-phone="15252263036"
+                    data-wechat="gx_yizhou"
+                    data-account="622 2552 1251 2222 2222">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">政务代办</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">¥600</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州一舟电子商务有限公司</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州市吴中区</td>
                   <td class="px-3 py-3 border-b border-slate-100">耿先生</td>
@@ -200,16 +248,39 @@
                 </tr>
                 <tr class="hover:bg-slate-50 supplier-row"
                     data-name="苏州沧海商务服务有限公司"
-                    data-advantage="代账服务"
-                    data-advantage-price="2800"
-                    data-other='[{"project":"注册地址","price":"1200"}]'
+                    data-service-product="代账服务"
+                    data-cooperation-price="2800"
                     data-region="苏州工业园区"
                     data-contact="李女士"
                     data-phone="13905128899"
                     data-wechat="canghai_svc"
-                    data-account="6217 0000 1234 5678 901"
-                    data-projects="代账服务,注册地址">
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">代账服务 ¥2800；注册地址 ¥1200</td>
+                    data-account="6217 0000 1234 5678 901">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">代账服务</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">¥2,800</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州沧海商务服务有限公司</td>
+                  <td class="px-3 py-3 border-b border-slate-100">苏州工业园区</td>
+                  <td class="px-3 py-3 border-b border-slate-100">李女士</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">13905128899</td>
+                  <td class="px-3 py-3 border-b border-slate-100">canghai_svc</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">6217 0000 1234 5678 901</td>
+                  <td class="px-3 py-3 border-b border-slate-100"><button type="button" class="js-view-detail text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">查看详情</button></td>
+                  <td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">
+                    <button type="button" class="js-edit-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">编辑</button>
+                    <span class="px-1 text-slate-300">|</span>
+                    <button type="button" class="js-delete-supplier text-blue-600 hover:text-blue-700 hover:underline cursor-pointer">删除</button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 supplier-row"
+                    data-name="苏州沧海商务服务有限公司"
+                    data-service-product="注册地址"
+                    data-cooperation-price="1200"
+                    data-region="苏州工业园区"
+                    data-contact="李女士"
+                    data-phone="13905128899"
+                    data-wechat="canghai_svc"
+                    data-account="6217 0000 1234 5678 901">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">注册地址</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">¥1,200</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州沧海商务服务有限公司</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州工业园区</td>
                   <td class="px-3 py-3 border-b border-slate-100">李女士</td>
@@ -225,16 +296,15 @@
                 </tr>
                 <tr class="hover:bg-slate-50 supplier-row"
                     data-name="昆山智政代办中心"
-                    data-advantage="政务代办"
-                    data-advantage-price="1500"
-                    data-other="[]"
+                    data-service-product="政务代办"
+                    data-cooperation-price="1500"
                     data-region="苏州昆山市"
                     data-contact="王经理"
                     data-phone="13706228866"
                     data-wechat="zhizheng_ks"
-                    data-account="6228 4800 9988 7766 5544"
-                    data-projects="政务代办">
-                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">政务代办 ¥1500</td>
+                    data-account="6228 4800 9988 7766 5544">
+                  <td class="px-3 py-3 border-b border-slate-100 text-slate-600">政务代办</td>
+                  <td class="px-3 py-3 border-b border-slate-100 tabular-nums">¥1,500</td>
                   <td class="px-3 py-3 border-b border-slate-100">昆山智政代办中心</td>
                   <td class="px-3 py-3 border-b border-slate-100">苏州昆山市</td>
                   <td class="px-3 py-3 border-b border-slate-100">王经理</td>
@@ -277,9 +347,8 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-[7.5rem_1fr] items-start gap-x-4 gap-y-3">
           <span class="text-right text-slate-600 shrink-0 sm:pt-2">服务产品 <span class="text-red-500">*</span></span>
-          <div class="space-y-2 min-w-0">
+          <div class="min-w-0">
             <div id="service-products-list" class="space-y-2"></div>
-            <button type="button" id="btn-add-service-product" class="text-sm text-blue-600 hover:text-blue-700 hover:underline cursor-pointer inline-flex items-center gap-1"><i class="fa-solid fa-plus text-xs"></i>添加服务产品</button>
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-[7.5rem_1fr] items-center gap-x-4 gap-y-3">
@@ -352,7 +421,6 @@
         <option>工商变更</option>
       </select>
       <input type="text" class="service-product-price h-9 w-28 rounded-md border border-slate-200 px-3 text-sm" placeholder="合作价">
-      <button type="button" class="js-remove-service-product h-9 px-3 rounded-md border border-slate-200 text-slate-500 hover:bg-red-50 hover:text-red-600 hover:border-red-200 cursor-pointer text-sm shrink-0" title="删除"><i class="fa-solid fa-trash-can"></i></button>
     </div>
   </template>
 
@@ -367,17 +435,6 @@
       var editingRow = null;
       var deleteRow = null;
 
-      function parseOther(raw) {
-        try { return JSON.parse(raw || '[]'); } catch (e) { return []; }
-      }
-
-      function getAllServiceProducts(d) {
-        var items = [];
-        if (d.advantage) items.push({ project: d.advantage, price: d.advantagePrice });
-        (d.other || []).forEach(function (o) { items.push(o); });
-        return items;
-      }
-
       function formatPriceDisplay(price) {
         if (!price) return '—';
         var n = String(price).replace(/[^\d.]/g, '');
@@ -387,9 +444,8 @@
       function getRowData(row) {
         return {
           name: row.dataset.name || '',
-          advantage: row.dataset.advantage || '',
-          advantagePrice: row.dataset.advantagePrice || '',
-          other: parseOther(row.dataset.other),
+          serviceProduct: row.dataset.serviceProduct || '',
+          cooperationPrice: row.dataset.cooperationPrice || '',
           region: row.dataset.region || '',
           contact: row.dataset.contact || '',
           phone: row.dataset.phone || '',
@@ -405,9 +461,6 @@
         var inp = row.querySelector('.service-product-price');
         if (project) sel.value = project;
         if (price) inp.value = price;
-        row.querySelector('.js-remove-service-product').addEventListener('click', function () {
-          row.remove();
-        });
         return row;
       }
 
@@ -417,24 +470,16 @@
 
       function fillServiceProducts(d) {
         clearServiceProducts();
-        var items = getAllServiceProducts(d);
-        if (!items.length) {
-          serviceProductsList.appendChild(createServiceProductRow('', ''));
-          return;
-        }
-        items.forEach(function (item) {
-          serviceProductsList.appendChild(createServiceProductRow(item.project, item.price));
-        });
+        serviceProductsList.appendChild(createServiceProductRow(d.serviceProduct || '', d.cooperationPrice || ''));
       }
 
-      function collectServiceProducts() {
-        var items = [];
-        serviceProductsList.querySelectorAll('.other-project-row').forEach(function (row) {
-          var project = row.querySelector('.service-product-select').value;
-          var price = row.querySelector('.service-product-price').value.trim();
-          if (project) items.push({ project: project, price: price });
-        });
-        return items;
+      function collectServiceProduct() {
+        var row = serviceProductsList.querySelector('.other-project-row');
+        if (!row) return { project: '', price: '' };
+        return {
+          project: row.querySelector('.service-product-select').value,
+          price: row.querySelector('.service-product-price').value.trim()
+        };
       }
 
       function openFormModal(mode, row) {
@@ -470,20 +515,16 @@
       }
 
       function buildDetailHtml(d) {
-        var productsHtml = getAllServiceProducts(d).length
-          ? '<ul class="list-disc pl-4 space-y-1">' + getAllServiceProducts(d).map(function (o) {
-              return '<li>' + o.project + ' — 合作价：' + (o.price ? formatPriceDisplay(o.price) : '—') + '</li>';
-            }).join('') + '</ul>'
-          : '<p class="detail-value text-slate-400">无</p>';
         return ''
           + '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">'
           + '<div><p class="detail-label">供应商名称</p><p class="detail-value">' + (d.name || '—') + '</p></div>'
           + '<div><p class="detail-label">所属区域</p><p class="detail-value">' + (d.region || '—') + '</p></div>'
+          + '<div><p class="detail-label">服务产品</p><p class="detail-value">' + (d.serviceProduct || '—') + '</p></div>'
+          + '<div><p class="detail-label">合作价</p><p class="detail-value tabular-nums">' + formatPriceDisplay(d.cooperationPrice) + '</p></div>'
           + '<div><p class="detail-label">联系人</p><p class="detail-value">' + (d.contact || '—') + '</p></div>'
           + '<div><p class="detail-label">联系电话</p><p class="detail-value tabular-nums">' + (d.phone || '—') + '</p></div>'
           + '<div><p class="detail-label">微信号</p><p class="detail-value">' + (d.wechat || '—') + '</p></div>'
           + '<div class="sm:col-span-2"><p class="detail-label">收款账号</p><p class="detail-value tabular-nums">' + (d.account || '—') + '</p></div>'
-          + '<div class="sm:col-span-2"><p class="detail-label">服务产品</p>' + productsHtml + '</div>'
           + '</div>';
       }
 
@@ -507,10 +548,7 @@
         document.querySelectorAll('.supplier-row').forEach(function (row) {
           var show = true;
           if (name && (row.dataset.name || '').toLowerCase().indexOf(name) === -1) show = false;
-          if (project) {
-            var projects = (row.dataset.projects || '').split(',');
-            if (projects.indexOf(project) === -1 && row.dataset.advantage !== project) show = false;
-          }
+          if (project && row.dataset.serviceProduct !== project) show = false;
           if (region && row.dataset.region !== region) show = false;
           row.style.display = show ? '' : 'none';
         });
@@ -518,10 +556,6 @@
 
       document.getElementById('btn-open-add-supplier').addEventListener('click', function () {
         openFormModal('add');
-      });
-
-      document.getElementById('btn-add-service-product').addEventListener('click', function () {
-        serviceProductsList.appendChild(createServiceProductRow('', ''));
       });
 
       document.querySelectorAll('[data-close-form]').forEach(function (el) {
