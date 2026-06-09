@@ -417,6 +417,22 @@
     return Number(n).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  function getPaidUnpaid(rec) {
+    if (rec.payStatus === '已支付') {
+      return { paid: rec.amount, unpaid: 0 };
+    }
+    if (rec.payStatus === '未支付') {
+      return { paid: 0, unpaid: rec.amount };
+    }
+    if (rec.payStatus === '部分支付') {
+      var paid = Number(rec.paidAmount) || 0;
+      var unpaid = Number(rec.pendingAmount);
+      if (isNaN(unpaid) || unpaid === 0) unpaid = Math.max(0, rec.amount - paid);
+      return { paid: paid, unpaid: unpaid };
+    }
+    return { paid: 0, unpaid: rec.amount };
+  }
+
   function formatCell(val) {
     return val == null || val === '' ? PLACEHOLDER : val;
   }
@@ -458,12 +474,13 @@
     if (countEl) countEl.textContent = '共 ' + list.length + ' 条';
 
     if (!list.length) {
-      tbody.innerHTML = '<tr><td colspan="13" class="px-3 py-10 text-center text-slate-400">暂无符合条件的数据</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="16" class="px-3 py-10 text-center text-slate-400">暂无符合条件的数据</td></tr>';
       return;
     }
 
     tbody.innerHTML = list.map(function (rec) {
       var contact = rec.contactName + ' / ' + rec.contactPhone;
+      var amounts = getPaidUnpaid(rec);
       return (
         '<tr class="hover:bg-slate-50 co-row" data-record-id="' + rec.id + '">' +
         '<td class="px-3 py-3 border-b border-slate-100">' + rec.contractType + '</td>' +
@@ -472,12 +489,15 @@
         '<td class="px-3 py-3 border-b border-slate-100">' + formatAmount(rec.amount) + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100"><span class="font-medium ' + (contractStatusClass[rec.contractStatus] || '') + '">' + rec.contractStatus + '</span></td>' +
         '<td class="px-3 py-3 border-b border-slate-100">' + formatCell(rec.signedAt) + '</td>' +
+        '<td class="px-3 py-3 border-b border-slate-100 text-emerald-600">' + formatAmount(amounts.paid) + '</td>' +
+        '<td class="px-3 py-3 border-b border-slate-100' + (amounts.unpaid > 0 ? ' text-amber-600' : '') + '">' + formatAmount(amounts.unpaid) + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100"><span class="font-medium ' + (payStatusClass[rec.payStatus] || 'text-slate-500') + '">' + formatCell(rec.payStatus) + '</span></td>' +
         '<td class="px-3 py-3 border-b border-slate-100">' + formatCell(rec.payChannel) + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100">' + formatCell(rec.payTime) + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100">' + formatCell(rec.invoiceFlag) + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100">' + rec.salesperson + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100">' + rec.department + '</td>' +
+        '<td class="px-3 py-3 border-b border-slate-100 font-mono text-xs">' + rec.contractNo + '</td>' +
         '<td class="px-3 py-3 border-b border-slate-100 whitespace-nowrap">' + renderActions(rec) + '</td>' +
         '</tr>'
       );
@@ -688,6 +708,7 @@
     setText('od-pay-method', d.payMethod);
     setText('od-amount', d.amount);
     setText('od-pay-time', d.payTime);
+    setText('od-remark', d.remark);
     setText('od-channel', d.channel);
     setText('od-sales', d.salesperson);
     setText('od-dept', d.dept);
@@ -910,6 +931,9 @@
         var d = orderDetails[currentRemarkOrderId];
         if (d) d.remark = text;
         showToast('订单备注已保存');
+        if (currentDetailOrderId === currentRemarkOrderId) {
+          setText('od-remark', text);
+        }
         closeOrderRemarkModal();
       });
     }

@@ -44,9 +44,9 @@
 
         { id: 'accounting-svc', type: 'link', name: '代账服务', icon: '', href: 'accounting-customer-management.html', enabled: true, sort: 2 },
 
-        { id: 'customer-items', type: 'link', name: '客户物品', icon: '', href: 'customer-items.html', enabled: true, sort: 3 },
+        { id: 'address-mgmt', type: 'link', name: '地址管理', icon: '', href: 'address-management.html', enabled: true, sort: 3 },
 
-        { id: 'address-mgmt', type: 'link', name: '地址管理', icon: '', href: 'address-management.html', enabled: true, sort: 4 }
+        { id: 'customer-items', type: 'link', name: '客户物品', icon: '', href: 'customer-items.html', enabled: true, sort: 4 }
 
       ]
 

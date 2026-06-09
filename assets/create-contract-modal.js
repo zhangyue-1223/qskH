@@ -28,7 +28,7 @@
       '            <label class="inline-flex items-center gap-1.5"><input type="radio" name="contractTagShared" class="accent-blue-600"><span>续签</span></label>' +
       '          </div>' +
       '          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">' +
-      '            <label class="text-sm"><span class="text-slate-600">公司名称 <span class="text-red-500">*</span></span><input type="text" placeholder="输入公司名称" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
+      '            <label class="text-sm"><span class="text-slate-600">企业名称 <span class="text-red-500">*</span></span><input type="text" placeholder="输入企业名称" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label class="text-sm"><span class="text-slate-600">联系人</span><input type="text" placeholder="输入联系人姓名" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '            <label class="text-sm"><span class="text-slate-600">联系方式 <span class="text-red-500">*</span></span><input type="text" placeholder="输入联系人手机号" class="mt-1 w-full h-9 px-3 rounded border border-slate-200"></label>' +
       '          </div>' +
@@ -63,9 +63,9 @@
       '        </div>' +
       '      </section>' +
       '    </form>' +
-      '    <div class="h-16 border-t border-slate-100 flex items-center justify-center gap-3 shrink-0">' +
-      '      <button type="button" id="btn-confirm-create-contract" class="h-10 min-w-28 px-8 rounded bg-blue-600 text-white text-sm font-medium hover:bg-blue-700">确认</button>' +
-      '      <button type="button" class="btn-close-create-contract h-10 min-w-24 px-8 rounded border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50">取消</button>' +
+      '    <div class="modal-footer-actions h-14 border-t border-slate-100 flex items-center justify-end gap-3 px-6 shrink-0">' +
+      '      <button type="button" class="btn-close-create-contract h-9 px-6 rounded-md border border-slate-300 bg-white text-sm text-slate-600 hover:bg-slate-50 shrink-0">取消</button>' +
+      '      <button type="button" id="btn-confirm-create-contract" class="h-9 px-6 rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 shrink-0">确认</button>' +
       '    </div>' +
       '  </div>' +
       '</div>' +
